@@ -14,7 +14,7 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Arcana",
-        "url": "https://www.arcana.com",
+        "url": "https://www.shop-arcana.store",
         "potentialAction": {
             "@type": "SearchAction",
             "target": "https://shop-arcana.store/search?q={search_term_string}",
@@ -24,46 +24,49 @@
         }
     }
     </script>
+<base target="_blank">
 </head>
 <body>
 
     <div class="header">
-    <div class="container">
-    <div class="navbar">
-        <div class="logo">
-            <a href=""><img src="logo.png" alt="Logo" width="125px"></a>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href=""><img src="logo.png" alt="Logo" width="125px"></a>
+                </div>
+                <select id="currency" class="currency-selector">
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                    <option value="NGN">NGN (₦)</option>
+                </select>
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a class="active" href="index.html">Home</a></li>
+                        <li><a href="product.html">Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Account</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                    </ul>
+                </nav>
+                <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart Icon" class="cart-icon"></a>
+                <img src="menu.png" width="30px" height="30px" alt="Menu Icon" class="menu-icon" onclick="menuToggle()">
+            </div>
+        </div> <!-- # HERE: container closes AFTER navbar, BEFORE hero -->
+
+        <!-- ===== HERO SECTION (breaks out of container like LV) ===== -->
+        <!-- # HERE: Moved OUTSIDE .container so it spans full viewport width -->
+        <div class="gallery-hero">
+            <div class="gallery-hero__image-wrap">
+                <img src="background.png" alt="Background Image">
+            </div>
+            <div class="gallery-hero__content">
+                <p>Summer Collection Coming Soon...</p>
+                <a href="product.html" class="btn">Explore Products &#8594;</a>
+            </div>
         </div>
-            <select id="currency" class="currency-selector">
-            <option value="USD">USD ($)</option>
-            <option value="EUR">EUR (€)</option>
-            <option value="GBP">GBP (£)</option>
-            <option value="NGN">NGN (₦)</option>
-            </select>
-        <nav>
-            <ul id="MenuItems">
-                <li><a  class="active" href="index.html">Home</a></li>
-                <li><a href="product.html">Products</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="account.html">Account</a></li>
-            </ul>
-        </nav>
-        <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart Icon" class="cart-icon"></a>
-        <img src="menu.png" width="30px" height="30px" alt="Menu Icon" class="menu-icon" onclick="menuToggle()">
-    </div>
-    <div class="row">
-        <div class="col-2">
-            <br>
-            <h1>Welcome to Arcana<br>Unlock your Style!</h1>
-            <p>Explore Arcana's premium collection of unique and stylish products.</p>
-            <a href="product.html" class="btn">Explore Now &#8594;</a>
-        </div>
-        <div class="col-2">
-            <img src="background.png" alt="Background Image">
-        </div>
-    </div>
-    </div>
-    </div>
-<br> <br> <br>
+    </div> <!-- header closing -->
+<br> <br>
     <!------- Pre-Order Now products section --------->
     <div class="container">
         <h2 class="title">Pre-Order Now</h2>
@@ -215,7 +218,7 @@
                 </div>
             </div>
                 <hr>
-                <p class="copyright">© <span id="year"></span> Arcana. All rights reserved.</p>
+                <p class="copyright">© <span id="year"></span> Arcana — Designed with intention. All rights reserved.</p>
         </div>
 
     </div>

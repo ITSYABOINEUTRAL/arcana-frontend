@@ -12,6 +12,8 @@ body {
     display: flex;
     align-items: center;
     padding: 20px;
+    position: relative;
+    z-index: 1001;
 }
 .navbar .cart-icon {
     width: 30px;
@@ -29,6 +31,8 @@ nav {
 nav ul {
     display: inline-block;
     list-style-type: none;
+    position: relative;
+    z-index: 1002;
 }
 nav ul li {
     display: inline-block;
@@ -71,7 +75,7 @@ p {
 }
 .row {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
@@ -80,7 +84,7 @@ p {
     min-width: 300px;
 }
 .col-2 img {
-    padding: 50px 0;
+    padding: 5px 0;
     max-width: 100%;
 }
 .col-2 h1 {
@@ -250,6 +254,8 @@ body {
 .header {
             background: linear-gradient(120deg, #fff 60%, #fff 100%);
             color: #000;
+            position: relative;
+            z-index: 1000;
 }
 .small-container, .footer, .product-grid {
             background: rgba(255,255,255,0.95);
@@ -453,7 +459,7 @@ form a {
 /*------------------ Media Query for Menu -------------------*/
 @media only screen and (max-width: 800px) {
     nav ul {
-        position: absolute;
+        position: absolute !important;
         top: 100px;
         bottom: null;
         left: 0;
@@ -461,6 +467,7 @@ form a {
         background: #000;
         overflow: hidden;
         transition: max-height 0.5s ease-in-out;
+        z-index: 1002 !important;
     }
     .dashboard-nav ul {
         position: static;
@@ -631,4 +638,157 @@ form a {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ============================================
+   GALLERY PAGE — FULL-WIDTH HERO (LV-style)
+   ============================================ */
+
+/* # HERE: The hero is a direct child of .header, outside .container
+   This is the KEY change — on the LV site, the hero image is NOT 
+   inside the centered content container. It sits at the same DOM 
+   level as the container, allowing it to span 100vw. */
+.gallery-hero {
+    position: relative;
+    width: 100%;           /* # HERE: Spans full width of .header */
+    overflow: hidden;
+}
+
+/* # HERE: Wrapper creates the aspect ratio box so the image 
+   fills space without layout shift (CLS) */
+.gallery-hero__image-wrap {
+    width: 100%;
+    /* # HERE: Adjust this to match your image's natural ratio.
+       For the license card (looks ~16:9), use 56.25%.
+       If your image is taller, increase this. */
+    aspect-ratio: 16 / 9;  /* # HERE: Modern browsers — fallback below */
+    height: auto;
+    position: relative;
+    background: #000;    /* # HERE: Matches LV's dark edges if image is smaller */
+}
+
+/* # HERE: Fallback for older browsers without aspect-ratio support */
+@supports not (aspect-ratio: 16 / 9) {
+    .gallery-hero__image-wrap {
+        height: 0;
+        padding-bottom: 56.25%;
+    }
+}
+
+/* # HERE: The image itself fills the wrapper completely */
+.gallery-hero__image-wrap img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* # HERE: This is the magic — fills the box, crops edges 
+       to maintain aspect ratio, just like LV's hero images */
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+}
+
+/* # HERE: Text overlay centered on the image, LV-style */
+.gallery-hero__content {
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 2;
+}
+
+.gallery-hero__content p {
+    color: #fff;
+    font-size: 2.0rem;
+    font-weight: bolder;
+    margin-bottom: 16px;
+    /* # HERE: Text shadow for readability over busy images */
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* # HERE: Override old .header .row margin that was pushing things down */
+.header .gallery-hero {
+    margin-top: 0;
+}
+
+/* ============================================
+   RESPONSIVE — ALL SCREEN SIZES
+   ============================================ */
+
+@media only screen and (max-width: 800px) {
+    .gallery-hero__image-wrap {
+        /* # HERE: Taller ratio on tablet so license stays readable */
+        aspect-ratio: 4 / 3;
+    }
+
+    @supports not (aspect-ratio: 4 / 3) {
+        .gallery-hero__image-wrap {
+            padding-bottom: 75%;
+        }
+    }
+
+    .gallery-hero__content {
+        bottom: 8%;
+    }
+
+    .gallery-hero__content p {
+        font-size: 1.3rem;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .gallery-hero__image-wrap {
+        /* # HERE: Even taller on mobile — license card needs room */
+        aspect-ratio: 1 / 1;
+    }
+
+    @supports not (aspect-ratio: 1 / 1) {
+        .gallery-hero__image-wrap {
+            padding-bottom: 100%;
+        }
+    }
+
+    .gallery-hero__content {
+        bottom: 5%;
+    }
+
+    .gallery-hero__content p {
+        font-size: 1.3rem;
+    }
+
+    .gallery-hero__content .btn {
+        padding: 8px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* ============================================
+   Z-INDEX FIX — Ensure dropdown stays on top
+   ============================================ */
+
+/* Force header above all content */
+.header {
+    z-index: 1000 !important;
+}
+
+/* Force navbar above header */
+.navbar {
+    z-index: 1001 !important;
+}
+
+/* Force nav menu above everything */
+nav ul {
+    z-index: 1002 !important;
+}
+
+/* Keep gallery/hero sections below menu */
+.gallery-hero,
+.gallery-hero__image-wrap,
+.gallery-item,
+.gallery-item__wrap,
+.col-2 img,
+.col-4 img {
+    z-index: 1;
 }

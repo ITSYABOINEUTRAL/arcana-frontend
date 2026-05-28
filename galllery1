@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <title>Gallery - Arcana</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gallery.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <base target="_blank">
+<base target="_blank">
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html"><img src="logo.png" alt="Logo" width="125px"></a>
+                </div>
+                <select id="currency" class="currency-selector">
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                    <option value="NGN">NGN (₦)</option>
+                </select>
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="product.html">Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Account</a></li>
+                        <li><a class="active" href="gallery.html">Gallery</a></li>
+                    </ul>
+                </nav>
+                <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart Icon" class="cart-icon"></a>
+                <img src="menu.png" width="30px" height="30px" alt="Menu Icon" class="menu-icon" onclick="menuToggle()">
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="gallery-hero">
+        <div class="gallery-hero__image-wrap">
+            <img src="gallery 2.jpeg" alt="Arcana Campaign">
+        </div>
+        <div class="gallery-hero__content">
+            <p class="gallery-hero__label">The Archive</p>
+            <h1>Visual Language<br>of Arcana</h1>
+            <p class="gallery-hero__sub">Still underground. No maps. No coordinates.</p>
+            <a href="#gallery-grid" class="btn">Enter the Gallery</a>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY SECTION ===== -->
+    <section id="gallery-grid" class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Gallery</h2>
+                <p>Every frame is a signal. Every drop leaves a trace.</p>
+            </div>
+
+            <!-- Row 1: Feature + Tall -->
+            <div class="gallery-row gallery-row--feature">
+                <div class="gallery-item gallery-item--large" data-index="0">
+                    <div class="gallery-item__wrap">
+                        <img src="gallery 2.jpeg" alt="Less Is More — B&W Campaign">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-item__tag">Campaign</span>
+                            <h3>Less Is More</h3>
+                            <p>Black & White Series</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-item--tall" data-index="1">
+                    <div class="gallery-item__wrap">
+                        <img src="gallery3.jpeg" alt="Night Formation">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-item__tag">Night Shoot</span>
+                            <h3>Formation</h3>
+                            <p>Three Deep</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Three Equal -->
+            <div class="gallery-row gallery-row--three">
+                <div class="gallery-item" data-index="2">
+                    <div class="gallery-item__wrap">
+                        <img src="gallery4.jpeg" alt="Explicit Content Back Print">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-item__tag">Detail</span>
+                            <h3>Explicit Content</h3>
+                            <p>Script Back Print</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-index="3">
+                    <div class="gallery-item__wrap">
+                        <img src="gallery5.jpeg" alt="Less Is More Close Up">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-item__tag">Texture</span>
+                            <h3>Less Is More</h3>
+                            <p>Close Up Detail</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-index="4">
+                    <div class="gallery-item__wrap">
+                        <img src="gallery6.jpeg" alt="Arcana Belt Accessory">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-item__tag">Accessory</span>
+                            <h3>Arcana Belt</h3>
+                            <p>Studded Leather</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 3: Wide Feature -->
+            <div class="gallery-row gallery-row--wide">
+                <div class="gallery-item gallery-item--wide" data-index="5">
+                    <div class="gallery-item__wrap">
+                        <img src="gallery8.jpeg" alt="Street Walk Less Is More">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-item__tag">Lifestyle</span>
+                            <h3>Street Walk</h3>
+                            <p>Less Is More in Motion</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 4: Two Medium -->
+            <div class="gallery-row gallery-row--mixed">
+                <div class="gallery-item gallery-item--medium" data-index="6">
+                    <div class="gallery-item__wrap">
+                        <img src="gallery7.jpeg" alt="Arcana No.1 Star Shirt">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-item__tag">Collection</span>
+                            <h3>Arcana No.1</h3>
+                            <p>Star Edition</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-item--medium" data-index="7">
+                    <div class="gallery-item__wrap">
+                        <img src="gallery9.jpeg" alt="Arcana No.1 Close Up">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-item__tag">Detail</span>
+                            <h3>Arcana No.1</h3>
+                            <p>Close Up</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 5: Three Equal -->
+            <div class="gallery-row gallery-row--three">
+                <div class="gallery-item" data-index="8">
+                    <div class="gallery-item__wrap">
+                        <img src="gallery2.jpeg" alt="Less Is More Color Campaign">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-item__tag">Campaign</span>
+                            <h3>Less Is More</h3>
+                            <p>Color Series</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-index="9">
+                    <div class="gallery-item__wrap">
+                        <img src="gallery10.jpeg" alt="Masked Editorial">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-item__tag">Editorial</span>
+                            <h3>Masked</h3>
+                            <p>Anonymous Series</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-index="10">
+                    <div class="gallery-item__wrap">
+                        <img src="gallery11.jpeg" alt="Night Reflection">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-item__tag">BTS</span>
+                            <h3>Reflection</h3>
+                            <p>Night Shoot BTS</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== AFTER DARK ===== -->
+    <section class="after-dark">
+        <div class="after-dark__bg">
+            <img src="gallery3.jpeg" alt="After Dark Background">
+        </div>
+        <div class="after-dark__content">
+            <p class="after-dark__label">After Dark</p>
+            <h2>The Night Shift</h2>
+            <p class="after-dark__text">When the sun drops, the signal gets stronger. Arcana moves different after hours — no flash, no filters, just the raw energy of the underground.</p>
+            <div class="after-dark__stats">
+                <div class="stat">
+                    <span class="stat__num">01</span>
+                    <span class="stat__label">Nocturnal Drop</span>
+                </div>
+                <div class="stat">
+                    <span class="stat__num">24/7</span>
+                    <span class="stat__label">Signal Active</span>
+                </div>
+                <div class="stat">
+                    <span class="stat__num">∞</span>
+                    <span class="stat__label">Range Unknown</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== JOIN US / COMMUNITY ===== -->
+    <section class="join-us">
+        <div class="container">
+            <div class="join-us__grid">
+                <div class="join-us__text">
+                    <p class="join-us__label">Join Us</p>
+                    <h2>Stay Connected</h2>
+                    <p class="join-us__desc">Get early access to drops, exclusive collabs, and behind-the-scenes content. No spam. No noise. Just signal.</p>
+                    <form class="join-us__form" onsubmit="event.preventDefault(); showNotification('Welcome to the underground. Check your email.');">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn">Join the List</button>
+                    </form>
+                    <div class="join-us__social">
+                        <a href="https://www.instagram.com/arcana.ng" class="social-link">Instagram</a>
+                        <a href="https://www.tiktok.com/@arcana.ng" class="social-link">TikTok</a>
+                        <a href="https://x.com/arcanashopng1" class="social-link">X</a>
+                        <a href="https://pin.it/2TyuCuriX" class="social-link">Pinterest</a>
+                    </div>
+                </div>
+                <div class="join-us__visual">
+                    <img src="gallery7.jpeg" alt="Arcana Community">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <img src="arcana_logo.png" alt="Arcana Logo">
+                    <a href="contact.html"><h3>Contact Us</h3></a>
+                    <a href="mailto:arcanashopng@gmail.com"><p><div class="email">Email: arcanashopng@gmail.com</div></p></a>
+                    <p>Hours: 9:00 AM - 5:00 PM</p>
+                </div>
+                <div class="footer-col-2">
+                    <h3>Help</h3>
+                    <ul>
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="returns&exchanges.html">Returns & Exchanges Policy</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms&conditions.html">Terms & Conditions</a></li>
+                        <li><a href="contact.html">Contact Support</a></li>
+                        <li><a href="order_status.html">Order Status</a></li>
+                        <li>Payment Options</li>
+                    </ul>
+                </div>
+                <div class="footer-col-3">
+                    <h3>My Account</h3>
+                    <ul>
+                        <li><a href="account.html">Sign In</a></li>
+                        <li><a href="cart.html">View Cart</a></li>
+                        <li><a href="order_status.html">Track My Order</a></li>
+                        <li>Secured Payment Gateways</li>
+                    </ul>
+                    <img src="pay.png" alt="Secure Payment Methods">
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="https://www.instagram.com/arcana.ng?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">Instagram</a></li>
+                        <li><a href="https://www.tiktok.com/@arcana.ng?_t=ZS-8yCFw0GlnaE&_r=1">Tiktok</a></li>
+                        <li><a href="https://pin.it/2TyuCuriX">Pinterest</a></li>
+                        <li><a href="https://x.com/arcanashopng1?s=11">X</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">© <span id="year"></span> Arcana — Designed with intention. All rights reserved.</p>
+        </div>
+    </div>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div id="lightbox" class="lightbox hidden">
+        <span class="lightbox__close">&times;</span>
+        <span class="lightbox__prev">&#10094;</span>
+        <span class="lightbox__next">&#10095;</span>
+        <div class="lightbox__content">
+            <img id="lightbox-img" src="" alt="">
+            <div class="lightbox__caption">
+                <h3 id="lightbox-title"></h3>
+                <p id="lightbox-desc"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // ===== LIGHTBOX =====
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxTitle = document.getElementById('lightbox-title');
+        const lightboxDesc = document.getElementById('lightbox-desc');
+        const lightboxClose = document.querySelector('.lightbox__close');
+        const lightboxPrev = document.querySelector('.lightbox__prev');
+        const lightboxNext = document.querySelector('.lightbox__next');
+
+        let currentIndex = 0;
+        const itemsArray = Array.from(galleryItems);
+
+        function openLightbox(index) {
+            currentIndex = index;
+            const item = itemsArray[index];
+            const img = item.querySelector('img');
+            const overlay = item.querySelector('.gallery-item__overlay');
+
+            lightboxImg.src = img.src;
+            lightboxTitle.textContent = overlay.querySelector('h3').textContent;
+            lightboxDesc.textContent = overlay.querySelector('p').textContent;
+            lightbox.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % itemsArray.length;
+            openLightbox(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + itemsArray.length) % itemsArray.length;
+            openLightbox(currentIndex);
+        }
+
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => openLightbox(index));
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
+        lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
+        lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('hidden')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+
+        // ===== SCROLL REVEAL =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('gallery-item--visible');
+                }
+            });
+        }, observerOptions);
+
+        galleryItems.forEach(item => {
+            item.classList.add('gallery-item--hidden');
+            observer.observe(item);
+        });
+
+        // ===== AFTER DARK PARALLAX =====
+        const afterDarkBg = document.querySelector('.after-dark__bg img');
+        if (afterDarkBg) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * 0.3;
+                afterDarkBg.style.transform = `translateY(${rate}px) scale(1.1)`;
+            });
+        }
+
+        // ===== NOTIFICATION =====
+        function showNotification(message) {
+            const container = document.getElementById('notification-container');
+            const notif = document.createElement('div');
+            notif.className = 'notification';
+            notif.textContent = message;
+            container.appendChild(notif);
+            setTimeout(() => notif.remove(), 3000);
+        }
+    </script>
+    <div id="notification-container"></div>
+
+    <div id="arcana-modal-overlay" class="hidden">
+        <div class="arcana-modal">
+            <span class="close">&times;</span>
+            <p id="arcana-modal-text"></p>
+        </div>
+    </div>
+
+</body>
+</html>
