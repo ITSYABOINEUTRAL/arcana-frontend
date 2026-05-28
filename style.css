@@ -202,7 +202,7 @@ footer a:hover {
 .footer-col-3 img {
     width: 180%;
     margin-bottom: 20px;
-    padding-right: 100px;
+    padding-right: 130px;
 }
 .footer-col-3, .footer-col-4 {
     text-align: center;
@@ -522,9 +522,21 @@ form a {
     }
 }
 
+/*-----------Media Query for less than 1024px screen size-----------*/
+@media only screen and (max-width: 1024px) {
+    .footer-col-3 img {
+        width: 180%;
+        padding-right: 110px;
+    }
+}
 
-
-
+/*-----------Media Query for less than 850px screen size-----------*/
+@media only screen and (max-width: 825px) {
+    .footer-col-3 img {
+        width: 200%;
+        padding-right: 110px;
+    }
+}
 
 /*-----------Media Query for less than 600px screen size-----------*/
 @media only screen and (max-width: 600px) {
@@ -706,6 +718,17 @@ form a {
     margin-bottom: 16px;
     /* # HERE: Text shadow for readability over busy images */
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    transition: 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
 }
 
 /* # HERE: Override old .header .row margin that was pushing things down */
