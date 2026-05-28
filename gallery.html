@@ -76,7 +76,7 @@
                     <div class="gallery-item__wrap">
                         <img src="gallery2.jpeg" alt="Less Is More Tee">
                         <div class="gallery-item__overlay">
-                            <span class="gallery-item__tag">New Drop</span>
+                            <span class="gallery-item__tag">Previous Drop</span>
                             <h3>Less Is More</h3>
                             <p>The Statement Tee</p>
                         </div>
@@ -134,9 +134,9 @@
                     <div class="gallery-item__wrap">
                         <img src="gallery7.jpeg" alt="Arcana Belt">
                         <div class="gallery-item__overlay">
-                            <span class="gallery-item__tag">Accessories</span>
-                            <h3>Arcana Belt</h3>
-                            <p>Studded Leather</p>
+                            <span class="gallery-item__tag">Detail</span>
+                            <h3>Arcana No.1</h3>
+                            <p>Close Up</p>
                         </div>
                     </div>
                 </div>
@@ -146,11 +146,11 @@
             <div class="gallery-row gallery-row--mixed">
                 <div class="gallery-item gallery-item--medium" data-caption="Arcana No.1 — Red Star">
                     <div class="gallery-item__wrap">
-                        <img src="gallery9.jpeg" alt="Arcana Red Star">
+                        <img src="gallery6.jpeg" alt="Arcana Red Star">
                         <div class="gallery-item__overlay">
-                            <span class="gallery-item__tag">Featured</span>
-                            <h3>Arcana No.1</h3>
-                            <p>Red Star Edition</p>
+                            <span class="gallery-item__tag">BTS</span>
+                            <h3>Night Shoot</h3>
+                            <p>Behind the Scenes</p>
                         </div>
                     </div>
                 </div>
@@ -170,7 +170,7 @@
             <div class="gallery-row gallery-row--three">
                 <div class="gallery-item" data-caption="Arcana No.1 — Close Up">
                     <div class="gallery-item__wrap">
-                        <img src="gallery6.jpeg" alt="Arcana Close Up">
+                        <img src="gallery9.jpeg" alt="Arcana Close Up">
                         <div class="gallery-item__overlay">
                             <span class="gallery-item__tag">Detail</span>
                             <h3>Arcana No.1</h3>
@@ -223,9 +223,16 @@
                     <p class="join-us__label">Join Us</p>
                     <h2>Stay Connected</h2>
                     <p class="join-us__desc">Get early access to drops, exclusive collabs, and behind-the-scenes content. No spam. No noise. Just signal.</p>
-                    <form class="join-us__form" onsubmit="event.preventDefault(); showNotification('Welcome to the underground. Check your email.');">
-                        <input type="email" placeholder="Enter your email" required>
-                        <button type="submit" class="btn">Join the List</button>
+                    <form class="join-us__form" id="newsletterForm">
+                        <input
+                            type="email"
+                            id="newsletterEmail"
+                            placeholder="Enter your email"
+                            required
+                        >
+                        <button type="submit" class="btn">
+                            Join the List
+                        </button>
                     </form>
                     <div class="join-us__social">
                         <a href="https://www.instagram.com/arcana.ng" class="social-link">Instagram</a>
@@ -392,6 +399,47 @@
             observer.observe(item);
         });
     </script>
+    <script>
+const newsletterForm = document.getElementById("newsletterForm");
+
+newsletterForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const emailInput = document.getElementById("newsletterEmail");
+    const email = emailInput.value.trim();
+
+    if (!email) {
+        alert("Please enter your email");
+        return;
+    }
+
+    try {
+        const response = await fetch(
+            "https://https://arcana-backend-z46k.onrender.com/api/newsletter/subscribe",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email })
+            }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert(data.message || "Subscription successful!");
+            emailInput.value = "";
+        } else {
+            alert(data.message || "Subscription failed.");
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("Server error. Please try again later.");
+    }
+});
+</script>
     <div id="notification-container"></div>
 
     <div id="arcana-modal-overlay" class="hidden">
