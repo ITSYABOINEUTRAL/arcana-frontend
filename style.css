@@ -16,13 +16,15 @@ body {
     z-index: 1001;
 }
 .navbar .cart-icon {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     background-size: cover;
     margin-left: 20px;
 }
 .navbar .logo {
     filter: invert(1);
+    position: relative;
+    left: -40px;
 }
 nav {
     flex: 1;
@@ -72,6 +74,24 @@ p {
   background: #59493b;
   font-weight: bold;
   color: #fff;
+}
+@media only screen and (max-width: 1024px) {
+    .currency-selector {
+        position: relative;
+        left: -35px;
+    }
+}
+@media only screen and (max-width: 820px) {
+    .currency-selector {
+        position: relative;
+        left: -60px;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .currency-selector {
+        position: relative;
+        left: -60px;
+    }
 }
 .row {
     display: flex;
@@ -451,6 +471,14 @@ form a {
     body.product-page nav ul li a.active {
         color: #59493b; 
     }
+    .menu-icon {
+    display: block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    position: relative;
+    top: -5px;
+}
 }
 
 /*-----------Media Query for less than 600px screen size-----------*/

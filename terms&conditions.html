@@ -330,7 +330,228 @@
                 justify-content: center;
             }
         }
-    </style>
+    
+
+/* ===== SHARP BUTTONS (excludes footer newsletter completely) ===== */
+
+/* Auth page buttons */
+.btn-auth,
+.btn-welcome,
+.btn-continue,
+.btn-empty,
+.btn-checkout,
+.btn-submit,
+.btn-primary,
+.btn-forgot,
+.btn-reset,
+.btn-track {
+  border-radius: 0 !important;
+  border: 2px solid #59493b !important;
+  background: #59493b !important;
+  color: #fff !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn-auth:hover,
+.btn-welcome:hover,
+.btn-continue:hover,
+.btn-empty:hover,
+.btn-checkout:hover,
+.btn-submit:hover,
+.btn-primary:hover,
+.btn-forgot:hover,
+.btn-reset:hover,
+.btn-track:hover {
+  background: transparent !important;
+  color: #59493b !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(89, 73, 59, 0.12);
+}
+
+/* Ghost buttons (outline by default, fill on hover) */
+.btn-upload-mini,
+.btn-coupon,
+#apply-coupon-btn {
+  border-radius: 0 !important;
+  border: 2px solid #e8e0d8 !important;
+  background: transparent !important;
+  color: #6b5d52 !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-upload-mini:hover,
+.btn-coupon:hover,
+#apply-coupon-btn:hover {
+  border-color: #59493b !important;
+  background: #59493b !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+/* Card buttons */
+.btn-card:not(.coming-soon) {
+  border-radius: 0 !important;
+  border: 2px solid #59493b !important;
+  background: #59493b !important;
+  color: #fff !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-card:not(.coming-soon):hover {
+  background: transparent !important;
+  color: #59493b !important;
+  transform: translateY(-2px);
+}
+
+.btn-card.coming-soon {
+  border-radius: 0 !important;
+  border: 2px dashed #ddd !important;
+  background: transparent !important;
+  color: #999 !important;
+  cursor: not-allowed !important;
+}
+
+/* CTA buttons */
+.btn-cta {
+  border-radius: 0 !important;
+  border: 2px solid #59493b !important;
+  background: #59493b !important;
+  color: #fff !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-cta:hover {
+  background: transparent !important;
+  color: #59493b !important;
+  transform: translateY(-2px);
+}
+
+/* Quantity controls */
+.quantity-control button {
+  border-radius: 0 !important;
+  border: 1.5px solid #e8e0d8 !important;
+  background: #f5f0eb !important;
+  color: #59493b !important;
+  transition: all 0.2s ease !important;
+}
+
+.quantity-control button:hover {
+  background: #59493b !important;
+  color: #fff !important;
+  border-color: #59493b !important;
+}
+
+/* Pagination */
+.page-btn span {
+  border-radius: 0 !important;
+  border: 2px solid #59493b !important;
+  background: #59493b !important;
+  color: #fff !important;
+  transition: all 0.3s ease !important;
+}
+
+.page-btn span:hover {
+  background: transparent !important;
+  color: #59493b !important;
+}
+
+/* FAQ category buttons */
+.faq-category-btn {
+  border-radius: 0 !important;
+  border: 2px solid rgba(89, 73, 59, 0.15) !important;
+  background: #fff !important;
+  color: #555 !important;
+  transition: all 0.3s ease !important;
+}
+
+.faq-category-btn:hover {
+  border-color: #59493b !important;
+  color: #59493b !important;
+  background: transparent !important;
+}
+
+.faq-category-btn.active {
+  background: #59493b !important;
+  border-color: #59493b !important;
+  color: #fff !important;
+}
+
+.faq-category-btn.active:hover {
+  background: transparent !important;
+  color: #59493b !important;
+}
+
+/* Auth tabs */
+.auth-tab {
+  border-radius: 0 !important;
+  border-bottom: 2px solid transparent !important;
+  transition: all 0.3s ease !important;
+}
+
+.auth-tab.active {
+  border-bottom-color: #59493b !important;
+}
+
+/* Sidebar nav */
+.sidebar-nav .nav-link {
+  border-radius: 0 !important;
+  border-left: 3px solid transparent !important;
+  transition: all 0.2s ease !important;
+}
+
+.sidebar-nav .nav-link:hover,
+.sidebar-nav .nav-link.active {
+  border-left-color: #59493b !important;
+  background: rgba(89, 73, 59, 0.06) !important;
+}
+
+/* Policy TOC */
+.policy-toc a,
+.terms-toc a {
+  border-radius: 0 !important;
+  border-left: 3px solid transparent !important;
+  transition: all 0.2s ease !important;
+}
+
+.policy-toc a:hover,
+.policy-toc a.active,
+.terms-toc a:hover,
+.terms-toc a.active {
+  border-left-color: #59493b !important;
+}
+
+/* Disabled states */
+.btn-auth:disabled,
+.btn-checkout:disabled,
+.btn-submit:disabled,
+.btn-primary:disabled,
+.btn-forgot:disabled,
+.btn-reset:disabled,
+.btn-track:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  background: #59493b !important;
+  color: #fff !important;
+}
+
+/* Toggle / icon buttons */
+.toggle-password,
+.avatar-upload-btn {
+  border-radius: 0 !important;
+  border: none !important;
+  background: none !important;
+  color: #6b5d52 !important;
+  transition: all 0.2s ease !important;
+}
+
+.toggle-password:hover,
+.avatar-upload-btn:hover {
+  color: #59493b !important;
+  background: rgba(89, 73, 59, 0.06) !important;
+}
+</style>
+<base target="_blank">
 <base target="_blank">
 </head>
 <body class="terms-conditions-page">
