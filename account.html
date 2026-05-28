@@ -4,14 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" href="logo.png" type="image/x-icon">
-  <title>Sign In - Arcana</title>
+  <title>Account — Arcana</title>
   <link rel="stylesheet" href="style.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<base target="_blank">
 </head>
 <body class="account-page">
 
+  <!-- ===== NAVBAR ===== -->
   <div class="container">
     <div class="navbar">
       <div class="logo">
@@ -31,313 +34,775 @@
     </div>
   </div>
 
-  <br><br><br>
-
-  <!-- Account page -->
-  <div class="account-page">
-    <div class="container">
-      <div class="row">
-        <div class="col-2">
-          <img src="background.png" alt=""/>
+  <!-- ===== AUTHENTICATION SECTION ===== -->
+  <main class="auth-main">
+    <div class="auth-layout">
+      <!-- Left: Visual -->
+      <div class="auth-visual">
+        <div class="auth-visual-overlay">
+          <h2>Welcome to Arcana</h2>
+          <p>Designed With Intention. Sign in to access your orders, saved addresses, and exclusive drops.</p>
         </div>
+        <img src="background.png" alt="Arcana Background" />
+      </div>
 
-        <div class="col-2">
-          <div class="form-container">
-            <div class="form-btn">
-              <span onclick="login()">Sign In</span>
-              <span onclick="register()">Register</span>
-              <hr id="Indicator" />
-            </div>
-
-<form id="loginForm">
-  <input type="text" placeholder="Email" name="identifier" required />
-  <input type="password" placeholder="Password" name="password" required />
-  <button type="submit" class="btn">Login</button>
-  <a href="forgot_password.html">Forgot Password?</a>
-</form>
-
-<form id="registerForm">
-  <input type="email" placeholder="Email" name="email" required />
-  <input type="text" placeholder="Full Name" name="fullName" required />
-  <input type="password" placeholder="Password" name="password" required />
-  <input type="password" placeholder="Confirm Password" name="confirmPassword" required />
-  <button type="submit" class="btn">Register</button>
-</form>
+      <!-- Right: Forms -->
+      <div class="auth-forms">
+        <div class="auth-card">
+          <!-- Tabs -->
+          <div class="auth-tabs">
+            <button class="auth-tab active" onclick="switchTab('login')" id="tab-login">
+              <i class="fa-solid fa-right-to-bracket"></i> Sign In
+            </button>
+            <button class="auth-tab" onclick="switchTab('register')" id="tab-register">
+              <i class="fa-solid fa-user-plus"></i> Register
+            </button>
           </div>
+
+          <!-- Login Form -->
+          <form id="loginForm" class="auth-form active">
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="text" id="login-email" placeholder="you@example.com" name="identifier" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="login-password">Password</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="login-password" placeholder="Enter your password" name="password" required />
+                <button type="button" class="toggle-password" onclick="togglePassword('login-password', this)">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+            </div>
+            <div class="form-options">
+              <label class="remember-me">
+                <input type="checkbox" /> Remember me
+              </label>
+              <a href="forgot_password.html" class="forgot-link">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn-auth">
+              <span>Sign In</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </form>
+
+          <!-- Register Form -->
+          <form id="registerForm" class="auth-form">
+            <div class="form-group">
+              <label for="reg-email">Email</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" id="reg-email" placeholder="you@example.com" name="email" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="reg-name">Full Name</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="reg-name" placeholder="Your full name" name="fullName" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="reg-password">Password</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="reg-password" placeholder="Create a password" name="password" required />
+                <button type="button" class="toggle-password" onclick="togglePassword('reg-password', this)">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="reg-confirm">Confirm Password</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="reg-confirm" placeholder="Confirm your password" name="confirmPassword" required />
+              </div>
+            </div>
+            <button type="submit" class="btn-auth">
+              <span>Create Account</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </form>
         </div>
       </div>
     </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="logo.png" alt="Arcana Logo">
+          <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
+        </div>
+        <div class="footer-newsletter">
+          <p>Be the first to know about new drops and exclusive offers.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Thanks for subscribing!', 'success');">
+            <input type="email" placeholder="Email address" required>
+            <button type="submit">Join</button>
+          </form>
+        </div>
+        <div class="footer-social">
+          <span class="footer-social-label">Follow Us</span>
+          <div class="social-cluster">
+            <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+            <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok"><img src="tik-tok.png" alt="TikTok"></a>
+            <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest"><img src="pinterest-logo.png" alt="Pinterest"></a>
+            <a href="https://x.com/arcanashopng1" aria-label="X"><img src="twitter.png" alt="X"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col contact-col">
+          <h4>Contact Us</h4>
+          <div class="contact-content">
+            <div class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <div><a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a></div>
+            </div>
+            <div class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12,6 12,12 16,14"/>
+              </svg>
+              <div><span>Mon – Fri</span><p class="hours">9:00 AM – 5:00 PM</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="returns&exchanges.html">Returns & Exchanges</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms&conditions.html">Terms & Conditions</a></li>
+            <li><a href="contact.html">Contact Support</a></li>
+            <li><a href="order_status.html">Order Status</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>My Account</h4>
+          <ul>
+            <li><a href="account.html">Sign In</a></li>
+            <li><a href="cart.html">View Cart</a></li>
+            <li><a href="order_status.html">Track My Order</a></li>
+            <li>
+              <div class="payment-methods">
+                <p>Payment Options</p>
+                <div class="payment-icons">
+                  <div class="payment-icon">VISA</div>
+                  <div class="payment-icon">MC</div>
+                  <div class="payment-icon">AMEX</div>
+                  <div class="payment-icon">PP</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="product.html">All Products</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="account.html">Account</a></li>
+            <li><a href="contact.html">Get in Touch</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p>© <span id="year"></span> Arcana — All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="privacy-policy.html">Privacy</a>
+          <a href="terms&conditions.html">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== MODALS ===== -->
+  <div id="notification-container"></div>
+  <div id="arcana-modal-overlay" class="hidden">
+    <div class="arcana-modal">
+      <span class="close">&times;</span>
+      <p id="arcana-modal-text"></p>
+    </div>
   </div>
 
-  <!-- Footer -->
-<footer class="footer">
-        <div class="footer-container">
+  <script src="script.js" defer></script>
+  <script src="other-script.js" defer></script>
 
-            <!-- TIER 1: Brand + Newsletter + Social -->
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <img src="logo.png" alt="Arcana Logo">
-                    <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
-                </div>
+  <!-- ===== ACCOUNT PAGE LOGIC (PRESERVED) ===== -->
+  <script>
+    const API_BASE = 'https://arcana-backend-z46k.onrender.com/api/auth';
 
-                <div class="footer-newsletter">
-                    <p>Be the first to know about new drops and exclusive offers.</p>
-                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
-                        <input type="email" placeholder="Email address" required>
-                        <button type="submit">Join</button>
-                    </form>
-                </div>
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
 
-                <div class="footer-social">
-                    <span class="footer-social-label">Follow Us</span>
-                    <div class="social-cluster">
-                        <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram">
-                            <img src="instagram.png" alt="Instagram">
-                        </a>
-                        <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok">
-                            <img src="tik-tok.png" alt="TikTok">
-                        </a>
-                        <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest">
-                            <img src="pinterest-logo.png" alt="Pinterest">
-                        </a>
-                        <a href="https://x.com/arcanashopng1" aria-label="X">
-                            <img src="twitter.png" alt="X">
-                        </a>
-                    </div>
-                </div>
-            </div>
+    // ===== TAB SWITCHING =====
+    function switchTab(tab) {
+      const loginFormEl = document.getElementById("loginForm");
+      const registerFormEl = document.getElementById("registerForm");
+      const tabLogin = document.getElementById("tab-login");
+      const tabRegister = document.getElementById("tab-register");
 
-            <!-- TIER 2: Link Columns -->
-            <div class="footer-links">
-                <div class="footer-col contact-col">
-                    <h4>Contact Us</h4>
-                    <div class="contact-content">
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg>
-                            <div>
-                                <a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <polyline points="12,6 12,12 16,14"/>
-                            </svg>
-                            <div>
-                                <span>Mon – Fri</span>
-                                <p class="hours">9:00 AM – 5:00 PM</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Help</h4>
-                    <ul>
-                        <li><a href="faqs.html">FAQs</a></li>
-                        <li><a href="returns&exchanges.html">Returns & Exchanges</a></li>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms&conditions.html">Terms & Conditions</a></li>
-                        <li><a href="contact.html">Contact Support</a></li>
-                        <li><a href="order_status.html">Order Status</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>My Account</h4>
-                    <ul>
-                        <li><a href="account.html">Sign In</a></li>
-                        <li><a href="cart.html">View Cart</a></li>
-                        <li><a href="order_status.html">Track My Order</a></li>
-                        <li>
-                            <div class="payment-methods">
-                                <p>Payment Options</p>
-                                <div class="payment-icons">
-                                    <div class="payment-icon">VISA</div>
-                                    <div class="payment-icon">MC</div>
-                                    <div class="payment-icon">AMEX</div>
-                                    <div class="payment-icon">PP</div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="product.html">All Products</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="account.html">Account</a></li>
-                        <li><a href="contact.html">Get in Touch</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- TIER 3: Copyright Bar -->
-        <div class="footer-bottom">
-            <div class="footer-bottom-inner">
-                <p>© <span id="year"></span> Arcana — All rights reserved.</p>
-                <div class="footer-bottom-links">
-                    <a href="privacy-policy.html">Privacy</a>
-                    <a href="terms&conditions.html">Terms</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-<!-- Only script part shown below to keep it concise -->
-<!-- Script section -->
-
-<script src="other-script.js"></script>
-<script>
-  const API_BASE = 'https://arcana-backend-z46k.onrender.com/api/auth';
-
-  const loginForm = document.getElementById("loginForm");
-  const registerForm = document.getElementById("registerForm");
-  const indicator = document.getElementById("Indicator");
-
-  function register() {
-    registerForm.style.transform = "translateX(0px)";
-    loginForm.style.transform = "translateX(0px)";
-    indicator.style.transform = "translateX(100px)";
-  }
-
-  function login() {
-    registerForm.style.transform = "translateX(300px)";
-    loginForm.style.transform = "translateX(300px)";
-    indicator.style.transform = "translateX(0px)";
-  }
-
-  // LOGIN HANDLER
-  loginForm.addEventListener('submit', async function (e) {
-    e.preventDefault();
-    const identifier = loginForm.identifier.value.trim();
-    const password = loginForm.password.value.trim();
-
-    try {
-      const res = await fetch(`${API_BASE}/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ identifier, password })
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Login failed');
-
-      localStorage.setItem("userEmail", data.user.email);
-      localStorage.setItem('token', data.token);
-      alert('Login successful!');
-      window.location.href = 'account-dashboard.html';
-    } catch (err) {
-      alert(err.message);
-    }
-  });
-
-  // REGISTER HANDLER
-  registerForm.addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    const email = registerForm.email.value.trim();
-    const name = registerForm.fullName.value.trim();  // <== corrected this line
-    const password = registerForm.password.value.trim();
-    const confirmPassword = registerForm.confirmPassword.value.trim();
-
-    if (password !== confirmPassword) {
-      return alert('Passwords do not match!');
-    }
-
-    try {
-      const res = await fetch(`${API_BASE}/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, name, password })  // <== corrected this line too
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Registration failed');
-
-      localStorage.setItem("userEmail", data.user.email);
-      localStorage.setItem('token', data.token);
-      showBlockingMessage(
-        "Registration successful!",
-        "account-dashboard.html"
-      );
-    } catch (err) {
-      alert(err.message);
-    }
-  });
-</script>
-<script>
- document.addEventListener("DOMContentLoaded", async () => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    try {
-      const res = await fetch("https://arcana-backend-z46k.onrender.com/api/auth/profile", {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-
-      if (res.ok) {
-        window.location.href = "account-dashboard.html";
+      if (tab === 'login') {
+        loginFormEl.classList.add('active');
+        registerFormEl.classList.remove('active');
+        tabLogin.classList.add('active');
+        tabRegister.classList.remove('active');
       } else {
-        localStorage.removeItem("token");
+        loginFormEl.classList.remove('active');
+        registerFormEl.classList.add('active');
+        tabLogin.classList.remove('active');
+        tabRegister.classList.add('active');
       }
-    } catch (err) {
-      console.error("Token validation failed", err);
-    }
-  }
-});
-
-</script>
-
-
-<style>
-  @media only screen and (max-width: 800px) {
-    nav ul {
-        position: absolute;
-        top: 150px;
-        bottom: null;
-        left: 0;
-        width: 100%;
-        background: #000;
-        overflow: hidden;
-        transition: max-height 0.5s ease-in-out;
-    }
-    .dashboard-nav ul {
-        position: static;
-        width: 100%;
-        background: none;
-        max-height: none;
-    }
-    nav ul li {
-        display: block;
-        margin-right: 50px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    nav ul li a {
-        color: #fff;
-    }
-    .menu-icon {
-        display: block;
-        cursor: pointer;
     }
 
-}
+    // ===== PASSWORD TOGGLE =====
+    function togglePassword(inputId, btn) {
+      const input = document.getElementById(inputId);
+      const icon = btn.querySelector('i');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
+    }
 
-</style>
-<div id="notification-container"></div>
+    // ===== LOGIN HANDLER (PRESERVED) =====
+    loginForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const identifier = loginForm.identifier.value.trim();
+      const password = loginForm.password.value.trim();
 
-<div id="arcana-modal-overlay" class="hidden">
-  <div class="arcana-modal">
-    <span class="close">&times;</span>
-    <p id="arcana-modal-text"></p>
-  </div>
-</div>
+      const btn = loginForm.querySelector('.btn-auth');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Signing in...';
+
+      try {
+        const res = await fetch(`${API_BASE}/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ identifier, password })
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || 'Login failed');
+
+        localStorage.setItem("userEmail", data.user.email);
+        localStorage.setItem('token', data.token);
+        showToast('Login successful!', 'success');
+        setTimeout(() => {
+          window.location.href = 'account-dashboard.html';
+        }, 800);
+      } catch (err) {
+        showToast(err.message, 'error');
+        btn.disabled = false;
+        btn.innerHTML = '<span>Sign In</span><i class="fa-solid fa-arrow-right"></i>';
+      }
+    });
+
+    // ===== REGISTER HANDLER (PRESERVED) =====
+    registerForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const email = registerForm.email.value.trim();
+      const name = registerForm.fullName.value.trim();
+      const password = registerForm.password.value.trim();
+      const confirmPassword = registerForm.confirmPassword.value.trim();
+
+      if (password !== confirmPassword) {
+        return showToast('Passwords do not match!', 'error');
+      }
+
+      const btn = registerForm.querySelector('.btn-auth');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Creating account...';
+
+      try {
+        const res = await fetch(`${API_BASE}/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, name, password })
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || 'Registration failed');
+
+        localStorage.setItem("userEmail", data.user.email);
+        localStorage.setItem('token', data.token);
+        showToast('Registration successful!', 'success');
+        setTimeout(() => {
+          showBlockingMessage("Registration successful!", "account-dashboard.html");
+        }, 500);
+      } catch (err) {
+        showToast(err.message, 'error');
+        btn.disabled = false;
+        btn.innerHTML = '<span>Create Account</span><i class="fa-solid fa-arrow-right"></i>';
+      }
+    });
+
+    // ===== TOKEN VALIDATION ON LOAD (PRESERVED) =====
+    document.addEventListener("DOMContentLoaded", async () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          const res = await fetch("https://arcana-backend-z46k.onrender.com/api/auth/profile", {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          if (res.ok) {
+            window.location.href = "account-dashboard.html";
+          } else {
+            localStorage.removeItem("token");
+          }
+        } catch (err) {
+          console.error("Token validation failed", err);
+        }
+      }
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- ===== MODERN ACCOUNT STYLES ===== -->
+  <style>
+    :root {
+      --arcana-brown: #59493b;
+      --arcana-brown-light: #8B6A4E;
+      --arcana-brown-dark: #3d3026;
+      --arcana-cream: #f5f0eb;
+      --arcana-warm: #faf8f5;
+      --arcana-border: #e8e0d8;
+      --arcana-text: #2c241e;
+      --arcana-text-light: #6b5d52;
+      --arcana-error: #c0392b;
+      --arcana-success: #27ae60;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px rgba(89, 73, 59, 0.08);
+      --shadow-md: 0 4px 20px rgba(89, 73, 59, 0.12);
+      --shadow-lg: 0 8px 40px rgba(89, 73, 59, 0.15);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ===== AUTH LAYOUT ===== */
+    .auth-main {
+      min-height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      background: var(--arcana-warm);
+    }
+
+    .auth-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 1100px;
+      width: 100%;
+      background: #fff;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      min-height: 600px;
+    }
+
+    /* ===== VISUAL SIDE ===== */
+    .auth-visual {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .auth-visual img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .auth-visual-overlay {
+      position: relative;
+      z-index: 2;
+      padding: 40px;
+      background: linear-gradient(to top, rgba(89, 73, 59, 0.9) 0%, rgba(89, 73, 59, 0.3) 60%, transparent 100%);
+      color: #fff;
+      width: 100%;
+    }
+
+    .auth-visual-overlay h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .auth-visual-overlay p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      opacity: 0.85;
+      color: #fff;
+    }
+
+    /* ===== FORMS SIDE ===== */
+    .auth-forms {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      background: #fff;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 380px;
+    }
+
+    /* ===== TABS ===== */
+    .auth-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 32px;
+      border-bottom: 2px solid var(--arcana-border);
+      padding-bottom: 2px;
+    }
+
+    .auth-tab {
+      flex: 1;
+      padding: 12px 16px;
+      background: none;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--arcana-text-light);
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    }
+
+    .auth-tab:hover {
+      color: var(--arcana-brown);
+      background: rgba(89, 73, 59, 0.04);
+    }
+
+    .auth-tab.active {
+      color: var(--arcana-brown);
+      font-weight: 600;
+    }
+
+    .auth-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--arcana-brown);
+      border-radius: 2px;
+    }
+
+    /* ===== FORMS ===== */
+    .auth-form {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .auth-form.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--arcana-text);
+      margin-bottom: 6px;
+    }
+
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-wrap > i:first-child {
+      position: absolute;
+      left: 14px;
+      color: var(--arcana-text-light);
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+
+    .input-wrap input {
+      width: 100%;
+      padding: 12px 14px 12px 42px;
+      border: 1.5px solid var(--arcana-border);
+      border-radius: var(--radius-sm);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      color: var(--arcana-text);
+      transition: var(--transition);
+      background: var(--arcana-warm);
+    }
+
+    .input-wrap input:focus {
+      outline: none;
+      border-color: var(--arcana-brown);
+      box-shadow: 0 0 0 3px rgba(89, 73, 59, 0.08);
+      background: #fff;
+    }
+
+    .input-wrap input::placeholder {
+      color: #b8afa6;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      color: var(--arcana-text-light);
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+
+    .toggle-password:hover {
+      color: var(--arcana-brown);
+    }
+
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      font-size: 0.8rem;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--arcana-text-light);
+      cursor: pointer;
+    }
+
+    .remember-me input {
+      accent-color: var(--arcana-brown);
+      width: 14px;
+      height: 14px;
+    }
+
+    .forgot-link {
+      color: var(--arcana-brown);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .forgot-link:hover {
+      color: var(--arcana-brown-light);
+      text-decoration: underline;
+    }
+
+    /* ===== AUTH BUTTON ===== */
+    .btn-auth {
+      width: 100%;
+      padding: 14px 24px;
+      background: var(--arcana-brown);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: var(--transition);
+    }
+
+    .btn-auth:hover {
+      background: var(--arcana-brown-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-auth:hover i {
+      transform: translateX(4px);
+    }
+
+    .btn-auth i {
+      transition: transform 0.2s;
+    }
+
+    .btn-auth:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ===== NOTIFICATIONS ===== */
+    #notification-container {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .notification {
+      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 14px 20px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 280px;
+      animation: slideInRight 0.3s ease;
+      border-left: 4px solid var(--arcana-brown);
+      font-size: 0.9rem;
+    }
+
+    .notification.error {
+      border-left-color: var(--arcana-error);
+    }
+
+    .notification.success {
+      border-left-color: var(--arcana-success);
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* ===== MODAL ===== */
+    #arcana-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(44, 36, 30, 0.6);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    #arcana-modal-overlay:not(.hidden) {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .arcana-modal {
+      background: #fff;
+      border-radius: var(--radius-md);
+      padding: 32px;
+      max-width: 420px;
+      width: 90%;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+      transform: scale(0.95);
+      transition: transform 0.3s;
+    }
+
+    #arcana-modal-overlay:not(.hidden) .arcana-modal {
+      transform: scale(1);
+    }
+
+    .arcana-modal .close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--arcana-text-light);
+      transition: color 0.2s;
+    }
+
+    .arcana-modal .close:hover {
+      color: var(--arcana-text);
+    }
+
+    .arcana-modal p {
+      color: var(--arcana-text);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .auth-layout {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+      }
+      .auth-visual {
+        display: none;
+      }
+      .auth-forms {
+        padding: 32px 24px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .auth-main {
+        padding: 16px;
+        background: #fff;
+      }
+      .auth-layout {
+        box-shadow: none;
+        border-radius: 0;
+        min-height: auto;
+      }
+      .auth-forms {
+        padding: 24px 16px;
+      }
+      .auth-tabs {
+        margin-bottom: 24px;
+      }
+    }
+  </style>
 </body>
 </html>

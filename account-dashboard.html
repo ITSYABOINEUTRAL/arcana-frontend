@@ -4,14 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="logo.png" type="image/x-icon">
+  <title>Dashboard — Arcana</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="account-dashboard.css">
-  <title>Account Dashboard - Arcana</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<base target="_blank">
 </head>
-<body>
+<body class="dashboard-body">
+
+  <!-- ===== NAVBAR ===== -->
   <div class="container">
     <div class="navbar">
       <div class="logo">
@@ -31,184 +34,1168 @@
     </div>
   </div>
 
-  <div class="dashboard-container">
-    <nav class="dashboard-nav">
-      <h2>My Account</h2>
-      <div class="profile-picture">
-        <img id="user-profile-pic" src="default-avatar.png" alt="Profile Picture">
-        <form id="upload-form">
-          <label for="profile-pic-file">Change Profile Picture:</label><br>
-          <input type="file" id="profile-pic-file" accept="image/*"><br>
-          <button type="submit">Upload New Picture</button>
-          <small id="upload-status"></small>
-        </form>
+  <!-- ===== DASHBOARD ===== -->
+  <main class="dashboard-main-wrapper">
+    <div class="dashboard-container-modern">
+
+      <!-- Sidebar -->
+      <aside class="dashboard-sidebar">
+        <div class="sidebar-header">
+          <h2><i class="fa-solid fa-user-circle"></i> My Account</h2>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-avatar-wrap">
+            <img id="user-profile-pic" src="default-avatar.png" alt="Profile Picture">
+            <label for="profile-pic-file" class="avatar-upload-btn" title="Change photo">
+              <i class="fa-solid fa-camera"></i>
+            </label>
+          </div>
+          <p class="profile-name" id="sidebar-name">Loading...</p>
+          <p class="profile-email" id="sidebar-email">...</p>
+
+          <form id="upload-form" class="upload-form-mini">
+            <input type="file" id="profile-pic-file" accept="image/*" hidden>
+            <button type="submit" class="btn-upload-mini">
+              <i class="fa-solid fa-cloud-arrow-up"></i> Upload Photo
+            </button>
+            <small id="upload-status"></small>
+          </form>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a href="#profile" class="nav-link active">
+            <i class="fa-solid fa-id-card"></i> Profile
+          </a>
+          <a href="edit-settings.html" class="nav-link">
+            <i class="fa-solid fa-gear"></i> Settings
+          </a>
+          <a href="#orders" class="nav-link">
+            <i class="fa-solid fa-box-open"></i> Orders
+          </a>
+          <a href="#addresses" class="nav-link">
+            <i class="fa-solid fa-location-dot"></i> Addresses
+          </a>
+          <button class="nav-link logout" id="logoutBtn" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+          </button>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="dashboard-content">
+
+        <!-- Welcome Banner -->
+        <div class="welcome-banner">
+          <div class="welcome-text">
+            <h1>Welcome back, <span id="welcome-name">...</span></h1>
+            <p>Here's what's happening with your account.</p>
+          </div>
+          <div class="welcome-actions">
+            <a href="product.html" class="btn-welcome">
+              <i class="fa-solid fa-bag-shopping"></i> Shop Now
+            </a>
+          </div>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-box"></i></div>
+            <div class="stat-info">
+              <span class="stat-value" id="stat-orders">0</span>
+              <span class="stat-label">Orders</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-heart"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">—</span>
+              <span class="stat-label">Wishlist</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="stat-info">
+              <span class="stat-value" id="stat-addresses">0</span>
+              <span class="stat-label">Addresses</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Section -->
+        <section id="profile" class="content-section">
+          <div class="section-header">
+            <h2><i class="fa-solid fa-id-card"></i> Profile Information</h2>
+            <a href="edit-settings.html" class="section-action">
+              <i class="fa-solid fa-pen"></i> Edit
+            </a>
+          </div>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-label">Full Name</span>
+              <span class="info-value" id="user-name">—</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Email</span>
+              <span class="info-value" id="user-email">—</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Phone</span>
+              <span class="info-value" id="user-phone">—</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Orders Section -->
+        <section id="orders" class="content-section">
+          <div class="section-header">
+            <h2><i class="fa-solid fa-box-open"></i> Order History</h2>
+          </div>
+          <div class="orders-list" id="order-history">
+            <div class="empty-state">
+              <i class="fa-solid fa-box-open"></i>
+              <p>No orders yet</p>
+              <a href="product.html" class="btn-empty">Start Shopping</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Addresses Section -->
+        <section id="addresses" class="content-section">
+          <div class="section-header">
+            <h2><i class="fa-solid fa-location-dot"></i> Saved Addresses</h2>
+            <a href="edit-settings.html" class="section-action">
+              <i class="fa-solid fa-plus"></i> Add New
+            </a>
+          </div>
+          <div class="addresses-list" id="user-address">
+            <div class="empty-state">
+              <i class="fa-solid fa-location-dot"></i>
+              <p>No saved addresses</p>
+              <a href="edit-settings.html" class="btn-empty">Add Address</a>
+            </div>
+          </div>
+        </section>
       </div>
-      <ul>
-        <li><a href="#profile">Profile</a></li>
-        <li><a href="edit-settings.html">Settings</a></li>
-        <li><a href="#" id="logoutBtn" onclick="logout()">Logout</a></li>
-      </ul>
-    </nav>
+    </div>
+  </main>
 
-    <div class="dashboard-main">
-      <section id="orders" class="section">
-        <h2>Order History</h2>
-        <ul id="order-history">
-          <!-- Orders will be dynamically inserted here -->
-        </ul>
-      </section>
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="logo.png" alt="Arcana Logo">
+          <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
+        </div>
+        <div class="footer-newsletter">
+          <p>Be the first to know about new drops and exclusive offers.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Thanks for subscribing!', 'success');">
+            <input type="email" placeholder="Email address" required>
+            <button type="submit">Join</button>
+          </form>
+        </div>
+        <div class="footer-social">
+          <span class="footer-social-label">Follow Us</span>
+          <div class="social-cluster">
+            <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+            <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok"><img src="tik-tok.png" alt="TikTok"></a>
+            <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest"><img src="pinterest-logo.png" alt="Pinterest"></a>
+            <a href="https://x.com/arcanashopng1" aria-label="X"><img src="twitter.png" alt="X"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col contact-col">
+          <h4>Contact Us</h4>
+          <div class="contact-content">
+            <div class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <div><a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a></div>
+            </div>
+            <div class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12,6 12,12 16,14"/>
+              </svg>
+              <div><span>Mon – Fri</span><p class="hours">9:00 AM – 5:00 PM</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="returns&exchanges.html">Returns & Exchanges</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms&conditions.html">Terms & Conditions</a></li>
+            <li><a href="contact.html">Contact Support</a></li>
+            <li><a href="order_status.html">Order Status</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>My Account</h4>
+          <ul>
+            <li><a href="account.html">Sign In</a></li>
+            <li><a href="cart.html">View Cart</a></li>
+            <li><a href="order_status.html">Track My Order</a></li>
+            <li>
+              <div class="payment-methods">
+                <p>Payment Options</p>
+                <div class="payment-icons">
+                  <div class="payment-icon">VISA</div>
+                  <div class="payment-icon">MC</div>
+                  <div class="payment-icon">AMEX</div>
+                  <div class="payment-icon">PP</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="product.html">All Products</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="account.html">Account</a></li>
+            <li><a href="contact.html">Get in Touch</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p>© <span id="year"></span> Arcana — All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="privacy-policy.html">Privacy</a>
+          <a href="terms&conditions.html">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-      <section id="addresses" class="section">
-        <h2>Saved Addresses</h2>
-        <ul id="user-address">
-          <!-- Addresses will be dynamically inserted here -->
-        </ul>
-      </section>
-
-      <section id="profile" class="section">
-        <h2>Profile Information</h2>
-        <p id="user-name">Name: </p>
-        <p id="user-phone">Phone: </p>
-        <p id="user-email">Email: </p>
-        <a href="edit-settings.html">Edit Settings &#8594;</a>
-      </section>
+  <!-- ===== MODALS ===== -->
+  <div id="notification-container"></div>
+  <div id="arcana-modal-overlay" class="hidden">
+    <div class="arcana-modal">
+      <span class="close">&times;</span>
+      <p id="arcana-modal-text"></p>
     </div>
   </div>
 
-  <br><br><br><br>
-  <div class="footer">
-    <footer class="footer">
-        <div class="footer-container">
+  <script src="other-script.js" defer></script>
+  <script src="script.js" defer></script>
 
-            <!-- TIER 1: Brand + Newsletter + Social -->
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <img src="logo.png" alt="Arcana Logo">
-                    <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
-                </div>
+  <!-- ===== DASHBOARD LOGIC (PRESERVED) ===== -->
+  <script>
+    const API_BASE = 'https://arcana-backend-z46k.onrender.com/api';
+    const token = localStorage.getItem('token');
 
-                <div class="footer-newsletter">
-                    <p>Be the first to know about new drops and exclusive offers.</p>
-                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
-                        <input type="email" placeholder="Email address" required>
-                        <button type="submit">Join</button>
-                    </form>
-                </div>
+    if (!token) {
+      showBlockingMessage(
+        "You must be logged in to access your dashboard.",
+        "account.html"
+      );
+    }
 
-                <div class="footer-social">
-                    <span class="footer-social-label">Follow Us</span>
-                    <div class="social-cluster">
-                        <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram">
-                            <img src="instagram.png" alt="Instagram">
-                        </a>
-                        <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok">
-                            <img src="tik-tok.png" alt="TikTok">
-                        </a>
-                        <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest">
-                            <img src="pinterest-logo.png" alt="Pinterest">
-                        </a>
-                        <a href="https://x.com/arcanashopng1" aria-label="X">
-                            <img src="twitter.png" alt="X">
-                        </a>
-                    </div>
-                </div>
+    // ===== GET USER PROFILE (PRESERVED) =====
+    fetch(`${API_BASE}/user/profile`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("user-name").textContent = data.name || '—';
+        document.getElementById("welcome-name").textContent = data.name?.split(' ')[0] || '...';
+        document.getElementById("sidebar-name").textContent = data.name || 'User';
+        document.getElementById("user-email").textContent = data.email || '—';
+        document.getElementById("sidebar-email").textContent = data.email || '';
+        document.getElementById("user-phone").textContent = data.phone || 'Not provided';
+
+        // Update address
+        const addressContainer = document.getElementById("user-address");
+        if (data.addresses && data.addresses.length > 0) {
+          document.getElementById("stat-addresses").textContent = data.addresses.length;
+          const addr = data.addresses[0];
+          const formattedAddress = `${addr.street}, ${addr.city}, ${addr.state}, ${addr.zip}, ${addr.country}`;
+          addressContainer.innerHTML = `
+            <div class="address-card">
+              <div class="address-icon"><i class="fa-solid fa-house"></i></div>
+              <div class="address-details">
+                <p class="address-line">${addr.street}</p>
+                <p class="address-line">${addr.city}, ${addr.state} ${addr.zip}</p>
+                <p class="address-line">${addr.country}</p>
+              </div>
             </div>
+          `;
+        } else {
+          document.getElementById("stat-addresses").textContent = '0';
+        }
 
-            <!-- TIER 2: Link Columns -->
-            <div class="footer-links">
-                <div class="footer-col contact-col">
-                    <h4>Contact Us</h4>
-                    <div class="contact-content">
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg>
-                            <div>
-                                <a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <polyline points="12,6 12,12 16,14"/>
-                            </svg>
-                            <div>
-                                <span>Mon – Fri</span>
-                                <p class="hours">9:00 AM – 5:00 PM</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        if (data.profilePicture) {
+          document.getElementById("user-profile-pic").src = data.profilePicture;
+        }
+      })
+      .catch(() => {
+        showToast("Failed to load profile. Please log in again.", 'error');
+        window.location.href = "account.html";
+      });
 
-                <div class="footer-col">
-                    <h4>Help</h4>
-                    <ul>
-                        <li><a href="faqs.html">FAQs</a></li>
-                        <li><a href="returns&exchanges.html">Returns & Exchanges</a></li>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms&conditions.html">Terms & Conditions</a></li>
-                        <li><a href="contact.html">Contact Support</a></li>
-                        <li><a href="order_status.html">Order Status</a></li>
-                    </ul>
-                </div>
+    // ===== GET ORDER HISTORY (PRESERVED) =====
+    fetch(`${API_BASE}/user/orders`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById("order-history");
+        document.getElementById("stat-orders").textContent = data.length || 0;
 
-                <div class="footer-col">
-                    <h4>My Account</h4>
-                    <ul>
-                        <li><a href="account.html">Sign In</a></li>
-                        <li><a href="cart.html">View Cart</a></li>
-                        <li><a href="order_status.html">Track My Order</a></li>
-                        <li>
-                            <div class="payment-methods">
-                                <p>Payment Options</p>
-                                <div class="payment-icons">
-                                    <div class="payment-icon">VISA</div>
-                                    <div class="payment-icon">MC</div>
-                                    <div class="payment-icon">AMEX</div>
-                                    <div class="payment-icon">PP</div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="product.html">All Products</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="account.html">Account</a></li>
-                        <li><a href="contact.html">Get in Touch</a></li>
-                    </ul>
-                </div>
+        if (data.length === 0) {
+          list.innerHTML = `
+            <div class="empty-state">
+              <i class="fa-solid fa-box-open"></i>
+              <p>No orders yet</p>
+              <a href="product.html" class="btn-empty">Start Shopping</a>
             </div>
-        </div>
+          `;
+        } else {
+          list.innerHTML = '';
+          data.forEach(order => {
+            const statusColors = {
+              'pending': 'status-pending',
+              'processing': 'status-processing',
+              'shipped': 'status-shipped',
+              'delivered': 'status-delivered',
+              'cancelled': 'status-cancelled'
+            };
+            const statusClass = statusColors[order.status?.toLowerCase()] || 'status-pending';
 
-        <!-- TIER 3: Copyright Bar -->
-        <div class="footer-bottom">
-            <div class="footer-bottom-inner">
-                <p>© <span id="year"></span> Arcana — All rights reserved.</p>
-                <div class="footer-bottom-links">
-                    <a href="privacy-policy.html">Privacy</a>
-                    <a href="terms&conditions.html">Terms</a>
+            const card = document.createElement("div");
+            card.className = "order-card";
+            card.innerHTML = `
+              <div class="order-header">
+                <div class="order-id">
+                  <span class="order-number">#${order.orderNumber}</span>
+                  <span class="order-status ${statusClass}">${order.status}</span>
                 </div>
-            </div>
-        </div>
-    </footer>
+                <span class="order-date">${order.date ? new Date(order.date).toLocaleDateString() : '—'}</span>
+              </div>
+              <div class="order-footer">
+                <span class="order-total">${order.totalPrice ? '$' + order.totalPrice.toFixed(2) : ''}</span>
+                <a href="order_status.html?orderId=${order.orderNumber}" class="order-link">
+                  View Details <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            `;
+            list.appendChild(card);
+          });
+        }
+      })
+      .catch(err => {
+        console.error("Orders fetch failed:", err);
+      });
 
-  </div>
-  
-<div id="arcana-modal-overlay" class="hidden">
-  <div class="arcana-modal">
-    <span class="close">&times;</span>
-    <p id="arcana-modal-text"></p>
-  </div>
-</div>
-  <script src="other-script.js"></script>
-  <script src="account-dashboard-script.js"></script>
-  <div id="notification-container"></div>
+    // ===== PROFILE PICTURE UPLOAD (PRESERVED) =====
+    const uploadForm = document.getElementById("upload-form");
+    uploadForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const file = document.getElementById("profile-pic-file").files[0];
+      if (!file) return showToast("Please select an image.", 'error');
 
+      const formData = new FormData();
+      formData.append("profilePic", file);
 
+      const status = document.getElementById("upload-status");
+      status.textContent = "Uploading...";
+      status.style.color = "var(--arcana-text-light)";
+
+      try {
+        const res = await fetch(`${API_BASE}/auth/upload-profile-pic`, {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+          body: formData
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message);
+
+        document.getElementById("user-profile-pic").src = data.url;
+        status.textContent = "Uploaded successfully!";
+        status.style.color = "var(--arcana-success)";
+        showToast("Profile picture updated!", 'success');
+      } catch (err) {
+        console.error(err);
+        status.textContent = "Upload failed.";
+        status.style.color = "var(--arcana-error)";
+        showToast("Upload failed. Please try again.", 'error');
+      }
+    });
+
+    // Trigger file input when camera icon clicked
+    document.querySelector('.avatar-upload-btn').addEventListener('click', () => {
+      document.getElementById('profile-pic-file').click();
+    });
+
+    // Show filename when selected
+    document.getElementById('profile-pic-file').addEventListener('change', function() {
+      if (this.files[0]) {
+        document.getElementById('upload-status').textContent = this.files[0].name;
+        document.getElementById('upload-status').style.color = 'var(--arcana-text-light)';
+      }
+    });
+
+    // ===== LOGOUT (PRESERVED) =====
+    function logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userEmail');
+      showBlockingMessage("You've been logged out.", "account.html");
+    }
+
+    // ===== SIDEBAR NAV ACTIVE STATE =====
+    document.querySelectorAll('.sidebar-nav .nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (this.getAttribute('href')?.startsWith('#')) {
+          document.querySelectorAll('.sidebar-nav .nav-link').forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+        }
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- ===== MODERN DASHBOARD STYLES ===== -->
+  <style>
+    :root {
+      --arcana-brown: #59493b;
+      --arcana-brown-light: #8B6A4E;
+      --arcana-brown-dark: #3d3026;
+      --arcana-cream: #f5f0eb;
+      --arcana-warm: #faf8f5;
+      --arcana-border: #e8e0d8;
+      --arcana-text: #2c241e;
+      --arcana-text-light: #6b5d52;
+      --arcana-error: #c0392b;
+      --arcana-success: #27ae60;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px rgba(89, 73, 59, 0.08);
+      --shadow-md: 0 4px 20px rgba(89, 73, 59, 0.12);
+      --shadow-lg: 0 8px 40px rgba(89, 73, 59, 0.15);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .dashboard-body {
+      background: var(--arcana-warm);
+    }
+
+    .dashboard-main-wrapper {
+      max-width: 1280px;
+      margin: 100px auto 60px;
+      padding: 0 24px;
+    }
+
+    .dashboard-container-modern {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .dashboard-sidebar {
+      position: sticky;
+      top: 100px;
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--arcana-border);
+    }
+
+    .sidebar-header h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--arcana-text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--arcana-border);
+    }
+
+    .sidebar-header h2 i {
+      color: var(--arcana-brown);
+    }
+
+    /* Profile Card */
+    .profile-card {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .profile-avatar-wrap {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 12px;
+    }
+
+    .profile-avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid var(--arcana-brown);
+    }
+
+    .avatar-upload-btn {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 32px;
+      height: 32px;
+      background: var(--arcana-brown);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 3px solid #fff;
+      font-size: 0.8rem;
+      transition: var(--transition);
+    }
+
+    .avatar-upload-btn:hover {
+      background: var(--arcana-brown-light);
+      transform: scale(1.1);
+    }
+
+    .profile-name {
+      font-weight: 600;
+      color: var(--arcana-text);
+      font-size: 1rem;
+    }
+
+    .profile-email {
+      font-size: 0.8rem;
+      color: var(--arcana-text-light);
+      margin-bottom: 12px;
+    }
+
+    .upload-form-mini {
+      margin-top: 8px;
+    }
+
+    .btn-upload-mini {
+      padding: 8px 16px;
+      background: transparent;
+      border: 1.5px solid var(--arcana-border);
+      border-radius: var(--radius-sm);
+      color: var(--arcana-text-light);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-upload-mini:hover {
+      border-color: var(--arcana-brown);
+      color: var(--arcana-brown);
+    }
+
+    #upload-status {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.75rem;
+    }
+
+    /* Sidebar Nav */
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .sidebar-nav .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      color: var(--arcana-text-light);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: var(--transition);
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+    }
+
+    .sidebar-nav .nav-link i {
+      width: 20px;
+      text-align: center;
+      color: var(--arcana-brown-light);
+      transition: color 0.2s;
+    }
+
+    .sidebar-nav .nav-link:hover,
+    .sidebar-nav .nav-link.active {
+      background: rgba(89, 73, 59, 0.06);
+      color: var(--arcana-brown);
+    }
+
+    .sidebar-nav .nav-link:hover i,
+    .sidebar-nav .nav-link.active i {
+      color: var(--arcana-brown);
+    }
+
+    .sidebar-nav .nav-link.logout {
+      margin-top: 8px;
+      border-top: 1px solid var(--arcana-border);
+      padding-top: 16px;
+      color: var(--arcana-error);
+    }
+
+    .sidebar-nav .nav-link.logout i {
+      color: var(--arcana-error);
+    }
+
+    .sidebar-nav .nav-link.logout:hover {
+      background: rgba(192, 57, 43, 0.06);
+    }
+
+    /* ===== DASHBOARD CONTENT ===== */
+    .dashboard-content {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Welcome Banner */
+    .welcome-banner {
+      background: linear-gradient(135deg, var(--arcana-brown) 0%, var(--arcana-brown-dark) 100%);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .welcome-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 50%;
+    }
+
+    .welcome-text {
+      position: relative;
+      z-index: 1;
+    }
+
+    .welcome-text h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .welcome-text h1 span {
+      color: var(--arcana-brown-light);
+    }
+
+    .welcome-text p {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+    }
+
+    .btn-welcome {
+      position: relative;
+      z-index: 1;
+      padding: 12px 24px;
+      background: #fff;
+      color: var(--arcana-brown);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .btn-welcome:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Stats Row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: #fff;
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border: 1px solid var(--arcana-border);
+      transition: var(--transition);
+    }
+
+    .stat-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--arcana-cream);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--arcana-brown);
+      font-size: 1.2rem;
+    }
+
+    .stat-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--arcana-text);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--arcana-text-light);
+    }
+
+    /* Content Sections */
+    .content-section {
+      background: #fff;
+      border-radius: var(--radius-md);
+      padding: 24px;
+      border: 1px solid var(--arcana-border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--arcana-border);
+    }
+
+    .section-header h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--arcana-text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-header h2 i {
+      color: var(--arcana-brown);
+    }
+
+    .section-action {
+      color: var(--arcana-brown);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .section-action:hover {
+      color: var(--arcana-brown-light);
+    }
+
+    /* Info Grid */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .info-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--arcana-text-light);
+      font-weight: 500;
+    }
+
+    .info-value {
+      font-size: 0.95rem;
+      color: var(--arcana-text);
+      font-weight: 500;
+    }
+
+    /* Order Cards */
+    .orders-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .order-card {
+      background: var(--arcana-warm);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      border: 1px solid var(--arcana-border);
+      transition: var(--transition);
+    }
+
+    .order-card:hover {
+      border-color: var(--arcana-brown-light);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .order-id {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .order-number {
+      font-weight: 600;
+      color: var(--arcana-text);
+    }
+
+    .order-status {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .status-pending { background: #fff3cd; color: #856404; }
+    .status-processing { background: #cce5ff; color: #004085; }
+    .status-shipped { background: #d4edda; color: #155724; }
+    .status-delivered { background: #d1ecf1; color: #0c5460; }
+    .status-cancelled { background: #f8d7da; color: #721c24; }
+
+    .order-date {
+      font-size: 0.8rem;
+      color: var(--arcana-text-light);
+    }
+
+    .order-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .order-total {
+      font-weight: 600;
+      color: var(--arcana-brown);
+    }
+
+    .order-link {
+      color: var(--arcana-brown);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .order-link:hover {
+      color: var(--arcana-brown-light);
+    }
+
+    .order-link i {
+      transition: transform 0.2s;
+    }
+
+    .order-link:hover i {
+      transform: translateX(4px);
+    }
+
+    /* Address Card */
+    .address-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: var(--arcana-warm);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      border: 1px solid var(--arcana-border);
+    }
+
+    .address-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--arcana-cream);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--arcana-brown);
+      flex-shrink: 0;
+    }
+
+    .address-details p {
+      margin: 0;
+      color: var(--arcana-text);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--arcana-text-light);
+    }
+
+    .empty-state i {
+      font-size: 2.5rem;
+      color: var(--arcana-border);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .empty-state p {
+      margin-bottom: 16px;
+      font-size: 0.9rem;
+    }
+
+    .btn-empty {
+      display: inline-block;
+      padding: 10px 24px;
+      background: var(--arcana-brown);
+      color: #fff;
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .btn-empty:hover {
+      background: var(--arcana-brown-light);
+      transform: translateY(-2px);
+    }
+
+    /* ===== NOTIFICATIONS ===== */
+    #notification-container {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .notification {
+      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 14px 20px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 280px;
+      animation: slideInRight 0.3s ease;
+      border-left: 4px solid var(--arcana-brown);
+      font-size: 0.9rem;
+    }
+
+    .notification.error { border-left-color: var(--arcana-error); }
+    .notification.success { border-left-color: var(--arcana-success); }
+
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* ===== MODAL ===== */
+    #arcana-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(44, 36, 30, 0.6);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    #arcana-modal-overlay:not(.hidden) {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .arcana-modal {
+      background: #fff;
+      border-radius: var(--radius-md);
+      padding: 32px;
+      max-width: 420px;
+      width: 90%;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+      transform: scale(0.95);
+      transition: transform 0.3s;
+    }
+
+    #arcana-modal-overlay:not(.hidden) .arcana-modal {
+      transform: scale(1);
+    }
+
+    .arcana-modal .close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--arcana-text-light);
+      transition: color 0.2s;
+    }
+
+    .arcana-modal .close:hover {
+      color: var(--arcana-text);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .dashboard-container-modern {
+        grid-template-columns: 1fr;
+      }
+      .dashboard-sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 20px;
+        align-items: center;
+      }
+      .sidebar-header {
+        display: none;
+      }
+      .profile-card {
+        margin-bottom: 0;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .profile-avatar-wrap {
+        margin: 0;
+        width: 60px;
+        height: 60px;
+      }
+      .upload-form-mini {
+        display: none;
+      }
+      .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .sidebar-nav .nav-link.logout {
+        margin-top: 0;
+        border-top: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-main-wrapper {
+        margin-top: 80px;
+        padding: 0 16px;
+      }
+      .welcome-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+      }
+      .stats-row {
+        grid-template-columns: 1fr;
+      }
+      .dashboard-sidebar {
+        grid-template-columns: 1fr;
+      }
+      .profile-card {
+        flex-direction: column;
+        text-align: center;
+      }
+      .profile-avatar-wrap {
+        margin: 0 auto;
+      }
+      .upload-form-mini {
+        display: block;
+      }
+      .sidebar-nav {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+      .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+  </style>
 </body>
 </html>
