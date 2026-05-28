@@ -72,61 +72,125 @@
     </div>
 </div>
  <!------ footer section ------>
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col-1">
-                    <a href="index.html"><img src="arcana_logo.png" alt="Arcana Logo"></a>
-                    <a href="contact.html"><h3>Contact Us</h3></a>
-                    <a href="mailto:arcanashopng@gmail.com"><p><div class="email">Email: arcanashopng@gmail.com</div></p></a>
-                    <p>Hours: 9:00 AM - 5:00 PM</p>
+<footer class="footer">
+        <div class="footer-container">
 
+            <!-- TIER 1: Brand + Newsletter + Social -->
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="Arcana Logo">
+                    <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
                 </div>
-                <div class="footer-col-2">
-                    <h3>Help</h3>
+
+                <div class="footer-newsletter">
+                    <p>Be the first to know about new drops and exclusive offers.</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+                        <input type="email" placeholder="Email address" required>
+                        <button type="submit">Join</button>
+                    </form>
+                </div>
+
+                <div class="footer-social">
+                    <span class="footer-social-label">Follow Us</span>
+                    <div class="social-cluster">
+                        <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram">
+                            <img src="instagram.png" alt="Instagram">
+                        </a>
+                        <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok">
+                            <img src="tik-tok.png" alt="TikTok">
+                        </a>
+                        <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest">
+                            <img src="pinterest-logo.png" alt="Pinterest">
+                        </a>
+                        <a href="https://x.com/arcanashopng1" aria-label="X">
+                            <img src="twitter.png" alt="X">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIER 2: Link Columns -->
+            <div class="footer-links">
+                <div class="footer-col contact-col">
+                    <h4>Contact Us</h4>
+                    <div class="contact-content">
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <div>
+                                <a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <div>
+                                <span>Mon – Fri</span>
+                                <p class="hours">9:00 AM – 5:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Help</h4>
                     <ul>
                         <li><a href="faqs.html">FAQs</a></li>
-                        <li><a href="returns&exchanges.html">Returns & Exchanges Policy</a></li>
+                        <li><a href="returns&exchanges.html">Returns & Exchanges</a></li>
                         <li><a href="privacy-policy.html">Privacy Policy</a></li>
                         <li><a href="terms&conditions.html">Terms & Conditions</a></li>
                         <li><a href="contact.html">Contact Support</a></li>
                         <li><a href="order_status.html">Order Status</a></li>
-                        <li>Payment Options</li>
                     </ul>
                 </div>
-                <div class="footer-col-3">
-                    <h3>My Account</h3>
+
+                <div class="footer-col">
+                    <h4>My Account</h4>
                     <ul>
                         <li><a href="account.html">Sign In</a></li>
                         <li><a href="cart.html">View Cart</a></li>
                         <li><a href="order_status.html">Track My Order</a></li>
-                        <li>Secured Payment Gateways</li>
+                        <li>
+                            <div class="payment-methods">
+                                <p>Payment Options</p>
+                                <div class="payment-icons">
+                                    <div class="payment-icon">VISA</div>
+                                    <div class="payment-icon">MC</div>
+                                    <div class="payment-icon">AMEX</div>
+                                    <div class="payment-icon">PP</div>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
-                    <img src="pay.png" alt="Secure Payment Methods">
                 </div>
-                <div class="footer-col-4">
-                    <h3>Follow Us</h3>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="https://www.instagram.com/arcana.ng?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
-                            <img src="instagram.png" alt="Instagram" class="social-icon">
-                        </a></li>
-                        <li><a href="https://www.tiktok.com/@arcana.ng?_t=ZS-8yCFw0GlnaE&_r=1">
-                            <img src="tik-tok.png" alt="TikTok" class="social-icon">
-                        </a></li>
-                        <li><a href="https://pin.it/2TyuCuriX">
-                            <img src="pinterest-logo.png" alt="Pinterest" class="social-icon">
-                        </a></li>
-                        <li><a href="https://x.com/arcanashopng1?s=11">
-                            <img src="twitter.png" alt="X" class="social-icon">
-                        </a></li>
+                        <li><a href="product.html">All Products</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="account.html">Account</a></li>
+                        <li><a href="contact.html">Get in Touch</a></li>
                     </ul>
                 </div>
             </div>
-                <hr>
-                <p class="copyright">© <span id="year"></span> Arcana — Designed with intention. All rights reserved.</p>
         </div>
 
-    </div>
+        <!-- TIER 3: Copyright Bar -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-inner">
+                <p>© <span id="year"></span> Arcana — All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html">Privacy</a>
+                    <a href="terms&conditions.html">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="script.js" defer></script>
     <script>
 document.querySelectorAll('.add-to-cart-btn').forEach(btn => {

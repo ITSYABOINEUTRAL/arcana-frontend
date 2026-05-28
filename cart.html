@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="logo.png" type="image/x-icon">
-    <title>Cart - Arcana</title>
+    <title>Cart — Arcana</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<base target="_blank">
 </head>
-<body class="product-details-page">
+<body class="cart-page">
 
     <div class="container">
     <div class="navbar">
@@ -37,282 +38,857 @@
         <img src="menu.png" width="30px" height="30px" alt="Menu Icon" class="menu-icon" onclick="menuToggle()">
     </div>
     </div>
-<br> <br> <br> <br> <br>
-<h2 class="title">Shopping Cart</h2>
-<div class="small-container single-product">
-<div class="product-grid">
-<section id="cart-container">
-    <table width="100%">
-        <thead>
-            <tr>
-                <td>Remove</td>
-                <td>Image</td>
-                <td>Product</td>
-                <td>Size</td>
-                <td>Price</td>
-                <td>Quantity</td>
-                <td>Total</td>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Cart items will be injected here by cart.js -->
-        </tbody>
-    </table>
-</section>
-<br> <br>
 
-<section id="cart-summary" class="cart-summary">
-  <div class="row">
-    <div class="coupon col-lg-6 col-md-6 col-12  mb-4">
-      <div class="coupon">
-        <h5>COUPON</h5>
-        <p>Enter your coupon code if you have one.</p>
-        <input id="coupon-input" class="coupon" type="text" placeholder="Enter coupon code">
-        <button id="apply-coupon-btn" class="btn">Apply Coupon</button>
-      </div>
-    </div>
-    <div class="total col-lg-6 col-md-6 col-12">
-      <div class="cart-total">
-        <h5>CART TOTAL</h5>
-        <div class="d-flex justify-content-between">
-          <p>Subtotal</p>
-          <p class="subtotal">$0.00</p>
+    <!-- ===== MODERNIZED CART SECTION ===== -->
+    <main class="cart-main">
+        <div class="cart-header">
+            <h1 class="cart-title">Shopping Cart</h1>
+            <p class="cart-count" id="cart-count-text">0 items</p>
         </div>
-        <div class="d-flex justify-content-between">
-          <p>Shipping</p>
-          <p class="shipping">$0.00</p>
-        </div>
-        <hr class="second-hr">
-        <div class="d-flex justify-content-between">
-          <p>Total</p>
-          <p class="Total">$0.00</p>
-        </div>
-        <button id="checkout-btn" class="btn">Proceed To Checkout</button>
-      </div>
-    </div>
-  </div>
-</section>
-</div>
-</div>
-<br> <br> <br> 
- <!------ footer section ------>
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col-1">
-                    <a href="index.html"><img src="arcana_logo.png" alt="Arcana Logo"></a>
-                    <a href="contact.html"><h3>Contact Us</h3></a>
-                    <a href="mailto:arcanashopng@gmail.com"><p><div class="email">Email: support@arcana.com</div></p></a>
-                    <p>Hours: 9:00 AM - 5:00 PM</p>
 
+        <div class="cart-layout">
+            <!-- Left: Cart Items -->
+            <section class="cart-items-section">
+                <div id="cart-container">
+                    <!-- Cart items injected by cart.js -->
+                    <div class="cart-empty-state" id="empty-state">
+                        <div class="empty-icon">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <h3>Your cart is empty</h3>
+                        <p>Looks like you haven't added anything yet.</p>
+                        <a href="product.html" class="btn-continue">Continue Shopping</a>
+                    </div>
                 </div>
-                <div class="footer-col-2">
-                    <h3>Help</h3>
+            </section>
+
+            <!-- Right: Order Summary -->
+            <aside class="cart-summary-section" id="cart-summary">
+                <div class="summary-card">
+                    <h2>Order Summary</h2>
+
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span class="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span class="shipping">$0.00</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total</span>
+                        <span class="Total">$0.00</span>
+                    </div>
+
+                    <div class="coupon-area">
+                        <div class="coupon-toggle" onclick="toggleCoupon()">
+                            <i class="fa-solid fa-tag"></i>
+                            <span>Have a coupon?</span>
+                            <i class="fa-solid fa-chevron-down" id="coupon-chevron"></i>
+                        </div>
+                        <div class="coupon-form" id="coupon-form">
+                            <input id="coupon-input" type="text" placeholder="Enter coupon code">
+                            <button id="apply-coupon-btn" class="btn-coupon">Apply</button>
+                        </div>
+                    </div>
+
+                    <button id="checkout-btn" class="btn-checkout">
+                        <span>Proceed to Checkout</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                    <div class="secure-badge">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>Secure checkout powered by Paystack</span>
+                    </div>
+                </div>
+
+                <div class="trust-badges">
+                    <div class="badge"><i class="fa-solid fa-truck-fast"></i><span>Fast Shipping</span></div>
+                    <div class="badge"><i class="fa-solid fa-shield-halved"></i><span>Secure Payment</span></div>
+                    <div class="badge"><i class="fa-solid fa-rotate-left"></i><span>Easy Returns</span></div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="Arcana Logo">
+                    <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
+                </div>
+                <div class="footer-newsletter">
+                    <p>Be the first to know about new drops and exclusive offers.</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+                        <input type="email" placeholder="Email address" required>
+                        <button type="submit">Join</button>
+                    </form>
+                </div>
+                <div class="footer-social">
+                    <span class="footer-social-label">Follow Us</span>
+                    <div class="social-cluster">
+                        <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+                        <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok"><img src="tik-tok.png" alt="TikTok"></a>
+                        <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest"><img src="pinterest-logo.png" alt="Pinterest"></a>
+                        <a href="https://x.com/arcanashopng1" aria-label="X"><img src="twitter.png" alt="X"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col contact-col">
+                    <h4>Contact Us</h4>
+                    <div class="contact-content">
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <div><a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a></div>
+                        </div>
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <div><span>Mon – Fri</span><p class="hours">9:00 AM – 5:00 PM</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Help</h4>
                     <ul>
                         <li><a href="faqs.html">FAQs</a></li>
-                        <li><a href="returns&exchanges.html">Returns & Exchanges Policy</a></li>
+                        <li><a href="returns&exchanges.html">Returns & Exchanges</a></li>
                         <li><a href="privacy-policy.html">Privacy Policy</a></li>
                         <li><a href="terms&conditions.html">Terms & Conditions</a></li>
                         <li><a href="contact.html">Contact Support</a></li>
                         <li><a href="order_status.html">Order Status</a></li>
-                        <li>Payment Options</li>
                     </ul>
                 </div>
-                <div class="footer-col-3">
-                    <h3>My Account</h3>
+                <div class="footer-col">
+                    <h4>My Account</h4>
                     <ul>
                         <li><a href="account.html">Sign In</a></li>
                         <li><a href="cart.html">View Cart</a></li>
                         <li><a href="order_status.html">Track My Order</a></li>
-                        <li>Secured Payment Gateways</li>
+                        <li>
+                            <div class="payment-methods">
+                                <p>Payment Options</p>
+                                <div class="payment-icons">
+                                    <div class="payment-icon">VISA</div>
+                                    <div class="payment-icon">MC</div>
+                                    <div class="payment-icon">AMEX</div>
+                                    <div class="payment-icon">PP</div>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
-                    <img src="pay.png" alt="Secure Payment Methods">
                 </div>
-                <div class="footer-col-4">
-                    <h3>Follow Us</h3>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="https://www.instagram.com/arcana.ng?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
-                            <img src="instagram.png" alt="Instagram" class="social-icon">
-                        </a></li>
-                        <li><a href="https://www.tiktok.com/@arcana.ng?_t=ZS-8yCFw0GlnaE&_r=1">
-                            <img src="tik-tok.png" alt="TikTok" class="social-icon">
-                        </a></li>
-                        <li><a href="https://pin.it/2TyuCuriX">
-                            <img src="pinterest-logo.png" alt="Pinterest" class="social-icon">
-                        </a></li>
-                        <li><a href="https://x.com/arcanashopng1?s=11">
-                            <img src="twitter.png" alt="X" class="social-icon">
-                        </a></li>
+                        <li><a href="product.html">All Products</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="account.html">Account</a></li>
+                        <li><a href="contact.html">Get in Touch</a></li>
                     </ul>
                 </div>
             </div>
-                <hr>
-                <p class="copyright">© <span id="year"></span> Arcana — Designed with intention. All rights reserved.</p>
         </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-inner">
+                <p>© <span id="year"></span> Arcana — All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html">Privacy</a>
+                    <a href="terms&conditions.html">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
+    <!-- ===== MODALS & NOTIFICATIONS ===== -->
+    <div id="notification-container"></div>
+    <div id="arcana-modal-overlay" class="hidden">
+        <div class="arcana-modal">
+            <span class="close">&times;</span>
+            <p id="arcana-modal-text"></p>
+        </div>
     </div>
+
     <script src="script.js" defer></script>
     <script src="cart.js" defer></script>
     <script>
+        function toggleCoupon() {
+            const form = document.getElementById('coupon-form');
+            const chevron = document.getElementById('coupon-chevron');
+            form.classList.toggle('open');
+            chevron.classList.toggle('rotate');
+        }
         document.getElementById('apply-coupon-btn').addEventListener('click', function() {
-          const validCoupons = ['DISCOUNT10', 'SAVE20']; // Example valid codes
-          const input = document.getElementById('coupon-input').value.trim();
-          if (!validCoupons.includes(input)) {
-        alert('Invalid coupon code');
-          }
+            const validCoupons = ['DISCOUNT10', 'SAVE20'];
+            const input = document.getElementById('coupon-input').value.trim();
+            if (!validCoupons.includes(input)) {
+                showNotification('Invalid coupon code', 'error');
+            } else {
+                showNotification('Coupon applied successfully!', 'success');
+            }
         });
-      </script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+    <!-- ===== MODERN CART STYLES ===== -->
     <style>
-      #cart-container {
-       overflow-x: auto;
-      }
-      /* Hide scrollbar but keep scrolling */
-#cart-container {
-  scrollbar-width: none;      /* Firefox */
-  -ms-overflow-style: none;   /* IE & Edge */
-}
+        /* ===== CSS VARIABLES (Arcana Brown Theme) ===== */
+        :root {
+            --arcana-brown: #59493b;
+            --arcana-brown-light: #8B6A4E;
+            --arcana-brown-dark: #3d3026;
+            --arcana-cream: #f5f0eb;
+            --arcana-warm: #faf8f5;
+            --arcana-border: #e8e0d8;
+            --arcana-text: #2c241e;
+            --arcana-text-light: #6b5d52;
+            --arcana-error: #c0392b;
+            --arcana-success: #27ae60;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 3px rgba(89, 73, 59, 0.08);
+            --shadow-md: 0 4px 20px rgba(89, 73, 59, 0.12);
+            --shadow-lg: 0 8px 40px rgba(89, 73, 59, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-#cart-container::-webkit-scrollbar {
-  display: none;              /* Chrome, Safari */
-}
+        /* ===== PAGE LAYOUT ===== */
+        .cart-page {
+            background: var(--arcana-warm);
+        }
 
-      #cart-container table {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-        white-space: nowrap;
-      }
-      #cart-container table thead {
-        font-weight: 700;
-      }
-      #cart-container table thead td {
-        background: #59493b;
-        border: none;
-        padding: 6px 0;
-      }
-      #cart-container table td {
-        border: 1px solid #59493b;
-        text-align: center;
-      }
-      #cart-container table thead td:nth-child(1) {
-        width: 100px;
-      }
-      #cart-container table thead td:nth-child(2),
-      #cart-container table thead td:nth-child(3) {
-        width: 210px;
-      }
-      #cart-container table thead td:nth-child(4),
-      #cart-container table thead td:nth-child(5),
-      #cart-container table thead td:nth-child(6),
-      #cart-container table thead td:nth-child(7) {
-        width: 170px;
-      }
-      #cart-container table tbody img {
-        width: 100px;
-        height: 80px;
-        object-fit: cover;
-      }
-      #cart-container table tbody i {
-        color: #59493b;
-      }
-      #cart-container table tbody button.remove-btn {
-        border: none;
-      }
-      input.coupon {
-        width: 50%;
-        height: 35px;
-        padding: 10px;
-        border: 2px solid #59493b;
-        border-radius: 2px;
-        margin-bottom: 10px;
-      }
-      .cart-total {
-        width: 450px;
-      }
-      .cart-total .Total {
-        text-align: right;
-      }
-       .cart-total .shipping {
-        text-align: right;
-      }
-      .cart-total .subtotal {
-        text-align: right;
-      }
-      #cart-summary .btn {
-        background-color: #59493b;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 2px;
-        cursor: pointer;
-      }
-      #cart-summary .btn:hover {
-        background-color: #8B6A4E;
-      }
-      .cart-summary {
-        margin-top: 20px;
-      }
-      .cart-summary .coupon>div {
-        border: #59493b 1px solid;
-      }
-      .cart-summary .cart-total {
-        border: #59493b 1px solid;
-      }
-      .cart-summary .cart-total .btn {
-        margin: 0 12px 20px 0;
-        display: flex;
-        justify-content: flex-end;
-      }
-      .cart-summary .coupon h5,
-      .cart-summary .cart-total h5 {
-        background: #59493b;
-        border: none;
-        padding: 6px 12px;
-        font-weight: 700;
-      }
-      .cart-summary .coupon p,
-      .cart-summary .coupon input {
-        padding: 0 12px;
-      }
-      .cart-summary .coupon input {
-        margin: 0 1 20px 12px;
-      }
-      /* Responsive */
-      @media (max-width: 925px) {
-        #cart-summary .cart-total,
-        #cart-summary .coupon {
-          margin-top: 50px;
-          width: 800px;
+        .cart-main {
+            max-width: 1280px;
+            margin: 100px auto 60px;
+            padding: 0 24px;
         }
-      }
-      @media (max-width: 825px) {
-        #cart-summary .cart-total,
-        #cart-summary .coupon {
-          width: 700px;
+
+        .cart-header {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--arcana-border);
         }
-      }
-      @media (max-width: 500px) {
-        #cart-summary .cart-total,
-        #cart-summary .coupon {
-          width: 310px;
-          margin-top: 50px;
+
+        .cart-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--arcana-text);
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
         }
-      }
-      @media (max-width: 375px) {
-        #cart-summary .cart-total,
-        #cart-summary .coupon {
-          width: 250px;
+
+        .cart-count {
+            color: var(--arcana-text-light);
+            font-size: 0.95rem;
+            font-weight: 400;
         }
-      }
+
+        .cart-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* ===== CART ITEMS (CARD-BASED) ===== */
+        .cart-items-section {
+            min-width: 0;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 120px 1fr auto;
+            gap: 24px;
+            align-items: center;
+            background: #fff;
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--arcana-border);
+        }
+
+        .cart-item:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .cart-item-image {
+            width: 120px;
+            height: 120px;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            background: var(--arcana-cream);
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .cart-item:hover .cart-item-image img {
+            transform: scale(1.05);
+        }
+
+        .cart-item-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .cart-item-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--arcana-text);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .cart-item-name:hover {
+            color: var(--arcana-brown);
+        }
+
+        .cart-item-meta {
+            display: flex;
+            gap: 16px;
+            color: var(--arcana-text-light);
+            font-size: 0.85rem;
+        }
+
+        .cart-item-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px;
+        }
+
+        .cart-item-price {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--arcana-brown);
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--arcana-border);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+        }
+
+        .quantity-control button {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: var(--arcana-cream);
+            color: var(--arcana-brown);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .quantity-control button:hover {
+            background: var(--arcana-brown);
+            color: #fff;
+        }
+
+        .quantity-control input {
+            width: 48px;
+            height: 36px;
+            border: none;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: var(--arcana-text);
+            -moz-appearance: textfield;
+        }
+
+        .quantity-control input::-webkit-outer-spin-button,
+        .quantity-control input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: var(--arcana-text-light);
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+        }
+
+        .remove-btn:hover {
+            color: var(--arcana-error);
+            background: rgba(192, 57, 43, 0.08);
+        }
+
+        .item-total {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--arcana-text);
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .cart-empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            background: #fff;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--arcana-border);
+        }
+
+        .empty-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--arcana-cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .empty-icon i {
+            font-size: 2rem;
+            color: var(--arcana-brown-light);
+        }
+
+        .cart-empty-state h3 {
+            font-size: 1.3rem;
+            color: var(--arcana-text);
+            margin-bottom: 8px;
+        }
+
+        .cart-empty-state p {
+            color: var(--arcana-text-light);
+            margin-bottom: 24px;
+        }
+
+        .btn-continue {
+            display: inline-block;
+            padding: 12px 32px;
+            background: var(--arcana-brown);
+            color: #fff;
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .btn-continue:hover {
+            background: var(--arcana-brown-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== ORDER SUMMARY ===== */
+        .cart-summary-section {
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-card {
+            background: #fff;
+            border-radius: var(--radius-md);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--arcana-border);
+            margin-bottom: 20px;
+        }
+
+        .summary-card h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--arcana-text);
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--arcana-border);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            font-size: 0.95rem;
+            color: var(--arcana-text-light);
+        }
+
+        .summary-row span:last-child {
+            font-weight: 500;
+            color: var(--arcana-text);
+        }
+
+        .summary-total {
+            margin-top: 12px;
+            padding-top: 16px;
+            border-top: 2px solid var(--arcana-brown);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--arcana-text);
+        }
+
+        .summary-total span:last-child {
+            color: var(--arcana-brown);
+            font-size: 1.25rem;
+        }
+
+        /* ===== COUPON ===== */
+        .coupon-area {
+            margin: 20px 0;
+            border-top: 1px solid var(--arcana-border);
+            padding-top: 16px;
+        }
+
+        .coupon-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            color: var(--arcana-brown);
+            font-size: 0.9rem;
+            font-weight: 500;
+            user-select: none;
+            padding: 4px 0;
+        }
+
+        .coupon-toggle i:first-child {
+            font-size: 0.85rem;
+        }
+
+        .coupon-toggle .fa-chevron-down {
+            margin-left: auto;
+            transition: transform 0.3s;
+            font-size: 0.75rem;
+        }
+
+        .coupon-toggle .fa-chevron-down.rotate {
+            transform: rotate(180deg);
+        }
+
+        .coupon-form {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+            margin-top: 12px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, margin-top 0.3s ease;
+        }
+
+        .coupon-form.open {
+            max-height: 100px;
+            margin-top: 12px;
+        }
+
+        .coupon-form input {
+            padding: 10px 14px;
+            border: 1.5px solid var(--arcana-border);
+            border-radius: var(--radius-sm);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            color: var(--arcana-text);
+            transition: var(--transition);
+        }
+
+        .coupon-form input:focus {
+            outline: none;
+            border-color: var(--arcana-brown);
+            box-shadow: 0 0 0 3px rgba(89, 73, 59, 0.1);
+        }
+
+        .btn-coupon {
+            padding: 10px 18px;
+            background: transparent;
+            border: 1.5px solid var(--arcana-brown);
+            color: var(--arcana-brown);
+            border-radius: var(--radius-sm);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .btn-coupon:hover {
+            background: var(--arcana-brown);
+            color: #fff;
+        }
+
+        /* ===== CHECKOUT BUTTON ===== */
+        .btn-checkout {
+            width: 100%;
+            padding: 16px 24px;
+            background: var(--arcana-brown);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+            margin-top: 8px;
+        }
+
+        .btn-checkout:hover {
+            background: var(--arcana-brown-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-checkout i {
+            transition: transform 0.2s;
+        }
+
+        .btn-checkout:hover i {
+            transform: translateX(4px);
+        }
+
+        .btn-checkout:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ===== SECURE BADGE ===== */
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--arcana-border);
+            font-size: 0.8rem;
+            color: var(--arcana-text-light);
+        }
+
+        .secure-badge i {
+            color: var(--arcana-success);
+        }
+
+        /* ===== TRUST BADGES ===== */
+        .trust-badges {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .badge {
+            background: #fff;
+            border-radius: var(--radius-sm);
+            padding: 16px 8px;
+            text-align: center;
+            border: 1px solid var(--arcana-border);
+            transition: var(--transition);
+        }
+
+        .badge:hover {
+            border-color: var(--arcana-brown-light);
+            transform: translateY(-2px);
+        }
+
+        .badge i {
+            font-size: 1.3rem;
+            color: var(--arcana-brown);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .badge span {
+            font-size: 0.75rem;
+            color: var(--arcana-text-light);
+            font-weight: 500;
+        }
+
+        /* ===== NOTIFICATIONS ===== */
+        #notification-container {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .notification {
+            background: #fff;
+            border-radius: var(--radius-sm);
+            padding: 14px 20px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 280px;
+            animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
+            border-left: 4px solid var(--arcana-brown);
+        }
+
+        .notification.error {
+            border-left-color: var(--arcana-error);
+        }
+
+        .notification.success {
+            border-left-color: var(--arcana-success);
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        /* ===== MODAL ===== */
+        #arcana-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(44, 36, 30, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        #arcana-modal-overlay:not(.hidden) {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .arcana-modal {
+            background: #fff;
+            border-radius: var(--radius-md);
+            padding: 32px;
+            max-width: 420px;
+            width: 90%;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.95);
+            transition: transform 0.3s;
+        }
+
+        #arcana-modal-overlay:not(.hidden) .arcana-modal {
+            transform: scale(1);
+        }
+
+        .arcana-modal .close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--arcana-text-light);
+            transition: color 0.2s;
+        }
+
+        .arcana-modal .close:hover {
+            color: var(--arcana-text);
+        }
+
+        /* ===== SKELETON LOADING ===== */
+        .skeleton {
+            background: linear-gradient(90deg, var(--arcana-cream) 25%, #ede8e2 50%, var(--arcana-cream) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: var(--radius-sm);
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .cart-layout {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .cart-summary-section {
+                position: static;
+                max-width: 500px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .cart-main {
+                margin-top: 80px;
+                padding: 0 16px;
+            }
+            .cart-title {
+                font-size: 1.6rem;
+            }
+            .cart-item {
+                grid-template-columns: 90px 1fr;
+                gap: 16px;
+                padding: 16px;
+            }
+            .cart-item-image {
+                width: 90px;
+                height: 90px;
+            }
+            .cart-item-actions {
+                grid-column: 1 / -1;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding-top: 12px;
+                border-top: 1px solid var(--arcana-border);
+            }
+            .trust-badges {
+                grid-template-columns: 1fr;
+            }
+            .badge {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                text-align: left;
+                padding: 12px 16px;
+            }
+            .badge i {
+                margin-bottom: 0;
+            }
+        }
     </style>
-    <div id="notification-container"></div>
-
-<div id="arcana-modal-overlay" class="hidden">
-  <div class="arcana-modal">
-    <span class="close">&times;</span>
-    <p id="arcana-modal-text"></p>
-  </div>
-</div>
-
 </body>
 </html>

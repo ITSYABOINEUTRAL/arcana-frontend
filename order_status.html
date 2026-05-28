@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<base target="_blank">
 </head>
 <body class="order-status-page">
     <div class="container">
@@ -43,60 +44,125 @@
     </div>
     </div>
     <!------ footer section ------>
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col-1">
-                    <a href="index.html"><img src="arcana_logo.png" alt="Arcana Logo"></a>
-                    <h3>Contact Us</h3>
-                    <a href="mailto:arcanashopng@gmail.com"><p><div class="email">Email: arcanashopng@gmail.com</div></a></p>
-                    <p>Hours: 9:00 AM - 5:00 PM</p>
+<footer class="footer">
+        <div class="footer-container">
+
+            <!-- TIER 1: Brand + Newsletter + Social -->
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="Arcana Logo">
+                    <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
                 </div>
-                <div class="footer-col-2">
-                    <h3>Help</h3>
+
+                <div class="footer-newsletter">
+                    <p>Be the first to know about new drops and exclusive offers.</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+                        <input type="email" placeholder="Email address" required>
+                        <button type="submit">Join</button>
+                    </form>
+                </div>
+
+                <div class="footer-social">
+                    <span class="footer-social-label">Follow Us</span>
+                    <div class="social-cluster">
+                        <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram">
+                            <img src="instagram.png" alt="Instagram">
+                        </a>
+                        <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok">
+                            <img src="tik-tok.png" alt="TikTok">
+                        </a>
+                        <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest">
+                            <img src="pinterest-logo.png" alt="Pinterest">
+                        </a>
+                        <a href="https://x.com/arcanashopng1" aria-label="X">
+                            <img src="twitter.png" alt="X">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIER 2: Link Columns -->
+            <div class="footer-links">
+                <div class="footer-col contact-col">
+                    <h4>Contact Us</h4>
+                    <div class="contact-content">
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <div>
+                                <a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <div>
+                                <span>Mon – Fri</span>
+                                <p class="hours">9:00 AM – 5:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Help</h4>
                     <ul>
                         <li><a href="faqs.html">FAQs</a></li>
-                        <li><a href="returns&exchanges.html">Returns & Exchanges Policy</a></li>
+                        <li><a href="returns&exchanges.html">Returns & Exchanges</a></li>
                         <li><a href="privacy-policy.html">Privacy Policy</a></li>
                         <li><a href="terms&conditions.html">Terms & Conditions</a></li>
                         <li><a href="contact.html">Contact Support</a></li>
                         <li><a href="order_status.html">Order Status</a></li>
-                        <li>Payment Options</li>
                     </ul>
                 </div>
-                <div class="footer-col-3">
-                    <h3>My Account</h3>
+
+                <div class="footer-col">
+                    <h4>My Account</h4>
                     <ul>
                         <li><a href="account.html">Sign In</a></li>
                         <li><a href="cart.html">View Cart</a></li>
                         <li><a href="order_status.html">Track My Order</a></li>
-                        <li>Secured Payment Gateways</li>
+                        <li>
+                            <div class="payment-methods">
+                                <p>Payment Options</p>
+                                <div class="payment-icons">
+                                    <div class="payment-icon">VISA</div>
+                                    <div class="payment-icon">MC</div>
+                                    <div class="payment-icon">AMEX</div>
+                                    <div class="payment-icon">PP</div>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
-                    <img src="pay.png" alt="Secure Payment Methods">
                 </div>
-                <div class="footer-col-4">
-                    <h3>Follow Us</h3>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="https://www.instagram.com/arcana.ng?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
-                            <img src="instagram.png" alt="Instagram" class="social-icon">
-                        </a></li>
-                        <li><a href="https://www.tiktok.com/@arcana.ng?_t=ZS-8yCFw0GlnaE&_r=1">
-                            <img src="tik-tok.png" alt="TikTok" class="social-icon">
-                        </a></li>
-                        <li><a href="https://pin.it/2TyuCuriX">
-                            <img src="pinterest-logo.png" alt="Pinterest" class="social-icon">
-                        </a></li>
-                        <li><a href="https://x.com/arcanashopng1?s=11">
-                            <img src="twitter.png" alt="X" class="social-icon">
-                        </a></li>
+                        <li><a href="product.html">All Products</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="account.html">Account</a></li>
+                        <li><a href="contact.html">Get in Touch</a></li>
                     </ul>
                 </div>
             </div>
-                <hr>
-                <p class="copyright">© <span id="year"></span> Arcana — Designed with intention. All rights reserved.</p>
         </div>
 
-    </div>
+        <!-- TIER 3: Copyright Bar -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-inner">
+                <p>© <span id="year"></span> Arcana — All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html">Privacy</a>
+                    <a href="terms&conditions.html">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="other-script.js" defer></script>
 
 
@@ -205,29 +271,28 @@ window.addEventListener("DOMContentLoaded", () => {
   .product { display: flex; align-items: center; margin: 10px 0; }
 </style>
 <style>
-    /* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Order Summary Styles */
+.order-summary { background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.1); max-width: 600px; margin: 20px auto; }
+.order-summary h3, .order-summary h4 { color: #000; margin-top: 15px; }
+.order-summary p { margin: 5px 0; }
+.product { display: flex; align-items: center; margin: 10px 0; }
 
-body {
+/* Page Content Styles - Scoped to NOT affect footer */
+.order-status-page {
   font-family: 'Poppins', sans-serif;
   background-color: #f9f9f9;
   color: #333;
   line-height: 1.6;
 }
 
-/* Container */
-.container {
+.order-status-page .container {
   width: 90%;
   max-width: 1200px;
   margin: auto;
   padding: 20px 0;
 }
-/* Header */
-header h1 {
+
+.order-status-page header h1 {
   font-size: 2rem;
   margin-top: 40px;
   margin-bottom: 10px;
@@ -235,8 +300,8 @@ header h1 {
   text-align: center;
 }
 
-/* Form */
-form {
+/* Order Tracking Form - Scoped specifically */
+.order-status-page section > form {
   background-color: #fff;
   padding: 25px;
   border-radius: 10px;
@@ -246,9 +311,7 @@ form {
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
-form select,
-form input,
-form textarea {
+.order-status-page section > form input {
   width: 100%;
   padding: 10px;
   margin: 10px 0 20px;
@@ -257,122 +320,51 @@ form textarea {
   font-family: 'Poppins', sans-serif;
 }
 
-form button {
+.order-status-page section > form button {
   padding: 12px 20px;
   border: none;
   background-color: #59493b;
   color: white;
   font-size: 1rem;
   cursor: pointer;
-border-radius: 6px;
-width: 100%;
+  border-radius: 6px;
+  width: 100%;
   transition: background-color 0.3s ease;
 }
 
-form button:hover {
+.order-status-page section > form button:hover {
   background-color: #8B6A4E;
 }
 
-span:not(#year) {
-  display: block;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #000;
-}
-
-.footer-col-3 img {
-        width: 100%;
-        padding-right: 0;
-}
-/* Contact Info */
-.contact-info {
+.order-status-page .contact-info {
   text-align: center;
   margin-top: 40px;
 }
 
-.contact-info h2 {
+.order-status-page .contact-info h2 {
   color: #000;
   margin-bottom: 10px;
 }
 
-.contact-info a {
+.order-status-page .contact-info a {
   color: #000;
   text-decoration: none;
 }
-.contact-info a:hover {
+.order-status-page .contact-info a:hover {
   text-decoration: underline;
 }
-.contact-info p {
+.order-status-page .contact-info p {
   color: #000;
   margin-bottom: 10px;
 }
-.footer p {
-  color: #fff;
-}
-.footer a {
-  color: #fff;
-  text-decoration: none;
-}
+
 /* Responsive */
 @media (max-width: 600px) {
-  .navbar nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .order-summary { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); max-width: 700px; margin: 20px auto; }
-  .order-summary h3, .order-summary h4 { color: #000; margin-top: 15px; }
-  .order-summary p { margin: 5px 0; }
-  .product { display: flex; align-items: center; margin: 10px 0; }
-
-
-  nav ul {
-        position: absolute;
-        top: 120px;
-        bottom: null;
-        left: 0;
-        width: 100%;
-        background: #000;
-        overflow: hidden;
-        transition: max-height 0.5s ease-in-out;
-    }
-
-  .row {
-    flex-direction: column;
-  }
-
-  form {
+  .order-status-page section > form {
     padding: 20px;
   }
-      .footer-col-3 img {
-        width: 50%;
-        padding-right: 0;
-    }
+  .order-summary { padding: 20px; border-radius: 8px; }
 }
-@media (max-width: 600px) {
-  .navbar nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .order-summary { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); max-width: 700px; margin: 20px auto; }
-  .order-summary h3, .order-summary h4 { color: #000; margin-top: 15px; }
-  .order-summary p { margin: 5px 0; }
-  .product { display: flex; align-items: center; margin: 10px 0; }
-
-  .row {
-    flex-direction: column;
-  }
-
-  form {
-    padding: 20px;
-  }
-    .footer-col-3 img {
-        width: 50%;
-        padding-right: 0;
-    }
-}
-
 </style>
 <div id="notification-container"></div>
 

@@ -78,3 +78,13 @@ function showBlockingMessage(message, redirectTo) {
   };
 }
 document.getElementById('year').textContent = new Date().getFullYear();
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile accordion toggle
+        if (window.innerWidth <= 600) {
+            document.querySelectorAll('.footer-col h4').forEach(header => {
+                header.addEventListener('click', () => {
+                    header.parentElement.classList.toggle('open');
+                });
+            });
+        }
