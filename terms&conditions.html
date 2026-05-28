@@ -9,67 +9,503 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ============================================
+         TERMS & CONDITIONS PAGE MODERNIZATION
+         Self-contained — no style.css edits needed
+         ============================================ -->
+    <style>
+        /* ===== BASE OVERRIDES ===== */
+        body.terms-conditions-page {
+            background: linear-gradient(180deg, #faf9f7 0%, #f5f3f0 100%);
+            min-height: 100vh;
+        }
+
+        /* ===== HERO HEADER ===== */
+        .terms-hero {
+            background: linear-gradient(135deg, #59493b 0%, #3d3025 100%);
+            color: #fff;
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .terms-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139,106,78,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .terms-hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.02em;
+        }
+        .terms-hero .hero-subtitle {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 1rem;
+            opacity: 0.75;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+        .terms-hero .last-updated {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 24px auto 0;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+            width: fit-content;
+        }
+
+        /* ===== MAIN LAYOUT ===== */
+        .terms-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 25px;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* ===== STICKY TABLE OF CONTENTS ===== */
+        .terms-toc {
+            position: sticky;
+            top: 100px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 4px 24px rgba(89,73,59,0.06);
+            border: 1px solid rgba(89,73,59,0.06);
+        }
+        .terms-toc h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #59493b;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .terms-toc ul {
+            list-style: none;
+        }
+        .terms-toc li {
+            margin-bottom: 4px;
+        }
+        .terms-toc a {
+            display: block;
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: #555;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+        }
+        .terms-toc a:hover,
+        .terms-toc a.active {
+            background: rgba(89,73,59,0.05);
+            color: #59493b;
+            border-left-color: #59493b;
+            font-weight: 500;
+        }
+
+        /* ===== TERMS CONTENT ===== */
+        .terms-content {
+            max-width: 65ch;
+        }
+        .terms-section {
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 16px rgba(89,73,59,0.04);
+            border: 1px solid rgba(89,73,59,0.04);
+            scroll-margin-top: 100px;
+        }
+        .terms-section h2 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .terms-section h2 .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #59493b 0%, #8B6A4E 100%);
+            color: #fff;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .terms-section p {
+            color: #444;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        .terms-section p:last-child {
+            margin-bottom: 0;
+        }
+        .terms-section ul {
+            margin: 16px 0 16px 24px;
+            color: #444;
+            line-height: 1.8;
+        }
+        .terms-section ul li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        .terms-section ul li::marker {
+            color: #59493b;
+        }
+        .terms-section strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        .terms-section a {
+            color: #59493b;
+            font-weight: 500;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .terms-section a:hover {
+            color: #8B6A4E;
+        }
+
+        /* Intro section special styling */
+        .terms-intro {
+            background: linear-gradient(135deg, #59493b 0%, #3d3025 100%);
+            color: #fff;
+            border: none;
+        }
+        .terms-intro p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* ===== ACCEPTANCE BOX ===== */
+        .terms-acceptance {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px 40px;
+            margin-top: 24px;
+            box-shadow: 0 2px 16px rgba(89,73,59,0.04);
+            border: 1px solid rgba(89,73,59,0.04);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .terms-acceptance p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .terms-acceptance p strong {
+            color: #1a1a1a;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 1.1rem;
+        }
+        .terms-acceptance .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: #59493b;
+            color: #fff;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            white-space: nowrap;
+            border: 2px solid transparent;
+        }
+        .terms-acceptance .btn-cta:hover {
+            background: #fff;
+            color: #59493b;
+            border-color: #59493b;
+            transform: translateY(-2px);
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            .terms-hero { background: #59493b !important; -webkit-print-color-adjust: exact; }
+            .terms-toc { display: none; }
+            .terms-section { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+            .navbar, .footer, .terms-acceptance { display: none; }
+        }
+
+        /* ===== ACCESSIBILITY ===== */
+        @media (prefers-reduced-motion: reduce) {
+            .terms-toc a, .btn-cta, .terms-section {
+                transition: none !important;
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .terms-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 20px;
+            }
+            .terms-toc {
+                position: static;
+                order: -1;
+            }
+            .terms-toc ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .terms-toc li {
+                margin-bottom: 0;
+            }
+            .terms-toc a {
+                border-left: none;
+                border-bottom: 3px solid transparent;
+                white-space: nowrap;
+            }
+            .terms-toc a:hover,
+            .terms-toc a.active {
+                border-left-color: transparent;
+                border-bottom-color: #59493b;
+            }
+            .terms-section {
+                padding: 28px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .terms-hero {
+                padding: 60px 0 40px;
+            }
+            .terms-section {
+                padding: 24px;
+                border-radius: 12px;
+            }
+            .terms-section h2 {
+                font-size: 1.15rem;
+            }
+            .terms-section h2 .section-number {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
+            .terms-acceptance {
+                padding: 24px;
+                text-align: center;
+                justify-content: center;
+            }
+            .terms-acceptance .btn-cta {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+<base target="_blank">
 </head>
 <body class="terms-conditions-page">
 
+    <!-- ===== NAVBAR ===== -->
     <div class="container">
-    <div class="navbar">
-        <div class="logo">
-            <a href="index.html"><img src="logo.png" alt="Logo" width="125px"></a>
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="logo.png" alt="Arcana Logo" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="account.html">Account</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart" class="cart-icon"></a>
+            <img src="menu.png" width="30px" height="30px" alt="Menu" class="menu-icon" onclick="menuToggle()">
         </div>
-        <nav>
-            <ul id="MenuItems">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="product.html">Products</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="account.html">Account</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-            </ul>
-        </nav>
-        <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart Icon" class="cart-icon"></a>
-        <img src="menu.png" width="30px" height="30px" alt="Menu Icon" class="menu-icon" onclick="menuToggle()">
     </div>
-    </div>
-<br> <br> <br>
-    
-  <header><h1>Terms & Conditions</h1></header>
-  <section>
-    <p>By using our site, you agree to our terms: All sales are final unless otherwise stated. Use of images without permission is prohibited.</p>
-  </section>
-    <section>
-    <h2>1. Introduction</h2>
-    <p>Welcome to Arcana. By accessing our website, you agree to comply with and be bound by the following terms and conditions.</p>
-    <h2>2. Use of Site</h2>
-    <p>You may use our site for lawful purposes only. You must not misuse our site by knowingly introducing viruses, trojans, worms, or other material that is malicious or technologically harmful.</p>
-    <h2>3. Intellectual Property</h2>
-    <p>All content on this site, including text, graphics, logos, and images, is the property of Arcana or its content suppliers and is protected by international copyright laws.</p>
-    <h2>4. Product Information</h2>
-    <p>We strive to ensure that product information is accurate. However, we do not warrant that product descriptions or other content on the site are error-free.</p>
-    <h2>5. Pricing</h2>
-    <p>All prices are listed in the currency selected. We reserve the right to change prices at any time without prior notice.</p>
-    <h2>6. Orders and Payments</h2>
-    <p>By placing an order, you confirm that you are legally capable of entering into binding contracts. All orders are subject to acceptance and availability.</p>
-    <h2>7. Returns and Refunds</h2>
-    <p>Our policy lasts 30 days. If 30 days have gone by since your purchase, unfortunately we can’t offer you a refund or exchange.</p>
-    <h2>8. Limitation of Liability</h2>
-    <p>In no event shall Arcana, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages.</p>
-    <h2>9. Changes to Terms</h2>
-    <p>We may revise these terms from time to time. The revised terms will be effective immediately upon posting on this page.</p>
-    <h2>10. Governing Law</h2>
-    <p>These terms shall be governed by and construed in accordance with the laws of the jurisdiction in which Arcana operates. These written agreements constitute the entire agreement between you and Arcana and supersede any prior or verbal agreements.</p>
-    </section>
-    <br>   <br>    <br>     <br>
-    <!------ footer section ------>
-<footer class="footer">
-        <div class="footer-container">
 
-            <!-- TIER 1: Brand + Newsletter + Social -->
+    <!-- ===== HERO HEADER ===== -->
+    <header class="terms-hero">
+        <div class="container">
+            <h1>Terms & Conditions</h1>
+            <p style="color: #fff;" class="hero-subtitle">The rules of engagement for shopping with Arcana</p>
+            <div class="last-updated">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity:0.8;">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 16,14"/>
+                </svg>
+                Last updated: May 28, 2026
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="terms-layout" id="main-content">
+        
+        <!-- Table of Contents -->
+        <aside class="terms-toc" aria-label="Table of contents">
+            <h3>On this page</h3>
+            <ul>
+                <li><a href="#intro" class="active">Introduction</a></li>
+                <li><a href="#use">Use of Site</a></li>
+                <li><a href="#ip">Intellectual Property</a></li>
+                <li><a href="#products">Product Information</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#orders">Orders & Payments</a></li>
+                <li><a href="#returns">Returns & Refunds</a></li>
+                <li><a href="#liability">Liability</a></li>
+                <li><a href="#changes">Changes to Terms</a></li>
+                <li><a href="#governing">Governing Law</a></li>
+            </ul>
+        </aside>
+
+        <!-- Terms Sections -->
+        <article class="terms-content">
+
+            <section class="terms-section terms-intro" id="intro">
+                <h2>
+                    <span class="section-number">1</span>
+                    Introduction
+                </h2>
+                <p>Welcome to Arcana. By accessing our website, you agree to comply with and be bound by the following terms and conditions. All sales are final unless otherwise stated. Use of images without permission is prohibited.</p>
+                <p>These terms constitute a legally binding agreement between you and Arcana regarding your use of our website and services. Please read them carefully before making a purchase.</p>
+            </section>
+
+            <section class="terms-section" id="use">
+                <h2>
+                    <span class="section-number">2</span>
+                    Use of Site
+                </h2>
+                <p>You may use our site for lawful purposes only. You must not misuse our site by knowingly introducing viruses, trojans, worms, or other material that is malicious or technologically harmful.</p>
+                <p>You must not attempt to gain unauthorized access to our site, the server on which our site is stored, or any server, computer or database connected to our site.</p>
+            </section>
+
+            <section class="terms-section" id="ip">
+                <h2>
+                    <span class="section-number">3</span>
+                    Intellectual Property
+                </h2>
+                <p>All content on this site, including text, graphics, logos, and images, is the property of Arcana or its content suppliers and is protected by international copyright laws.</p>
+                <p>You may not reproduce, duplicate, copy, sell, resell or exploit any portion of the Service, use of the Service, or access to the Service without express written permission from us.</p>
+            </section>
+
+            <section class="terms-section" id="products">
+                <h2>
+                    <span class="section-number">4</span>
+                    Product Information
+                </h2>
+                <p>We strive to ensure that product information is accurate. However, we do not warrant that product descriptions or other content on the site are error-free.</p>
+                <p>Colors may appear differently depending on your monitor settings. We cannot guarantee that your display accurately reflects the true color of products.</p>
+            </section>
+
+            <section class="terms-section" id="pricing">
+                <h2>
+                    <span class="section-number">5</span>
+                    Pricing
+                </h2>
+                <p>All prices are listed in the currency selected. We reserve the right to change prices at any time without prior notice.</p>
+                <p>In the event a product is listed at an incorrect price due to typographical error, we shall have the right to refuse or cancel any orders placed for the product listed at the incorrect price.</p>
+            </section>
+
+            <section class="terms-section" id="orders">
+                <h2>
+                    <span class="section-number">6</span>
+                    Orders & Payments
+                </h2>
+                <p>By placing an order, you confirm that you are legally capable of entering into binding contracts. All orders are subject to acceptance and availability.</p>
+                <p>We reserve the right to refuse or cancel your order at any time for reasons including but not limited to: product availability, errors in product or pricing information, or suspicion of fraudulent activity.</p>
+            </section>
+
+            <section class="terms-section" id="returns">
+                <h2>
+                    <span class="section-number">7</span>
+                    Returns & Refunds
+                </h2>
+                <p>Our policy lasts 30 days. If 30 days have gone by since your purchase, unfortunately we can't offer you a refund or exchange.</p>
+                <p>To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging.</p>
+            </section>
+
+            <section class="terms-section" id="liability">
+                <h2>
+                    <span class="section-number">8</span>
+                    Limitation of Liability
+                </h2>
+                <p>In no event shall Arcana, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages.</p>
+                <p>Our total liability to you for all damages, losses, and causes of action shall not exceed the amount paid by you, if any, for accessing our site.</p>
+            </section>
+
+            <section class="terms-section" id="changes">
+                <h2>
+                    <span class="section-number">9</span>
+                    Changes to Terms
+                </h2>
+                <p>We may revise these terms from time to time. The revised terms will be effective immediately upon posting on this page.</p>
+                <p>It is your responsibility to check this page periodically for changes. Your continued use of the site following the posting of changes constitutes your acceptance of those changes.</p>
+            </section>
+
+            <section class="terms-section" id="governing">
+                <h2>
+                    <span class="section-number">10</span>
+                    Governing Law
+                </h2>
+                <p>These terms shall be governed by and construed in accordance with the laws of the jurisdiction in which Arcana operates.</p>
+                <p>These written agreements constitute the entire agreement between you and Arcana and supersede any prior or verbal agreements.</p>
+            </section>
+
+            <div class="terms-acceptance">
+                <div>
+                    <p><strong>Questions about these terms?</strong>We're here to clarify anything before you shop.</p>
+                </div>
+                <a href="contact.html" class="btn-cta">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    Contact Us
+                </a>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-container">
             <div class="footer-top">
                 <div class="footer-brand">
                     <img src="logo.png" alt="Arcana Logo">
                     <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
                 </div>
-
                 <div class="footer-newsletter">
                     <p>Be the first to know about new drops and exclusive offers.</p>
                     <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
@@ -77,7 +513,6 @@
                         <button type="submit">Join</button>
                     </form>
                 </div>
-
                 <div class="footer-social">
                     <span class="footer-social-label">Follow Us</span>
                     <div class="social-cluster">
@@ -96,8 +531,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- TIER 2: Link Columns -->
             <div class="footer-links">
                 <div class="footer-col contact-col">
                     <h4>Contact Us</h4>
@@ -123,7 +556,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="footer-col">
                     <h4>Help</h4>
                     <ul>
@@ -135,7 +567,6 @@
                         <li><a href="order_status.html">Order Status</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-col">
                     <h4>My Account</h4>
                     <ul>
@@ -155,7 +586,6 @@
                         </li>
                     </ul>
                 </div>
-
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
@@ -167,8 +597,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- TIER 3: Copyright Bar -->
         <div class="footer-bottom">
             <div class="footer-bottom-inner">
                 <p>© <span id="year"></span> Arcana — All rights reserved.</p>
@@ -179,125 +607,53 @@
             </div>
         </div>
     </footer>
+
     <script src="other-script.js" defer></script>
-    <style>
-        * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    <script>
+        // ===== TABLE OF CONTENTS ACTIVE STATE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.terms-section[id]');
+            const tocLinks = document.querySelectorAll('.terms-toc a[href^="#"]');
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #fff;
-  color: #000;
-  line-height: 1.6;
-}
+            const observerOptions = {
+                root: null,
+                rootMargin: '-100px 0px -60% 0px',
+                threshold: 0
+            };
 
-/* Container */
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px 0;
-}
-/* Header */
-header h1 {
-  font-size: 2rem;
-  margin-top: 40px;
-  margin-bottom: 10px;
-  color: #000;
-  text-align: center;
-}
-/* Section */
-section {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  font-size: 1rem;
-  color: #000;
-}
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        tocLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === '#' + entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
 
-section h2 {
-  font-size: 1.5rem;
-  margin-top: 30px;
-  color: #000;
-}
+            sections.forEach(section => observer.observe(section));
 
-section p {
-  margin-top: 10px;
-  color: #000;
-}
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(link.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+    </script>
 
-.footer p {
-  color: #fff;
-}
-.footer a {
-  color: #fff;
-  text-decoration: none;
-}
-    .footer-col-3 img {
-        width: 100%;
-        padding-right: 0;
-    }
-/* Responsive */
-@media (max-width: 600px) {
-  .navbar nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  nav ul {
-        position: absolute;
-        top: 120px;
-        bottom: null;
-        left: 0;
-        width: 100%;
-        background: #000;
-        overflow: hidden;
-        transition: max-height 0.5s ease-in-out;
-    }
-
-  .row {
-    flex-direction: column;
-  }
-
-  form {
-    padding: 20px;
-  }
-      .footer-col-3 img {
-        width: 50%;
-        padding-right: 0;
-    }
-}
-
-@media (max-width: 600px) {
-  .navbar nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .row {
-    flex-direction: column;
-  }
-
-  form {
-    padding: 20px;
-  }
-    .footer-col-3 img {
-        width: 50%;
-        padding-right: 0;
-    }
-}
-
-    </style>
     <div id="notification-container"></div>
-
-<div id="arcana-modal-overlay" class="hidden">
-  <div class="arcana-modal">
-    <span class="close">&times;</span>
-    <p id="arcana-modal-text"></p>
-  </div>
-</div>
+    <div id="arcana-modal-overlay" class="hidden">
+        <div class="arcana-modal">
+            <span class="close">&times;</span>
+            <p id="arcana-modal-text"></p>
+        </div>
+    </div>
 </body>
 </html>

@@ -9,69 +9,548 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ============================================
+         FAQS PAGE MODERNIZATION
+         Self-contained — no style.css edits needed
+         ============================================ -->
+    <style>
+        /* ===== BASE OVERRIDES ===== */
+        body.faqs-page {
+            background: linear-gradient(180deg, #faf9f7 0%, #f5f3f0 100%);
+            min-height: 100vh;
+        }
+
+        /* ===== HERO HEADER ===== */
+        .faqs-hero {
+            background: linear-gradient(135deg, #59493b 0%, #3d3025 100%);
+            color: #fff;
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .faqs-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139,106,78,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .faqs-hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.02em;
+        }
+        .faqs-hero .hero-subtitle {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 1rem;
+            opacity: 0.75;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== SEARCH BAR ===== */
+        .faqs-search {
+            max-width: 560px;
+            margin: -28px auto 0;
+            position: relative;
+            z-index: 10;
+            padding: 0 20px;
+        }
+        .faqs-search-inner {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border-radius: 14px;
+            padding: 6px 6px 6px 20px;
+            box-shadow: 0 8px 32px rgba(89,73,59,0.12);
+            border: 1px solid rgba(89,73,59,0.06);
+            transition: box-shadow 0.3s ease;
+        }
+        .faqs-search-inner:focus-within {
+            box-shadow: 0 8px 32px rgba(89,73,59,0.18);
+        }
+        .faqs-search svg {
+            width: 20px;
+            height: 20px;
+            color: #999;
+            flex-shrink: 0;
+            margin-right: 12px;
+        }
+        .faqs-search input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            color: #333;
+            outline: none;
+            padding: 12px 0;
+        }
+        .faqs-search input::placeholder {
+            color: #aaa;
+        }
+        .faqs-search .search-clear {
+            padding: 8px 16px;
+            background: transparent;
+            border: none;
+            color: #59493b;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background 0.2s;
+            display: none;
+        }
+        .faqs-search .search-clear.visible {
+            display: block;
+        }
+        .faqs-search .search-clear:hover {
+            background: rgba(89,73,59,0.06);
+        }
+
+        /* ===== MAIN LAYOUT ===== */
+        .faqs-layout {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 25px 80px;
+        }
+
+        /* ===== CATEGORY TABS ===== */
+        .faqs-categories {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+            justify-content: center;
+        }
+        .faq-category-btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(89,73,59,0.15);
+            background: #fff;
+            color: #555;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .faq-category-btn:hover {
+            border-color: #59493b;
+            color: #59493b;
+        }
+        .faq-category-btn.active {
+            background: #59493b;
+            color: #fff;
+            border-color: #59493b;
+        }
+
+        /* ===== ACCORDION FAQ ITEMS ===== */
+        .faq-item {
+            background: #fff;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 12px rgba(89,73,59,0.04);
+            border: 1px solid rgba(89,73,59,0.04);
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+        .faq-item:hover {
+            box-shadow: 0 4px 20px rgba(89,73,59,0.08);
+        }
+        .faq-item.hidden {
+            display: none;
+        }
+        .faq-question {
+            width: 100%;
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            transition: color 0.3s ease;
+        }
+        .faq-question:hover {
+            color: #59493b;
+        }
+        .faq-question .q-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #59493b 0%, #8B6A4E 100%);
+            color: #fff;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .faq-question .q-text {
+            flex: 1;
+        }
+        .faq-question .q-icon {
+            width: 24px;
+            height: 24px;
+            color: #59493b;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            flex-shrink: 0;
+        }
+        .faq-item.open .q-icon {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        padding 0.4s ease;
+            padding: 0 28px;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 0 28px 24px;
+        }
+        .faq-answer p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        .faq-answer a {
+            color: #59493b;
+            font-weight: 500;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .faq-answer a:hover {
+            color: #8B6A4E;
+        }
+
+        /* No results state */
+        .faqs-no-results {
+            text-align: center;
+            padding: 60px 20px;
+            display: none;
+        }
+        .faqs-no-results.visible {
+            display: block;
+        }
+        .faqs-no-results svg {
+            width: 64px;
+            height: 64px;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        .faqs-no-results h3 {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        .faqs-no-results p {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        /* ===== STILL HAVE QUESTIONS CTA ===== */
+        .faqs-cta {
+            background: linear-gradient(135deg, #59493b 0%, #3d3025 100%);
+            border-radius: 20px;
+            padding: 48px;
+            margin-top: 60px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .faqs-cta::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(139,106,78,0.2) 0%, transparent 70%);
+        }
+        .faqs-cta h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+            color: #fff;
+        }
+        .faqs-cta p {
+            opacity: 0.8;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+            color: rgba(255,255,255,0.85);
+        }
+        .faqs-cta .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: #fff;
+            color: #59493b;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            z-index: 1;
+        }
+        .faqs-cta .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+
+        /* ===== ACCESSIBILITY ===== */
+        @media (prefers-reduced-motion: reduce) {
+            .faq-item, .faq-answer, .q-icon, .btn-cta, .faq-category-btn {
+                transition: none !important;
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .faqs-hero {
+                padding: 60px 0 50px;
+            }
+            .faqs-layout {
+                padding: 40px 16px 60px;
+            }
+            .faq-question {
+                padding: 18px 20px;
+                font-size: 0.95rem;
+            }
+            .faq-question .q-number {
+                width: 28px;
+                height: 28px;
+                font-size: 0.8rem;
+            }
+            .faq-item.open .faq-answer {
+                padding: 0 20px 20px;
+            }
+            .faqs-cta {
+                padding: 32px 24px;
+            }
+            .faqs-cta h3 {
+                font-size: 1.2rem;
+            }
+            .faqs-categories {
+                gap: 8px;
+            }
+            .faq-category-btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+<base target="_blank">
 </head>
 <body class="faqs-page">
 
+    <!-- ===== NAVBAR ===== -->
     <div class="container">
-    <div class="navbar">
-        <div class="logo">
-            <a href="index.html"><img src="logo.png" alt="Logo" width="125px"></a>
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="logo.png" alt="Arcana Logo" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="account.html">Account</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart" class="cart-icon"></a>
+            <img src="menu.png" width="30px" height="30px" alt="Menu" class="menu-icon" onclick="menuToggle()">
         </div>
-        <nav>
-            <ul id="MenuItems">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="product.html">Products</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="account.html">Account</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-            </ul>
-        </nav>
-        <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart Icon" class="cart-icon"></a>
-        <img src="menu.png" width="30px" height="30px" alt="Menu Icon" class="menu-icon" onclick="menuToggle()">
     </div>
-    </div>
-<br> <br> <br>
-   <header><h1>Frequently Asked Questions</h1></header>
-   <section>
-       <h2>1. What is Arcana?</h2>
-       <p>Arcana is an online store offering a wide range of clothing wears, including tops, bottoms, and accessories.</p>
-   </section>
-   <section>
-       <h2>2. How can I contact customer support?</h2>
-       <p>You can reach our customer support team by emailing arcanashopng@gmail.com or by using the contact form on our website.</p>
-   </section>
-   <section>
-       <h2>3. What is your return policy?</h2>
-       <p>We offer a 30-day return policy for all unused and unopened items. Please refer to our Returns & Exchanges Policy for more details.</p>
-   </section>
-   <section>
-       <h2>4. Do you ship internationally?</h2>
-       <p>Yes, we ship to countries outside of Nigeria. Shipping fees and delivery times may vary.</p>
-   </section>
-   <section>
-       <h2>5. How can I track my order?</h2>
-       <p>Once your order has shipped, you will receive a tracking ID via email. You can use this ID to track your order on the carrier's website.</p>
-   </section>
-    <section>
-    <h2>6. What payment methods do you accept?</h2>
-    <p>We accept all major credit cards or debit cards, USSD, Bank Transfer and Visa Qr.</p>
-    </section>
-    <section>
-    <h2>7. How long does shipping take?</h2>
-    <p>Shipping typically takes 10-15 business days, depending on your location.</p>
-    </section>
-   <br>   <br>    <br>     <br>
-    <!------ footer section ------>
-<footer class="footer">
-        <div class="footer-container">
 
-            <!-- TIER 1: Brand + Newsletter + Social -->
+    <!-- ===== HERO HEADER ===== -->
+    <header class="faqs-hero">
+        <div class="container">
+            <h1>Frequently Asked Questions</h1>
+            <p style="color: #fff;" class="hero-subtitle">Everything you need to know about shopping with Arcana</p>
+        </div>
+    </header>
+
+    <!-- ===== SEARCH BAR ===== -->
+    <div class="faqs-search">
+        <div class="faqs-search-inner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+            </svg>
+            <input type="text" id="faqSearch" placeholder="Search questions..." autocomplete="off">
+            <button class="search-clear" id="searchClear">Clear</button>
+        </div>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="faqs-layout">
+        
+        <!-- Category Filters -->
+        <div class="faqs-categories">
+            <button class="faq-category-btn active" data-category="all">All Questions</button>
+            <button class="faq-category-btn" data-category="orders">Orders & Shipping</button>
+            <button class="faq-category-btn" data-category="returns">Returns</button>
+            <button class="faq-category-btn" data-category="payment">Payment</button>
+            <button class="faq-category-btn" data-category="general">General</button>
+        </div>
+
+        <!-- FAQ Accordion -->
+        <div class="faqs-list" id="faqsList">
+
+            <div class="faq-item" data-category="general">
+                <button class="faq-question" aria-expanded="false">
+                    <span class="q-number">1</span>
+                    <span class="q-text">What is Arcana?</span>
+                    <svg class="q-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="6,9 12,15 18,9"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Arcana is an online store offering a wide range of clothing wears, including tops, bottoms, and accessories. We focus on quality, style, and delivering pieces that feel intentional.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="general">
+                <button class="faq-question" aria-expanded="false">
+                    <span class="q-number">2</span>
+                    <span class="q-text">How can I contact customer support?</span>
+                    <svg class="q-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="6,9 12,15 18,9"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <p>You can reach our customer support team by emailing <a href="mailto:arcanashopng@gmail.com">arcanashopng@gmail.com</a> or by using the contact form on our website. We typically respond within 24-48 hours.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="returns">
+                <button class="faq-question" aria-expanded="false">
+                    <span class="q-number">3</span>
+                    <span class="q-text">What is your return policy?</span>
+                    <svg class="q-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="6,9 12,15 18,9"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <p>We offer a 30-day return policy for all unused and unopened items. Please refer to our <a href="returns&exchanges.html">Returns & Exchanges Policy</a> for more details.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="orders">
+                <button class="faq-question" aria-expanded="false">
+                    <span class="q-number">4</span>
+                    <span class="q-text">Do you ship internationally?</span>
+                    <svg class="q-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="6,9 12,15 18,9"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes, we ship to countries outside of Nigeria. Shipping fees and delivery times may vary depending on your location.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="orders">
+                <button class="faq-question" aria-expanded="false">
+                    <span class="q-number">5</span>
+                    <span class="q-text">How can I track my order?</span>
+                    <svg class="q-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="6,9 12,15 18,9"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Once your order has shipped, you will receive a tracking ID via email. You can use this ID to track your order on the carrier's website.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="payment">
+                <button class="faq-question" aria-expanded="false">
+                    <span class="q-number">6</span>
+                    <span class="q-text">What payment methods do you accept?</span>
+                    <svg class="q-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="6,9 12,15 18,9"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <p>We accept all major credit cards or debit cards, USSD, Bank Transfer and Visa QR.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="orders">
+                <button class="faq-question" aria-expanded="false">
+                    <span class="q-number">7</span>
+                    <span class="q-text">How long does shipping take?</span>
+                    <svg class="q-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="6,9 12,15 18,9"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Shipping typically takes 10-15 business days, depending on your location.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- No Results State -->
+        <div class="faqs-no-results" id="noResults">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+                <line x1="8" y1="8" x2="14" y2="14"/>
+                <line x1="14" y1="8" x2="8" y2="14"/>
+            </svg>
+            <h3>No matching questions found</h3>
+            <p>Try different keywords or browse all categories</p>
+        </div>
+
+        <!-- Contact CTA -->
+        <div class="faqs-cta">
+            <h3>Still have questions?</h3>
+            <p>Can't find what you're looking for? Our team is happy to help.</p>
+            <a href="contact.html" class="btn-cta">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                Contact Support
+            </a>
+        </div>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-container">
             <div class="footer-top">
                 <div class="footer-brand">
                     <img src="logo.png" alt="Arcana Logo">
                     <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
                 </div>
-
                 <div class="footer-newsletter">
                     <p>Be the first to know about new drops and exclusive offers.</p>
                     <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
@@ -79,7 +558,6 @@
                         <button type="submit">Join</button>
                     </form>
                 </div>
-
                 <div class="footer-social">
                     <span class="footer-social-label">Follow Us</span>
                     <div class="social-cluster">
@@ -98,8 +576,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- TIER 2: Link Columns -->
             <div class="footer-links">
                 <div class="footer-col contact-col">
                     <h4>Contact Us</h4>
@@ -125,7 +601,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="footer-col">
                     <h4>Help</h4>
                     <ul>
@@ -137,7 +612,6 @@
                         <li><a href="order_status.html">Order Status</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-col">
                     <h4>My Account</h4>
                     <ul>
@@ -157,7 +631,6 @@
                         </li>
                     </ul>
                 </div>
-
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
@@ -169,8 +642,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- TIER 3: Copyright Bar -->
         <div class="footer-bottom">
             <div class="footer-bottom-inner">
                 <p>© <span id="year"></span> Arcana — All rights reserved.</p>
@@ -181,125 +652,92 @@
             </div>
         </div>
     </footer>
+
     <script src="other-script.js" defer></script>
-    <style>
-        * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    <script>
+        // ===== FAQ ACCORDION LOGIC =====
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqItems = document.querySelectorAll('.faq-item');
+            const searchInput = document.getElementById('faqSearch');
+            const searchClear = document.getElementById('searchClear');
+            const noResults = document.getElementById('noResults');
+            const categoryBtns = document.querySelectorAll('.faq-category-btn');
+            let currentCategory = 'all';
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f9f9f9;
-  color: #fff;
-  line-height: 1.6;
-}
+            // Accordion toggle
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const isOpen = item.classList.contains('open');
+                    
+                    // Close all others (optional — remove this block for multi-open)
+                    faqItems.forEach(other => {
+                        if (other !== item && other.classList.contains('open')) {
+                            other.classList.remove('open');
+                            other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                    
+                    item.classList.toggle('open');
+                    question.setAttribute('aria-expanded', !isOpen);
+                });
+            });
 
-/* Container */
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px 0;
-}
-/* Header */
-header h1 {
-  font-size: 2rem;
-  margin-top: 40px;
-  margin-bottom: 10px;
-  color: #000;
-  text-align: center;
-}
-/* Section */
-section {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  font-size: 1rem;
-  color: #000;
-}
+            // Category filtering
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentCategory = btn.dataset.category;
+                    filterFAQs();
+                });
+            });
 
-section h2 {
-  font-size: 1.5rem;
-  margin-top: 30px;
-  color: #000;
-}
+            // Search functionality
+            searchInput.addEventListener('input', (e) => {
+                searchClear.classList.toggle('visible', e.target.value.length > 0);
+                filterFAQs();
+            });
 
-section p {
-  margin-top: 10px;
-  color: #000;
-}
+            searchClear.addEventListener('click', () => {
+                searchInput.value = '';
+                searchClear.classList.remove('visible');
+                filterFAQs();
+                searchInput.focus();
+            });
 
-.footer p {
-  color: #fff;
-}
-.footer a {
-  color: #fff;
-  text-decoration: none;
-}
-    .footer-col-3 img {
-        width: 100%;
-        padding-right: 0;
-    }
-/* Responsive */
-@media (max-width: 600px) {
-  .navbar nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
+            function filterFAQs() {
+                const query = searchInput.value.toLowerCase().trim();
+                let visibleCount = 0;
 
-  .row {
-    flex-direction: column;
-  }
+                faqItems.forEach(item => {
+                    const category = item.dataset.category;
+                    const questionText = item.querySelector('.q-text').textContent.toLowerCase();
+                    const answerText = item.querySelector('.faq-answer p').textContent.toLowerCase();
+                    
+                    const matchesCategory = currentCategory === 'all' || category === currentCategory;
+                    const matchesSearch = !query || questionText.includes(query) || answerText.includes(query);
 
-  nav ul {
-        position: absolute;
-        top: 120px;
-        bottom: null;
-        left: 0;
-        width: 100%;
-        background: #000;
-        overflow: hidden;
-        transition: max-height 0.5s ease-in-out;
-    }
+                    if (matchesCategory && matchesSearch) {
+                        item.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        item.classList.add('hidden');
+                        item.classList.remove('open');
+                    }
+                });
 
-  form {
-    padding: 20px;
-  }
-      .footer-col-3 img {
-        width: 50%;
-        padding-right: 0;
-    }
-}
-@media (max-width: 600px) {
-  .navbar nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
+                noResults.classList.toggle('visible', visibleCount === 0);
+            }
+        });
+    </script>
 
-  .row {
-    flex-direction: column;
-  }
-
-  form {
-    padding: 20px;
-  }
-    .footer-col-3 img {
-        width: 50%;
-        padding-right: 0;
-    }
-}
-
-    </style>
     <div id="notification-container"></div>
-
-<div id="arcana-modal-overlay" class="hidden">
-  <div class="arcana-modal">
-    <span class="close">&times;</span>
-    <p id="arcana-modal-text"></p>
-  </div>
-</div>
-
+    <div id="arcana-modal-overlay" class="hidden">
+        <div class="arcana-modal">
+            <span class="close">&times;</span>
+            <p id="arcana-modal-text"></p>
+        </div>
+    </div>
 </body>
 </html>

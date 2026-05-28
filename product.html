@@ -9,70 +9,403 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ============================================
+         MODERN PRODUCT PAGE ENHANCEMENTS
+         (Inlined to avoid touching style.css)
+         ============================================ -->
+    <style>
+        /* ===== SKELETON LOADING ===== */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 12px;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .skeleton-card {
+            min-height: 380px;
+        }
+        .skeleton-img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            border-radius: 12px 12px 0 0;
+        }
+        .skeleton-text {
+            height: 16px;
+            margin: 12px 20px;
+            border-radius: 4px;
+        }
+        .skeleton-text.short { width: 60%; }
+        .skeleton-text.medium { width: 40%; height: 24px; margin-top: 8px; }
+
+        /* ===== STICKY SORT BAR ===== */
+        .sort-bar-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 16px 0;
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(89,73,59,0.08);
+            transition: box-shadow 0.3s ease;
+        }
+        .sort-bar-sticky.scrolled {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .sort-bar-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .results-count {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+        .sort-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sort-control label {
+            font-size: 0.85rem;
+            color: #555;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== MODERN PRODUCT CARDS ===== */
+        .product-grid {
+            padding: 0 0 40px 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+        .product-grid .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 28px;
+            justify-content: center;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        box-shadow 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(89,73,59,0.12);
+        }
+        .product-card .card-image-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: #f8f6f4;
+        }
+        .product-card .card-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .product-card:hover .card-image-wrap img {
+            transform: scale(1.06);
+        }
+        .product-card .card-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: linear-gradient(135deg, #59493b 0%, #3d3025 100%);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 6px 14px;
+            border-radius: 20px;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .product-card .card-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            line-height: 1.4;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .product-card .card-meta {
+            margin-top: auto;
+            padding-top: 12px;
+        }
+        .product-card .price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        .product-card .product-price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #59493b;
+            transition: opacity 0.2s ease;
+        }
+        .product-card .product-price.updating {
+            opacity: 0.5;
+        }
+        .product-card .rating {
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        .product-card .btn-card {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 12px 20px;
+            background: #59493b;
+            color: #fff;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .product-card .btn-card:hover {
+            background: #fff;
+            color: #59493b;
+            border-color: #59493b;
+        }
+        .product-card .btn-card.coming-soon {
+            background: transparent;
+            color: #999;
+            border: 2px dashed #ddd;
+            cursor: not-allowed;
+        }
+        .product-card .btn-card.coming-soon:hover {
+            background: transparent;
+            color: #999;
+            border-color: #ddd;
+        }
+
+        /* ===== ERROR & EMPTY STATES ===== */
+        .state-message {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .state-message svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+        .state-message h3 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .state-message p {
+            color: #888;
+            font-size: 0.95rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .retry-btn {
+            margin-top: 20px;
+            padding: 10px 28px;
+            background: #59493b;
+            color: #fff;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: background 0.3s;
+        }
+        .retry-btn:hover {
+            background: #8B6A4E;
+        }
+
+        /* ===== PAGINATION MODERNIZED ===== */
+        .page-btn {
+            margin-top: 20px;
+        }
+        .page-btn a {
+            text-decoration: none;
+        }
+        .page-btn span {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .page-btn span:active {
+            transform: scale(0.92);
+        }
+
+        /* ===== ACCESSIBILITY ===== */
+        @media (prefers-reduced-motion: reduce) {
+            .product-card, .product-card img, .product-price, .page-btn span {
+                transition: none !important;
+                animation: none !important;
+            }
+            .skeleton {
+                animation: none;
+                background: #e8e8e8;
+            }
+        }
+        .sort-control select:focus {
+            outline: none;
+            border-color: #59493b;
+            box-shadow: 0 0 0 3px rgba(89,73,59,0.15);
+        }
+
+        /* ===== MOBILE REFINEMENTS ===== */
+        @media (max-width: 600px) {
+            .product-grid .row {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+            .product-card .card-content {
+                padding: 14px;
+            }
+            .product-card h3 {
+                font-size: 0.85rem;
+            }
+            .product-card .product-price {
+                font-size: 1rem;
+            }
+            .product-card .btn-card {
+                padding: 10px 14px;
+                font-size: 0.8rem;
+            }
+            .sort-bar-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+        @media (max-width: 400px) {
+            .product-grid .row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body class="product-page">
     <div class="container">
-    <div class="navbar">
-        <div class="logo">
-            <a href="index.html"><img src="logo.png" alt="Logo" width="125px" style="filter: invert(1);"></a>
-        </div>
-            <select id="currency" class="currency-selector">
-            <option value="USD">USD ($)</option>
-            <option value="EUR">EUR (€)</option>
-            <option value="GBP">GBP (£)</option>
-            <option value="NGN">NGN (₦)</option>
-            </select>
-        <nav>
-            <ul id="MenuItems">
-                <li><a href="index.html">Home</a></li>
-                <li><a class="active" href="product.html">Products</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="account.html">Account</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-            </ul>
-        </nav>
-        <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart Icon" class="cart-icon"></a>
-        <img src="menu.png" width="30px" height="30px" alt="Menu Icon" class="menu-icon" onclick="menuToggle()">
-    </div>
-    </div>
-<br> <br> <br>
-    <div class="container">
-        <div class="row row-2">
-            <h2>All Products</h2>
-            <select name="sort" id="sort">
-                <option value="default">Default Sorting</option>
-                <option value="name_asc">Sort by Name: A to Z</option>
-                <option value="name_desc">Sort by Name: Z to A</option>
-                <option value="price_low">Sort by Price: Low to High</option>
-                <option value="price_high">Sort by Price: High to Low</option>
-            </select>
-        </div>
-
-        <div class="product-grid">
-            <div class="row">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="logo.png" alt="Arcana Logo" width="125px" style="filter: invert(1);"></a>
             </div>
-            
-
+            <select id="currency" class="currency-selector" aria-label="Select currency">
+                <option value="USD">USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="GBP">GBP (£)</option>
+                <option value="NGN">NGN (₦)</option>
+            </select>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a class="active" href="product.html">Products</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="account.html">Account</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart" class="cart-icon"></a>
+            <img src="menu.png" width="30px" height="30px" alt="Menu" class="menu-icon" onclick="menuToggle()">
         </div>
+    </div>
+
+    <!-- ===== HERO TITLE SECTION ===== -->
+    <div class="container" style="padding-top: 40px; padding-bottom: 10px;">
+        <div class="row row-2" style="justify-content: space-between; align-items: center; margin: 0 auto 20px;">
+            <h2 style="font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; color: #1a1a1a;">All Products</h2>
+        </div>
+    </div>
+
+    <!-- ===== STICKY SORT BAR ===== -->
+    <div class="sort-bar-sticky" id="sortBar">
+        <div class="container">
+            <div class="sort-bar-inner">
+                <span class="results-count" id="resultsCount">Loading products...</span>
+                <div class="sort-control">
+                    <label for="sort">Sort by</label>
+                    <select name="sort" id="sort" aria-label="Sort products">
+                        <option value="default">Default</option>
+                        <option value="name_asc">Name: A to Z</option>
+                        <option value="name_desc">Name: Z to A</option>
+                        <option value="price_low">Price: Low to High</option>
+                        <option value="price_high">Price: High to Low</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PRODUCT GRID ===== -->
+    <div class="container">
+        <div class="product-grid">
+            <div class="row" id="productRow">
+                <!-- Skeleton placeholders while loading -->
+                <div class="col-4 skeleton-card skeleton">
+                    <div class="skeleton-img skeleton"></div>
+                    <div class="skeleton-text short skeleton"></div>
+                    <div class="skeleton-text medium skeleton"></div>
+                </div>
+                <div class="col-4 skeleton-card skeleton">
+                    <div class="skeleton-img skeleton"></div>
+                    <div class="skeleton-text short skeleton"></div>
+                    <div class="skeleton-text medium skeleton"></div>
+                </div>
+                <div class="col-4 skeleton-card skeleton">
+                    <div class="skeleton-img skeleton"></div>
+                    <div class="skeleton-text short skeleton"></div>
+                    <div class="skeleton-text medium skeleton"></div>
+                </div>
+                <div class="col-4 skeleton-card skeleton">
+                    <div class="skeleton-img skeleton"></div>
+                    <div class="skeleton-text short skeleton"></div>
+                    <div class="skeleton-text medium skeleton"></div>
+                </div>
+            </div>
+        </div>
+
         <div class="page-btn">
-            <a href=""><span>1</span></a>
-            <a href=""><span>2</span></a>
-            <a href=""><span>&#8594;</span></a>
-            
+            <a href="#" aria-label="Page 1"><span>1</span></a>
+            <a href="#" aria-label="Page 2"><span>2</span></a>
+            <a href="#" aria-label="Next page"><span>&#8594;</span></a>
         </div>
-        </div>
-        </div>
- <!------ footer section ------>
-<footer class="footer">
-        <div class="footer-container">
+    </div>
 
-            <!-- TIER 1: Brand + Newsletter + Social -->
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-container">
             <div class="footer-top">
                 <div class="footer-brand">
                     <img src="logo.png" alt="Arcana Logo">
                     <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
                 </div>
-
                 <div class="footer-newsletter">
                     <p>Be the first to know about new drops and exclusive offers.</p>
                     <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
@@ -80,7 +413,6 @@
                         <button type="submit">Join</button>
                     </form>
                 </div>
-
                 <div class="footer-social">
                     <span class="footer-social-label">Follow Us</span>
                     <div class="social-cluster">
@@ -99,8 +431,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- TIER 2: Link Columns -->
             <div class="footer-links">
                 <div class="footer-col contact-col">
                     <h4>Contact Us</h4>
@@ -126,7 +456,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="footer-col">
                     <h4>Help</h4>
                     <ul>
@@ -138,7 +467,6 @@
                         <li><a href="order_status.html">Order Status</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-col">
                     <h4>My Account</h4>
                     <ul>
@@ -158,7 +486,6 @@
                         </li>
                     </ul>
                 </div>
-
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
@@ -170,8 +497,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- TIER 3: Copyright Bar -->
         <div class="footer-bottom">
             <div class="footer-bottom-inner">
                 <p>© <span id="year"></span> Arcana — All rights reserved.</p>
@@ -182,126 +507,195 @@
             </div>
         </div>
     </footer>
+
     <script src="script.js" defer></script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const API_URL = "https://arcana-backend-z46k.onrender.com/api/products";
-  const productRow = document.querySelector(".product-grid .row");
-  const sortSelect = document.getElementById("sort");
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const API_URL = "https://arcana-backend-z46k.onrender.com/api/products";
+        const productRow = document.getElementById("productRow");
+        const sortSelect = document.getElementById("sort");
+        const resultsCount = document.getElementById("resultsCount");
+        const sortBar = document.getElementById("sortBar");
 
-  const currencyRates = {
-    USD: 1,
-    EUR: 0.8666,
-    GBP: 0.7375,
-    NGN: 1547.30,
-  };
+        const currencyRates = {
+            USD: 1,
+            EUR: 0.8666,
+            GBP: 0.7375,
+            NGN: 1547.30,
+        };
 
-  const currencySymbols = {
-    USD: "$",
-    EUR: "€",
-    GBP: "£",
-    NGN: "₦",
-  };
+        const currencySymbols = {
+            USD: "$",
+            EUR: "€",
+            GBP: "£",
+            NGN: "₦",
+        };
 
-  const currencySelector = document.getElementById("currency");
-  let currentCurrency = currencySelector.value;
+        const currencySelector = document.getElementById("currency");
+        let currentCurrency = currencySelector.value;
+        let allProducts = [];
 
-  currencySelector.addEventListener("change", () => {
-    currentCurrency = currencySelector.value;
-    fetchAndRenderProducts(sortSelect.value);
-  });
+        // Sticky sort bar shadow on scroll
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 10) {
+                sortBar.classList.add("scrolled");
+            } else {
+                sortBar.classList.remove("scrolled");
+            }
+        });
 
-  sortSelect.addEventListener("change", () => {
-    fetchAndRenderProducts(sortSelect.value);
-  });
+        currencySelector.addEventListener("change", () => {
+            currentCurrency = currencySelector.value;
+            // Animate price update
+            document.querySelectorAll(".product-price").forEach(el => {
+                el.classList.add("updating");
+            });
+            setTimeout(() => {
+                renderProducts(allProducts, sortSelect.value);
+            }, 150);
+        });
 
-  function getStaticProductPage(name) {
-  const nameMap = {
-    "Arcana's Drop 00 Jersey": "arcana-drop00-jersey.html",
-    "Arcana's Drop 00 Sweatpants": "arcana's-drop00-sweatpants.html",
-    "Arcana's Drop 00": "arcana's-drop00.html",
-    "Arcana's Shorts(🐆 Set)": "arcana-shorts.html",
-    "Arcana's Compression Tee(🐆 Set)": "arcana-compressiontee.html",
-    "Arcana's ID.TO": "arcana-id.to.html",
-    "Arcana's Panther Set": "arcana-pantherset.html",
-    "Arcana's Polo": "polo.html",
-    "Arcana's 🐍... Tee": "arcana-🐍.html"
+        sortSelect.addEventListener("change", () => {
+            renderProducts(allProducts, sortSelect.value);
+        });
 
-  };
+        function getStaticProductPage(name) {
+            const nameMap = {
+                "Arcana's Drop 00 Jersey": "arcana-drop00-jersey.html",
+                "Arcana's Drop 00 Sweatpants": "arcana's-drop00-sweatpants.html",
+                "Arcana's Drop 00": "arcana's-drop00.html",
+                "Arcana's Shorts(🐆 Set)": "arcana-shorts.html",
+                "Arcana's Compression Tee(🐆 Set)": "arcana-compressiontee.html",
+                "Arcana's ID.TO": "arcana-id.to.html",
+                "Arcana's Panther Set": "arcana-pantherset.html",
+                "Arcana's Polo": "polo.html",
+                "Arcana's 🐍... Tee": "arcana-🐍.html"
+            };
+            return nameMap[name] || "#";
+        }
 
-  return nameMap[name] || "#";
-}
+        function sortProducts(products, sortValue) {
+            const sorted = [...products];
+            switch (sortValue) {
+                case "name_asc":
+                    sorted.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case "name_desc":
+                    sorted.sort((a, b) => b.name.localeCompare(a.name));
+                    break;
+                case "price_low":
+                    sorted.sort((a, b) => a.price - b.price);
+                    break;
+                case "price_high":
+                    sorted.sort((a, b) => b.price - a.price);
+                    break;
+            }
+            return sorted;
+        }
 
-  async function fetchAndRenderProducts(sortValue) {
-    try {
-      const res = await fetch(API_URL);
-      const products = await res.json();
+        function renderProducts(products, sortValue) {
+            const sortedProducts = sortProducts(products, sortValue);
+            
+            // Update results count
+            resultsCount.textContent = `${sortedProducts.length} product${sortedProducts.length !== 1 ? 's' : ''}`;
 
-      let sortedProducts = [...products];
+            productRow.innerHTML = "";
 
-      switch (sortValue) {
-        case "name_asc":
-          sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
-          break;
-        case "name_desc":
-          sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
-          break;
-        case "price_low":
-          sortedProducts.sort((a, b) => a.price - b.price);
-          break;
-        case "price_high":
-          sortedProducts.sort((a, b) => b.price - a.price);
-          break;
-      }
+            if (sortedProducts.length === 0) {
+                productRow.innerHTML = `
+                    <div class="state-message">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M8 12h8M12 8v8"/>
+                        </svg>
+                        <h3>No products found</h3>
+                        <p>Check back soon for new drops.</p>
+                    </div>
+                `;
+                return;
+            }
 
-      productRow.innerHTML = "";
+            const comingSoonProducts = [
+                "Arcana's 🐍... Tee",
+                "Arcana's Shorts(🐆 Set)",
+                "Arcana's Compression Tee(🐆 Set)",
+                "Arcana's ID.TO",
+                "Arcana's Panther Set"
+            ];
 
-      sortedProducts.forEach((product) => {
-        const convertedPrice = (product.price * currencyRates[currentCurrency]).toFixed(2);
-        const comingSoonProducts = [
-          "Arcana's 🐍... Tee",
-          "Arcana's Shorts(🐆 Set)",
-          "Arcana's Compression Tee(🐆 Set)",
-          "Arcana's ID.TO",
-          "Arcana's Panther Set"
-        ];
+            sortedProducts.forEach((product) => {
+                const convertedPrice = (product.price * currencyRates[currentCurrency]).toFixed(2);
+                const isComingSoon = comingSoonProducts.includes(product.name);
 
-        const isComingSoon = comingSoonProducts.includes(product.name);
+                const card = document.createElement("div");
+                card.className = "product-card";
+                card.innerHTML = `
+                    <div class="card-image-wrap">
+                        ${isComingSoon ? '<span class="card-badge">Coming Soon</span>' : ''}
+                        <img src="${product.image}" 
+                             alt="${product.name}" 
+                             loading="lazy"
+                             onerror="this.src='logo.png'; this.style.objectFit='contain'; this.style.padding='20px';">
+                    </div>
+                    <div class="card-content">
+                        <h3>${product.name}</h3>
+                        <div class="card-meta">
+                            <div class="price-row">
+                                <span class="product-price" data-usd="${product.price}">
+                                    ${currencySymbols[currentCurrency]}${convertedPrice}
+                                </span>
+                                <span class="rating">★★★★★</span>
+                            </div>
+                            <a href="${getStaticProductPage(product.name)}" 
+                               class="btn-card ${isComingSoon ? 'coming-soon' : ''}">
+                               ${isComingSoon ? 'Notify Me' : 'View Details'}
+                            </a>
+                        </div>
+                    </div>
+                `;
+                productRow.appendChild(card);
+            });
+        }
 
-        const productHTML = `
-        <div class="col-4">
-        <img src="${product.image}" alt="${product.name}">
-        <h3>${product.name}</h3>
-        ${isComingSoon ? "<p>(Coming Soon)</p>" : ""}
-        <div class="product-price" data-usd="${product.price}">
-        <p>${currencySymbols[currentCurrency]}${convertedPrice}</p>
+        function showErrorState() {
+            productRow.innerHTML = `
+                <div class="state-message">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 8v4M12 16h.01"/>
+                    </svg>
+                    <h3>Unable to load products</h3>
+                    <p>Our store is temporarily unavailable. Please try again in a moment.</p>
+                    <button class="retry-btn" onclick="location.reload()">Try Again</button>
+                </div>
+            `;
+            resultsCount.textContent = "Connection error";
+        }
+
+        async function fetchProducts() {
+            try {
+                const res = await fetch(API_URL);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const products = await res.json();
+                allProducts = products;
+                renderProducts(products, sortSelect.value);
+            } catch (err) {
+                console.error("Failed to fetch products:", err);
+                showErrorState();
+            }
+        }
+
+        // Kick off
+        fetchProducts();
+    });
+    </script>
+
+    <div id="notification-container"></div>
+    <div id="arcana-modal-overlay" class="hidden">
+        <div class="arcana-modal">
+            <span class="close">&times;</span>
+            <p id="arcana-modal-text"></p>
         </div>
-        <div class="rating">
-        <span>★★★★★</span>
-        </div>
-        <a href="${getStaticProductPage(product.name)}" class="btn">View Details</a>
-        </div>
-        `;
-
-        productRow.insertAdjacentHTML("beforeend", productHTML);
-      });
-
-    } catch (err) {
-      console.error("Failed to fetch products:", err);
-    }
-  }
-
-  fetchAndRenderProducts(sortSelect.value);
-});
-</script>
-<div id="notification-container"></div>
-
-<div id="arcana-modal-overlay" class="hidden">
-  <div class="arcana-modal">
-    <span class="close">&times;</span>
-    <p id="arcana-modal-text"></p>
-  </div>
-</div>
-
+    </div>
 </body>
 </html>

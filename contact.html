@@ -4,103 +4,196 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="logo.png" type="image/x-icon">
-    <title>Contact Us - Arcana</title>
+    <title>Contact Us — Arcana</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <base target="_blank">
 <base target="_blank">
 </head>
 <body class="contact-page">
+
+    <!-- ===== NAVBAR ===== -->
     <div class="container">
         <div class="navbar">
-        <div class="logo">
-            <a href="index.html"><img src="logo.png" alt="Logo" width="125px"></a>
+            <div class="logo">
+                <a href="index.html"><img src="logo.png" alt="Logo" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a class="active" href="contact.html">Contact</a></li>
+                    <li><a href="account.html">Account</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart Icon" class="cart-icon"></a>
+            <img src="menu.png" width="30px" height="30px" alt="Menu Icon" class="menu-icon" onclick="menuToggle()">
         </div>
-        <nav>
-            <ul id="MenuItems">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="product.html">Products</a></li>
-                <li><a class="active" href="contact.html">Contact</a></li>
-                <li><a href="account.html">Account</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-            </ul>
-        </nav>
-        <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart Icon" class="cart-icon"></a>
-        <img src="menu.png" width="30px" height="30px" alt="Menu Icon" class="menu-icon" onclick="menuToggle()">
     </div>
-    <header><h1>Contact Arcana</h1></header>
-    <span class="submit">You are submitting your query to the Contact team and we will get back to you in 2 working days.</span>
-  <form>
-    <select name="Enquiry Reason" id="">
-        <option value="" disabled selected>Select an Option</option>
-        <option value="General Enquiry">General Enquiry</option>
-        <option value="Order Status">Order Status</option>
-        <option value="Returns & Exchanges">Returns & Exchanges</option>
-        <option value="Product Enquiry">Product Enquiry</option>
-        <option value="Stock Query">Stock Query</option>
-        <option value="In Store Issues">In Store Issues</option>
-        <option value="Product Issues">Product Issues</option>
-        <option value="Concession Query">Concession Query</option>
-        <option value="My Account">My Account</option>
-        <option value="Payment Issues">Payment Issues</option>
-        <option value="Feedback">Feedback</option>
-    </select>
-    <br>
-    <label> First Name: <input type="text" name="firstName" required></label><br>
-    <label> Middle Name: <input type="text" name="middleName" placeholder="Optional"></label><br>
-    <label> Last Name: <input type="text"name="lastName" required></label><br>
-    <label>Email: <input type="email" name="email" required></label><br>
-    <label>Subject: <input type="text" name="subject" required></label><br>
-    <label>Description:<br><textarea name="message" required></textarea></label><br>
-    <button type="submit">Send</button>
-  </form>
-    <div class="contact-info">
-        <h2>Get in Touch</h2>
-        <p>If you have any questions or need assistance, feel free to reach out to us.</p>
-        <p><a href="https://wa.me/qr/7LDVPBKJCQQHL1">WhatsApp Us</a></p>
-        <p>Email: <a href="mailto:arcanashopng@gmail.com">arcanashopng@gmail.com</a></p>
-    </div>
-    </div>
-    <!------ footer section ------>
-<footer class="footer">
-        <div class="footer-container">
 
-            <!-- TIER 1: Brand + Newsletter + Social -->
+    <!-- ===== CONTACT HERO ===== -->
+    <section class="contact-hero">
+        <div class="contact-hero-content">
+            <h1>Contact Arcana</h1>
+            <p>We'd love to hear from you. Whether it's a question, feedback, or just saying hello — our team is here to help.</p>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT LAYOUT ===== -->
+    <main class="contact-main">
+        <div class="contact-layout">
+            <!-- Left: Contact Info Cards -->
+            <div class="contact-info-panel">
+                <div class="info-card">
+                    <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="info-details">
+                        <h3>Email Us</h3>
+                        <a href="mailto:arcanashopng@gmail.com">arcanashopng@gmail.com</a>
+                        <p>We typically reply within 24 hours</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                    <div class="info-details">
+                        <h3>WhatsApp</h3>
+                        <a href="https://wa.me/qr/7LDVPBKJCQQHL1">Chat with us</a>
+                        <p>Mon – Fri, 9:00 AM – 5:00 PM</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon"><i class="fa-solid fa-clock"></i></div>
+                    <div class="info-details">
+                        <h3>Business Hours</h3>
+                        <p>Monday – Friday</p>
+                        <p>9:00 AM – 5:00 PM WAT</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Contact Form -->
+            <div class="contact-form-panel">
+                <div class="form-card">
+                    <div class="form-header">
+                        <h2>Send us a message</h2>
+                        <p class="form-notice">
+                            <i class="fa-solid fa-circle-info"></i>
+                            You are submitting your query to the Contact team and we will get back to you in 2 working days.
+                        </p>
+                    </div>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="enquiry-reason">Enquiry Reason</label>
+                                <div class="select-wrap">
+                                    <i class="fa-solid fa-list"></i>
+                                    <select name="Enquiry Reason" id="enquiry-reason" required>
+                                        <option value="" disabled selected>Select an Option</option>
+                                        <option value="General Enquiry">General Enquiry</option>
+                                        <option value="Order Status">Order Status</option>
+                                        <option value="Returns & Exchanges">Returns & Exchanges</option>
+                                        <option value="Product Enquiry">Product Enquiry</option>
+                                        <option value="Stock Query">Stock Query</option>
+                                        <option value="In Store Issues">In Store Issues</option>
+                                        <option value="Product Issues">Product Issues</option>
+                                        <option value="Concession Query">Concession Query</option>
+                                        <option value="My Account">My Account</option>
+                                        <option value="Payment Issues">Payment Issues</option>
+                                        <option value="Feedback">Feedback</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row two-col">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <div class="input-wrap">
+                                    <i class="fa-solid fa-user"></i>
+                                    <input type="text" id="firstName" name="firstName" placeholder="John" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="middleName">Middle Name <span class="optional">(Optional)</span></label>
+                                <div class="input-wrap">
+                                    <i class="fa-solid fa-user"></i>
+                                    <input type="text" id="middleName" name="middleName" placeholder="Optional">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <div class="input-wrap">
+                                    <i class="fa-solid fa-user"></i>
+                                    <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <div class="input-wrap">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <div class="input-wrap">
+                                    <i class="fa-solid fa-heading"></i>
+                                    <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="message">Description</label>
+                                <div class="textarea-wrap">
+                                    <i class="fa-solid fa-message"></i>
+                                    <textarea id="message" name="message" rows="5" placeholder="Tell us more about your enquiry..." required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <span>Send Message</span>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-container">
             <div class="footer-top">
                 <div class="footer-brand">
                     <img src="logo.png" alt="Arcana Logo">
                     <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
                 </div>
-
                 <div class="footer-newsletter">
                     <p>Be the first to know about new drops and exclusive offers.</p>
-                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Thanks for subscribing!', 'success');">
                         <input type="email" placeholder="Email address" required>
                         <button type="submit">Join</button>
                     </form>
                 </div>
-
                 <div class="footer-social">
                     <span class="footer-social-label">Follow Us</span>
                     <div class="social-cluster">
-                        <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram">
-                            <img src="instagram.png" alt="Instagram">
-                        </a>
-                        <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok">
-                            <img src="tik-tok.png" alt="TikTok">
-                        </a>
-                        <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest">
-                            <img src="pinterest-logo.png" alt="Pinterest">
-                        </a>
-                        <a href="https://x.com/arcanashopng1" aria-label="X">
-                            <img src="twitter.png" alt="X">
-                        </a>
+                        <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+                        <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok"><img src="tik-tok.png" alt="TikTok"></a>
+                        <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest"><img src="pinterest-logo.png" alt="Pinterest"></a>
+                        <a href="https://x.com/arcanashopng1" aria-label="X"><img src="twitter.png" alt="X"></a>
                     </div>
                 </div>
             </div>
-
-            <!-- TIER 2: Link Columns -->
             <div class="footer-links">
                 <div class="footer-col contact-col">
                     <h4>Contact Us</h4>
@@ -110,23 +203,17 @@
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                                 <polyline points="22,6 12,13 2,6"/>
                             </svg>
-                            <div>
-                                <a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a>
-                            </div>
+                            <div><a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a></div>
                         </div>
                         <div class="contact-item">
                             <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10"/>
                                 <polyline points="12,6 12,12 16,14"/>
                             </svg>
-                            <div>
-                                <span>Mon – Fri</span>
-                                <p class="hours">9:00 AM – 5:00 PM</p>
-                            </div>
+                            <div><span>Mon – Fri</span><p class="hours">9:00 AM – 5:00 PM</p></div>
                         </div>
                     </div>
                 </div>
-
                 <div class="footer-col">
                     <h4>Help</h4>
                     <ul>
@@ -138,7 +225,6 @@
                         <li><a href="order_status.html">Order Status</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-col">
                     <h4>My Account</h4>
                     <ul>
@@ -158,7 +244,6 @@
                         </li>
                     </ul>
                 </div>
-
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
@@ -170,8 +255,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- TIER 3: Copyright Bar -->
         <div class="footer-bottom">
             <div class="footer-bottom-inner">
                 <p>© <span id="year"></span> Arcana — All rights reserved.</p>
@@ -182,140 +265,403 @@
             </div>
         </div>
     </footer>
-    <script src="other-script.js"></script>
+
+    <script src="other-script.js" defer></script>
+    <script src="script.js" defer></script>
+
+    <!-- ===== CONTACT FORM LOGIC (PRESERVED) ===== -->
     <script>
-  const contactForm = document.querySelector("form");
-  contactForm.addEventListener("submit", async function (e) {
-    e.preventDefault();
+        const contactForm = document.getElementById("contactForm");
+        contactForm.addEventListener("submit", async function (e) {
+            e.preventDefault();
 
-    const formData = new FormData(contactForm);
-    const data = Object.fromEntries(formData.entries());
-    data.enquiry = formData.get("Enquiry Reason");
+            const btn = contactForm.querySelector('.btn-submit');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending...';
 
-    try {
-      const res = await fetch("https://arcana-backend-z46k.onrender.com/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData.entries());
+            data.enquiry = formData.get("Enquiry Reason");
 
-      const result = await res.json();
-      alert(result.message || "Thank you for contacting us! We will get back to you shortly.");
-      contactForm.reset();
-    } catch (err) {
-      alert("Something went wrong. Please try again later.");
-    }
-  });
-</script>
+            try {
+                const res = await fetch("https://arcana-backend-z46k.onrender.com/api/contact", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
 
-<style>
-/* Contact Page Styles - Scoped to NOT affect footer */
-.contact-page {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-  line-height: 1.6;
-}
+                const result = await res.json();
+                showToast(result.message || "Thank you for contacting us! We will get back to you shortly.", 'success');
+                contactForm.reset();
+            } catch (err) {
+                showToast("Something went wrong. Please try again later.", 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span>Send Message</span><i class="fa-solid fa-paper-plane"></i>';
+            }
+        });
 
-.contact-page .container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px 0;
-}
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 
-.contact-page header h1 {
-  font-size: 2rem;
-  margin-top: 40px;
-  margin-bottom: 10px;
-  color: #000;
-  text-align: center;
-}
+    <!-- ===== MODERN CONTACT STYLES ===== -->
+    <style>
+        :root {
+            --arcana-brown: #59493b;
+            --arcana-brown-light: #8B6A4E;
+            --arcana-brown-dark: #3d3026;
+            --arcana-cream: #f5f0eb;
+            --arcana-warm: #faf8f5;
+            --arcana-border: #e8e0d8;
+            --arcana-text: #2c241e;
+            --arcana-text-light: #6b5d52;
+            --arcana-error: #c0392b;
+            --arcana-success: #27ae60;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 3px rgba(89, 73, 59, 0.08);
+            --shadow-md: 0 4px 20px rgba(89, 73, 59, 0.12);
+            --shadow-lg: 0 8px 40px rgba(89, 73, 59, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-/* Contact Form - Scoped specifically */
-.contact-page .container > form {
-  background-color: #fff;
-  padding: 25px;
-  border-radius: 10px;
-  margin: 20px auto;
-  max-width: 600px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
+        /* ===== CONTACT HERO ===== */
+        .contact-hero {
+            background: linear-gradient(135deg, var(--arcana-brown) 0%, var(--arcana-brown-dark) 100%);
+            padding: 80px 24px 60px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
 
-.contact-page .container > form select,
-.contact-page .container > form input,
-.contact-page .container > form textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0 20px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-family: 'Poppins', sans-serif;
-}
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+        }
 
-.contact-page .container > form button {
-  padding: 12px 20px;
-  border: none;
-  background-color: #59493b;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 6px;
-  width: 100%;
-  transition: background-color 0.3s ease;
-}
+        .contact-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-.contact-page .container > form button:hover {
-  background-color: #8B6A4E;
-}
+        .contact-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
 
-.contact-page span.submit {
-  display: block;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #000;
-}
+        .contact-hero p {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.6;
+            color: #fff;
+        }
 
-/* Contact Info */
-.contact-page .contact-info {
-  text-align: center;
-  margin-top: 40px;
-}
+        /* ===== CONTACT MAIN ===== */
+        .contact-main {
+            max-width: 1200px;
+            margin: -30px auto 60px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 2;
+        }
 
-.contact-page .contact-info h2 {
-  color: #000;
-  margin-bottom: 10px;
-}
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 32px;
+            align-items: start;
+        }
 
-.contact-page .contact-info a {
-  color: #000;
-  text-decoration: none;
-}
-.contact-page .contact-info a:hover {
-  text-decoration: underline;
-}
-.contact-page .contact-info p {
-  color: #000;
-  margin-bottom: 10px;
-}
+        /* ===== INFO PANEL ===== */
+        .contact-info-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .contact-page .container > form {
-    padding: 20px;
-  }
-}
-</style>
-<div id="notification-container"></div>
+        .info-card {
+            background: #fff;
+            border-radius: var(--radius-md);
+            padding: 24px;
+            border: 1px solid var(--arcana-border);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            transition: var(--transition);
+        }
 
-<div id="arcana-modal-overlay" class="hidden">
-  <div class="arcana-modal">
-    <span class="close">&times;</span>
-    <p id="arcana-modal-text"></p>
-  </div>
-</div>
+        .info-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
 
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--arcana-cream);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--arcana-brown);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .info-details h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--arcana-text);
+            margin-bottom: 4px;
+        }
+
+        .info-details a {
+            color: var(--arcana-brown);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .info-details a:hover {
+            color: var(--arcana-brown-light);
+            text-decoration: underline;
+        }
+
+        .info-details p {
+            font-size: 0.8rem;
+            color: var(--arcana-text-light);
+            margin-top: 4px;
+        }
+
+        /* ===== FORM PANEL ===== */
+        .contact-form-panel {
+            background: #fff;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--arcana-border);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .form-header {
+            padding: 28px 32px 20px;
+            border-bottom: 1px solid var(--arcana-border);
+        }
+
+        .form-header h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--arcana-text);
+            margin-bottom: 12px;
+        }
+
+        .form-notice {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--arcana-text-light);
+            background: var(--arcana-cream);
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+        }
+
+        .form-notice i {
+            color: var(--arcana-brown);
+            font-size: 0.9rem;
+        }
+
+        #contactForm {
+            padding: 28px 32px 32px;
+        }
+
+        .form-row {
+            margin-bottom: 20px;
+        }
+
+        .form-row.two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--arcana-text);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .form-group label .optional {
+            color: var(--arcana-text-light);
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .input-wrap, .select-wrap, .textarea-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrap > i:first-child, .select-wrap > i:first-child, .textarea-wrap > i:first-child {
+            position: absolute;
+            left: 14px;
+            color: var(--arcana-text-light);
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        .input-wrap input, .select-wrap select, .textarea-wrap textarea {
+            width: 100%;
+            padding: 12px 14px 12px 42px;
+            border: 1.5px solid var(--arcana-border);
+            border-radius: var(--radius-sm);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            color: var(--arcana-text);
+            transition: var(--transition);
+            background: var(--arcana-warm);
+        }
+
+        .textarea-wrap textarea {
+            padding: 12px 14px 12px 42px;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .textarea-wrap > i:first-child {
+            top: 14px;
+        }
+
+        .input-wrap input:focus, .select-wrap select:focus, .textarea-wrap textarea:focus {
+            outline: none;
+            border-color: var(--arcana-brown);
+            box-shadow: 0 0 0 3px rgba(89, 73, 59, 0.08);
+            background: #fff;
+        }
+
+        .input-wrap input::placeholder, .textarea-wrap textarea::placeholder {
+            color: #b8afa6;
+        }
+
+        .select-wrap select {
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+
+        .select-wrap::after {
+            content: '\f107';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 14px;
+            color: var(--arcana-text-light);
+            font-size: 0.85rem;
+            pointer-events: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px 24px;
+            background: var(--arcana-brown);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+            margin-top: 8px;
+        }
+
+        .btn-submit:hover {
+            background: var(--arcana-brown-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-submit:hover i {
+            transform: translateX(4px);
+        }
+
+        .btn-submit i {
+            transition: transform 0.2s;
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+            .contact-info-panel {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .info-card {
+                flex: 1;
+                min-width: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-hero {
+                padding: 60px 20px 40px;
+            }
+            .contact-hero h1 {
+                font-size: 1.8rem;
+            }
+            .contact-main {
+                margin-top: -20px;
+                padding: 0 16px;
+            }
+            .form-header, #contactForm {
+                padding: 20px;
+            }
+            .form-row.two-col {
+                grid-template-columns: 1fr;
+            }
+            .info-card {
+                min-width: 100%;
+            }
+        }
+    </style>
+
+    <div id="notification-container"></div>
+    <div id="arcana-modal-overlay" class="hidden">
+        <div class="arcana-modal">
+            <span class="close">&times;</span>
+            <p id="arcana-modal-text"></p>
+        </div>
+    </div>
 </body>
 </html>

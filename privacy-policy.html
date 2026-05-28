@@ -9,49 +9,512 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ============================================
+         PRIVACY POLICY PAGE MODERNIZATION
+         Self-contained — no style.css edits needed
+         ============================================ -->
+    <style>
+        /* ===== BASE OVERRIDES FOR THIS PAGE ===== */
+        body.privacy-policy-page {
+            background: linear-gradient(180deg, #faf9f7 0%, #f5f3f0 100%);
+            min-height: 100vh;
+        }
+
+        /* ===== HERO HEADER ===== */
+        .policy-hero {
+            background: linear-gradient(135deg, #59493b 0%, #3d3025 100%);
+            color: #fff;
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .policy-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139,106,78,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .policy-hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.02em;
+        }
+        .policy-hero .hero-subtitle {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 1rem;
+            opacity: 0.75;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+        .policy-hero .last-updated {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 24px auto 0;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+            width: fit-content;
+        }
+
+        /* ===== MAIN LAYOUT ===== */
+        .policy-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 25px;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* ===== STICKY TABLE OF CONTENTS ===== */
+        .policy-toc {
+            position: sticky;
+            top: 100px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 4px 24px rgba(89,73,59,0.06);
+            border: 1px solid rgba(89,73,59,0.06);
+        }
+        .policy-toc h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #59493b;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .policy-toc ul {
+            list-style: none;
+        }
+        .policy-toc li {
+            margin-bottom: 4px;
+        }
+        .policy-toc a {
+            display: block;
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: #555;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+        }
+        .policy-toc a:hover,
+        .policy-toc a.active {
+            background: rgba(89,73,59,0.05);
+            color: #59493b;
+            border-left-color: #59493b;
+            font-weight: 500;
+        }
+
+        /* ===== POLICY CONTENT ===== */
+        .policy-content {
+            max-width: 65ch;
+        }
+        .policy-section {
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 16px rgba(89,73,59,0.04);
+            border: 1px solid rgba(89,73,59,0.04);
+            scroll-margin-top: 100px;
+        }
+        .policy-section h2 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .policy-section h2 .section-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #59493b 0%, #8B6A4E 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .policy-section h2 .section-icon svg {
+            width: 18px;
+            height: 18px;
+            color: #fff;
+        }
+        .policy-section p {
+            color: #444;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        .policy-section p:last-child {
+            margin-bottom: 0;
+        }
+        .policy-section ul {
+            margin: 16px 0 16px 24px;
+            color: #444;
+            line-height: 1.8;
+        }
+        .policy-section ul li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        .policy-section ul li::marker {
+            color: #59493b;
+        }
+
+        /* Intro section special styling */
+        .policy-intro {
+            background: linear-gradient(135deg, #59493b 0%, #3d3025 100%);
+            color: #fff;
+            border: none;
+        }
+        .policy-intro p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* ===== CONTACT CTA BOX ===== */
+        .policy-cta {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px 40px;
+            margin-top: 24px;
+            box-shadow: 0 2px 16px rgba(89,73,59,0.04);
+            border: 1px solid rgba(89,73,59,0.04);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .policy-cta p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .policy-cta p strong {
+            color: #1a1a1a;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 1.1rem;
+        }
+        .policy-cta .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: #59493b;
+            color: #fff;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .policy-cta .btn-cta:hover {
+            background: #8B6A4E;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(89,73,59,0.2);
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            .policy-hero { background: #59493b !important; -webkit-print-color-adjust: exact; }
+            .policy-toc { display: none; }
+            .policy-section { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+            .navbar, .footer, .policy-cta { display: none; }
+        }
+
+        /* ===== ACCESSIBILITY ===== */
+        @media (prefers-reduced-motion: reduce) {
+            .policy-toc a, .btn-cta, .policy-section {
+                transition: none !important;
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .policy-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 20px;
+            }
+            .policy-toc {
+                position: static;
+                order: -1;
+            }
+            .policy-toc ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .policy-toc li {
+                margin-bottom: 0;
+            }
+            .policy-toc a {
+                border-left: none;
+                border-bottom: 3px solid transparent;
+                white-space: nowrap;
+            }
+            .policy-toc a:hover,
+            .policy-toc a.active {
+                border-left-color: transparent;
+                border-bottom-color: #59493b;
+            }
+            .policy-section {
+                padding: 28px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .policy-hero {
+                padding: 60px 0 40px;
+            }
+            .policy-section {
+                padding: 24px;
+                border-radius: 12px;
+            }
+            .policy-section h2 {
+                font-size: 1.15rem;
+            }
+            .policy-section h2 .section-icon {
+                width: 30px;
+                height: 30px;
+            }
+            .policy-section h2 .section-icon svg {
+                width: 15px;
+                height: 15px;
+            }
+            .policy-cta {
+                padding: 24px;
+                text-align: center;
+                justify-content: center;
+            }
+            .policy-cta .btn-cta {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+<base target="_blank">
 </head>
 <body class="privacy-policy-page">
 
+    <!-- ===== NAVBAR ===== -->
     <div class="container">
-    <div class="navbar">
-        <div class="logo">
-            <a href="index.html"><img src="logo.png" alt="Logo" width="125px"></a>
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="logo.png" alt="Arcana Logo" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="account.html">Account</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart" class="cart-icon"></a>
+            <img src="menu.png" width="30px" height="30px" alt="Menu" class="menu-icon" onclick="menuToggle()">
         </div>
-        <nav>
-            <ul id="MenuItems">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="product.html">Products</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="account.html">Account</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-            </ul>
-        </nav>
-        <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart Icon" class="cart-icon"></a>
-        <img src="menu.png" width="30px" height="30px" alt="Menu Icon" class="menu-icon" onclick="menuToggle()">
     </div>
-    </div>
-<br> <br> <br>
-    
-  <header><h1>Privacy Policy</h1></header>
-  <section>
-    <p>Your privacy is important to us. We collect minimal personal information and never sell your data to third parties.</p>
-  </section>
-  <section>
-    <h2>Information We Collect</h2>
-    <p>We collect information such as your name, email address, and shipping address when you make a purchase or create an account.</p>
-  </section>
-    <br>   <br>    <br>     <br>
-    <!------ footer section ------>
-<footer class="footer">
-        <div class="footer-container">
 
-            <!-- TIER 1: Brand + Newsletter + Social -->
+    <!-- ===== HERO HEADER ===== -->
+    <header class="policy-hero">
+        <div class="container">
+            <h1>Privacy Policy</h1>
+            <p style="color: #fff;" class="hero-subtitle">How we protect and handle your data</p>
+            <div class="last-updated">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity:0.8;">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 16,14"/>
+                </svg>
+                Last updated: May 28, 2026
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="policy-layout" id="main-content">
+        
+        <!-- Table of Contents -->
+        <aside class="policy-toc" aria-label="Table of contents">
+            <h3>On this page</h3>
+            <ul>
+                <li><a href="#intro" class="active">Introduction</a></li>
+                <li><a href="#collect">Information We Collect</a></li>
+                <li><a href="#use">How We Use It</a></li>
+                <li><a href="#share">Sharing & Disclosure</a></li>
+                <li><a href="#security">Data Security</a></li>
+                <li><a href="#rights">Your Rights</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </aside>
+
+        <!-- Policy Sections -->
+        <article class="policy-content">
+
+            <section class="policy-section policy-intro" id="intro">
+                <h2>
+                    <span class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </span>
+                    Introduction
+                </h2>
+                <p>Your privacy is important to us. At Arcana, we collect minimal personal information and never sell your data to third parties. This policy explains what information we collect, how we use it, and the choices you have regarding your data.</p>
+                <p>By using our website and services, you agree to the practices described in this policy. If you have any questions or concerns, please don't hesitate to reach out.</p>
+            </section>
+
+            <section class="policy-section" id="collect">
+                <h2>
+                    <span class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17,8 12,3 7,8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                    </span>
+                    Information We Collect
+                </h2>
+                <p>We collect information that you provide directly to us, such as when you create an account, make a purchase, or contact our support team. This may include:</p>
+                <ul>
+                    <li>Your name, email address, and phone number</li>
+                    <li>Shipping and billing addresses</li>
+                    <li>Payment information (processed securely by our payment partners)</li>
+                    <li>Order history and preferences</li>
+                </ul>
+                <p>We also collect certain information automatically when you visit our website, including your IP address, browser type, device information, and browsing behavior through cookies and similar technologies.</p>
+            </section>
+
+            <section class="policy-section" id="use">
+                <h2>
+                    <span class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </span>
+                    How We Use Your Information
+                </h2>
+                <p>We use the information we collect to provide, maintain, and improve our services. Specifically, we use your data to:</p>
+                <ul>
+                    <li>Process and fulfill your orders</li>
+                    <li>Communicate with you about your orders, account, and promotions</li>
+                    <li>Personalize your shopping experience</li>
+                    <li>Improve our website and product offerings</li>
+                    <li>Detect and prevent fraud and abuse</li>
+                </ul>
+            </section>
+
+            <section class="policy-section" id="share">
+                <h2>
+                    <span class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <circle cx="18" cy="5" r="3"/>
+                            <circle cx="6" cy="12" r="3"/>
+                            <circle cx="18" cy="19" r="3"/>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                        </svg>
+                    </span>
+                    Sharing & Disclosure
+                </h2>
+                <p>We do not sell, trade, or rent your personal information to third parties. We may share your information with trusted service providers who assist us in operating our website, conducting business, or servicing you — provided they agree to keep this information confidential.</p>
+                <p>We may also disclose your information when required by law or to protect our rights, property, or safety, or that of our users or others.</p>
+            </section>
+
+            <section class="policy-section" id="security">
+                <h2>
+                    <span class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                    </span>
+                    Data Security
+                </h2>
+                <p>We implement a variety of security measures to maintain the safety of your personal information. Your data is stored on secure servers and protected by industry-standard encryption during transmission.</p>
+                <p>While we strive to use commercially acceptable means to protect your personal information, no method of transmission over the Internet or electronic storage is 100% secure. We cannot guarantee absolute security.</p>
+            </section>
+
+            <section class="policy-section" id="rights">
+                <h2>
+                    <span class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10,9 9,9 8,9"/>
+                        </svg>
+                    </span>
+                    Your Rights
+                </h2>
+                <p>Depending on your location, you may have certain rights regarding your personal data, including:</p>
+                <ul>
+                    <li>The right to access the personal information we hold about you</li>
+                    <li>The right to request correction of inaccurate information</li>
+                    <li>The right to request deletion of your personal data</li>
+                    <li>The right to object to or restrict certain processing activities</li>
+                    <li>The right to data portability</li>
+                </ul>
+                <p>To exercise any of these rights, please contact us using the information below.</p>
+            </section>
+
+            <div class="policy-cta" id="contact">
+                <div>
+                    <p><strong>Questions about this policy?</strong>We're here to help and will respond within 24-48 hours.</p>
+                </div>
+                <a href="mailto:arcanashopng@gmail.com" class="btn-cta">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    Email Us
+                </a>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-container">
             <div class="footer-top">
                 <div class="footer-brand">
                     <img src="logo.png" alt="Arcana Logo">
                     <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
                 </div>
-
                 <div class="footer-newsletter">
                     <p>Be the first to know about new drops and exclusive offers.</p>
                     <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
@@ -59,7 +522,6 @@
                         <button type="submit">Join</button>
                     </form>
                 </div>
-
                 <div class="footer-social">
                     <span class="footer-social-label">Follow Us</span>
                     <div class="social-cluster">
@@ -78,8 +540,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- TIER 2: Link Columns -->
             <div class="footer-links">
                 <div class="footer-col contact-col">
                     <h4>Contact Us</h4>
@@ -105,7 +565,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="footer-col">
                     <h4>Help</h4>
                     <ul>
@@ -117,7 +576,6 @@
                         <li><a href="order_status.html">Order Status</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-col">
                     <h4>My Account</h4>
                     <ul>
@@ -137,7 +595,6 @@
                         </li>
                     </ul>
                 </div>
-
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
@@ -149,8 +606,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- TIER 3: Copyright Bar -->
         <div class="footer-bottom">
             <div class="footer-bottom-inner">
                 <p>© <span id="year"></span> Arcana — All rights reserved.</p>
@@ -161,125 +616,54 @@
             </div>
         </div>
     </footer>
+
     <script src="other-script.js" defer></script>
-    <style>
-        * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    <script>
+        // ===== TABLE OF CONTENTS ACTIVE STATE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.policy-section[id]');
+            const tocLinks = document.querySelectorAll('.policy-toc a[href^="#"]');
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f9f9f9;
-  color: #fff;
-  line-height: 1.6;
-}
+            const observerOptions = {
+                root: null,
+                rootMargin: '-100px 0px -60% 0px',
+                threshold: 0
+            };
 
-/* Container */
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px 0;
-}
-/* Header */
-header h1 {
-  font-size: 2rem;
-  margin-top: 40px;
-  margin-bottom: 10px;
-  color: #000;
-  text-align: center;
-}
-/* Section */
-section {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  font-size: 1rem;
-  color: #000;
-}
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        tocLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === '#' + entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
 
-section h2 {
-  font-size: 1.5rem;
-  margin-top: 30px;
-  color: #000;
-}
+            sections.forEach(section => observer.observe(section));
 
-section p {
-  margin-top: 10px;
-  color: #000;
-}
+            // Smooth scroll for TOC links
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(link.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+    </script>
 
-.footer p {
-  color: #fff;
-}
-.footer a {
-  color: #fff;
-  text-decoration: none;
-}
-    .footer-col-3 img {
-        width: 100%;
-        padding-right: 0;
-    }
-/* Responsive */
-@media (max-width: 600px) {
-  .navbar nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  nav ul {
-        position: absolute;
-        top: 120px;
-        bottom: null;
-        left: 0;
-        width: 100%;
-        background: #000;
-        overflow: hidden;
-        transition: max-height 0.5s ease-in-out;
-    }
-
-  .row {
-    flex-direction: column;
-  }
-
-  form {
-    padding: 20px;
-  }
-      .footer-col-3 img {
-        width: 50%;
-        padding-right: 0;
-    }
-}
-@media (max-width: 600px) {
-  .navbar nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .row {
-    flex-direction: column;
-  }
-
-  form {
-    padding: 20px;
-  }
-    .footer-col-3 img {
-        width: 50%;
-        padding-right: 0;
-    }
-}
-
-    </style>
     <div id="notification-container"></div>
-
-<div id="arcana-modal-overlay" class="hidden">
-  <div class="arcana-modal">
-    <span class="close">&times;</span>
-    <p id="arcana-modal-text"></p>
-  </div>
-</div>
-
+    <div id="arcana-modal-overlay" class="hidden">
+        <div class="arcana-modal">
+            <span class="close">&times;</span>
+            <p id="arcana-modal-text"></p>
+        </div>
+    </div>
 </body>
 </html>

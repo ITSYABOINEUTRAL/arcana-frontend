@@ -3,434 +3,708 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <title>Edit Settings - Arcana</title>
+  <link rel="icon" href="logo.png" type="image/x-icon">
+  <title>Edit Settings — Arcana</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<base target="_blank">
 </head>
-<body>
-    <div class="container">
-        <div class="navbar">
-        <div class="logo">
-            <a href="index.html"><img src="logo.png" alt="Logo" width="125px"></a>
-        </div>
-        <nav>
-            <ul id="MenuItems">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="product.html">Products</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="account.html">Account</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-            </ul>
-        </nav>
-        <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart Icon" class="cart-icon"></a>
-        <img src="menu.png" width="30px" height="30px" alt="Menu Icon" class="menu-icon" onclick="menuToggle()">
-        </div>
+<body class="settings-page">
+
+  <!-- ===== NAVBAR ===== -->
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <a href="index.html"><img src="logo.png" alt="Logo" width="125px"></a>
+      </div>
+      <nav>
+        <ul id="MenuItems">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="product.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="account.html">Account</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </nav>
+      <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart Icon" class="cart-icon"></a>
+      <img src="menu.png" width="30px" height="30px" alt="Menu Icon" class="menu-icon" onclick="menuToggle()">
     </div>
-  <header><h1>Edit Your Settings</h1></header>
-  <form>
-    <label for="email">Email:</label><br>
-    <input type="email" id="updateSettings-email" name="email"><br>
-    <label for="name">Full Name:</label><br>
-    <input type="text" id="name" name="name"><br>
-    <label for="phone">Phone Number:</label><br>
-    <input type="tel" id="phone" name="phone"><br>
-    <label for="address">Shipping Address:</label><br>
-    <input type="text" id="address" name="address"><br>
-    <label for="city">City:</label><br>
-    <input type="text" id="city" name="city"><br>
-    <label for="state">State:</label><br>
-    <input type="text" id="state" name="state"><br>
-    <label for="zip">ZIP Code:</label><br>
-    <input type="text" id="zip" name="zip"><br>
-    <label for="country">Country:</label><br>
-    <input type="text" id="country" name="country"><br>
-    <label for="current-password">Current Password:</label><br>
-    <input type="password" id="current-password" name="current-password"><br>
-    <button type="button" onclick="updateSettings()">Update</button>
-
-  </form>
-  <form>
-    <span>Change Password</span>
-    <label for="email">Email:</label>
-    <input type="email" id="changePassword-email" name="email" required><br>
-    <label for="password">Current Password</label>
-    <input type="password" id="old-password" name="old-password"><br>
-    <label for="password">New Password:</label><br>
-    <input type="password" id="password" name="password"><br>
-    <label for="confirm-password">Confirm New Password:</label><br>
-    <input type="password" id="confirm-password" name="confirm-password"><br>
-    <button type="button" onclick="changePassword()">Change Password</button>
-  </form>
-  <br> <br> <br> <br>
-      <!------ footer section ------>
-<footer class="footer">
-        <div class="footer-container">
-
-            <!-- TIER 1: Brand + Newsletter + Social -->
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <img src="logo.png" alt="Arcana Logo">
-                    <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
-                </div>
-
-                <div class="footer-newsletter">
-                    <p>Be the first to know about new drops and exclusive offers.</p>
-                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
-                        <input type="email" placeholder="Email address" required>
-                        <button type="submit">Join</button>
-                    </form>
-                </div>
-
-                <div class="footer-social">
-                    <span class="footer-social-label">Follow Us</span>
-                    <div class="social-cluster">
-                        <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram">
-                            <img src="instagram.png" alt="Instagram">
-                        </a>
-                        <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok">
-                            <img src="tik-tok.png" alt="TikTok">
-                        </a>
-                        <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest">
-                            <img src="pinterest-logo.png" alt="Pinterest">
-                        </a>
-                        <a href="https://x.com/arcanashopng1" aria-label="X">
-                            <img src="twitter.png" alt="X">
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TIER 2: Link Columns -->
-            <div class="footer-links">
-                <div class="footer-col contact-col">
-                    <h4>Contact Us</h4>
-                    <div class="contact-content">
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg>
-                            <div>
-                                <a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <polyline points="12,6 12,12 16,14"/>
-                            </svg>
-                            <div>
-                                <span>Mon – Fri</span>
-                                <p class="hours">9:00 AM – 5:00 PM</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Help</h4>
-                    <ul>
-                        <li><a href="faqs.html">FAQs</a></li>
-                        <li><a href="returns&exchanges.html">Returns & Exchanges</a></li>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms&conditions.html">Terms & Conditions</a></li>
-                        <li><a href="contact.html">Contact Support</a></li>
-                        <li><a href="order_status.html">Order Status</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>My Account</h4>
-                    <ul>
-                        <li><a href="account.html">Sign In</a></li>
-                        <li><a href="cart.html">View Cart</a></li>
-                        <li><a href="order_status.html">Track My Order</a></li>
-                        <li>
-                            <div class="payment-methods">
-                                <p>Payment Options</p>
-                                <div class="payment-icons">
-                                    <div class="payment-icon">VISA</div>
-                                    <div class="payment-icon">MC</div>
-                                    <div class="payment-icon">AMEX</div>
-                                    <div class="payment-icon">PP</div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="product.html">All Products</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="account.html">Account</a></li>
-                        <li><a href="contact.html">Get in Touch</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- TIER 3: Copyright Bar -->
-        <div class="footer-bottom">
-            <div class="footer-bottom-inner">
-                <p>© <span id="year"></span> Arcana — All rights reserved.</p>
-                <div class="footer-bottom-links">
-                    <a href="privacy-policy.html">Privacy</a>
-                    <a href="terms&conditions.html">Terms</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <script src="other-script.js" defer></script>
-<script>
-const API_BASE = 'https://arcana-backend-z46k.onrender.com/api';
-const token = localStorage.getItem('token');
-
-if (!token) {
-  alert("You must be logged in to access this page.");
-  window.location.href = "account.html";
-}
-
-// Update profile information
-async function updateSettings() {
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('updateSettings-email').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const street = document.getElementById('address').value.trim();
-  const city = document.getElementById('city').value.trim();
-  const state = document.getElementById('state').value.trim();
-  const zip = document.getElementById('zip').value.trim();
-  const country = document.getElementById('country').value.trim();
-
-  if (!name || !email || !phone) {
-    return alert('Name, email, and phone are required.');
-  }
-
-  const body = {
-    name,
-    phone,
-    address: { street, city, state, zip, country }
-  };
-
-  try {
-    const res = await fetch(`${API_BASE}/auth/profile`, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      throw new Error(data.message || "Failed to update profile.");
-    }
-const returnTo = localStorage.getItem("returnAfterSettings");
-
-showBlockingMessage(
-  "Profile updated successfully!",
-  returnTo || "account-dashboard.html"
-);
-
-if (returnTo) {
-  localStorage.removeItem("returnAfterSettings");
-}
-
-
-  } catch (err) {
-    alert(err.message);
-  }
-}
-
-// Change password
-async function changePassword() {
-  const email = document.getElementById('changePassword-email').value.trim();
-  const oldPassword = document.getElementById('old-password').value;
-  const newPassword = document.getElementById('password').value;
-  const confirmPassword = document.getElementById('confirm-password').value;
-
-  if (!email || !oldPassword || !newPassword || !confirmPassword) {
-    return alert('All fields are required.');
-  }
-
-  if (newPassword !== confirmPassword) {
-    return alert("New passwords do not match.");
-  }
-
-  try {
-    const res = await fetch(`${API_BASE}/auth/change-password`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify({ email, oldPassword, newPassword })
-    });
-
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.message || "Failed to change password");
-
-    alert("Password changed successfully!");
-    document.getElementById("old-password").value = "";
-    document.getElementById("password").value = "";
-    document.getElementById("confirm-password").value = "";
-  } catch (err) {
-    alert(err.message);
-  }
-}
-</script>
-
-
-<style>
-    /* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-  line-height: 1.6;
-}
-
-/* Container */
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px 0;
-}
-/* Header */
-header h1 {
-  font-size: 2rem;
-  margin-top: 40px;
-  margin-bottom: 10px;
-  color: #fff;
-  text-align: center;
-}
-
-/* Form */
-form {
-  background-color: #fff;
-  padding: 25px;
-  border-radius: 10px;
-  margin: 20px auto;
-  max-width: 600px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
-
-form select,
-form input,
-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0 20px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-family: 'Poppins', sans-serif;
-}
-
-form button {
-  padding: 12px 20px;
-  border: none;
-  background-color: #59493b;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-border-radius: 6px;
-width: 100%;
-  transition: background-color 0.3s ease;
-}
-
-form button:hover {
-  background-color: #8B6A4E;
-}
-
-span {
-  display: block;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #000;
-}
-.footer-col-3 img {
-        width: 100%;
-        padding-right: 0;
-}
-/* Contact Info */
-.contact-info {
-  text-align: center;
-  margin-top: 40px;
-}
-
-.contact-info h2 {
-  color: #fff;
-  margin-bottom: 10px;
-}
-
-.contact-info a {
-  color: #fff;
-  text-decoration: none;
-}
-.contact-info a:hover {
-  text-decoration: underline;
-}
-.contact-info p {
-  color: #fff;
-  margin-bottom: 10px;
-}
-.footer p {
-  color: #fff;
-}
-.footer a {
-  color: #fff;
-  text-decoration: none;
-}
-/* Responsive */
-@media (max-width: 768px) {
-  .navbar nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-
-  form {
-    padding: 20px;
-  }
-}
-@media (max-width: 600px) {
-  .navbar nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-
-  form {
-    padding: 20px;
-  }
-    .footer-col-3 img {
-        width: 50%;
-        padding-right: 0;
-    }
-}
-
-</style>
-<div id="notification-container"></div>
-
-<div id="arcana-modal-overlay" class="hidden">
-  <div class="arcana-modal">
-    <span class="close">&times;</span>
-    <p id="arcana-modal-text"></p>
   </div>
-</div>
 
+  <!-- ===== SETTINGS MAIN ===== -->
+  <main class="settings-main">
+    <div class="settings-header">
+      <h1><i class="fa-solid fa-gear"></i> Account Settings</h1>
+      <p>Manage your profile information, shipping address, and security settings.</p>
+    </div>
+
+    <div class="settings-layout">
+      <!-- Left: Profile & Address -->
+      <div class="settings-panel">
+        <div class="panel-card">
+          <div class="panel-header">
+            <div class="panel-icon"><i class="fa-solid fa-user-pen"></i></div>
+            <div>
+              <h2>Profile Information</h2>
+              <p>Update your personal details and shipping address</p>
+            </div>
+          </div>
+          <form id="settingsForm">
+            <div class="form-section">
+              <h3><i class="fa-solid fa-circle-user"></i> Personal Details</h3>
+              <div class="form-grid two-col">
+                <div class="form-group">
+                  <label for="updateSettings-email">Email</label>
+                  <div class="input-wrap">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="updateSettings-email" name="email" placeholder="you@example.com">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="name">Full Name</label>
+                  <div class="input-wrap">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="name" name="name" placeholder="Your full name">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-phone"></i>
+                  <input type="tel" id="phone" name="phone" placeholder="+234...">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3><i class="fa-solid fa-location-dot"></i> Shipping Address</h3>
+              <div class="form-group">
+                <label for="address">Street Address</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-house"></i>
+                  <input type="text" id="address" name="address" placeholder="123 Main Street">
+                </div>
+              </div>
+              <div class="form-grid three-col">
+                <div class="form-group">
+                  <label for="city">City</label>
+                  <div class="input-wrap">
+                    <i class="fa-solid fa-city"></i>
+                    <input type="text" id="city" name="city" placeholder="Lagos">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="state">State</label>
+                  <div class="input-wrap">
+                    <i class="fa-solid fa-map"></i>
+                    <input type="text" id="state" name="state" placeholder="Lagos State">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="zip">ZIP Code</label>
+                  <div class="input-wrap">
+                    <i class="fa-solid fa-hashtag"></i>
+                    <input type="text" id="zip" name="zip" placeholder="100001">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="country">Country</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-globe"></i>
+                  <input type="text" id="country" name="country" placeholder="Nigeria">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn-primary" onclick="updateSettings()">
+                <i class="fa-solid fa-floppy-disk"></i> Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right: Security -->
+      <div class="settings-panel">
+        <div class="panel-card">
+          <div class="panel-header">
+            <div class="panel-icon security"><i class="fa-solid fa-shield-halved"></i></div>
+            <div>
+              <h2>Security</h2>
+              <p>Update your password to keep your account secure</p>
+            </div>
+          </div>
+          <form id="passwordForm">
+            <div class="form-section">
+              <h3><i class="fa-solid fa-key"></i> Change Password</h3>
+              <div class="form-group">
+                <label for="changePassword-email">Email</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-envelope"></i>
+                  <input type="email" id="changePassword-email" name="email" placeholder="you@example.com" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="old-password">Current Password</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-lock"></i>
+                  <input type="password" id="old-password" name="old-password" placeholder="Current password">
+                  <button type="button" class="toggle-password" onclick="togglePw('old-password', this)">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">New Password</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-lock"></i>
+                  <input type="password" id="password" name="password" placeholder="New password">
+                  <button type="button" class="toggle-password" onclick="togglePw('password', this)">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="confirm-password">Confirm New Password</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-lock"></i>
+                  <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm new password">
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn-primary" onclick="changePassword()">
+                <i class="fa-solid fa-rotate"></i> Change Password
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="logo.png" alt="Arcana Logo">
+          <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
+        </div>
+        <div class="footer-newsletter">
+          <p>Be the first to know about new drops and exclusive offers.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Thanks for subscribing!', 'success');">
+            <input type="email" placeholder="Email address" required>
+            <button type="submit">Join</button>
+          </form>
+        </div>
+        <div class="footer-social">
+          <span class="footer-social-label">Follow Us</span>
+          <div class="social-cluster">
+            <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+            <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok"><img src="tik-tok.png" alt="TikTok"></a>
+            <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest"><img src="pinterest-logo.png" alt="Pinterest"></a>
+            <a href="https://x.com/arcanashopng1" aria-label="X"><img src="twitter.png" alt="X"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col contact-col">
+          <h4>Contact Us</h4>
+          <div class="contact-content">
+            <div class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <div><a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a></div>
+            </div>
+            <div class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12,6 12,12 16,14"/>
+              </svg>
+              <div><span>Mon – Fri</span><p class="hours">9:00 AM – 5:00 PM</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="returns&exchanges.html">Returns & Exchanges</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms&conditions.html">Terms & Conditions</a></li>
+            <li><a href="contact.html">Contact Support</a></li>
+            <li><a href="order_status.html">Order Status</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>My Account</h4>
+          <ul>
+            <li><a href="account.html">Sign In</a></li>
+            <li><a href="cart.html">View Cart</a></li>
+            <li><a href="order_status.html">Track My Order</a></li>
+            <li>
+              <div class="payment-methods">
+                <p>Payment Options</p>
+                <div class="payment-icons">
+                  <div class="payment-icon">VISA</div>
+                  <div class="payment-icon">MC</div>
+                  <div class="payment-icon">AMEX</div>
+                  <div class="payment-icon">PP</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="product.html">All Products</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="account.html">Account</a></li>
+            <li><a href="contact.html">Get in Touch</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p>© <span id="year"></span> Arcana — All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="privacy-policy.html">Privacy</a>
+          <a href="terms&conditions.html">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="other-script.js" defer></script>
+  <script src="script.js" defer></script>
+
+  <!-- ===== SETTINGS LOGIC (PRESERVED) ===== -->
+  <script>
+    const API_BASE = 'https://arcana-backend-z46k.onrender.com/api';
+    const token = localStorage.getItem('token');
+
+    // Auth guard
+    if (!token) {
+      showToast("You must be logged in to access this page.", 'error');
+      window.location.href = "account.html";
+    }
+
+    // Password toggle helper
+    function togglePw(inputId, btn) {
+      const input = document.getElementById(inputId);
+      const icon = btn.querySelector('i');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
+    }
+
+    // ===== UPDATE SETTINGS (PRESERVED) =====
+    async function updateSettings() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('updateSettings-email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const street = document.getElementById('address').value.trim();
+      const city = document.getElementById('city').value.trim();
+      const state = document.getElementById('state').value.trim();
+      const zip = document.getElementById('zip').value.trim();
+      const country = document.getElementById('country').value.trim();
+
+      if (!name || !email || !phone) {
+        return showToast('Name, email, and phone are required.', 'error');
+      }
+
+      const btn = document.querySelector('#settingsForm .btn-primary');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Saving...';
+
+      const body = {
+        name,
+        phone,
+        address: { street, city, state, zip, country }
+      };
+
+      try {
+        const res = await fetch(`${API_BASE}/auth/profile`, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(body)
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || "Failed to update profile.");
+
+        const returnTo = localStorage.getItem("returnAfterSettings");
+        showToast("Profile updated successfully!", 'success');
+
+        setTimeout(() => {
+          showBlockingMessage(
+            "Profile updated successfully!",
+            returnTo || "account-dashboard.html"
+          );
+          if (returnTo) localStorage.removeItem("returnAfterSettings");
+        }, 500);
+      } catch (err) {
+        showToast(err.message, 'error');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Save Changes';
+      }
+    }
+
+    // ===== CHANGE PASSWORD (PRESERVED) =====
+    async function changePassword() {
+      const email = document.getElementById('changePassword-email').value.trim();
+      const oldPassword = document.getElementById('old-password').value;
+      const newPassword = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+
+      if (!email || !oldPassword || !newPassword || !confirmPassword) {
+        return showToast('All fields are required.', 'error');
+      }
+
+      if (newPassword !== confirmPassword) {
+        return showToast("New passwords do not match.", 'error');
+      }
+
+      const btn = document.querySelector('#passwordForm .btn-primary');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Updating...';
+
+      try {
+        const res = await fetch(`${API_BASE}/auth/change-password`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({ email, oldPassword, newPassword })
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || "Failed to change password");
+
+        showToast("Password changed successfully!", 'success');
+        document.getElementById("old-password").value = "";
+        document.getElementById("password").value = "";
+        document.getElementById("confirm-password").value = "";
+      } catch (err) {
+        showToast(err.message, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-rotate"></i> Change Password';
+      }
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- ===== MODERN SETTINGS STYLES ===== -->
+  <style>
+    :root {
+      --arcana-brown: #59493b;
+      --arcana-brown-light: #8B6A4E;
+      --arcana-brown-dark: #3d3026;
+      --arcana-cream: #f5f0eb;
+      --arcana-warm: #faf8f5;
+      --arcana-border: #e8e0d8;
+      --arcana-text: #2c241e;
+      --arcana-text-light: #6b5d52;
+      --arcana-error: #c0392b;
+      --arcana-success: #27ae60;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px rgba(89, 73, 59, 0.08);
+      --shadow-md: 0 4px 20px rgba(89, 73, 59, 0.12);
+      --shadow-lg: 0 8px 40px rgba(89, 73, 59, 0.15);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .settings-page {
+      background: var(--arcana-warm);
+    }
+
+    .settings-main {
+      max-width: 1100px;
+      margin: 100px auto 60px;
+      padding: 0 24px;
+    }
+
+    .settings-header {
+      margin-bottom: 32px;
+    }
+
+    .settings-header h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--arcana-text);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .settings-header h1 i {
+      color: var(--arcana-brown);
+    }
+
+    .settings-header p {
+      color: var(--arcana-text-light);
+      font-size: 0.95rem;
+    }
+
+    .settings-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* ===== PANEL CARDS ===== */
+    .panel-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--arcana-border);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 24px;
+      border-bottom: 1px solid var(--arcana-border);
+      background: var(--arcana-warm);
+    }
+
+    .panel-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--arcana-cream);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--arcana-brown);
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .panel-icon.security {
+      background: rgba(192, 57, 43, 0.08);
+      color: var(--arcana-error);
+    }
+
+    .panel-header h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--arcana-text);
+      margin-bottom: 4px;
+    }
+
+    .panel-header p {
+      font-size: 0.8rem;
+      color: var(--arcana-text-light);
+    }
+
+    /* ===== FORM SECTIONS ===== */
+    .form-section {
+      padding: 24px;
+      border-bottom: 1px solid var(--arcana-border);
+    }
+
+    .form-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .form-section h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--arcana-text);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-section h3 i {
+      color: var(--arcana-brown);
+      font-size: 0.85rem;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .form-grid.two-col {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .form-grid.three-col {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--arcana-text);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-wrap > i:first-child {
+      position: absolute;
+      left: 14px;
+      color: var(--arcana-text-light);
+      font-size: 0.85rem;
+      pointer-events: none;
+    }
+
+    .input-wrap input {
+      width: 100%;
+      padding: 12px 14px 12px 42px;
+      border: 1.5px solid var(--arcana-border);
+      border-radius: var(--radius-sm);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      color: var(--arcana-text);
+      transition: var(--transition);
+      background: var(--arcana-warm);
+    }
+
+    .input-wrap input:focus {
+      outline: none;
+      border-color: var(--arcana-brown);
+      box-shadow: 0 0 0 3px rgba(89, 73, 59, 0.08);
+      background: #fff;
+    }
+
+    .input-wrap input::placeholder {
+      color: #b8afa6;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      color: var(--arcana-text-light);
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+
+    .toggle-password:hover {
+      color: var(--arcana-brown);
+    }
+
+    .form-actions {
+      padding: 20px 24px;
+      background: var(--arcana-warm);
+      border-top: 1px solid var(--arcana-border);
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 14px 24px;
+      background: var(--arcana-brown);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: var(--transition);
+    }
+
+    .btn-primary:hover {
+      background: var(--arcana-brown-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .settings-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .settings-main {
+        margin-top: 80px;
+        padding: 0 16px;
+      }
+      .settings-header h1 {
+        font-size: 1.4rem;
+      }
+      .form-grid.two-col, .form-grid.three-col {
+        grid-template-columns: 1fr;
+      }
+      .panel-header {
+        padding: 20px;
+      }
+      .form-section, .form-actions {
+        padding: 20px;
+      }
+    }
+  </style>
+
+  <div id="notification-container"></div>
+  <div id="arcana-modal-overlay" class="hidden">
+    <div class="arcana-modal">
+      <span class="close">&times;</span>
+      <p id="arcana-modal-text"></p>
+    </div>
+  </div>
 </body>
 </html>

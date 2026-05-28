@@ -4,121 +4,177 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="logo.png" type="image/x-icon">
-    <title>Returns & Exchange Policy - Arcana</title>
+    <title>Returns & Exchanges — Arcana</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <base target="_blank">
 <base target="_blank">
 </head>
 <body class="returns-exchanges-page">
 
+    <!-- ===== NAVBAR ===== -->
     <div class="container">
-    <div class="navbar">
-        <div class="logo">
-            <a href="index.html"><img src="logo.png" alt="Logo" width="125px"></a>
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="logo.png" alt="Logo" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="account.html">Account</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart Icon" class="cart-icon"></a>
+            <img src="menu.png" width="30px" height="30px" alt="Menu Icon" class="menu-icon" onclick="menuToggle()">
         </div>
-        <nav>
-            <ul id="MenuItems">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="product.html">Products</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="account.html">Account</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-            </ul>
-        </nav>
-        <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart Icon" class="cart-icon"></a>
-        <img src="menu.png" width="30px" height="30px" alt="Menu Icon" class="menu-icon" onclick="menuToggle()">
     </div>
-    </div>
-<br> <br> <br>
-    <div class="section-p1">
-        <header>
+
+    <!-- ===== HERO ===== -->
+    <section class="returns-hero">
+        <div class="returns-hero-content">
             <h1>Returns & Exchange Policy</h1>
-        </header>
-        <section>
-            <h2>Return Policy</h2>
-            <p>At Arcana, we want you to be completely satisfied with your purchase. If you are not satisfied with your order, you may return it within 30 days of receipt for a full refund or exchange.</p>
+            <p>We want you to love every piece. If something isn't right, we're here to make it right.</p>
+        </div>
+    </section>
 
-            <h2>Exchange Policy</h2>
-            <p>If you wish to exchange an item, please contact our customer support team within 30 days of receiving your order. We will guide you through the exchange process.</p>
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="returns-main">
+        <div class="returns-layout">
+            <!-- Left: Policy Content -->
+            <div class="policy-content">
+                <div class="policy-card">
+                    <div class="policy-item">
+                        <div class="policy-icon"><i class="fa-solid fa-rotate-left"></i></div>
+                        <div class="policy-text">
+                            <h2>Return Policy</h2>
+                            <p>At Arcana, we want you to be completely satisfied with your purchase. If you are not satisfied with your order, you may return it within <strong>30 days</strong> of receipt for a full refund or exchange.</p>
+                        </div>
+                    </div>
 
-            <h2>Conditions for Returns and Exchanges</h2>
-            <p>To be eligible for a return or exchange, the item must be unused, in its original packaging, and accompanied by a receipt or proof of purchase.</p>
+                    <div class="policy-item">
+                        <div class="policy-icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                        <div class="policy-text">
+                            <h2>Exchange Policy</h2>
+                            <p>If you wish to exchange an item, please contact our customer support team within 30 days of receiving your order. We will guide you through the exchange process.</p>
+                        </div>
+                    </div>
 
-            <h2>Non-Returnable Items</h2>
-            <p>Certain items are non-returnable, including but not limited to:</p>
-            <ul>
-                <li>Personalized items</li>
-                <li>Items marked as final sale</li>
-            </ul>
+                    <div class="policy-item">
+                        <div class="policy-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                        <div class="policy-text">
+                            <h2>Conditions for Returns and Exchanges</h2>
+                            <p>To be eligible for a return or exchange, the item must be unused, in its original packaging, and accompanied by a receipt or proof of purchase.</p>
+                        </div>
+                    </div>
 
-            <h2>Shipping Costs</h2>
-            <p>Customers are responsible for return shipping costs unless the return is due to an error on our part (e.g., wrong item sent).</p>
+                    <div class="policy-item">
+                        <div class="policy-icon"><i class="fa-solid fa-ban"></i></div>
+                        <div class="policy-text">
+                            <h2>Non-Returnable Items</h2>
+                            <p>Certain items are non-returnable, including but not limited to:</p>
+                            <ul>
+                                <li>Personalized items</li>
+                                <li>Items marked as final sale</li>
+                            </ul>
+                        </div>
+                    </div>
 
-            <h2>Refund Process</h2>
-            <p>Once we receive your returned item, we will inspect it and notify you of the approval or rejection of your refund. If approved, your refund will be processed within 10-15 business days.</p>
-            <form id="return-form">
-  <label for="order-id">Order ID:</label>
-  <input type="text" id="order-id" required><br>
+                    <div class="policy-item">
+                        <div class="policy-icon"><i class="fa-solid fa-truck"></i></div>
+                        <div class="policy-text">
+                            <h2>Shipping Costs</h2>
+                            <p>Customers are responsible for return shipping costs unless the return is due to an error on our part (e.g., wrong item sent).</p>
+                        </div>
+                    </div>
 
-  <label for="type">Type:</label>
-  <select id="type" required>
-    <option value="" disabled selected>Select Type</option>
-    <option value="Return">Return</option>
-    <option value="Exchange">Exchange</option>
-  </select><br>
+                    <div class="policy-item">
+                        <div class="policy-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+                        <div class="policy-text">
+                            <h2>Refund Process</h2>
+                            <p>Once we receive your returned item, we will inspect it and notify you of the approval or rejection of your refund. If approved, your refund will be processed within <strong>10-15 business days</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Right: Return Request Form -->
+            <div class="request-panel">
+                <div class="request-card">
+                    <div class="request-header">
+                        <div class="request-icon"><i class="fa-solid fa-file-circle-question"></i></div>
+                        <div>
+                            <h2>Submit a Request</h2>
+                            <p>Need to return or exchange an item? Fill out the form below.</p>
+                        </div>
+                    </div>
+                    <form id="return-form">
+                        <div class="form-group">
+                            <label for="order-id">Order ID</label>
+                            <div class="input-wrap">
+                                <i class="fa-solid fa-hashtag"></i>
+                                <input type="text" id="order-id" placeholder="e.g. ARC123456" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Request Type</label>
+                            <div class="select-wrap">
+                                <i class="fa-solid fa-list"></i>
+                                <select id="type" required>
+                                    <option value="" disabled selected>Select Type</option>
+                                    <option value="Return">Return</option>
+                                    <option value="Exchange">Exchange</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reason">Reason</label>
+                            <div class="textarea-wrap">
+                                <i class="fa-solid fa-message"></i>
+                                <textarea id="reason" rows="4" placeholder="Please describe the reason for your request..." required></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <span>Submit Request</span>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                        <div id="return-message"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
 
-  <label for="reason">Reason:</label><br>
-  <textarea id="reason" required></textarea><br>
-
-  <button type="submit">Submit Request</button>
-  <div id="return-message" style="margin-top:15px; font-weight:500;"></div>
-</form>
-
-        </section>
-    </div>
-   <br>   <br>    <br>     <br>
-    <!------ footer section ------>
-<footer class="footer">
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
         <div class="footer-container">
-
-            <!-- TIER 1: Brand + Newsletter + Social -->
             <div class="footer-top">
                 <div class="footer-brand">
                     <img src="logo.png" alt="Arcana Logo">
                     <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
                 </div>
-
                 <div class="footer-newsletter">
                     <p>Be the first to know about new drops and exclusive offers.</p>
-                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Thanks for subscribing!', 'success');">
                         <input type="email" placeholder="Email address" required>
                         <button type="submit">Join</button>
                     </form>
                 </div>
-
                 <div class="footer-social">
                     <span class="footer-social-label">Follow Us</span>
                     <div class="social-cluster">
-                        <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram">
-                            <img src="instagram.png" alt="Instagram">
-                        </a>
-                        <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok">
-                            <img src="tik-tok.png" alt="TikTok">
-                        </a>
-                        <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest">
-                            <img src="pinterest-logo.png" alt="Pinterest">
-                        </a>
-                        <a href="https://x.com/arcanashopng1" aria-label="X">
-                            <img src="twitter.png" alt="X">
-                        </a>
+                        <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+                        <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok"><img src="tik-tok.png" alt="TikTok"></a>
+                        <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest"><img src="pinterest-logo.png" alt="Pinterest"></a>
+                        <a href="https://x.com/arcanashopng1" aria-label="X"><img src="twitter.png" alt="X"></a>
                     </div>
                 </div>
             </div>
-
-            <!-- TIER 2: Link Columns -->
             <div class="footer-links">
                 <div class="footer-col contact-col">
                     <h4>Contact Us</h4>
@@ -128,23 +184,17 @@
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                                 <polyline points="22,6 12,13 2,6"/>
                             </svg>
-                            <div>
-                                <a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a>
-                            </div>
+                            <div><a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a></div>
                         </div>
                         <div class="contact-item">
                             <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10"/>
                                 <polyline points="12,6 12,12 16,14"/>
                             </svg>
-                            <div>
-                                <span>Mon – Fri</span>
-                                <p class="hours">9:00 AM – 5:00 PM</p>
-                            </div>
+                            <div><span>Mon – Fri</span><p class="hours">9:00 AM – 5:00 PM</p></div>
                         </div>
                     </div>
                 </div>
-
                 <div class="footer-col">
                     <h4>Help</h4>
                     <ul>
@@ -156,7 +206,6 @@
                         <li><a href="order_status.html">Order Status</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-col">
                     <h4>My Account</h4>
                     <ul>
@@ -176,7 +225,6 @@
                         </li>
                     </ul>
                 </div>
-
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
@@ -188,8 +236,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- TIER 3: Copyright Bar -->
         <div class="footer-bottom">
             <div class="footer-bottom-inner">
                 <p>© <span id="year"></span> Arcana — All rights reserved.</p>
@@ -200,145 +246,402 @@
             </div>
         </div>
     </footer>
+
     <script src="other-script.js" defer></script>
-    
-  <script>
-document.getElementById("return-form").addEventListener("submit", async function (e) {
-  e.preventDefault();
+    <script src="script.js" defer></script>
 
-  const orderId = document.getElementById("order-id").value.trim();
-  const reason = document.getElementById("reason").value.trim();
-  const type = document.getElementById("type").value;
-  const messageBox = document.getElementById("return-message");
+    <!-- ===== RETURN FORM LOGIC (PRESERVED) ===== -->
+    <script>
+        document.getElementById("return-form").addEventListener("submit", async function (e) {
+            e.preventDefault();
 
-  messageBox.innerHTML = "Submitting your request...";
+            const orderId = document.getElementById("order-id").value.trim();
+            const reason = document.getElementById("reason").value.trim();
+            const type = document.getElementById("type").value;
+            const messageBox = document.getElementById("return-message");
+            const btn = this.querySelector('.btn-submit');
 
-  try {
-    const res = await fetch("https://arcana-backend-z46k.onrender.com/api/returns/return-request", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ orderId, reason, type })
-    });
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Submitting...';
+            messageBox.innerHTML = "Submitting your request...";
+            messageBox.style.color = "var(--arcana-text-light)";
 
-    const data = await res.json();
+            try {
+                const res = await fetch("https://arcana-backend-z46k.onrender.com/api/returns/return-request", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ orderId, reason, type })
+                });
 
-    if (!res.ok) {
-      throw new Error(data.message || "Request failed");
-    }
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.message || "Request failed");
 
-    messageBox.style.color = "green";
-    messageBox.innerHTML = `✅ ${data.message}`;
-    document.getElementById("return-form").reset();
-  } catch (err) {
-    messageBox.style.color = "red";
-    messageBox.innerHTML = `❌ ${err.message}`;
-  }
-});
-</script>
+                messageBox.style.color = "var(--arcana-success)";
+                messageBox.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${data.message}`;
+                showToast("Request submitted successfully!", 'success');
+                document.getElementById("return-form").reset();
+            } catch (err) {
+                messageBox.style.color = "var(--arcana-error)";
+                messageBox.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> ${err.message}`;
+                showToast(err.message, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span>Submit Request</span><i class="fa-solid fa-paper-plane"></i>';
+            }
+        });
 
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+    <!-- ===== MODERN RETURNS STYLES ===== -->
     <style>
-/* Returns & Exchanges Page - Scoped to NOT affect footer */
-.returns-exchanges-page {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-  line-height: 1.6;
-}
+        :root {
+            --arcana-brown: #59493b;
+            --arcana-brown-light: #8B6A4E;
+            --arcana-brown-dark: #3d3026;
+            --arcana-cream: #f5f0eb;
+            --arcana-warm: #faf8f5;
+            --arcana-border: #e8e0d8;
+            --arcana-text: #2c241e;
+            --arcana-text-light: #6b5d52;
+            --arcana-error: #c0392b;
+            --arcana-success: #27ae60;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 3px rgba(89, 73, 59, 0.08);
+            --shadow-md: 0 4px 20px rgba(89, 73, 59, 0.12);
+            --shadow-lg: 0 8px 40px rgba(89, 73, 59, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-.returns-exchanges-page .container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px 0;
-}
+        .returns-exchanges-page {
+            background: var(--arcana-warm);
+        }
 
-.returns-exchanges-page header h1 {
-  font-size: 2rem;
-  margin-top: 40px;
-  margin-bottom: 10px;
-  color: #000;
-  text-align: center;
-}
+        /* ===== HERO ===== */
+        .returns-hero {
+            background: linear-gradient(135deg, var(--arcana-brown) 0%, var(--arcana-brown-dark) 100%);
+            padding: 80px 24px 60px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
 
-/* Return Form - Scoped specifically to #return-form */
-.returns-exchanges-page #return-form {
-  background-color: #fff;
-  padding: 25px;
-  border-radius: 10px;
-  margin: 20px auto;
-  max-width: 600px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
+        .returns-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+        }
 
-.returns-exchanges-page #return-form select,
-.returns-exchanges-page #return-form input,
-.returns-exchanges-page #return-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0 20px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-family: 'Poppins', sans-serif;
-}
+        .returns-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-.returns-exchanges-page #return-form button {
-  padding: 12px 20px;
-  border: none;
-  background-color: #59493b;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 6px;
-  width: 100%;
-  transition: background-color 0.3s ease;
-}
+        .returns-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
 
-.returns-exchanges-page #return-form label {
-  font-weight: bold;
-  margin-bottom: 5px;
-  display: block;
-  color: #000;
-}
+        .returns-hero p {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.6;
+            color: #fff;
+        }
 
-.returns-exchanges-page #return-form button:hover {
-  background-color: #8B6A4E;
-}
+        /* ===== MAIN ===== */
+        .returns-main {
+            max-width: 1200px;
+            margin: -30px auto 60px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 2;
+        }
 
-/* Section content */
-.returns-exchanges-page .section-p1 section {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  font-size: 1rem;
-  color: #000;
-}
+        .returns-layout {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 32px;
+            align-items: start;
+        }
 
-.returns-exchanges-page .section-p1 section h2 {
-  font-size: 1.5rem;
-  margin-top: 30px;
-  color: #000;
-}
+        /* ===== POLICY CARDS ===== */
+        .policy-card {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
-.returns-exchanges-page .section-p1 section p {
-  margin-top: 10px;
-  color: #000;
-}
+        .policy-item {
+            background: #fff;
+            border-radius: var(--radius-md);
+            padding: 28px;
+            border: 1px solid var(--arcana-border);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            transition: var(--transition);
+        }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .returns-exchanges-page #return-form {
-    padding: 20px;
-  }
-}
+        .policy-item:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .policy-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--arcana-cream);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--arcana-brown);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .policy-text h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--arcana-text);
+            margin-bottom: 10px;
+        }
+
+        .policy-text p {
+            font-size: 0.9rem;
+            color: var(--arcana-text-light);
+            line-height: 1.7;
+        }
+
+        .policy-text p strong {
+            color: var(--arcana-brown);
+            font-weight: 600;
+        }
+
+        .policy-text ul {
+            margin-top: 10px;
+            padding-left: 20px;
+            color: var(--arcana-text-light);
+        }
+
+        .policy-text ul li {
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        /* ===== REQUEST PANEL ===== */
+        .request-card {
+            background: #fff;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--arcana-border);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            position: sticky;
+            top: 100px;
+        }
+
+        .request-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 24px;
+            border-bottom: 1px solid var(--arcana-border);
+            background: var(--arcana-warm);
+        }
+
+        .request-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--arcana-cream);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--arcana-brown);
+            font-size: 1.3rem;
+        }
+
+        .request-header h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--arcana-text);
+            margin-bottom: 4px;
+        }
+
+        .request-header p {
+            font-size: 0.8rem;
+            color: var(--arcana-text-light);
+        }
+
+        #return-form {
+            padding: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--arcana-text);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .input-wrap, .select-wrap, .textarea-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrap > i:first-child, .select-wrap > i:first-child, .textarea-wrap > i:first-child {
+            position: absolute;
+            left: 14px;
+            color: var(--arcana-text-light);
+            font-size: 0.85rem;
+            pointer-events: none;
+        }
+
+        .input-wrap input, .select-wrap select, .textarea-wrap textarea {
+            width: 100%;
+            padding: 12px 14px 12px 42px;
+            border: 1.5px solid var(--arcana-border);
+            border-radius: var(--radius-sm);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            color: var(--arcana-text);
+            transition: var(--transition);
+            background: var(--arcana-warm);
+        }
+
+        .textarea-wrap textarea {
+            padding: 12px 14px 12px 42px;
+            resize: vertical;
+        }
+
+        .textarea-wrap > i:first-child {
+            top: 14px;
+        }
+
+        .input-wrap input:focus, .select-wrap select:focus, .textarea-wrap textarea:focus {
+            outline: none;
+            border-color: var(--arcana-brown);
+            box-shadow: 0 0 0 3px rgba(89, 73, 59, 0.08);
+            background: #fff;
+        }
+
+        .select-wrap select {
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+
+        .select-wrap::after {
+            content: '\f107';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 14px;
+            color: var(--arcana-text-light);
+            font-size: 0.85rem;
+            pointer-events: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px 24px;
+            background: var(--arcana-brown);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .btn-submit:hover {
+            background: var(--arcana-brown-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #return-message {
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .returns-layout {
+                grid-template-columns: 1fr;
+            }
+            .request-card {
+                position: static;
+                max-width: 600px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .returns-hero {
+                padding: 60px 20px 40px;
+            }
+            .returns-hero h1 {
+                font-size: 1.8rem;
+            }
+            .returns-main {
+                margin-top: -20px;
+                padding: 0 16px;
+            }
+            .policy-item {
+                padding: 20px;
+                flex-direction: column;
+                gap: 12px;
+            }
+            .request-header, #return-form {
+                padding: 20px;
+            }
+        }
     </style>
+
     <div id="notification-container"></div>
-
-<div id="arcana-modal-overlay" class="hidden">
-  <div class="arcana-modal">
-    <span class="close">&times;</span>
-    <p id="arcana-modal-text"></p>
-  </div>
-</div>
-
+    <div id="arcana-modal-overlay" class="hidden">
+        <div class="arcana-modal">
+            <span class="close">&times;</span>
+            <p id="arcana-modal-text"></p>
+        </div>
+    </div>
 </body>
 </html>

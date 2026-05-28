@@ -4,84 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="logo.png" type="image/x-icon">
-    <title>Track Your Order - Arcana</title>
+    <title>Track Your Order — Arcana</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <base target="_blank">
 <base target="_blank">
 </head>
 <body class="order-status-page">
+
+    <!-- ===== NAVBAR ===== -->
     <div class="container">
         <div class="navbar">
-        <div class="logo">
-            <a href="index.html"><img src="logo.png" alt="Logo" width="125px"></a>
+            <div class="logo">
+                <a href="index.html"><img src="logo.png" alt="Logo" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="account.html">Account</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart Icon" class="cart-icon"></a>
+            <img src="menu.png" width="30px" height="30px" alt="Menu Icon" class="menu-icon" onclick="menuToggle()">
         </div>
-        <nav>
-            <ul id="MenuItems">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="product.html">Products</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="account.html">Account</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-            </ul>
-        </nav>
-        <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart Icon" class="cart-icon"></a>
-        <img src="menu.png" width="30px" height="30px" alt="Menu Icon" class="menu-icon" onclick="menuToggle()">
     </div>
-    <header><h1>Track Your Order</h1></header>
-    <section>
-    <form>
-      <label>Order ID: <input type="text" required></label>
-      <button type="submit">Track</button>
-    </form>
-    <div id="order-status"></div>
-    </section>
-    <div class="contact-info">
-        <h2>Need Help?</h2>
-        <p>If you have any questions or need assistance, feel free to reach out to us.</p>
-        <p>Email: <a href="mailto:arcanashopng@gmail.com">arcanashopng@gmail.com</a></p>
-    </div>
-    </div>
-    <!------ footer section ------>
-<footer class="footer">
-        <div class="footer-container">
 
-            <!-- TIER 1: Brand + Newsletter + Social -->
+    <!-- ===== HERO ===== -->
+    <section class="status-hero">
+        <div class="status-hero-content">
+            <h1><i class="fa-solid fa-truck-fast"></i> Track Your Order</h1>
+            <p>Enter your Order ID below to see the current status and estimated delivery.</p>
+        </div>
+    </section>
+
+    <!-- ===== MAIN ===== -->
+    <main class="status-main">
+        <div class="status-layout">
+            <!-- Search Panel -->
+            <div class="search-panel">
+                <div class="search-card">
+                    <div class="search-header">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <h2>Find Your Order</h2>
+                    </div>
+                    <form id="trackForm">
+                        <div class="form-group">
+                            <label for="order-input">Order ID</label>
+                            <div class="input-wrap">
+                                <i class="fa-solid fa-hashtag"></i>
+                                <input type="text" id="order-input" placeholder="e.g. ARC123456789" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-track">
+                            <span>Track Order</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="help-card">
+                    <h3><i class="fa-solid fa-circle-question"></i> Need Help?</h3>
+                    <p>If you have any questions or need assistance, feel free to reach out to us.</p>
+                    <a href="mailto:arcanashopng@gmail.com" class="help-link">
+                        <i class="fa-solid fa-envelope"></i> arcanashopng@gmail.com
+                    </a>
+                </div>
+            </div>
+
+            <!-- Results Panel -->
+            <div class="results-panel">
+                <div id="order-status">
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        <h3>Enter an Order ID</h3>
+                        <p>Use the form to track your order status and delivery details.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-container">
             <div class="footer-top">
                 <div class="footer-brand">
                     <img src="logo.png" alt="Arcana Logo">
                     <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
                 </div>
-
                 <div class="footer-newsletter">
                     <p>Be the first to know about new drops and exclusive offers.</p>
-                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Thanks for subscribing!', 'success');">
                         <input type="email" placeholder="Email address" required>
                         <button type="submit">Join</button>
                     </form>
                 </div>
-
                 <div class="footer-social">
                     <span class="footer-social-label">Follow Us</span>
                     <div class="social-cluster">
-                        <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram">
-                            <img src="instagram.png" alt="Instagram">
-                        </a>
-                        <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok">
-                            <img src="tik-tok.png" alt="TikTok">
-                        </a>
-                        <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest">
-                            <img src="pinterest-logo.png" alt="Pinterest">
-                        </a>
-                        <a href="https://x.com/arcanashopng1" aria-label="X">
-                            <img src="twitter.png" alt="X">
-                        </a>
+                        <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+                        <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok"><img src="tik-tok.png" alt="TikTok"></a>
+                        <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest"><img src="pinterest-logo.png" alt="Pinterest"></a>
+                        <a href="https://x.com/arcanashopng1" aria-label="X"><img src="twitter.png" alt="X"></a>
                     </div>
                 </div>
             </div>
-
-            <!-- TIER 2: Link Columns -->
             <div class="footer-links">
                 <div class="footer-col contact-col">
                     <h4>Contact Us</h4>
@@ -91,23 +125,17 @@
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                                 <polyline points="22,6 12,13 2,6"/>
                             </svg>
-                            <div>
-                                <a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a>
-                            </div>
+                            <div><a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a></div>
                         </div>
                         <div class="contact-item">
                             <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10"/>
                                 <polyline points="12,6 12,12 16,14"/>
                             </svg>
-                            <div>
-                                <span>Mon – Fri</span>
-                                <p class="hours">9:00 AM – 5:00 PM</p>
-                            </div>
+                            <div><span>Mon – Fri</span><p class="hours">9:00 AM – 5:00 PM</p></div>
                         </div>
                     </div>
                 </div>
-
                 <div class="footer-col">
                     <h4>Help</h4>
                     <ul>
@@ -119,7 +147,6 @@
                         <li><a href="order_status.html">Order Status</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-col">
                     <h4>My Account</h4>
                     <ul>
@@ -139,7 +166,6 @@
                         </li>
                     </ul>
                 </div>
-
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
@@ -151,8 +177,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- TIER 3: Copyright Bar -->
         <div class="footer-bottom">
             <div class="footer-bottom-inner">
                 <p>© <span id="year"></span> Arcana — All rights reserved.</p>
@@ -163,217 +187,777 @@
             </div>
         </div>
     </footer>
+
     <script src="other-script.js" defer></script>
+    <script src="script.js" defer></script>
 
+    <!-- ===== ORDER STATUS LOGIC (PRESERVED) ===== -->
+    <script>
+        async function fetchOrder(orderId, statusDiv, input) {
+            statusDiv.innerHTML = `
+                <div class="loading-state">
+                    <i class="fa-solid fa-circle-notch fa-spin"></i>
+                    <p>Loading order details...</p>
+                </div>
+            `;
 
-<script>
-async function fetchOrder(orderId, statusDiv, input) {
-  statusDiv.innerHTML = "<p>Loading...</p>";
+            try {
+                const res = await fetch(`https://arcana-backend-z46k.onrender.com/api/orders/${orderId}`);
 
-  try {
-    const res = await fetch(`https://arcana-backend-z46k.onrender.com/api/orders/${orderId}`);
+                if (res.status === 404) {
+                    throw new Error("not-found");
+                }
 
-    if (res.status === 404) {
-      throw new Error("not-found");
-    }
+                const order = await res.json();
 
-    const order = await res.json();
+                if (order.status !== "Confirmed") {
+                    throw new Error("not-confirmed");
+                }
 
-    if (order.status !== "Confirmed") {
-      throw new Error("not-confirmed");
-    }
+                // Determine delivery ETA based on country
+                const country = order.shippingAddress.country?.toLowerCase() || "";
+                const isNigerian = country.includes("nigeria");
+                const eta = isNigerian
+                    ? "📦 Estimated delivery: 10–15 business days"
+                    : "📦 Estimated delivery: 2–3 weeks";
 
-    // Determine delivery ETA based on country
-    const country = order.shippingAddress.country?.toLowerCase() || "";
-    const isNigerian = country.includes("nigeria");
-    const eta = isNigerian
-      ? "📦 Estimated delivery: 10–15 business days"
-      : "📦 Estimated delivery: 2–3 weeks";
+                const statusClass = order.deliveryStage?.toLowerCase().replace(/\s+/g, '-') || 'reviewing';
 
-    let productsHTML = order.products.map(p => `
-      <div class="product">
-        <img src="${p.image}" alt="${p.title}" style="width:100px;height:auto;margin-right:10px">
-        <div>
-          <p><strong>${p.title}</strong> (${p.size})</p>
-          <p>Qty: ${p.quantity} — $${p.price}</p>
+                let productsHTML = order.products.map(p => `
+                    <div class="product-item">
+                        <img src="${p.image}" alt="${p.title}" loading="lazy">
+                        <div class="product-info">
+                            <p class="product-title">${p.title}</p>
+                            <p class="product-meta">${p.size} &bull; Qty: ${p.quantity} &bull; $${p.price}</p>
+                        </div>
+                    </div>
+                `).join("");
+
+                statusDiv.innerHTML = `
+                    <div class="order-result-card">
+                        <div class="order-result-header">
+                            <div class="order-meta">
+                                <span class="order-number">#${order.orderNumber}</span>
+                                <span class="order-status-badge ${statusClass}">${order.status}</span>
+                            </div>
+                            <span class="order-date">${new Date(order.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                        </div>
+
+                        <div class="order-progress">
+                            <div class="progress-step active">
+                                <div class="step-dot"><i class="fa-solid fa-check"></i></div>
+                                <span>Confirmed</span>
+                            </div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step ${order.deliveryStage ? 'active' : ''}">
+                                <div class="step-dot"><i class="fa-solid fa-box"></i></div>
+                                <span>${order.deliveryStage || 'Processing'}</span>
+                            </div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step">
+                                <div class="step-dot"><i class="fa-solid fa-truck"></i></div>
+                                <span>Shipped</span>
+                            </div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step">
+                                <div class="step-dot"><i class="fa-solid fa-house"></i></div>
+                                <span>Delivered</span>
+                            </div>
+                        </div>
+
+                        <div class="order-details-grid">
+                            <div class="detail-block">
+                                <h4><i class="fa-solid fa-location-dot"></i> Shipping Address</h4>
+                                <p>${order.shippingAddress.street}</p>
+                                <p>${order.shippingAddress.city}, ${order.shippingAddress.state} ${order.shippingAddress.zip}</p>
+                                <p>${order.shippingAddress.country}</p>
+                            </div>
+                            <div class="detail-block">
+                                <h4><i class="fa-solid fa-phone"></i> Contact</h4>
+                                <p>${order.phoneNumber}</p>
+                            </div>
+                        </div>
+
+                        <div class="order-products">
+                            <h4><i class="fa-solid fa-bag-shopping"></i> Products</h4>
+                            ${productsHTML}
+                        </div>
+
+                        <div class="order-totals">
+                            <div class="total-row">
+                                <span>Product Total</span>
+                                <span>$${order.products.reduce((sum, p) => sum + p.price * p.quantity, 0).toFixed(2)}</span>
+                            </div>
+                            <div class="total-row">
+                                <span>Shipping</span>
+                                <span>$${(order.shippingFee || 0).toFixed(2)}</span>
+                            </div>
+                            <div class="total-row grand">
+                                <span>Total Paid</span>
+                                <span>$${order.totalPrice.toFixed(2)}</span>
+                            </div>
+                        </div>
+
+                        <div class="order-eta">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>${eta}</span>
+                        </div>
+                    </div>
+                `;
+
+                if (input) input.value = "";
+            } catch (err) {
+                let message = "Something went wrong. Please try again.";
+                let icon = "fa-triangle-exclamation";
+                if (err.message === "not-found") {
+                    message = "Order not found. Please check your Order ID.";
+                    icon = "fa-magnifying-glass";
+                } else if (err.message === "not-confirmed") {
+                    message = "This order is not confirmed yet. Please complete payment before tracking.";
+                    icon = "fa-circle-exclamation";
+                }
+                statusDiv.innerHTML = `
+                    <div class="error-state">
+                        <i class="fa-solid ${icon}"></i>
+                        <p>${message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Handle manual form submission
+        document.getElementById("trackForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const input = document.getElementById("order-input");
+            const orderId = input.value.trim();
+            const statusDiv = document.getElementById("order-status");
+            if (orderId) {
+                fetchOrder(orderId, statusDiv, input);
+            }
+        });
+
+        // Auto-load if orderId is in URL
+        window.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get("orderId");
+            if (orderId) {
+                const input = document.getElementById("order-input");
+                input.value = orderId;
+                const statusDiv = document.getElementById("order-status");
+                fetchOrder(orderId, statusDiv, input);
+            }
+        });
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+    <!-- ===== MODERN STATUS STYLES ===== -->
+    <style>
+        :root {
+            --arcana-brown: #59493b;
+            --arcana-brown-light: #8B6A4E;
+            --arcana-brown-dark: #3d3026;
+            --arcana-cream: #f5f0eb;
+            --arcana-warm: #faf8f5;
+            --arcana-border: #e8e0d8;
+            --arcana-text: #2c241e;
+            --arcana-text-light: #6b5d52;
+            --arcana-error: #c0392b;
+            --arcana-success: #27ae60;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 3px rgba(89, 73, 59, 0.08);
+            --shadow-md: 0 4px 20px rgba(89, 73, 59, 0.12);
+            --shadow-lg: 0 8px 40px rgba(89, 73, 59, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .order-status-page {
+            background: var(--arcana-warm);
+        }
+
+        /* ===== HERO ===== */
+        .status-hero {
+            background: linear-gradient(135deg, var(--arcana-brown) 0%, var(--arcana-brown-dark) 100%);
+            padding: 80px 24px 60px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .status-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+        }
+
+        .status-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .status-hero h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .status-hero p {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.6;
+            color: #fff;
+        }
+
+        /* ===== MAIN ===== */
+        .status-main {
+            max-width: 1200px;
+            margin: -30px auto 60px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .status-layout {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        /* ===== SEARCH PANEL ===== */
+        .search-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .search-card {
+            background: #fff;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--arcana-border);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .search-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 24px;
+            border-bottom: 1px solid var(--arcana-border);
+            background: var(--arcana-warm);
+        }
+
+        .search-header i {
+            font-size: 1.3rem;
+            color: var(--arcana-brown);
+        }
+
+        .search-header h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--arcana-text);
+        }
+
+        #trackForm {
+            padding: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--arcana-text);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrap > i:first-child {
+            position: absolute;
+            left: 14px;
+            color: var(--arcana-text-light);
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        .input-wrap input {
+            width: 100%;
+            padding: 12px 14px 12px 42px;
+            border: 1.5px solid var(--arcana-border);
+            border-radius: var(--radius-sm);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            color: var(--arcana-text);
+            transition: var(--transition);
+            background: var(--arcana-warm);
+        }
+
+        .input-wrap input:focus {
+            outline: none;
+            border-color: var(--arcana-brown);
+            box-shadow: 0 0 0 3px rgba(89, 73, 59, 0.08);
+            background: #fff;
+        }
+
+        .btn-track {
+            width: 100%;
+            padding: 14px 24px;
+            background: var(--arcana-brown);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .btn-track:hover {
+            background: var(--arcana-brown-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .help-card {
+            background: #fff;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--arcana-border);
+            box-shadow: var(--shadow-sm);
+            padding: 24px;
+        }
+
+        .help-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--arcana-text);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .help-card h3 i {
+            color: var(--arcana-brown);
+        }
+
+        .help-card p {
+            font-size: 0.85rem;
+            color: var(--arcana-text-light);
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .help-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--arcana-brown);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .help-link:hover {
+            color: var(--arcana-brown-light);
+        }
+
+        /* ===== RESULTS ===== */
+        .results-panel {
+            min-width: 0;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            background: #fff;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--arcana-border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .empty-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--arcana-cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .empty-icon i {
+            font-size: 2rem;
+            color: var(--arcana-brown-light);
+        }
+
+        .empty-state h3 {
+            font-size: 1.2rem;
+            color: var(--arcana-text);
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            color: var(--arcana-text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Loading State */
+        .loading-state {
+            text-align: center;
+            padding: 60px 20px;
+            background: #fff;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--arcana-border);
+        }
+
+        .loading-state i {
+            font-size: 2rem;
+            color: var(--arcana-brown);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .loading-state p {
+            color: var(--arcana-text-light);
+        }
+
+        /* Error State */
+        .error-state {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(192, 57, 43, 0.05);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(192, 57, 43, 0.15);
+        }
+
+        .error-state i {
+            font-size: 2rem;
+            color: var(--arcana-error);
+            margin-bottom: 12px;
+        }
+
+        .error-state p {
+            color: var(--arcana-error);
+            font-weight: 500;
+        }
+
+        /* Order Result Card */
+        .order-result-card {
+            background: #fff;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--arcana-border);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .order-result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px;
+            border-bottom: 1px solid var(--arcana-border);
+            background: var(--arcana-warm);
+        }
+
+        .order-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .order-number {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--arcana-text);
+        }
+
+        .order-status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .order-date {
+            font-size: 0.85rem;
+            color: var(--arcana-text-light);
+        }
+
+        /* Progress Tracker */
+        .order-progress {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 32px 24px;
+            border-bottom: 1px solid var(--arcana-border);
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .step-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--arcana-cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--arcana-text-light);
+            font-size: 0.85rem;
+            border: 2px solid var(--arcana-border);
+            transition: var(--transition);
+        }
+
+        .progress-step.active .step-dot {
+            background: var(--arcana-brown);
+            color: #fff;
+            border-color: var(--arcana-brown);
+        }
+
+        .progress-step span {
+            font-size: 0.75rem;
+            color: var(--arcana-text-light);
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .progress-step.active span {
+            color: var(--arcana-brown);
+            font-weight: 600;
+        }
+
+        .progress-line {
+            width: 40px;
+            height: 2px;
+            background: var(--arcana-border);
+            margin: 0 4px;
+            margin-bottom: 24px;
+        }
+
+        /* Order Details */
+        .order-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            padding: 24px;
+            border-bottom: 1px solid var(--arcana-border);
+        }
+
+        .detail-block h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--arcana-text);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detail-block h4 i {
+            color: var(--arcana-brown);
+        }
+
+        .detail-block p {
+            font-size: 0.9rem;
+            color: var(--arcana-text-light);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Products */
+        .order-products {
+            padding: 24px;
+            border-bottom: 1px solid var(--arcana-border);
+        }
+
+        .order-products h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--arcana-text);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .order-products h4 i {
+            color: var(--arcana-brown);
+        }
+
+        .product-item {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            padding: 12px;
+            background: var(--arcana-warm);
+            border-radius: var(--radius-sm);
+            margin-bottom: 10px;
+            border: 1px solid var(--arcana-border);
+        }
+
+        .product-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            flex-shrink: 0;
+        }
+
+        .product-info p {
+            margin: 0;
+        }
+
+        .product-title {
+            font-weight: 600;
+            color: var(--arcana-text);
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .product-meta {
+            font-size: 0.8rem;
+            color: var(--arcana-text-light);
+        }
+
+        /* Totals */
+        .order-totals {
+            padding: 24px;
+            border-bottom: 1px solid var(--arcana-border);
+            background: var(--arcana-warm);
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 0.9rem;
+            color: var(--arcana-text-light);
+        }
+
+        .total-row.grand {
+            border-top: 2px solid var(--arcana-brown);
+            margin-top: 8px;
+            padding-top: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--arcana-text);
+        }
+
+        .total-row.grand span:last-child {
+            color: var(--arcana-brown);
+        }
+
+        /* ETA */
+        .order-eta {
+            padding: 20px 24px;
+            background: rgba(39, 174, 96, 0.06);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--arcana-success);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .order-eta i {
+            font-size: 1.1rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .status-layout {
+                grid-template-columns: 1fr;
+            }
+            .search-panel {
+                max-width: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .status-hero {
+                padding: 60px 20px 40px;
+            }
+            .status-hero h1 {
+                font-size: 1.6rem;
+            }
+            .status-main {
+                margin-top: -20px;
+                padding: 0 16px;
+            }
+            .order-progress {
+                padding: 20px 16px;
+            }
+            .progress-step span {
+                font-size: 0.65rem;
+            }
+            .order-details-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            .order-products, .order-totals, .order-eta {
+                padding: 20px;
+            }
+            .product-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            .product-item img {
+                width: 100%;
+                height: 160px;
+            }
+        }
+    </style>
+
+    <div id="notification-container"></div>
+    <div id="arcana-modal-overlay" class="hidden">
+        <div class="arcana-modal">
+            <span class="close">&times;</span>
+            <p id="arcana-modal-text"></p>
         </div>
-      </div>
-    `).join("");
-
-    statusDiv.innerHTML = `
-      <div class="order-summary">
-        <h4>Order ID: <span style="color:#59493b; text-align:left">${order.orderNumber}</span></h4>
-        <h4>Status: <span style="color:#59493b; text-align:left">${order.status}</span></h4>
-        <h4>Delivery Stage: <span style="color:#59493b; text-align:left">${order.deliveryStage || 'Reviewing'}</span></h4>
-        <h4>Order Date: <p style="color: #333">${new Date(order.createdAt).toLocaleDateString()}</p></h4>
-
-        <h4>Shipping Address</h4>
-        <p>${order.shippingAddress.street}, ${order.shippingAddress.city}, ${order.shippingAddress.state}, ${order.shippingAddress.country}</p>
-
-        <h4>Phone Number</h4>
-        <p>${order.phoneNumber}</p>
-
-        <h4>Product Total</h4>
-        <p>$${order.products.reduce((sum, p) => sum + p.price * p.quantity, 0).toFixed(2)}</p>
-
-        <h4>Shipping Fee</h4>
-        <p>$${(order.shippingFee || 0).toFixed(2)}</p>
-
-        <h4>Total Paid</h4>
-        <p><strong>$${order.totalPrice.toFixed(2)}</strong></p>
-
-        <h4>Products</h4>
-        <div>${productsHTML}</div>
-
-        <h4 style="margin-top:20px; color:green;">${eta}</h4>
-      </div>
-    `;
-
-    if (input) input.value = "";
-  } catch (err) {
-    let message = "Something went wrong. Please try again.";
-    if (err.message === "not-found") {
-      message = "❌ Order not found. Please check your Order ID.";
-    } else if (err.message === "not-confirmed") {
-      message = "⚠️ This order is not confirmed yet. Please complete payment before tracking.";
-    }
-    statusDiv.innerHTML = `<p style="color:red; font-weight:500">${message}</p>`;
-  }
-}
-
-// Handle manual form submission
-document.querySelector("form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const input = this.querySelector("input");
-  const orderId = input.value.trim();
-  const statusDiv = document.getElementById("order-status");
-  if (orderId) {
-    fetchOrder(orderId, statusDiv, input);
-  }
-});
-
-// Auto-load if orderId is in URL
-window.addEventListener("DOMContentLoaded", () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const orderId = urlParams.get("orderId");
-  if (orderId) {
-    const input = document.querySelector("form input");
-    input.value = orderId;
-    const statusDiv = document.getElementById("order-status");
-    fetchOrder(orderId, statusDiv, input);
-  }
-});
-</script>
-<style>
-  .order-summary { background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.1); max-width: 700px; margin: 20px auto; max-width: 600px; }
-  .order-summary h3, .order-summary h4 { color: #000; margin-top: 15px; }
-  .order-summary p { margin: 5px 0; }
-  .product { display: flex; align-items: center; margin: 10px 0; }
-</style>
-<style>
-/* Order Summary Styles */
-.order-summary { background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.1); max-width: 600px; margin: 20px auto; }
-.order-summary h3, .order-summary h4 { color: #000; margin-top: 15px; }
-.order-summary p { margin: 5px 0; }
-.product { display: flex; align-items: center; margin: 10px 0; }
-
-/* Page Content Styles - Scoped to NOT affect footer */
-.order-status-page {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-  line-height: 1.6;
-}
-
-.order-status-page .container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px 0;
-}
-
-.order-status-page header h1 {
-  font-size: 2rem;
-  margin-top: 40px;
-  margin-bottom: 10px;
-  color: #000;
-  text-align: center;
-}
-
-/* Order Tracking Form - Scoped specifically */
-.order-status-page section > form {
-  background-color: #fff;
-  padding: 25px;
-  border-radius: 10px;
-  margin: 20px auto;
-  width: 100%;
-  max-width: 600px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
-
-.order-status-page section > form input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0 20px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-family: 'Poppins', sans-serif;
-}
-
-.order-status-page section > form button {
-  padding: 12px 20px;
-  border: none;
-  background-color: #59493b;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 6px;
-  width: 100%;
-  transition: background-color 0.3s ease;
-}
-
-.order-status-page section > form button:hover {
-  background-color: #8B6A4E;
-}
-
-.order-status-page .contact-info {
-  text-align: center;
-  margin-top: 40px;
-}
-
-.order-status-page .contact-info h2 {
-  color: #000;
-  margin-bottom: 10px;
-}
-
-.order-status-page .contact-info a {
-  color: #000;
-  text-decoration: none;
-}
-.order-status-page .contact-info a:hover {
-  text-decoration: underline;
-}
-.order-status-page .contact-info p {
-  color: #000;
-  margin-bottom: 10px;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .order-status-page section > form {
-    padding: 20px;
-  }
-  .order-summary { padding: 20px; border-radius: 8px; }
-}
-</style>
-<div id="notification-container"></div>
-
-<div id="arcana-modal-overlay" class="hidden">
-  <div class="arcana-modal">
-    <span class="close">&times;</span>
-    <p id="arcana-modal-text"></p>
-  </div>
-</div>
-
+    </div>
 </body>
 </html>
