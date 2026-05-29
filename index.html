@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Arcana — Premium streetwear designed with intention. Shop limited drops, premium jerseys, sweatpants, and exclusive collections. Designed in Nigeria, worn worldwide.">
+    <meta property="og:title" content="Arcana — Designed With Intention">
+    <meta property="og:description" content="Premium streetwear designed with intention. Small-batch drops, premium materials, timeless designs.">
+    <meta property="og:image" content="https://www.shop-arcana.store/logo.png">
+    <meta property="og:url" content="https://www.shop-arcana.store">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="logo.png" type="image/x-icon">
     <title>Arcana — Designed With Intention</title>
     <link rel="stylesheet" href="style.css">
@@ -12,14 +19,42 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Arcana",
-        "url": "https://www.shop-arcana.store",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://shop-arcana.store/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
+        "@graph": [
+            {
+                "@type": "Organization",
+                "name": "Arcana",
+                "url": "https://www.shop-arcana.store",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://www.shop-arcana.store/logo.png",
+                    "width": 125,
+                    "height": "auto"
+                },
+                "sameAs": [
+                    "https://www.instagram.com/arcana.ng",
+                    "https://www.tiktok.com/@arcana.ng",
+                    "https://x.com/arcanashopng1"
+                ],
+                "description": "Premium streetwear designed with intention. Small-batch drops, premium materials, timeless designs."
+            },
+            {
+                "@type": "WebSite",
+                "name": "Arcana",
+                "url": "https://www.shop-arcana.store",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Arcana"
+                },
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": {
+                        "@type": "EntryPoint",
+                        "urlTemplate": "https://shop-arcana.store/search?q={search_term_string}"
+                    },
+                    "query-input": "required name=search_term_string"
+                }
+            }
+        ]
     }
     </script>
     
@@ -172,9 +207,15 @@
             color: #fff;
         }
         .featured-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            display: flex;
+            justify-content: center;
             gap: 24px;
+            flex-wrap: wrap;
+        }
+        .featured-card {
+            flex: 0 0 calc(25% - 18px);
+            max-width: 320px;
+            min-width: 260px;
         }
         .featured-card {
             position: relative;
@@ -685,7 +726,7 @@
         }
         @media (max-width: 900px) {
             .mission-pillars { grid-template-columns: 1fr; gap: 30px; }
-            .featured-grid { grid-template-columns: repeat(2, 1fr); }
+            .featured-card { flex: 0 0 calc(50% - 12px); max-width: 100%; }
             .editorial-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
             .editorial-item.tall { grid-row: span 1; height: 300px; }
             .testimonials-grid { grid-template-columns: 1fr; }
@@ -694,7 +735,7 @@
         }
         @media (max-width: 600px) {
             .mission-section { padding: 60px 0; }
-            .featured-grid { grid-template-columns: 1fr; }
+            .featured-card { flex: 1 1 100%; max-width: 400px; }
             .trust-grid { grid-template-columns: 1fr; gap: 30px; }
             .newsletter-strip .newsletter-form-large { flex-direction: column; }
             .newsletter-strip .newsletter-form-large button { width: 100%; }
@@ -957,6 +998,8 @@
 }
 </style>
 <base target="_blank">
+<base target="_blank">
+<base target="_blank">
 </head>
 <body>
 
@@ -1059,43 +1102,35 @@
         <div class="container">
             <div class="featured-header">
                 <div>
-                    <h2>Drop 00 — The Foundation</h2>
+                    <h2>No. 1 Star Collection — The Foundation</h2>
                     <p>Our debut collection, built from the ground up</p>
                 </div>
                 <a href="product.html" class="btn-outline">View All Products →</a>
             </div>
             <div class="featured-grid">
                 <div class="featured-card">
-                    <img src="arcana-drop00-jersey.png" alt="Arcana's Drop 00 Jersey">
+                    <img src="redsleeves.png" alt="Red Sleeves of Arcana's Star Collection">
                     <div class="card-overlay">
-                        <h3>Drop 00 Jersey</h3>
-                        <p>$12.00</p>
-                        <a href="arcana-drop00-jersey.html" class="card-btn">View Details →</a>
+                        <h3>Red Sleeves</h3>
+                        <p>$16.50</p>
+                        <a href="rs-star-collection.html" class="card-btn">View Details →</a>
                     </div>
                 </div>
                 <div class="featured-card">
-                    <img src="arcana-drop00-sweatpants.png" alt="Arcana's Drop 00 Sweatpants">
+                    <img src="blacksleeves.png" alt="Black Sleeves of Arcana's Star Collection">
                     <div class="card-overlay">
-                        <h3>Drop 00 Sweatpants</h3>
-                        <p>$12.00</p>
-                        <a href="arcana's-drop00-sweatpants.html" class="card-btn">View Details →</a>
+                        <h3>Black Sleeves</h3>
+                        <p>$16.50</p>
+                        <a href="bs-star-collection.html" class="card-btn">View Details →</a>
                     </div>
                 </div>
                 <div class="featured-card">
                     <span class="card-badge">Best Seller</span>
-                    <img src="arcana-drop00.png" alt="Arcana's Drop 00">
+                    <img src="fullblack.png" alt="Full Black of Arcana's Star Collection">
                     <div class="card-overlay">
-                        <h3>Drop 00 Set</h3>
-                        <p>$23.00</p>
-                        <a href="arcana's-drop00.html" class="card-btn">View Details →</a>
-                    </div>
-                </div>
-                <div class="featured-card">
-                    <img src="polo.png" alt="Arcana's Polo">
-                    <div class="card-overlay">
-                        <h3>Arcana Polo</h3>
+                        <h3>Full Black</h3>
                         <p>$16.50</p>
-                        <a href="polo.html" class="card-btn">View Details →</a>
+                        <a href="fb-star-collection.html" class="card-btn">View Details →</a>
                     </div>
                 </div>
             </div>
@@ -1114,18 +1149,18 @@
                     <img src="background.png" alt="Arcana Editorial">
                     <div class="editorial-caption">
                         <span>Summer 2026</span>
-                        <h3>The License Collection</h3>
+                        <h3>OF Collection</h3>
                     </div>
                 </div>
                 <div class="editorial-item">
-                    <img src="arcana-drop00.png" alt="Drop 00 Editorial">
+                    <img src="fullblack.png" alt="Star Collection Editorial">
                     <div class="editorial-caption">
-                        <span>Drop 00</span>
+                        <span>No. 1 Star Collection</span>
                         <h3>Foundation Pieces</h3>
                     </div>
                 </div>
                 <div class="editorial-item">
-                    <img src="polo.png" alt="Polo Editorial">
+                    <img src="greysweats.png" alt="Sweats Editorial">
                     <div class="editorial-caption">
                         <span>Essentials</span>
                         <h3>Everyday Wear</h3>
@@ -1142,7 +1177,7 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="stars">★★★★★</div>
-                    <p>"The quality is insane for the price. I've washed my Drop 00 jersey like 10 times and it still looks brand new. Arcana doesn't miss."</p>
+                    <p>"The quality is insane for the price. I've washed my Red Sleeves No.1 Star Collection tee like 10 times and it still looks brand new. Arcana doesn't miss."</p>
                     <div class="author">
                         <div class="author-avatar">JD</div>
                         <div class="author-info">
@@ -1164,12 +1199,12 @@
                 </div>
                 <div class="testimonial-card">
                     <div class="stars">★★★★★</div>
-                    <p>"Bought the Panther Set as a gift and ended up keeping it for myself. The attention to detail on the embroidery is next level."</p>
+                    <p>"Bought the Sweats as a gift and ended up keeping it for myself. The attention to detail on the embroidery is next level."</p>
                     <div class="author">
                         <div class="author-avatar">TK</div>
                         <div class="author-info">
                             <h4>Tobi K.</h4>
-                            <span>London, UK</span>
+                            <span>Delta, Nigeria</span>
                         </div>
                     </div>
                 </div>
@@ -1234,17 +1269,17 @@
     <section class="instagram-section">
         <div class="container">
             <h2>Follow the Movement</h2>
-            <a href="https://www.instagram.com/arcana.ng" class="insta-handle" target="_blank">
+            <a href="https://www.instagram.com/arcanashopng" class="insta-handle" target="_blank">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                 </svg>
-                @arcana.ng
+                @arcanashopng
             </a>
             <div class="insta-grid">
                 <div class="insta-item">
-                    <img src="arcana-drop00-jersey.png" alt="Instagram 1">
+                    <img src="redsleeves.png" alt="Instagram 1">
                     <div class="insta-overlay">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
@@ -1252,7 +1287,7 @@
                     </div>
                 </div>
                 <div class="insta-item">
-                    <img src="arcana-drop00-sweatpants.png" alt="Instagram 2">
+                    <img src="blacksleeves.png" alt="Instagram 2">
                     <div class="insta-overlay">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
@@ -1260,7 +1295,7 @@
                     </div>
                 </div>
                 <div class="insta-item">
-                    <img src="arcana-drop00.png" alt="Instagram 3">
+                    <img src="fullblack.png" alt="Instagram 3">
                     <div class="insta-overlay">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
@@ -1268,7 +1303,7 @@
                     </div>
                 </div>
                 <div class="insta-item">
-                    <img src="polo.png" alt="Instagram 4">
+                    <img src="blacksweats.png" alt="Instagram 4">
                     <div class="insta-overlay">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
@@ -1276,7 +1311,7 @@
                     </div>
                 </div>
                 <div class="insta-item">
-                    <img src="pantherset.png" alt="Instagram 5">
+                    <img src="greysweats.png" alt="Instagram 5">
                     <div class="insta-overlay">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
@@ -1284,7 +1319,7 @@
                     </div>
                 </div>
                 <div class="insta-item">
-                    <img src="🐍.png" alt="Instagram 6">
+                    <img src="crest.png" alt="Instagram 6">
                     <div class="insta-overlay">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
@@ -1297,109 +1332,56 @@
 
     <!-- ===== ORIGINAL PRODUCT SECTIONS (PRESERVED) ===== -->
     <div class="container">
-        <h2 class="title">Pre-Order Now</h2>
+        <h2 class="title">Order Now</h2>
         <div class="product-grid">
         <div class="row">
             <div class="col-4">
-                <img src="arcana-drop00-jersey.png" alt="Arcana's Drop 00 Jersey">
-                <h3>Arcana's Drop 00 Jersey</h3>
-                <div class="product-price" data-usd="12.00">
-                    <p>$12.00</p>
-                </div>
-                <div class="rating">
-                    <span>★★★★★</span>
-                </div>
-                <a href="arcana-drop00-jersey.html" class="btn">View Details</a>
-            </div>
-            <div class="col-4">
-                <img src="arcana-drop00-sweatpants.png" alt="Arcana's Drop 00 Sweatpants">
-                <h3>Arcana's Drop 00 Sweatpants</h3>
-                <div class="product-price" data-usd="12.00">
-                    <p>$12.00</p>
-                </div>
-                <div class="rating">
-                    <span>★★★★★</span>
-                </div>
-                <a href="arcana's-drop00-sweatpants.html" class="btn">View Details</a>
-            </div>
-            <div class="col-4">
-                <img src="arcana-drop00.png" alt="Arcana's Drop 00">
-                <h3>Arcana's Drop 00</h3>
-                <div class="product-price" data-usd="23.00">
-                    <p>$23.00</p>
-                </div>
-                <div class="rating">
-                    <span>★★★★★</span>
-                </div>
-                <a href="arcana's-drop00.html" class="btn">View Details</a>
-            </div>
-            <div class="col-4">
-                <img src="polo.png" alt="Arcana's Polo">
-                <h3>Arcana's Polo</h3>
+                <img src="redsleeves.png" alt="Red Sleeves of Arcana's Star Collection">
+                <h3>Red Sleeves of Arcana's Star Collection</h3>
                 <div class="product-price" data-usd="16.50">
                     <p>$16.50</p>
                 </div>
                 <div class="rating">
                     <span>★★★★★</span>
                 </div>
-                <a href="polo.html" class="btn">View Details</a>
+                <a href="rs-star-collection.html" class="btn">View Details</a>
+            </div>
+            <div class="col-4">
+                <img src="fullblack.png" alt="Full Black of Arcana's Star Collection">
+                <h3>Full Black of Arcana's Star Collection</h3>
+                <div class="product-price" data-usd="16.50">
+                    <p>$16.50</p>
+                </div>
+                <div class="rating">
+                    <span>★★★★★</span>
+                </div>
+                <a href="fb-star-collection.html" class="btn">View Details</a>
+            </div>
+            <div class="col-4">
+                <img src="crest.png" alt="Arcana's Crest Skull Cap">
+                <h3>Arcana's Crest Skull Cap</h3>
+                <div class="product-price" data-usd="3.50">
+                    <p>$3.50</p>
+                </div>
+                <div class="rating">
+                    <span>★★★★★</span>
+                </div>
+                <a href="crest.html" class="btn">View Details</a>
+            </div>
+            <div class="col-4">
+                <img src="blacksweats.png" alt="Arcana's Black Sweatpants">
+                <h3>Arcana's Black Sweatpants</h3>
+                <div class="product-price" data-usd="16.50">
+                    <p>$16.50</p>
+                </div>
+                <div class="rating">
+                    <span>★★★★★</span>
+                </div>
+                <a href="blacksweats.html" class="btn">View Details</a>
             </div>
         </div>
         </div>
 
-        <h2 class="title">Coming Soon...</h2>
-        <div class="product-grid">
-        <div class="row">
-            <div class="col-4">
-                <img src="pantherset.png" alt="Arcana's Panther Set">
-                <h3>Arcana's Panther Set</h3>
-                <p>(Coming Soon)</p>
-                <div class="product-price" data-usd="0">
-                    <p>$0.00</p>
-                </div>
-                <div class="rating">
-                    <span>★★★★★</span>
-                </div>
-                <a href="arcana-pantherset.html" class="btn">View Details</a>
-            </div>
-            <div class="col-4">
-                <img src="panthertee.png" alt="Arcana's Compression Tee(🐆 Set)">
-                <h3>Arcana's Compression Tee(🐆 Set)</h3>
-                <p>(Coming Soon)</p>
-                <div class="product-price" data-usd="0">
-                    <p>$0.00</p>
-                </div>
-                <div class="rating">
-                    <span>★★★★★</span>
-                </div>
-                <a href="arcana-compressiontee.html" class="btn">View Details</a>
-            </div>
-            <div class="col-4">
-                <img src="panthershorts.png" alt="Arcana's Shorts(🐆 Set)">
-                <h3>Arcana's Shorts(🐆 Set)</h3>
-                <p>(Coming Soon)</p>
-                <div class="product-price" data-usd="0">
-                    <p>$0.00</p>
-                </div>
-                <div class="rating">
-                    <span>★★★★★</span>
-                </div>
-                <a href="arcana-shorts.html " class="btn">View Details</a>
-            </div>
-            <div class="col-4">
-                <img src="🐍.png" alt="Arcana's 🐍... Tee">
-                <h3>Arcana's 🐍... Tee</h3>
-                <p>(Coming Soon)</p>
-                <div class="product-price" data-usd="0">
-                    <p>$0.00</p>
-                </div>
-                <div class="rating">
-                    <span>★★★★★</span>
-                </div>
-                <a href="arcana-🐍.html" class="btn">View Details</a>
-            </div>
-        </div>
-        </div>
     </div>
 
     <!-- ===== FOOTER ===== -->
@@ -1513,14 +1495,8 @@
     </footer>
 
     <script>
+        // Year only - accordion handled by script.js
         document.getElementById('year').textContent = new Date().getFullYear();
-        if (window.innerWidth <= 600) {
-            document.querySelectorAll('.footer-col h4').forEach(header => {
-                header.addEventListener('click', () => {
-                    header.parentElement.classList.toggle('open');
-                });
-            });
-        }
     </script>
     <script src="script.js" defer></script>
     <div id="notification-container"></div>
