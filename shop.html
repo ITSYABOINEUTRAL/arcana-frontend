@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Arcana — Premium streetwear designed with intention. Shop limited drops, premium jerseys, sweatpants, and exclusive collections. Designed in Nigeria, worn worldwide.">
+    <meta property="og:title" content="Arcana — Designed With Intention">
+    <meta property="og:description" content="Premium streetwear designed with intention. Small-batch drops, premium materials, timeless designs.">
+    <meta property="og:image" content="https://www.shop-arcana.store/logo.png">
+    <meta property="og:url" content="https://www.shop-arcana.store">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <title>Arcana — Designed With Intention</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "name": "Arcana",
+                "url": "https://www.shop-arcana.store",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://www.shop-arcana.store/logo.png",
+                    "width": 125,
+                    "height": "auto"
+                },
+                "sameAs": [
+                    "https://www.instagram.com/arcana.ng",
+                    "https://www.tiktok.com/@arcana.ng",
+                    "https://x.com/arcanashopng1"
+                ],
+                "description": "Premium streetwear designed with intention. Small-batch drops, premium materials, timeless designs."
+            },
+            {
+                "@type": "WebSite",
+                "name": "Arcana",
+                "url": "https://www.shop-arcana.store",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Arcana"
+                },
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": {
+                        "@type": "EntryPoint",
+                        "urlTemplate": "https://shop-arcana.store/search?q={search_term_string}"
+                    },
+                    "query-input": "required name=search_term_string"
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <!-- ============================================
+         HOMEPAGE MODERNIZATION — HERO UNTouched
+         All new sections self-contained
+         ============================================ -->
+    <style>
+        /* ===== BRAND MARQUEE ===== */
+        .brand-marquee {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 16px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .marquee-track {
+            display: flex;
+            animation: marquee 20s linear infinite;
+            width: max-content;
+        }
+        .marquee-track span {
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 0 40px;
+            white-space: nowrap;
+            opacity: 0.9;
+        }
+        .marquee-track span::before {
+            content: '✦';
+            margin-right: 12px;
+            color: #8B6A4E;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ===== MISSION SECTION ===== */
+        .mission-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, #fff 0%, #faf9f7 100%);
+            text-align: center;
+        }
+        .mission-section .container {
+            max-width: 800px;
+        }
+        .mission-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #59493b;
+            font-weight: 600;
+            margin-bottom: 24px;
+            padding: 8px 20px;
+            border: 1px solid rgba(89,73,59,0.2);
+            border-radius: 30px;
+        }
+        .mission-section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+        .mission-section p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .mission-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .mission-pillar {
+            text-align: center;
+        }
+        .mission-pillar .pillar-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #59493b 0%, #8B6A4E 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 24px rgba(89,73,59,0.15);
+        }
+        .mission-pillar .pillar-icon svg {
+            width: 28px;
+            height: 28px;
+            color: #fff;
+        }
+        .mission-pillar h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        .mission-pillar p {
+            font-size: 0.9rem;
+            color: #777;
+            line-height: 1.6;
+        }
+
+        /* ===== FEATURED COLLECTION ===== */
+        .featured-section {
+            padding: 80px 0;
+            background: #fff;
+        }
+        .featured-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .featured-header h2 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        .featured-header p {
+            color: #777;
+            font-size: 1rem;
+            margin-top: 8px;
+        }
+        .featured-header .btn-outline {
+            padding: 12px 28px;
+            border: 2px solid #59493b;
+            color: #59493b;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .featured-header .btn-outline:hover {
+            background: #59493b;
+            color: #fff;
+        }
+        .featured-grid {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .featured-card {
+            flex: 0 0 calc(25% - 18px);
+            max-width: 320px;
+            min-width: 260px;
+        }
+        .featured-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #f8f6f4;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+        }
+        .featured-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .featured-card:hover img {
+            transform: scale(1.08);
+        }
+        .featured-card .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px;
+        }
+        .featured-card:hover .card-overlay {
+            opacity: 1;
+        }
+        .featured-card .card-overlay h3 {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .featured-card .card-overlay p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+        .featured-card .card-overlay .card-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            padding: 8px 16px;
+            background: #fff;
+            color: #1a1a1a;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            width: fit-content;
+            transition: transform 0.3s ease;
+        }
+        .featured-card .card-overlay .card-btn:hover {
+            transform: translateX(4px);
+        }
+        .featured-card .card-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: #59493b;
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            z-index: 2;
+        }
+
+        /* ===== EDITORIAL / LOOKBOOK ===== */
+        .editorial-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, #faf9f7 0%, #fff 100%);
+        }
+        .editorial-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .editorial-header h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        .editorial-header p {
+            color: #777;
+            font-size: 1.1rem;
+        }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 400px 300px;
+            gap: 20px;
+        }
+        .editorial-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #f0eeeb;
+        }
+        .editorial-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .editorial-item:hover img {
+            transform: scale(1.05);
+        }
+        .editorial-item.tall {
+            grid-row: span 2;
+        }
+        .editorial-item .editorial-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px 30px 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+            color: #fff;
+        }
+        .editorial-item .editorial-caption span {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            opacity: 0.8;
+        }
+        .editorial-item .editorial-caption h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-section {
+            padding: 100px 0;
+            background: #1a1a1a;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .testimonials-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(89,73,59,0.2) 0%, transparent 70%);
+        }
+        .testimonials-section h2 {
+            text-align: center;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 700;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        .testimonial-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 36px;
+            backdrop-filter: blur(10px);
+        }
+        .testimonial-card .stars {
+            color: #8B6A4E;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        .testimonial-card p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .testimonial-card .author-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #59493b 0%, #8B6A4E 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #fff;
+        }
+        .testimonial-card .author-info h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        .testimonial-card .author-info span {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ===== TRUST BAR ===== */
+        .trust-bar {
+            background: #fff;
+            padding: 60px 0;
+            border-top: 1px solid rgba(89,73,59,0.06);
+            border-bottom: 1px solid rgba(89,73,59,0.06);
+        }
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+        .trust-item svg {
+            width: 40px;
+            height: 40px;
+            color: #59493b;
+            margin-bottom: 16px;
+        }
+        .trust-item h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .trust-item p {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        /* ===== NEWSLETTER STRIP — MODERN REDESIGN ===== */
+        .newsletter-strip {
+            background: linear-gradient(135deg, #59493b 0%, #3d3025 100%);
+            padding: 100px 0;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .newsletter-strip::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139,106,78,0.2) 0%, transparent 70%);
+        }
+        .newsletter-strip h2 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 700;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .newsletter-strip p {
+            opacity: 0.8;
+            margin-bottom: 40px;
+            font-size: 1.05rem;
+            position: relative;
+            z-index: 1;
+            color: rgba(255,255,255,0.85);
+        }
+
+        /* ===== NEWSLETTER FORM — EDITORIAL REDESIGN ===== */
+        .newsletter-strip .newsletter-form-large {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+            max-width: 440px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-strip .newsletter-form-large::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 20%, rgba(255,255,255,0.3) 80%, transparent 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .newsletter-strip .newsletter-form-large input {
+            flex: 1;
+            padding: 0 0 0 4px;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.25);
+            background: transparent;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            outline: none;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 0;
+            box-sizing: border-box;
+            height: 48px;
+            line-height: 48px;
+            letter-spacing: 0.03em;
+        }
+
+        .newsletter-strip .newsletter-form-large input::placeholder {
+            color: rgba(255,255,255,0.35);
+            font-weight: 300;
+            letter-spacing: 0.06em;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .newsletter-strip .newsletter-form-large input:focus {
+            border-bottom-color: rgba(255,255,255,0.7);
+            background: transparent;
+        }
+
+        /* Submit button — floating pill adjacent to underline input */
+        .newsletter-strip .newsletter-form-large button {
+            padding: 0 28px;
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.35);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            border-radius: 0;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            box-sizing: border-box;
+            height: 48px;
+            line-height: 48px;
+            margin-left: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-strip .newsletter-form-large button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+
+        .newsletter-strip .newsletter-form-large button:hover {
+            color: #59493b;
+            border-color: #fff;
+            letter-spacing: 0.25em;
+        }
+
+        .newsletter-strip .newsletter-form-large button:hover::before {
+            left: 0;
+        }
+
+        .newsletter-strip .newsletter-form-large button:active {
+            transform: scale(0.96);
+        }
+
+        /* Focus states */
+        .newsletter-strip .newsletter-form-large input:focus-visible {
+            outline: none;
+            border-bottom-color: #8B6A4E;
+        }
+
+        .newsletter-strip .newsletter-form-large button:focus-visible {
+            outline: 1px solid rgba(139,106,78,0.5);
+            outline-offset: 4px;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            .newsletter-strip .newsletter-form-large {
+                flex-direction: column;
+                height: auto;
+                gap: 16px;
+                max-width: 300px;
+            }
+            .newsletter-strip .newsletter-form-large::before {
+                display: none;
+            }
+            .newsletter-strip .newsletter-form-large input {
+                border-bottom: 1px solid rgba(255,255,255,0.25);
+                text-align: center;
+                height: 48px;
+                width: 100%;
+                padding: 0;
+            }
+            .newsletter-strip .newsletter-form-large input:focus {
+                border-bottom-color: rgba(255,255,255,0.7);
+            }
+            .newsletter-strip .newsletter-form-large button {
+                border: 1px solid rgba(255,255,255,0.35);
+                width: 100%;
+                height: 48px;
+                margin-left: 0;
+            }
+            .newsletter-strip .newsletter-form-large button:hover {
+                border-color: #fff;
+            }
+        }
+
+        /* ===== INSTAGRAM FEED ===== */
+        .instagram-section {
+            padding: 80px 0;
+            background: #fff;
+            text-align: center;
+        }
+        .instagram-section h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        .instagram-section .insta-handle {
+            color: #59493b;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 40px;
+        }
+        .instagram-section .insta-handle:hover {
+            color: #8B6A4E;
+        }
+        .insta-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+        }
+        .insta-item {
+            aspect-ratio: 1;
+            background: #f0eeeb;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        .insta-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .insta-item:hover img {
+            transform: scale(1.1);
+        }
+        .insta-item .insta-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(89,73,59,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .insta-item:hover .insta-overlay {
+            opacity: 1;
+        }
+        .insta-item .insta-overlay svg {
+            width: 24px;
+            height: 24px;
+            color: #fff;
+        }
+
+        /* ===== ACCESSIBILITY & RESPONSIVE ===== */
+        @media (prefers-reduced-motion: reduce) {
+            .marquee-track, .featured-card img, .editorial-item img, .insta-item img {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+        @media (max-width: 900px) {
+            .mission-pillars { grid-template-columns: 1fr; gap: 30px; }
+            .featured-card { flex: 0 0 calc(50% - 12px); max-width: 100%; }
+            .editorial-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+            .editorial-item.tall { grid-row: span 1; height: 300px; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .trust-grid { grid-template-columns: repeat(2, 1fr); }
+            .insta-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .mission-section { padding: 60px 0; }
+            .featured-card { flex: 1 1 100%; max-width: 400px; }
+            .trust-grid { grid-template-columns: 1fr; gap: 30px; }
+            .newsletter-strip .newsletter-form-large { flex-direction: column; }
+            .newsletter-strip .newsletter-form-large button { width: 100%; }
+            .insta-grid { grid-template-columns: repeat(2, 1fr); }
+            .featured-header { flex-direction: column; align-items: flex-start; }
+        }
+    
+/* ===== SHARP BUTTONS (excludes footer newsletter completely) ===== */
+
+/* Main buttons */
+.btn,
+.btn-auth,
+.btn-welcome,
+.btn-continue,
+.btn-empty,
+.btn-checkout,
+.btn-submit,
+.btn-primary,
+.btn-forgot,
+.btn-reset,
+.btn-track,
+.retry-btn {
+  border-radius: 0 !important;
+  border: 2px solid #59493b !important;
+  background: #59493b !important;
+  color: #fff !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn:hover,
+.btn-auth:hover,
+.btn-welcome:hover,
+.btn-continue:hover,
+.btn-empty:hover,
+.btn-checkout:hover,
+.btn-submit:hover,
+.btn-primary:hover,
+.btn-forgot:hover,
+.btn-reset:hover,
+.btn-track:hover,
+.retry-btn:hover {
+  background: transparent !important;
+  color: #59493b !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(89, 73, 59, 0.12);
+}
+
+/* Outline buttons */
+.btn-outline {
+  border-radius: 0 !important;
+  border: 2px solid #59493b !important;
+  color: #59493b !important;
+  background: transparent !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-outline:hover {
+  background: #59493b !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+/* Card overlay buttons */
+.card-btn {
+  border-radius: 0 !important;
+  border: none !important;
+  background: #fff !important;
+  color: #1a1a1a !important;
+  transition: all 0.3s ease !important;
+}
+
+.card-btn:hover {
+  background: #59493b !important;
+  color: #fff !important;
+  transform: translateX(4px);
+}
+
+/* Ghost buttons */
+.btn-upload-mini,
+.btn-coupon,
+#apply-coupon-btn {
+  border-radius: 0 !important;
+  border: 2px solid #e8e0d8 !important;
+  background: transparent !important;
+  color: #6b5d52 !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-upload-mini:hover,
+.btn-coupon:hover,
+#apply-coupon-btn:hover {
+  border-color: #59493b !important;
+  background: #59493b !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+/* Card buttons */
+.btn-card:not(.coming-soon) {
+  border-radius: 0 !important;
+  border: 2px solid #59493b !important;
+  background: #59493b !important;
+  color: #fff !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-card:not(.coming-soon):hover {
+  background: transparent !important;
+  color: #59493b !important;
+  transform: translateY(-2px);
+}
+
+.btn-card.coming-soon {
+  border-radius: 0 !important;
+  border: 2px dashed #ddd !important;
+  background: transparent !important;
+  color: #999 !important;
+  cursor: not-allowed !important;
+}
+
+/* CTA buttons */
+.btn-cta {
+  border-radius: 0 !important;
+  border: 2px solid #59493b !important;
+  background: #59493b !important;
+  color: #fff !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-cta:hover {
+  background: transparent !important;
+  color: #59493b !important;
+  transform: translateY(-2px);
+}
+
+/* Quantity controls */
+.quantity-control button {
+  border-radius: 0 !important;
+  border: 1.5px solid #e8e0d8 !important;
+  background: #f5f0eb !important;
+  color: #59493b !important;
+  transition: all 0.2s ease !important;
+}
+
+.quantity-control button:hover {
+  background: #59493b !important;
+  color: #fff !important;
+  border-color: #59493b !important;
+}
+
+/* Pagination */
+.page-btn span {
+  border-radius: 0 !important;
+  border: 2px solid #59493b !important;
+  background: #59493b !important;
+  color: #fff !important;
+  transition: all 0.3s ease !important;
+}
+
+.page-btn span:hover {
+  background: transparent !important;
+  color: #59493b !important;
+}
+
+/* FAQ category buttons */
+.faq-category-btn {
+  border-radius: 0 !important;
+  border: 2px solid rgba(89, 73, 59, 0.15) !important;
+  background: #fff !important;
+  color: #555 !important;
+  transition: all 0.3s ease !important;
+}
+
+.faq-category-btn:hover {
+  border-color: #59493b !important;
+  color: #59493b !important;
+  background: transparent !important;
+}
+
+.faq-category-btn.active {
+  background: #59493b !important;
+  border-color: #59493b !important;
+  color: #fff !important;
+}
+
+.faq-category-btn.active:hover {
+  background: transparent !important;
+  color: #59493b !important;
+}
+
+/* Auth tabs */
+.auth-tab {
+  border-radius: 0 !important;
+  border-bottom: 2px solid transparent !important;
+  transition: all 0.3s ease !important;
+}
+
+.auth-tab.active {
+  border-bottom-color: #59493b !important;
+}
+
+/* Sidebar nav */
+.sidebar-nav .nav-link {
+  border-radius: 0 !important;
+  border-left: 3px solid transparent !important;
+  transition: all 0.2s ease !important;
+}
+
+.sidebar-nav .nav-link:hover,
+.sidebar-nav .nav-link.active {
+  border-left-color: #59493b !important;
+  background: rgba(89, 73, 59, 0.06) !important;
+}
+
+/* Policy TOC */
+.policy-toc a,
+.terms-toc a {
+  border-radius: 0 !important;
+  border-left: 3px solid transparent !important;
+  transition: all 0.2s ease !important;
+}
+
+.policy-toc a:hover,
+.policy-toc a.active,
+.terms-toc a:hover,
+.terms-toc a.active {
+  border-left-color: #59493b !important;
+}
+
+/* Disabled states */
+.btn:disabled,
+.btn-auth:disabled,
+.btn-checkout:disabled,
+.btn-submit:disabled,
+.btn-primary:disabled,
+.btn-forgot:disabled,
+.btn-reset:disabled,
+.btn-track:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  background: #59493b !important;
+  color: #fff !important;
+}
+
+/* Toggle / icon buttons */
+.toggle-password,
+.avatar-upload-btn {
+  border-radius: 0 !important;
+  border: none !important;
+  background: none !important;
+  color: #6b5d52 !important;
+  transition: all 0.2s ease !important;
+}
+
+.toggle-password:hover,
+.avatar-upload-btn:hover {
+  color: #59493b !important;
+  background: rgba(89, 73, 59, 0.06) !important;
+}
+</style>
+<base target="_blank">
+<base target="_blank">
+<base target="_blank">
+<base target="_blank">
+</head>
+<body>
+
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href=""><img src="logo.png" alt="Logo" width="125px"></a>
+                </div>
+                <select id="currency" class="currency-selector" aria-label="Select currency">
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                    <option value="NGN">NGN (₦)</option>
+                </select>
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a class="active" href="index.html">Home</a></li>
+                        <li><a href="product.html">Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Account</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                    </ul>
+                </nav>
+                <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart Icon" class="cart-icon"></a>
+                <img src="menu.png" width="30px" height="30px" alt="Menu Icon" class="menu-icon" onclick="menuToggle()">
+            </div>
+        </div>
+
+        <!-- ===== HERO — COMPLETELY UNTOUCHED ===== -->
+        <div class="gallery-hero">
+            <div class="gallery-hero__image-wrap">
+                <img src="background.png" alt="Background Image">
+            </div>
+            <div class="gallery-hero__content">
+                <p>Summer Collection Coming Soon...</p>
+                <a href="product.html" class="btn">Explore Products &#8594;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== BRAND MARQUEE ===== -->
+    <div class="brand-marquee">
+        <div class="marquee-track">
+            <span>Designed With Intention</span>
+            <span>Discounts on Orders Over $150</span>
+            <span>New Drops Every 2 Months</span>
+            <span>Premium Streetwear</span>
+            <span>Designed With Intention</span>
+            <span>Discounts on Orders Over $150</span>
+            <span>New Drops Every 2 Months</span>
+            <span>Premium Streetwear</span>
+        </div>
+    </div>
+
+    <!-- ===== MISSION STATEMENT ===== -->
+    <section class="mission-section">
+        <div class="container">
+            <span class="mission-label">Our Philosophy</span>
+            <h2>Clothing That Speaks Before You Do</h2>
+            <p>At Arcana, we believe every piece should carry intention. From the fabric we source to the graphics we design, every detail is deliberate. We don't follow trends — we create pieces that feel timeless, personal, and unmistakably you.</p>
+            
+            <div class="mission-pillars">
+                <div class="mission-pillar">
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <h3>Made With Care</h3>
+                    <p>Every garment is crafted from premium materials, ensuring comfort that lasts beyond the first wear.</p>
+                </div>
+                <div class="mission-pillar">
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                        </svg>
+                    </div>
+                    <h3>Limited Drops</h3>
+                    <p>Small-batch releases mean exclusivity. Once a design sells out, it's gone — no restocks.</p>
+                </div>
+                <div class="mission-pillar">
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                            <line x1="9" y1="9" x2="9.01" y2="9"/>
+                            <line x1="15" y1="9" x2="15.01" y2="9"/>
+                        </svg>
+                    </div>
+                    <h3>Community First</h3>
+                    <p>Built for creatives, by creatives. Tag #ArcanaNG to get featured on our page.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURED COLLECTION ===== -->
+    <section class="featured-section">
+        <div class="container">
+            <div class="featured-header">
+                <div>
+                    <h2>No. 1 Star Collection — The Foundation</h2>
+                    <p>Our debut collection, built from the ground up</p>
+                </div>
+                <a href="product.html" class="btn-outline">View All Products →</a>
+            </div>
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <img src="redsleeves.png" alt="Red Sleeves of Arcana's Star Collection">
+                    <div class="card-overlay">
+                        <h3>Red Sleeves</h3>
+                        <p>$16.50</p>
+                        <a href="rs-star-collection.html" class="card-btn">View Details →</a>
+                    </div>
+                </div>
+                <div class="featured-card">
+                    <img src="blacksleeves.png" alt="Black Sleeves of Arcana's Star Collection">
+                    <div class="card-overlay">
+                        <h3>Black Sleeves</h3>
+                        <p>$16.50</p>
+                        <a href="bs-star-collection.html" class="card-btn">View Details →</a>
+                    </div>
+                </div>
+                <div class="featured-card">
+                    <span class="card-badge">Best Seller</span>
+                    <img src="fullblack.png" alt="Full Black of Arcana's Star Collection">
+                    <div class="card-overlay">
+                        <h3>Full Black</h3>
+                        <p>$16.50</p>
+                        <a href="fb-star-collection.html" class="card-btn">View Details →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EDITORIAL / LOOKBOOK ===== -->
+    <section class="editorial-section">
+        <div class="container">
+            <div class="editorial-header">
+                <h2>The Lookbook</h2>
+                <p>Styled by the community, shot in the streets</p>
+            </div>
+            <div class="editorial-grid">
+                <div class="editorial-item tall">
+                    <img src="background.png" alt="Arcana Editorial">
+                    <div class="editorial-caption">
+                        <span>Summer 2026</span>
+                        <h3>OF Collection</h3>
+                    </div>
+                </div>
+                <div class="editorial-item">
+                    <img src="fullblack.png" alt="Star Collection Editorial">
+                    <div class="editorial-caption">
+                        <span>No. 1 Star Collection</span>
+                        <h3>Foundation Pieces</h3>
+                    </div>
+                </div>
+                <div class="editorial-item">
+                    <img src="greysweats.png" alt="Sweats Editorial">
+                    <div class="editorial-caption">
+                        <span>Essentials</span>
+                        <h3>Everyday Wear</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2>What The Community Says</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"The quality is insane for the price. I've washed my Red Sleeves No.1 Star Collection tee like 10 times and it still looks brand new. Arcana doesn't miss."</p>
+                    <div class="author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <h4>James D.</h4>
+                            <span>Lagos, Nigeria</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Finally a Nigerian brand that understands streetwear. The fit is perfect, the designs are clean, and shipping was faster than expected."</p>
+                    <div class="author">
+                        <div class="author-avatar">AO</div>
+                        <div class="author-info">
+                            <h4>Amina O.</h4>
+                            <span>Abuja, Nigeria</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Bought the Sweats as a gift and ended up keeping it for myself. The attention to detail on the embroidery is next level."</p>
+                    <div class="author">
+                        <div class="author-avatar">TK</div>
+                        <div class="author-info">
+                            <h4>Tobi K.</h4>
+                            <span>Delta, Nigeria</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TRUST BAR ===== -->
+    <section class="trust-bar">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    <h3>Secure Checkout</h3>
+                    <p>256-bit SSL encryption on all orders</p>
+                </div>
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="3" width="15" height="13"/>
+                        <polygon points="16,8 20,8 23,11 23,16 20,16 16,16"/>
+                        <circle cx="5.5" cy="18.5" r="2.5"/>
+                        <circle cx="18.5" cy="18.5" r="2.5"/>
+                    </svg>
+                    <h3>Fast Shipping</h3>
+                    <p>10-15 business days worldwide</p>
+                </div>
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17,8 12,3 7,8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    <h3>Easy Returns</h3>
+                    <p>30-day return policy, no questions</p>
+                </div>
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    <h3>24/7 Support</h3>
+                    <p>Email us anytime, always here to help</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NEWSLETTER STRIP ===== -->
+    <section class="newsletter-strip">
+        <div class="container">
+            <h2>Join the Inner Circle</h2>
+            <p>Get early access to drops, exclusive discounts, and behind-the-scenes content.</p>
+            <form class="newsletter-form-large" onsubmit="event.preventDefault(); showToast('Welcome to the inner circle!');">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Join Now</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===== INSTAGRAM FEED ===== -->
+    <section class="instagram-section">
+        <div class="container">
+            <h2>Follow the Movement</h2>
+            <a href="https://www.instagram.com/arcanashopng" class="insta-handle" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+                @arcanashopng
+            </a>
+            <!-- Note: Replace the image sources with actual Instagram post images or use Instagram's API for dynamic content
+            <div class="insta-grid">
+                <div class="insta-item">
+                    <img src="redsleeves.png" alt="Instagram 1">
+                    <div class="insta-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="insta-item">
+                    <img src="blacksleeves.png" alt="Instagram 2">
+                    <div class="insta-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="insta-item">
+                    <img src="fullblack.png" alt="Instagram 3">
+                    <div class="insta-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="insta-item">
+                    <img src="blacksweats.png" alt="Instagram 4">
+                    <div class="insta-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="insta-item">
+                    <img src="greysweats.png" alt="Instagram 5">
+                    <div class="insta-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="insta-item">
+                    <img src="crest.png" alt="Instagram 6">
+                    <div class="insta-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            -->
+        </div>
+    </section>
+
+    <!-- ===== ORIGINAL PRODUCT SECTIONS (PRESERVED) ===== -->
+    <div class="container">
+        <h2 class="title">Order Now</h2>
+        <div class="product-grid">
+        <div class="row">
+            <div class="col-4">
+                <img src="redsleeves.png" alt="Red Sleeves of Arcana's Star Collection">
+                <h3>Red Sleeves of Arcana's Star Collection</h3>
+                <div class="product-price" data-usd="16.50">
+                    <p>$16.50</p>
+                </div>
+                <div class="rating">
+                    <span>★★★★★</span>
+                </div>
+                <a href="rs-star-collection.html" class="btn">View Details</a>
+            </div>
+            <div class="col-4">
+                <img src="fullblack.png" alt="Full Black of Arcana's Star Collection">
+                <h3>Full Black of Arcana's Star Collection</h3>
+                <div class="product-price" data-usd="16.50">
+                    <p>$16.50</p>
+                </div>
+                <div class="rating">
+                    <span>★★★★★</span>
+                </div>
+                <a href="fb-star-collection.html" class="btn">View Details</a>
+            </div>
+            <div class="col-4">
+                <img src="crest.png" alt="Arcana's Crest Skull Cap">
+                <h3>Arcana's Crest Skull Cap</h3>
+                <div class="product-price" data-usd="3.50">
+                    <p>$3.50</p>
+                </div>
+                <div class="rating">
+                    <span>★★★★★</span>
+                </div>
+                <a href="crest.html" class="btn">View Details</a>
+            </div>
+            <div class="col-4">
+                <img src="blacksweats.png" alt="Arcana's Black Sweatpants">
+                <h3>Arcana's Black Sweatpants</h3>
+                <div class="product-price" data-usd="16.50">
+                    <p>$16.50</p>
+                </div>
+                <div class="rating">
+                    <span>★★★★★</span>
+                </div>
+                <a href="blacksweats.html" class="btn">View Details</a>
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="Arcana Logo">
+                    <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
+                </div>
+                <div class="footer-newsletter">
+                    <p>Be the first to know about new drops and exclusive offers.</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+                        <input type="email" placeholder="Email address" required>
+                        <button type="submit">Join</button>
+                    </form>
+                </div>
+                <div class="footer-social">
+                    <span class="footer-social-label">Follow Us</span>
+                    <div class="social-cluster">
+                        <a href="https://www.instagram.com/arcanashopng" aria-label="Instagram">
+                            <img src="instagram.png" alt="Instagram">
+                        </a>
+                        <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok">
+                            <img src="tik-tok.png" alt="TikTok">
+                        </a>
+                        <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest">
+                            <img src="pinterest-logo.png" alt="Pinterest">
+                        </a>
+                        <a href="https://x.com/arcanashopng1" aria-label="X">
+                            <img src="twitter.png" alt="X">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col contact-col">
+                    <h4>Contact Us</h4>
+                    <div class="contact-content">
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <div>
+                                <a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <div>
+                                <span>Mon – Fri</span>
+                                <p class="hours">9:00 AM – 5:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="returns&exchanges.html">Returns & Exchanges</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms&conditions.html">Terms & Conditions</a></li>
+                        <li><a href="contact.html">Contact Support</a></li>
+                        <li><a href="order_status.html">Order Status</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>My Account</h4>
+                    <ul>
+                        <li><a href="account.html">Sign In</a></li>
+                        <li><a href="cart.html">View Cart</a></li>
+                        <li><a href="order_status.html">Track My Order</a></li>
+                        <li>
+                            <div class="payment-methods">
+                                <p>Payment Options</p>
+                                <div class="payment-icons">
+                                    <div class="payment-icon">VISA</div>
+                                    <div class="payment-icon">MC</div>
+                                    <div class="payment-icon">AMEX</div>
+                                    <div class="payment-icon">PP</div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="product.html">All Products</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="account.html">Account</a></li>
+                        <li><a href="contact.html">Get in Touch</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-inner">
+                <p>© <span id="year"></span> Arcana — All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html">Privacy</a>
+                    <a href="terms&conditions.html">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Year only - accordion handled by script.js
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="script.js" defer></script>
+    <div id="notification-container"></div>
+    <div id="arcana-modal-overlay" class="hidden">
+        <div class="arcana-modal">
+            <span class="close">&times;</span>
+            <p id="arcana-modal-text"></p>
+        </div>
+    </div>
+</body>
+</html>
