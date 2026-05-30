@@ -378,7 +378,7 @@
       }
     }
 
-    function populatePage(p) {
+    async function populatePage(p) {
       // Breadcrumb
       document.getElementById('breadcrumb-category').textContent = p.category || 'Product';
 
@@ -388,14 +388,48 @@
       mainImage.alt = p.name;
       document.getElementById('sticky-img').src = p.image;
 
-      // Gallery thumbs (show other products in same category - loaded separately)
-      // For now, just show the main image as the only thumb, related products fill the rest
+      // Gallery thumbs — fetch other products in same category
       const thumbsContainer = document.getElementById('galleryThumbs');
-      thumbsContainer.innerHTML = `
-        <button class="thumb active" data-src="${p.image}" aria-label="Main view">
-          <img src="${p.image}" alt="Main view">
-        </button>
-      `;
+      try {
+        const res = await fetch(API_BASE + '/products');
+        if (!res.ok) throw new Error('Failed');
+        const allProducts = await res.json();
+        const categoryProducts = allProducts.filter(prod => prod.category === p.category && prod._id !== p._id).slice(0, 3);
+
+        let thumbsHtml = `<button class="thumb active" data-src="${p.image}" aria-label="Main view"><img src="${p.image}" alt="Main view"></button>`;
+
+        categoryProducts.forEach(prod => {
+          thumbsHtml += `<button class="thumb" data-src="${prod.image}" data-id="${prod._id}" aria-label="${prod.name}"><img src="${prod.image}" alt="${prod.name}"></button>`;
+        });
+
+        thumbsContainer.innerHTML = thumbsHtml;
+
+        // Re-bind thumb clicks
+        document.querySelectorAll('.thumb').forEach(thumb => {
+          thumb.addEventListener('click', () => {
+            const newSrc = thumb.dataset.src;
+            const prodId = thumb.dataset.id;
+            if (prodId && prodId !== p._id) {
+              // Navigate to that product's page
+              window.location.href = 'product-detail.html?id=' + prodId;
+              return;
+            }
+            if (newSrc && newSrc !== mainImage.src) {
+              mainImage.classList.add('swapping');
+              setTimeout(() => {
+                mainImage.src = newSrc;
+                mainImage.classList.remove('swapping');
+              }, 150);
+              document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+              thumb.classList.add('active');
+              if (zoomResult) zoomResult.style.backgroundImage = '';
+            }
+          });
+        });
+      } catch (err) {
+        // Fallback: just show main image
+        thumbsContainer.innerHTML = `<button class="thumb active" data-src="${p.image}" aria-label="Main view"><img src="${p.image}" alt="Main view"></button>`;
+      }
 
       // Tag
       document.getElementById('product-tag').textContent = p.category || 'Arcana';
