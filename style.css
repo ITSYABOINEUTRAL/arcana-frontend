@@ -2541,3 +2541,123 @@ nav ul {
     letter-spacing: 1px;
   }
 }
+/* =========================
+   NOTIFICATION SYSTEM — BULLETPROOF FIX
+   These rules override any inline styles that might break visibility.
+   Paste this at the BOTTOM of your style.css (or any page's <style>).
+========================= */
+
+#notification-container {
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
+}
+
+.notification {
+  background: #59493b !important;
+  color: #ffffff !important;
+  padding: 14px 20px !important;
+  margin-top: 10px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-family: 'Poppins', sans-serif !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.35) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  min-width: 280px !important;
+  max-width: 420px !important;
+  border-left: 4px solid #59493b !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: opacity 0.4s ease, transform 0.4s ease !important;
+  position: relative !important;
+  z-index: 99999 !important;
+}
+
+.notification.error {
+  background: #c0392b !important;
+  border-left-color: #c0392b !important;
+  color: #ffffff !important;
+}
+
+.notification.warning {
+  background: #d4a017 !important;
+  border-left-color: #d4a017 !important;
+  color: #1a1a1a !important;
+}
+
+.notification.info {
+  background: #2c3e50 !important;
+  border-left-color: #2c3e50 !important;
+  color: #ffffff !important;
+}
+
+/* Modal — always white bg + dark text so it's readable */
+#arcana-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+}
+
+#arcana-modal-overlay.hidden {
+  display: none !important;
+}
+
+.arcana-modal {
+  background: #ffffff !important;
+  color: #2c241e !important;
+  width: 88%;
+  max-width: 420px;
+  padding: 28px 24px;
+  border-radius: 14px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+}
+
+.arcana-modal p {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: #2c241e !important;
+  opacity: 1 !important;
+}
+
+.arcana-modal .close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0.5;
+  color: #59493b !important;
+  background: none;
+  border: none;
+  line-height: 1;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.arcana-modal .close:hover {
+  opacity: 1;
+  background: rgba(89, 73, 59, 0.08);
+}
+
+@keyframes slideDownFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <base target="_blank">
-<base target="_blank">
 </head>
 <body class="cart-page">
 
@@ -123,7 +122,7 @@
                 </div>
                 <div class="footer-newsletter">
                     <p>Be the first to know about new drops and exclusive offers.</p>
-                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Thanks for subscribing!', 'success');">
                         <input type="email" placeholder="Email address" required>
                         <button type="submit">Join</button>
                     </form>
@@ -232,9 +231,9 @@
             const validCoupons = ['DISCOUNT10', 'SAVE20'];
             const input = document.getElementById('coupon-input').value.trim();
             if (!validCoupons.includes(input)) {
-                showNotification('Invalid coupon code', 'error');
+                showToast('Invalid coupon code', 'error');
             } else {
-                showNotification('Coupon applied successfully!', 'success');
+                showToast('Coupon applied successfully!', 'success');
             }
         });
         document.getElementById('year').textContent = new Date().getFullYear();
@@ -734,19 +733,20 @@
             font-weight: 500;
         }
 
-        /* ===== NOTIFICATIONS ===== */
+        /* ===== NOTIFICATIONS — FIXED ===== */
         #notification-container {
             position: fixed;
             top: 24px;
             right: 24px;
-            z-index: 10000;
+            z-index: 99999;
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
 
         .notification {
-            background: #59493b;
+            background: var(--arcana-brown);
+            color: #fff;
             border-radius: var(--radius-sm);
             padding: 14px 20px;
             box-shadow: var(--shadow-lg);
@@ -754,16 +754,25 @@
             align-items: center;
             gap: 12px;
             min-width: 280px;
-            animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
+            animation: slideIn 0.3s ease;
             border-left: 4px solid var(--arcana-brown);
+            position: relative;
         }
 
         .notification.error {
+            background: var(--arcana-error);
             border-left-color: var(--arcana-error);
         }
 
         .notification.success {
+            background: var(--arcana-success);
             border-left-color: var(--arcana-success);
+        }
+
+        .notification.warning {
+            background: #d4a017;
+            border-left-color: #d4a017;
+            color: #1a1a1a;
         }
 
         @keyframes slideIn {
@@ -771,12 +780,7 @@
             to { transform: translateX(0); opacity: 1; }
         }
 
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-
-        /* ===== MODAL ===== */
+        /* ===== MODAL — FIXED (white bg + dark text) ===== */
         #arcana-modal-overlay {
             position: fixed;
             inset: 0;
@@ -785,7 +789,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 9999;
+            z-index: 99999;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s, visibility 0.3s;
@@ -797,7 +801,8 @@
         }
 
         .arcana-modal {
-            background: #59493b;
+            background: #fff;
+            color: var(--arcana-text);
             border-radius: var(--radius-md);
             padding: 32px;
             max-width: 420px;
@@ -820,10 +825,24 @@
             cursor: pointer;
             color: var(--arcana-text-light);
             transition: color 0.2s;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
 
         .arcana-modal .close:hover {
             color: var(--arcana-text);
+            background: rgba(89, 73, 59, 0.08);
+        }
+
+        .arcana-modal p {
+            color: var(--arcana-text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
         }
 
         /* ===== SKELETON LOADING ===== */
@@ -890,7 +909,6 @@
                 margin-bottom: 0;
             }
         }
-    
 
 /* ===== SHARP BUTTONS (excludes footer newsletter completely) ===== */
 
@@ -1110,6 +1128,7 @@
   color: #59493b !important;
   background: rgba(89, 73, 59, 0.06) !important;
 }
-</style>
+
+    </style>
 </body>
 </html>
