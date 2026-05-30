@@ -422,6 +422,7 @@
         }
     </style>
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
     <div class="landing-bg"></div>
@@ -431,42 +432,9 @@
         <!-- Logo -->
         <img src="logo.png" alt="Arcana" class="landing-logo">
 
-        <!-- Badge -->
-        <div class="drop-badge">
-            <span class="pulse"></span>
-            Summer Collection 2026
-        </div>
-
-        <!-- Headline -->
-        <h1 class="landing-headline">
-            The Drop Is<br><span>Coming Soon</span>
-        </h1>
-
-        <p class="landing-subtitle">
-            Something intentional is on the way. Subscribe below and be the first to know when the Summer Collection goes live.
-        </p>
-
-        <!-- Countdown Timer -->
-        <div class="countdown-container" id="countdown">
-            <div class="countdown-box">
-                <span class="countdown-number" id="days">00</span>
-                <span class="countdown-label">Days</span>
-            </div>
-            <span class="countdown-separator">:</span>
-            <div class="countdown-box">
-                <span class="countdown-number" id="hours">00</span>
-                <span class="countdown-label">Hours</span>
-            </div>
-            <span class="countdown-separator">:</span>
-            <div class="countdown-box">
-                <span class="countdown-number" id="minutes">00</span>
-                <span class="countdown-label">Minutes</span>
-            </div>
-            <span class="countdown-separator">:</span>
-            <div class="countdown-box">
-                <span class="countdown-number" id="seconds">00</span>
-                <span class="countdown-label">Seconds</span>
-            </div>
+        <!-- Product Image -->
+        <div class="product-image-wrapper" style="width:100%;max-width:420px;margin-bottom:40px;animation: fadeInUp 1s ease-out 0.2s both;">
+            <img src="gallery7.jpeg" alt="Arcana Summer Collection" style="width:100%;height:auto;border-radius:16px;border:1px solid rgba(139, 106, 78, 0.2);box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
         </div>
 
         <!-- Newsletter Form -->
@@ -525,41 +493,7 @@
     </div>
 
     <script>
-        // ===== CONFIGURATION =====
-        // Set your drop date here (YYYY, MM-1, DD, HH, MM, SS)
-        // Example: July 15, 2026 at 12:00 PM
-        const DROP_DATE = new Date(2026, 6, 15, 12, 0, 0).getTime();
-
-        // ===== COUNTDOWN LOGIC =====
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = DROP_DATE - now;
-
-            // If countdown is finished, redirect to shop
-            if (distance < 0) {
-                document.getElementById('redirectOverlay').classList.add('show');
-                setTimeout(() => {
-                    window.location.href = 'shop.html';
-                }, 2000);
-                return;
-            }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').textContent = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-        }
-
-        // Update every second
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        // ===== NEWSLETTER HANDLER =====
+// ===== NEWSLETTER HANDLER =====
         function handleSubscribe(e) {
             e.preventDefault();
             const email = document.getElementById('emailInput').value;
