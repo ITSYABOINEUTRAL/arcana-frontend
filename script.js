@@ -201,3 +201,68 @@ window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(initFooterAccordion, 150);
 });
+
+/* ===== NEWSLETTER WIRING (merged from newsletter.js) ===== */
+(function() {
+  const API_BASE = (typeof API_CONFIG !== 'undefined' && API_CONFIG?.base)
+    ? API_CONFIG.base
+    : (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:5000/api'
+        : 'https://arcana-backend-z46k.onrender.com/api');
+
+  function wireNewsletterForms() {
+    document.querySelectorAll('.newsletter-form').forEach(form => {
+      // Strip any inline onsubmit handlers
+      form.removeAttribute('onsubmit');
+
+      // Prevent double-binding
+      if (form.dataset.wired === 'true') return;
+      form.dataset.wired = 'true';
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const emailInput = form.querySelector('input[type="email"]');
+        if (!emailInput) return;
+        const email = emailInput.value.trim();
+        if (!email) return;
+
+        const btn = form.querySelector('button[type="submit"]');
+        if (btn) { btn.disabled = true; btn.textContent = 'Joining...'; }
+
+        try {
+          const res = await fetch(`${API_BASE}/newsletter/subscribe`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+          });
+          const data = await res.json();
+          if (res.ok) {
+            if (typeof showToast === 'function') showToast('Thanks for subscribing!', 'success');
+            else if (typeof showNotification === 'function') showNotification('Thanks for subscribing!', 'success');
+            else alert('Thanks for subscribing!');
+            form.reset();
+          } else {
+            const msg = data.message || 'Subscription failed';
+            if (typeof showToast === 'function') showToast(msg, 'error');
+            else if (typeof showNotification === 'function') showNotification(msg, 'error');
+            else alert(msg);
+          }
+        } catch {
+          const msg = 'Network error. Please try again.';
+          if (typeof showToast === 'function') showToast(msg, 'error');
+          else if (typeof showNotification === 'function') showNotification(msg, 'error');
+          else alert(msg);
+        } finally {
+          if (btn) { btn.disabled = false; btn.textContent = 'Join'; }
+        }
+      });
+    });
+  }
+
+  // Wire on load and after any DOM mutations
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wireNewsletterForms);
+  } else {
+    wireNewsletterForms();
+  }
+})();

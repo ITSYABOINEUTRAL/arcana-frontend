@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="logo.png" type="image/x-icon">
+  <title>Product — Arcana</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --arcana-brown: #59493b;
+      --arcana-brown-light: #8B6A4E;
+      --arcana-brown-dark: #3d3026;
+      --arcana-cream: #f5f0eb;
+      --arcana-warm: #faf8f5;
+      --arcana-border: #e8e0d8;
+      --arcana-text: #2c241e;
+      --arcana-text-light: #6b5d52;
+      --arcana-error: #c0392b;
+      --arcana-success: #27ae60;
+    }
+    .product-detail-page { background: var(--arcana-warm); min-height: 100vh; }
+    .product-detail-page .navbar img[src="logo.png"] { filter: brightness(0) invert(1); }
+    .product-detail-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      align-items: start;
+    }
+    .product-image-wrap {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(89, 73, 59, 0.08);
+      aspect-ratio: 3/4;
+    }
+    .product-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .product-image-wrap:hover img { transform: scale(1.03); }
+    .product-info h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--arcana-text);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .product-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .product-price-detail {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--arcana-brown);
+    }
+    .product-category {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--arcana-text-light);
+      background: var(--arcana-cream);
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+    .product-description {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--arcana-text-light);
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--arcana-border);
+    }
+    .size-section { margin-bottom: 32px; }
+    .size-section label {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--arcana-text-light);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .size-options {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .size-btn {
+      width: 48px;
+      height: 48px;
+      border: 2px solid var(--arcana-border);
+      background: #fff;
+      color: var(--arcana-text);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .size-btn:hover, .size-btn.active {
+      border-color: var(--arcana-brown);
+      background: var(--arcana-brown);
+      color: #fff;
+    }
+    .size-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      border-color: var(--arcana-border);
+      background: #fff;
+      color: var(--arcana-text-light);
+    }
+    .stock-status {
+      font-size: 0.85rem;
+      color: var(--arcana-success);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .stock-status.low { color: #f39c12; }
+    .stock-status.out { color: var(--arcana-error); }
+    .add-to-cart-btn {
+      width: 100%;
+      padding: 18px 32px;
+      background: var(--arcana-brown);
+      color: #fff;
+      border: 2px solid var(--arcana-brown);
+      border-radius: 0;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .add-to-cart-btn:hover {
+      background: transparent;
+      color: var(--arcana-brown);
+    }
+    .add-to-cart-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background: var(--arcana-brown);
+      color: #fff;
+      border-color: var(--arcana-brown);
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--arcana-text-light);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+      transition: color 0.3s;
+    }
+    .back-link:hover { color: var(--arcana-brown); }
+    .loading-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 100px 20px;
+    }
+    .loading-state .spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid var(--arcana-border);
+      border-top-color: var(--arcana-brown);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 24px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .error-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 100px 20px;
+    }
+    .error-state h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--arcana-text);
+      margin-bottom: 12px;
+    }
+    .error-state p {
+      color: var(--arcana-text-light);
+      margin-bottom: 24px;
+    }
+    .retry-btn {
+      margin-top: 20px;
+      padding: 10px 28px;
+      background: var(--arcana-brown);
+      color: #fff;
+      border-radius: 0;
+      font-weight: 600;
+      cursor: pointer;
+      border: 2px solid var(--arcana-brown);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+    }
+    .retry-btn:hover {
+      background: transparent;
+      color: var(--arcana-brown);
+    }
+    @media (max-width: 768px) {
+      .product-detail-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 32px 20px;
+      }
+      .product-info h1 { font-size: 1.6rem; }
+    }
+  </style>
+<base target="_blank">
+</head>
+<body class="product-detail-page">
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <a href="index.html"><img src="logo.png" alt="Arcana Logo" width="125px"></a>
+      </div>
+      <select id="currency" class="currency-selector" aria-label="Select currency">
+        <option value="USD">USD ($)</option>
+        <option value="EUR">EUR (€)</option>
+        <option value="GBP">GBP (£)</option>
+        <option value="NGN">NGN (₦)</option>
+      </select>
+      <nav>
+        <ul id="MenuItems">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="product.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="account.html">Account</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </nav>
+      <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart" class="cart-icon"></a>
+      <img src="menu.png" width="30px" height="30px" alt="Menu" class="menu-icon" onclick="menuToggle()">
+    </div>
+  </div>
+
+  <div class="product-detail-layout" id="product-detail-container">
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading product...</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="logo.png" alt="Arcana Logo">
+          <p style="color: #fff; font-weight: bold;">Designed With Intention.</p>
+        </div>
+        <div class="footer-newsletter">
+          <p>Be the first to know about new drops and exclusive offers.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Email address" required>
+            <button type="submit">Join</button>
+          </form>
+        </div>
+        <div class="footer-social">
+          <span class="footer-social-label">Follow Us</span>
+          <div class="social-cluster">
+            <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+            <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok"><img src="tik-tok.png" alt="TikTok"></a>
+            <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest"><img src="pinterest-logo.png" alt="Pinterest"></a>
+            <a href="https://x.com/arcanashopng1" aria-label="X"><img src="twitter.png" alt="X"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col contact-col">
+          <h4>Contact Us</h4>
+          <div class="contact-content">
+            <div class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <div><a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a></div>
+            </div>
+            <div class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+              <div><span>Mon – Fri</span><p class="hours">9:00 AM – 5:00 PM</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-col"><h4>Help</h4><ul><li><a href="faqs.html">FAQs</a></li><li><a href="returns&exchanges.html">Returns & Exchanges</a></li><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms&conditions.html">Terms & Conditions</a></li><li><a href="contact.html">Contact Support</a></li><li><a href="order_status.html">Order Status</a></li></ul></div>
+        <div class="footer-col"><h4>My Account</h4><ul><li><a href="account.html">Sign In</a></li><li><a href="cart.html">View Cart</a></li><li><a href="order_status.html">Track My Order</a></li><li><div class="payment-methods"><p>Payment Options</p><div class="payment-icons"><div class="payment-icon">VISA</div><div class="payment-icon">MC</div><div class="payment-icon">AMEX</div><div class="payment-icon">PP</div></div></div></li></ul></div>
+        <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="product.html">All Products</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="account.html">Account</a></li><li><a href="contact.html">Get in Touch</a></li></ul></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p>© <span id="year"></span> Arcana — All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="privacy-policy.html">Privacy</a><a href="terms&conditions.html">Terms</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="notification-container"></div>
+  <div id="arcana-modal-overlay" class="hidden">
+    <div class="arcana-modal"><span class="close">&times;</span><p id="arcana-modal-text"></p></div>
+  </div>
+
+  <script src="script.js" defer></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const API_BASE = 'https://arcana-backend-z46k.onrender.com/api';
+    const currencyRates = { USD: 1, EUR: 0.8666, GBP: 0.7375, NGN: 1547.30 };
+    const currencySymbols = { USD: "$", EUR: "€", GBP: "£", NGN: "₦" };
+    let currentCurrency = 'USD';
+    let selectedSize = null;
+    let productData = null;
+
+    function getProductId() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id');
+    }
+
+    function showNotification(message, type = 'info') {
+      const container = document.getElementById('notification-container');
+      if (!container) return;
+      const notif = document.createElement('div');
+      notif.className = `notification ${type}`;
+      const iconMap = { success: 'fa-circle-check', error: 'fa-circle-xmark', info: 'fa-circle-info' };
+      notif.innerHTML = `<i class="fa-solid ${iconMap[type] || iconMap.info}"></i><span>${message}</span>`;
+      container.appendChild(notif);
+      setTimeout(() => { notif.style.opacity = '0'; notif.style.transform = 'translateX(100%)'; setTimeout(() => notif.remove(), 300); }, 3000);
+    }
+
+    function showBlockingMessage(message, redirectUrl) {
+      const overlay = document.getElementById('arcana-modal-overlay');
+      const text = document.getElementById('arcana-modal-text');
+      if (text) text.textContent = message;
+      if (overlay) {
+        overlay.classList.remove('hidden');
+        overlay.querySelector('.close').onclick = () => { overlay.classList.add('hidden'); if (redirectUrl) window.location.href = redirectUrl; };
+      }
+    }
+
+    async function loadProduct() {
+      const productId = getProductId();
+      const container = document.getElementById('product-detail-container');
+
+      if (!productId) {
+        container.innerHTML = `
+          <div class="error-state">
+            <h3>Product Not Found</h3>
+            <p>No product ID was specified in the URL.</p>
+            <a href="product.html" class="retry-btn">Browse Products</a>
+          </div>`;
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_BASE}/products/${productId}`);
+        if (!res.ok) throw new Error('Product not found');
+        const data = await res.json();
+        productData = data.product || data;
+        renderProduct(productData);
+      } catch (err) {
+        container.innerHTML = `
+          <div class="error-state">
+            <h3>Unable to Load Product</h3>
+            <p>${err.message}</p>
+            <a href="product.html" class="retry-btn">Browse Products</a>
+          </div>`;
+      }
+    }
+
+    function renderProduct(product) {
+      const container = document.getElementById('product-detail-container');
+      const rate = currencyRates[currentCurrency];
+      const convertedPrice = (product.price * rate).toFixed(2);
+      const sizes = product.sizes || ['One Size'];
+      const isOutOfStock = product.stock === 0;
+      const isLowStock = product.stock > 0 && product.stock <= 5;
+
+      const sizeButtons = sizes.map(size => 
+        `<button class="size-btn ${selectedSize === size ? 'active' : ''}" data-size="${size}" onclick="selectSize('${size}')">${size}</button>`
+      ).join('');
+
+      let stockHtml = '';
+      if (isOutOfStock) {
+        stockHtml = `<div class="stock-status out"><i class="fa-solid fa-circle-xmark"></i> Out of Stock</div>`;
+      } else if (isLowStock) {
+        stockHtml = `<div class="stock-status low"><i class="fa-solid fa-circle-exclamation"></i> Only ${product.stock} left in stock</div>`;
+      } else {
+        stockHtml = `<div class="stock-status"><i class="fa-solid fa-circle-check"></i> In Stock (${product.stock} available)</div>`;
+      }
+
+      container.innerHTML = `
+        <div class="product-image-wrap">
+          <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='logo.png'; this.style.objectFit='contain'; this.style.padding='20px';">
+        </div>
+        <div class="product-info">
+          <a href="product.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Products</a>
+          <h1>${product.name}</h1>
+          <div class="product-meta">
+            <span class="product-price-detail" data-usd="${product.price}">${currencySymbols[currentCurrency]}${convertedPrice}</span>
+            <span class="product-category">${product.category}</span>
+          </div>
+          <div class="product-description">${product.description || 'No description available.'}</div>
+          <div class="size-section">
+            <label>Select Size</label>
+            <div class="size-options">${sizeButtons}</div>
+          </div>
+          ${stockHtml}
+          <button class="add-to-cart-btn" id="add-to-cart-btn" onclick="addToCart()" ${isOutOfStock ? 'disabled' : ''}>
+            <i class="fa-solid fa-bag-shopping"></i>
+            ${isOutOfStock ? 'Out of Stock' : 'Add to Cart'}
+          </button>
+        </div>
+      `;
+
+      if (sizes.length > 0 && !selectedSize) {
+        selectSize(sizes[0]);
+      }
+    }
+
+    function selectSize(size) {
+      selectedSize = size;
+      document.querySelectorAll('.size-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.size === size);
+      });
+    }
+
+    async function addToCart() {
+      if (!productData || !selectedSize) {
+        showNotification('Please select a size', 'error');
+        return;
+      }
+      const token = localStorage.getItem('token');
+      if (!token) {
+        showBlockingMessage('You must be logged in to add items to your cart.', 'account.html');
+        return;
+      }
+
+      const btn = document.getElementById('add-to-cart-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Adding...';
+
+      try {
+        const res = await fetch(`${API_BASE}/cart`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            productId: productData._id,
+            quantity: 1,
+            size: selectedSize
+          })
+        });
+        if (!res.ok) throw new Error('Failed to add to cart');
+        showNotification(`${productData.name} added to cart!`, 'success');
+      } catch (err) {
+        showNotification(err.message, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-bag-shopping"></i> Add to Cart';
+      }
+    }
+
+    const currencySelector = document.getElementById('currency');
+    if (currencySelector) {
+      currencySelector.addEventListener('change', () => {
+        currentCurrency = currencySelector.value;
+        if (productData) renderProduct(productData);
+      });
+    }
+
+    loadProduct();
+  </script>
+</body>
+</html>

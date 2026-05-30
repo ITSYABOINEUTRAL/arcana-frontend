@@ -8,12 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- ============================================
-         MODERN PRODUCT PAGE ENHANCEMENTS
-         (Inlined to avoid touching style.css)
-         ============================================ -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <style>
         /* ===== SKELETON LOADING ===== */
         .skeleton {
@@ -26,19 +21,9 @@
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
-        .skeleton-card {
-            min-height: 380px;
-        }
-        .skeleton-img {
-            width: 100%;
-            aspect-ratio: 3/4;
-            border-radius: 12px 12px 0 0;
-        }
-        .skeleton-text {
-            height: 16px;
-            margin: 12px 20px;
-            border-radius: 4px;
-        }
+        .skeleton-card { min-height: 380px; }
+        .skeleton-img { width: 100%; aspect-ratio: 3/4; border-radius: 12px 12px 0 0; }
+        .skeleton-text { height: 16px; margin: 12px 20px; border-radius: 4px; }
         .skeleton-text.short { width: 60%; }
         .skeleton-text.medium { width: 40%; height: 24px; margin-top: 8px; }
 
@@ -55,9 +40,7 @@
             border-bottom: 1px solid rgba(89,73,59,0.08);
             transition: box-shadow 0.3s ease;
         }
-        .sort-bar-sticky.scrolled {
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-        }
+        .sort-bar-sticky.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
         .sort-bar-inner {
             display: flex;
             justify-content: space-between;
@@ -65,30 +48,12 @@
             flex-wrap: wrap;
             gap: 16px;
         }
-        .results-count {
-            font-size: 0.9rem;
-            color: #666;
-            font-weight: 500;
-        }
-        .sort-control {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .sort-control label {
-            font-size: 0.85rem;
-            color: #555;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
+        .results-count { font-size: 0.9rem; color: #666; font-weight: 500; }
+        .sort-control { display: flex; align-items: center; gap: 10px; }
+        .sort-control label { font-size: 0.85rem; color: #555; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
 
         /* ===== MODERN PRODUCT CARDS ===== */
-        .product-grid {
-            padding: 0 0 40px 0 !important;
-            background: transparent !important;
-            box-shadow: none !important;
-        }
+        .product-grid { padding: 0 0 40px 0 !important; background: transparent !important; box-shadow: none !important; }
         .product-grid .row {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -100,8 +65,7 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
-                        box-shadow 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -123,9 +87,7 @@
             object-fit: cover;
             transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        .product-card:hover .card-image-wrap img {
-            transform: scale(1.06);
-        }
+        .product-card:hover .card-image-wrap img { transform: scale(1.06); }
         .product-card .card-badge {
             position: absolute;
             top: 12px;
@@ -158,10 +120,7 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-        .product-card .card-meta {
-            margin-top: auto;
-            padding-top: 12px;
-        }
+        .product-card .card-meta { margin-top: auto; padding-top: 12px; }
         .product-card .price-row {
             display: flex;
             align-items: center;
@@ -174,13 +133,8 @@
             color: #59493b;
             transition: opacity 0.2s ease;
         }
-        .product-card .product-price.updating {
-            opacity: 0.5;
-        }
-        .product-card .rating {
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-        }
+        .product-card .product-price.updating { opacity: 0.5; }
+        .product-card .rating { font-size: 0.85rem; letter-spacing: 1px; }
         .product-card .btn-card {
             display: block;
             width: 100%;
@@ -188,14 +142,17 @@
             padding: 12px 20px;
             background: #59493b;
             color: #fff;
-            border-radius: 10px;
+            border-radius: 0;
             font-weight: 600;
             font-size: 0.9rem;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            border: 2px solid #59493b;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .product-card .btn-card:hover {
-            background: #fff;
+            background: transparent;
             color: #59493b;
             border-color: #59493b;
         }
@@ -217,51 +174,35 @@
             text-align: center;
             padding: 80px 20px;
         }
-        .state-message svg {
-            width: 64px;
-            height: 64px;
-            margin-bottom: 20px;
-            opacity: 0.3;
-        }
-        .state-message h3 {
-            font-size: 1.3rem;
-            color: #333;
-            margin-bottom: 8px;
-        }
-        .state-message p {
-            color: #888;
-            font-size: 0.95rem;
-            max-width: 400px;
-            margin: 0 auto;
-        }
+        .state-message svg { width: 64px; height: 64px; margin-bottom: 20px; opacity: 0.3; }
+        .state-message h3 { font-size: 1.3rem; color: #333; margin-bottom: 8px; }
+        .state-message p { color: #888; font-size: 0.95rem; max-width: 400px; margin: 0 auto; }
         .retry-btn {
             margin-top: 20px;
             padding: 10px 28px;
             background: #59493b;
             color: #fff;
-            border-radius: 8px;
+            border-radius: 0;
             font-weight: 600;
             cursor: pointer;
-            border: none;
-            transition: background 0.3s;
+            border: 2px solid #59493b;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
         }
         .retry-btn:hover {
-            background: #8B6A4E;
+            background: transparent;
+            color: #59493b;
         }
 
         /* ===== PAGINATION MODERNIZED ===== */
-        .page-btn {
-            margin-top: 20px;
-        }
-        .page-btn a {
-            text-decoration: none;
-        }
+        .page-btn { margin-top: 20px; }
+        .page-btn a { text-decoration: none; }
         .page-btn span {
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .page-btn span:active {
-            transform: scale(0.92);
-        }
+        .page-btn span:active { transform: scale(0.92); }
 
         /* ===== ACCESSIBILITY ===== */
         @media (prefers-reduced-motion: reduce) {
@@ -269,10 +210,7 @@
                 transition: none !important;
                 animation: none !important;
             }
-            .skeleton {
-                animation: none;
-                background: #e8e8e8;
-            }
+            .skeleton { animation: none; background: #e8e8e8; }
         }
         .sort-control select:focus {
             outline: none;
@@ -286,275 +224,16 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 16px;
             }
-            .product-card .card-content {
-                padding: 14px;
-            }
-            .product-card h3 {
-                font-size: 0.85rem;
-            }
-            .product-card .product-price {
-                font-size: 1rem;
-            }
-            .product-card .btn-card {
-                padding: 10px 14px;
-                font-size: 0.8rem;
-            }
-            .sort-bar-inner {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+            .product-card .card-content { padding: 14px; }
+            .product-card h3 { font-size: 0.85rem; }
+            .product-card .product-price { font-size: 1rem; }
+            .product-card .btn-card { padding: 10px 14px; font-size: 0.8rem; }
+            .sort-bar-inner { flex-direction: column; align-items: flex-start; }
         }
         @media (max-width: 400px) {
-            .product-grid .row {
-                grid-template-columns: 1fr;
-            }
+            .product-grid .row { grid-template-columns: 1fr; }
         }
-    
-
-/* ===== SHARP BUTTONS (excludes footer newsletter completely) ===== */
-
-/* Auth page buttons + retry button */
-.btn-auth,
-.btn-welcome,
-.btn-continue,
-.btn-empty,
-.btn-checkout,
-.btn-submit,
-.btn-primary,
-.btn-forgot,
-.btn-reset,
-.btn-track,
-.retry-btn {
-  border-radius: 0 !important;
-  border: 2px solid #59493b !important;
-  background: #59493b !important;
-  color: #fff !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.btn-auth:hover,
-.btn-welcome:hover,
-.btn-continue:hover,
-.btn-empty:hover,
-.btn-checkout:hover,
-.btn-submit:hover,
-.btn-primary:hover,
-.btn-forgot:hover,
-.btn-reset:hover,
-.btn-track:hover,
-.retry-btn:hover {
-  background: transparent !important;
-  color: #59493b !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(89, 73, 59, 0.12);
-}
-
-/* Ghost buttons (outline by default, fill on hover) */
-.btn-upload-mini,
-.btn-coupon,
-#apply-coupon-btn {
-  border-radius: 0 !important;
-  border: 2px solid #e8e0d8 !important;
-  background: transparent !important;
-  color: #6b5d52 !important;
-  transition: all 0.3s ease !important;
-}
-
-.btn-upload-mini:hover,
-.btn-coupon:hover,
-#apply-coupon-btn:hover {
-  border-color: #59493b !important;
-  background: #59493b !important;
-  color: #fff !important;
-  transform: translateY(-2px);
-}
-
-/* Card buttons */
-.btn-card:not(.coming-soon) {
-  border-radius: 0 !important;
-  border: 2px solid #59493b !important;
-  background: #59493b !important;
-  color: #fff !important;
-  transition: all 0.3s ease !important;
-}
-
-.btn-card:not(.coming-soon):hover {
-  background: transparent !important;
-  color: #59493b !important;
-  transform: translateY(-2px);
-}
-
-.btn-card.coming-soon {
-  border-radius: 0 !important;
-  border: 2px dashed #ddd !important;
-  background: transparent !important;
-  color: #999 !important;
-  cursor: not-allowed !important;
-}
-
-/* CTA buttons */
-.btn-cta {
-  border-radius: 0 !important;
-  border: 2px solid #59493b !important;
-  background: #59493b !important;
-  color: #fff !important;
-  transition: all 0.3s ease !important;
-}
-
-.btn-cta:hover {
-  background: transparent !important;
-  color: #59493b !important;
-  transform: translateY(-2px);
-}
-
-/* Quantity controls */
-.quantity-control button {
-  border-radius: 0 !important;
-  border: 1.5px solid #e8e0d8 !important;
-  background: #f5f0eb !important;
-  color: #59493b !important;
-  transition: all 0.2s ease !important;
-}
-
-.quantity-control button:hover {
-  background: #59493b !important;
-  color: #fff !important;
-  border-color: #59493b !important;
-}
-
-/* Pagination */
-.page-btn span {
-  border-radius: 0 !important;
-  border: 2px solid #59493b !important;
-  background: #59493b !important;
-  color: #fff !important;
-  transition: all 0.3s ease !important;
-}
-
-.page-btn span:hover {
-  background: transparent !important;
-  color: #59493b !important;
-}
-
-/* FAQ category buttons */
-.faq-category-btn {
-  border-radius: 0 !important;
-  border: 2px solid rgba(89, 73, 59, 0.15) !important;
-  background: #fff !important;
-  color: #555 !important;
-  transition: all 0.3s ease !important;
-}
-
-.faq-category-btn:hover {
-  border-color: #59493b !important;
-  color: #59493b !important;
-  background: transparent !important;
-}
-
-.faq-category-btn.active {
-  background: #59493b !important;
-  border-color: #59493b !important;
-  color: #fff !important;
-}
-
-.faq-category-btn.active:hover {
-  background: transparent !important;
-  color: #59493b !important;
-}
-
-/* Auth tabs */
-.auth-tab {
-  border-radius: 0 !important;
-  border-bottom: 2px solid transparent !important;
-  transition: all 0.3s ease !important;
-}
-
-.auth-tab.active {
-  border-bottom-color: #59493b !important;
-}
-
-/* Sidebar nav */
-.sidebar-nav .nav-link {
-  border-radius: 0 !important;
-  border-left: 3px solid transparent !important;
-  transition: all 0.2s ease !important;
-}
-
-.sidebar-nav .nav-link:hover,
-.sidebar-nav .nav-link.active {
-  border-left-color: #59493b !important;
-  background: rgba(89, 73, 59, 0.06) !important;
-}
-
-/* Policy TOC */
-.policy-toc a,
-.terms-toc a {
-  border-radius: 0 !important;
-  border-left: 3px solid transparent !important;
-  transition: all 0.2s ease !important;
-}
-
-.policy-toc a:hover,
-.policy-toc a.active,
-.terms-toc a:hover,
-.terms-toc a.active {
-  border-left-color: #59493b !important;
-}
-
-/* Disabled states */
-.btn-auth:disabled,
-.btn-checkout:disabled,
-.btn-submit:disabled,
-.btn-primary:disabled,
-.btn-forgot:disabled,
-.btn-reset:disabled,
-.btn-track:disabled {
-  opacity: 0.5 !important;
-  cursor: not-allowed !important;
-  transform: none !important;
-  background: #59493b !important;
-  color: #fff !important;
-}
-
-/* Toggle / icon buttons */
-.toggle-password,
-.avatar-upload-btn {
-  border-radius: 0 !important;
-  border: none !important;
-  background: none !important;
-  color: #6b5d52 !important;
-  transition: all 0.2s ease !important;
-}
-
-.toggle-password:hover,
-.avatar-upload-btn:hover {
-  color: #59493b !important;
-  background: rgba(89, 73, 59, 0.06) !important;
-}
-
-/* Retry button */
-.retry-btn {
-  border-radius: 0 !important;
-  border: 2px solid #59493b !important;
-  background: #59493b !important;
-  color: #fff !important;
-  padding: 10px 28px !important;
-  font-family: 'Poppins', sans-serif !important;
-  font-weight: 600 !important;
-  font-size: 0.9rem !important;
-  cursor: pointer !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.8px !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.retry-btn:hover {
-  background: transparent !important;
-  color: #59493b !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(89, 73, 59, 0.12);
-}
-</style>
+    </style>
 <base target="_blank">
 </head>
 <body class="product-page">
@@ -583,14 +262,12 @@
         </div>
     </div>
 
-    <!-- ===== HERO TITLE SECTION ===== -->
     <div class="container" style="padding-top: 40px; padding-bottom: 10px;">
         <div class="row row-2" style="justify-content: space-between; align-items: center; margin: 0 auto 20px;">
             <h2 style="font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; color: #1a1a1a;">All Products</h2>
         </div>
     </div>
 
-    <!-- ===== STICKY SORT BAR ===== -->
     <div class="sort-bar-sticky" id="sortBar">
         <div class="container">
             <div class="sort-bar-inner">
@@ -609,11 +286,9 @@
         </div>
     </div>
 
-    <!-- ===== PRODUCT GRID ===== -->
     <div class="container">
         <div class="product-grid">
             <div class="row" id="productRow">
-                <!-- Skeleton placeholders while loading -->
                 <div class="col-4 skeleton-card skeleton">
                     <div class="skeleton-img skeleton"></div>
                     <div class="skeleton-text short skeleton"></div>
@@ -636,15 +311,13 @@
                 </div>
             </div>
         </div>
-
-        <div class="page-btn">
+        <!-- <div class="page-btn">
             <a href="#" aria-label="Page 1"><span>1</span></a>
             <a href="#" aria-label="Page 2"><span>2</span></a>
             <a href="#" aria-label="Next page"><span>&#8594;</span></a>
-        </div>
+        </div> -->
     </div>
 
-    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-top">
@@ -654,7 +327,7 @@
                 </div>
                 <div class="footer-newsletter">
                     <p>Be the first to know about new drops and exclusive offers.</p>
-                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+                    <form class="newsletter-form">
                         <input type="email" placeholder="Email address" required>
                         <button type="submit">Join</button>
                     </form>
@@ -662,18 +335,10 @@
                 <div class="footer-social">
                     <span class="footer-social-label">Follow Us</span>
                     <div class="social-cluster">
-                        <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram">
-                            <img src="instagram.png" alt="Instagram">
-                        </a>
-                        <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok">
-                            <img src="tik-tok.png" alt="TikTok">
-                        </a>
-                        <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest">
-                            <img src="pinterest-logo.png" alt="Pinterest">
-                        </a>
-                        <a href="https://x.com/arcanashopng1" aria-label="X">
-                            <img src="twitter.png" alt="X">
-                        </a>
+                        <a href="https://www.instagram.com/arcana.ng" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+                        <a href="https://www.tiktok.com/@arcana.ng" aria-label="TikTok"><img src="tik-tok.png" alt="TikTok"></a>
+                        <a href="https://pin.it/2TyuCuriX" aria-label="Pinterest"><img src="pinterest-logo.png" alt="Pinterest"></a>
+                        <a href="https://x.com/arcanashopng1" aria-label="X"><img src="twitter.png" alt="X"></a>
                     </div>
                 </div>
             </div>
@@ -682,74 +347,24 @@
                     <h4>Contact Us</h4>
                     <div class="contact-content">
                         <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg>
-                            <div>
-                                <a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a>
-                            </div>
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <div><a href="mailto:arcanashopng@gmail.com" class="email-link">arcanashopng@gmail.com</a></div>
                         </div>
                         <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <polyline points="12,6 12,12 16,14"/>
-                            </svg>
-                            <div>
-                                <span>Mon – Fri</span>
-                                <p class="hours">9:00 AM – 5:00 PM</p>
-                            </div>
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                            <div><span>Mon – Fri</span><p class="hours">9:00 AM – 5:00 PM</p></div>
                         </div>
                     </div>
                 </div>
-                <div class="footer-col">
-                    <h4>Help</h4>
-                    <ul>
-                        <li><a href="faqs.html">FAQs</a></li>
-                        <li><a href="returns&exchanges.html">Returns & Exchanges</a></li>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms&conditions.html">Terms & Conditions</a></li>
-                        <li><a href="contact.html">Contact Support</a></li>
-                        <li><a href="order_status.html">Order Status</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>My Account</h4>
-                    <ul>
-                        <li><a href="account.html">Sign In</a></li>
-                        <li><a href="cart.html">View Cart</a></li>
-                        <li><a href="order_status.html">Track My Order</a></li>
-                        <li>
-                            <div class="payment-methods">
-                                <p>Payment Options</p>
-                                <div class="payment-icons">
-                                    <div class="payment-icon">VISA</div>
-                                    <div class="payment-icon">MC</div>
-                                    <div class="payment-icon">AMEX</div>
-                                    <div class="payment-icon">PP</div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="product.html">All Products</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="account.html">Account</a></li>
-                        <li><a href="contact.html">Get in Touch</a></li>
-                    </ul>
-                </div>
+                <div class="footer-col"><h4>Help</h4><ul><li><a href="faqs.html">FAQs</a></li><li><a href="returns&exchanges.html">Returns & Exchanges</a></li><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms&conditions.html">Terms & Conditions</a></li><li><a href="contact.html">Contact Support</a></li><li><a href="order_status.html">Order Status</a></li></ul></div>
+                <div class="footer-col"><h4>My Account</h4><ul><li><a href="account.html">Sign In</a></li><li><a href="cart.html">View Cart</a></li><li><a href="order_status.html">Track My Order</a></li><li><div class="payment-methods"><p>Payment Options</p><div class="payment-icons"><div class="payment-icon">VISA</div><div class="payment-icon">MC</div><div class="payment-icon">AMEX</div><div class="payment-icon">PP</div></div></div></li></ul></div>
+                <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="product.html">All Products</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="account.html">Account</a></li><li><a href="contact.html">Get in Touch</a></li></ul></div>
             </div>
         </div>
         <div class="footer-bottom">
             <div class="footer-bottom-inner">
                 <p>© <span id="year"></span> Arcana — All rights reserved.</p>
-                <div class="footer-bottom-links">
-                    <a href="privacy-policy.html">Privacy</a>
-                    <a href="terms&conditions.html">Terms</a>
-                </div>
+                <div class="footer-bottom-links"><a href="privacy-policy.html">Privacy</a><a href="terms&conditions.html">Terms</a></div>
             </div>
         </div>
     </footer>
@@ -763,106 +378,56 @@
         const resultsCount = document.getElementById("resultsCount");
         const sortBar = document.getElementById("sortBar");
 
-        const currencyRates = {
-            USD: 1,
-            EUR: 0.8666,
-            GBP: 0.7375,
-            NGN: 1547.30,
-        };
-
-        const currencySymbols = {
-            USD: "$",
-            EUR: "€",
-            GBP: "£",
-            NGN: "₦",
-        };
+        const currencyRates = { USD: 1, EUR: 0.8666, GBP: 0.7375, NGN: 1547.30 };
+        const currencySymbols = { USD: "$", EUR: "€", GBP: "£", NGN: "₦" };
 
         const currencySelector = document.getElementById("currency");
         let currentCurrency = currencySelector.value;
         let allProducts = [];
 
-        // Sticky sort bar shadow on scroll
         window.addEventListener("scroll", () => {
-            if (window.scrollY > 10) {
-                sortBar.classList.add("scrolled");
-            } else {
-                sortBar.classList.remove("scrolled");
-            }
+            if (window.scrollY > 10) { sortBar.classList.add("scrolled"); }
+            else { sortBar.classList.remove("scrolled"); }
         });
 
         currencySelector.addEventListener("change", () => {
             currentCurrency = currencySelector.value;
-            // Animate price update
-            document.querySelectorAll(".product-price").forEach(el => {
-                el.classList.add("updating");
-            });
-            setTimeout(() => {
-                renderProducts(allProducts, sortSelect.value);
-            }, 150);
+            document.querySelectorAll(".product-price").forEach(el => el.classList.add("updating"));
+            setTimeout(() => renderProducts(allProducts, sortSelect.value), 150);
         });
 
-        sortSelect.addEventListener("change", () => {
-            renderProducts(allProducts, sortSelect.value);
-        });
-
-        function getStaticProductPage(name) {
-            const nameMap = {
-                "Black Sleeves of Arcana's Star Collection": "bs-star-collection.html",
-                "Red Sleeves of Arcana's Star Collection": "rs-star-collection.html",
-                "Full Black of Arcana's Star Collection": "fb-star-collection.html",
-                "Arcana's Black Sweatpants": "blacksweats.html",
-                "Arcana's Grey Sweatpants": "greysweats.html",
-                "Arcana's Bold Skull Cap": "bold.html",
-                "Arcana's Crest Skull Cap": "crest.html"
-            };
-            return nameMap[name] || "#";
-        }
+        sortSelect.addEventListener("change", () => renderProducts(allProducts, sortSelect.value));
 
         function sortProducts(products, sortValue) {
             const sorted = [...products];
             switch (sortValue) {
-                case "name_asc":
-                    sorted.sort((a, b) => a.name.localeCompare(b.name));
-                    break;
-                case "name_desc":
-                    sorted.sort((a, b) => b.name.localeCompare(a.name));
-                    break;
-                case "price_low":
-                    sorted.sort((a, b) => a.price - b.price);
-                    break;
-                case "price_high":
-                    sorted.sort((a, b) => b.price - a.price);
-                    break;
+                case "name_asc": sorted.sort((a, b) => a.name.localeCompare(b.name)); break;
+                case "name_desc": sorted.sort((a, b) => b.name.localeCompare(a.name)); break;
+                case "price_low": sorted.sort((a, b) => a.price - b.price); break;
+                case "price_high": sorted.sort((a, b) => b.price - a.price); break;
             }
             return sorted;
         }
 
         function renderProducts(products, sortValue) {
             const sortedProducts = sortProducts(products, sortValue);
-            
-            // Update results count
             resultsCount.textContent = `${sortedProducts.length} product${sortedProducts.length !== 1 ? 's' : ''}`;
-
             productRow.innerHTML = "";
 
             if (sortedProducts.length === 0) {
                 productRow.innerHTML = `
                     <div class="state-message">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M8 12h8M12 8v8"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
                         <h3>No products found</h3>
                         <p>Check back soon for new drops.</p>
-                    </div>
-                `;
+                    </div>`;
                 return;
             }
 
             const comingSoonProducts = [
-                "Arcana's 🐍... Tee",
-                "Arcana's Shorts(🐆 Set)",
-                "Arcana's Compression Tee(🐆 Set)",
+                "Arcana's... Tee",
+                "Arcana's Shorts(✨ Set)",
+                "Arcana's Compression Tee(✨ Set)",
                 "Arcana's ID.TO",
                 "Arcana's Panther Set"
             ];
@@ -876,10 +441,8 @@
                 card.innerHTML = `
                     <div class="card-image-wrap">
                         ${isComingSoon ? '<span class="card-badge">Coming Soon</span>' : ''}
-                        <img src="${product.image}" 
-                             alt="${product.name}" 
-                             loading="lazy"
-                             onerror="this.src='logo.png'; this.style.objectFit='contain'; this.style.padding='20px';">
+                        <img src="${product.image}" alt="${product.name}" loading="lazy"
+                            onerror="this.src='logo.png'; this.style.objectFit='contain'; this.style.padding='20px';">
                     </div>
                     <div class="card-content">
                         <h3>${product.name}</h3>
@@ -890,9 +453,9 @@
                                 </span>
                                 <span class="rating">★★★★★</span>
                             </div>
-                            <a href="${getStaticProductPage(product.name)}" 
-                               class="btn-card ${isComingSoon ? 'coming-soon' : ''}">
-                               ${isComingSoon ? 'Notify Me' : 'View Details'}
+                            <a href="product-detail.html?id=${product._id}"
+                                class="btn-card ${isComingSoon ? 'coming-soon' : ''}">
+                                ${isComingSoon ? 'Notify Me' : 'View Details'}
                             </a>
                         </div>
                     </div>
@@ -904,15 +467,11 @@
         function showErrorState() {
             productRow.innerHTML = `
                 <div class="state-message">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 8v4M12 16h.01"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
                     <h3>Unable to load products</h3>
                     <p>Our store is temporarily unavailable. Please try again in a moment.</p>
                     <button class="retry-btn" onclick="location.reload()">Try Again</button>
-                </div>
-            `;
+                </div>`;
             resultsCount.textContent = "Connection error";
         }
 
@@ -929,7 +488,6 @@
             }
         }
 
-        // Kick off
         fetchProducts();
     });
     </script>
