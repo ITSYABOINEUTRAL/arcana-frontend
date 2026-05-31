@@ -396,7 +396,8 @@
       try {
         const res = await fetch(API_BASE + '/products');
         if (!res.ok) throw new Error('Failed');
-        const allProducts = await res.json();
+        const allData = await res.json();
+        const allProducts = allData.products || [];
         const categoryProducts = allProducts.filter(prod => prod.category === p.category && prod._id !== p._id).slice(0, 3);
 
         let thumbsHtml = `<button class="thumb active" data-src="${p.image}" aria-label="Main view"><img src="${p.image}" alt="Main view"></button>`;
@@ -761,8 +762,7 @@
       try {
         const res = await fetch(`${API_BASE}/products`);
         if (!res.ok) throw new Error('Failed');
-        const data = await res.json();
-        const products = data.products || [];
+        const products = await res.json();
         const related = products.filter(p => p._id !== excludeId && p.category === category).slice(0, 4);
         const grid = document.getElementById('relatedGrid');
         if (related.length === 0) {
