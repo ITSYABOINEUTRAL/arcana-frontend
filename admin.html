@@ -328,8 +328,6 @@
     </style>
 <base target="_blank">
 <base target="_blank">
-<base target="_blank">
-<base target="_blank">
 </head>
 <body>
   <div class="mobile-header" id="mobile-header">
@@ -688,7 +686,7 @@
     let currentOrderNumber = null;
     let currentProductId = null;
     let allOrders = [];
-    let newslettersSent = 0;
+    // Newsletter count fetched from API on every load
 
     function toggleSidebar() {
       const sidebar = document.querySelector('.sidebar');
@@ -766,6 +764,9 @@
         document.getElementById('stat-orders').textContent = (s.orders || 0).toLocaleString();
         document.getElementById('stat-users').textContent = (s.users || 0).toLocaleString();
         document.getElementById('stat-products').textContent = (s.products || 0).toLocaleString();
+        // Update newsletter stats from dashboard API
+        document.getElementById('stat-sbscribers').textContent = (s.subscribers || 0).toLocaleString();
+        document.getElementById('stat-sent').textContent = (s.newslettersSent || 0).toLocaleString();
 
         const ordersData = await fetch(`${API_BASE}/admin/orders`, fetchOptions('GET')).then(handleResponse);
         allOrders = ordersData.orders || [];
@@ -1028,7 +1029,9 @@
         const data = await fetch(`${API_BASE}/newsletter`, fetchOptions('GET')).then(handleResponse);
         renderNewsletter(data.subscribers || []);
         document.getElementById('stat-sbscribers').textContent = (data.subscribers || []).length.toLocaleString();
-        document.getElementById('stat-sent').textContent = newslettersSent.toLocaleString();
+        // Fetch real newsletter count from dashboard API
+        const dash = await fetch(`${API_BASE}/admin/dashboard`, fetchOptions('GET')).then(handleResponse);
+        document.getElementById('stat-sent').textContent = (dash.newslettersSent || 0).toLocaleString();
       } catch (err) {
         document.getElementById('newsletter-container').innerHTML = `<div class="empty-state">${err.message}</div>`;
       }
@@ -1064,8 +1067,9 @@
       btn.textContent = 'Sending...';
       try {
         const data = await fetch(`${API_BASE}/newsletter/send`, fetchOptions('POST', { subject, content })).then(handleResponse);
-        newslettersSent++;
-        document.getElementById('stat-sent').textContent = newslettersSent.toLocaleString();
+        // Refresh count from API (persists across refreshes)
+        const dash = await fetch(`${API_BASE}/admin/dashboard`, fetchOptions('GET')).then(handleResponse);
+        document.getElementById('stat-sent').textContent = (dash.newslettersSent || 0).toLocaleString();
         showToast(data.message || 'Newsletter sent!');
         document.getElementById('newsletter-subject').value = '';
         document.getElementById('newsletter-content').value = '';
