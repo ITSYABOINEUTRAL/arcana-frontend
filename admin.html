@@ -98,16 +98,76 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .empty-state { text-align: center; padding: 60px; color: var(--text-muted); font-size: 14px; }
     .hidden { display: none !important; }
-    .auth-banner {
-      background: var(--error);
-      color: #fff;
-      padding: 12px 24px;
-      text-align: center;
-      font-size: 13px;
+
+    /* ===== AUTH ERROR OVERLAY ===== */
+    .auth-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(44, 36, 30, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 99999;
       display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
-    .auth-banner.show { display: block; }
-    .auth-banner a { color: #fff; text-decoration: underline; font-weight: 600; }
+    .auth-overlay.active { display: flex; }
+    .auth-panel {
+      background: #fff;
+      border-radius: 16px;
+      padding: 48px 40px;
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+      animation: scaleIn 0.35s ease;
+    }
+    @keyframes scaleIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .auth-icon {
+      width: 72px;
+      height: 72px;
+      background: var(--error);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+    .auth-icon svg { width: 32px; height: 32px; }
+    .auth-panel h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+    .auth-panel p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .auth-btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+    .auth-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(89,73,59,0.25);
+    }
+
     @media (max-width: 1024px) {
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .sidebar { width: 200px; }
@@ -124,10 +184,20 @@
 <base target="_blank">
 </head>
 <body>
-  <!-- Auth error banner (non-blocking) -->
-  <div class="auth-banner" id="auth-banner">
-    <span id="auth-banner-text"></span>
-    <a href="account.html?redirect=admin" id="auth-banner-link">Sign In Again</a>
+  <!-- AUTH ERROR OVERLAY -->
+  <div class="auth-overlay" id="auth-overlay">
+    <div class="auth-panel">
+      <div class="auth-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="15" y1="9" x2="9" y2="15"/>
+          <line x1="9" y1="9" x2="15" y2="15"/>
+        </svg>
+      </div>
+      <h2 id="auth-title">Access Denied</h2>
+      <p id="auth-message">You do not have permission to access this panel.</p>
+      <a href="account.html" class="auth-btn" id="auth-link">Go to Account</a>
+    </div>
   </div>
 
   <div class="admin-layout">
@@ -339,7 +409,7 @@
         <form id="product-form" class="form-grid">
           <div class="form-group">
             <label>Product Name</label>
-            <input type="text" name="name" required placeholder="e.g. Arcana Crest Tee">
+            <input type="text" name="name" required placeholder="e.g. Arcana Tee">
           </div>
           <div class="form-group">
             <label>Price (₦)</label>
@@ -391,10 +461,13 @@
             ? 'http://localhost:5000/api'
             : 'https://arcana-backend-z46k.onrender.com/api');
 
-    // ===== FIXED: credentials: 'include' is back, now supported by backend CORS =====
+    // ===== TEMPORARY FIX: No credentials: 'include' until backend CORS is updated =====
+    // The backend does not send Access-Control-Allow-Credentials: true,
+    // so credentials mode causes CORS preflight failures.
+    // Authentication works via the Bearer token in the Authorization header.
     const fetchOptions = (method = 'GET', body = null) => {
       const token = localStorage.getItem('token');
-      const opts = { method, credentials: 'include', headers: { 'Content-Type': 'application/json' } };
+      const opts = { method, headers: { 'Content-Type': 'application/json' } };
       if (token) opts.headers['Authorization'] = `Bearer ${token}`;
       if (body) opts.body = JSON.stringify(body);
       return opts;
@@ -411,19 +484,28 @@
     let allOrders = [];
     let newslettersSent = 0;
 
+    /* ============ AUTH OVERLAY ============ */
+    function showAuthOverlay(title, message, linkText, linkHref) {
+      document.getElementById('auth-title').textContent = title;
+      document.getElementById('auth-message').textContent = message;
+      const link = document.getElementById('auth-link');
+      link.textContent = linkText;
+      link.href = linkHref;
+      document.getElementById('auth-overlay').classList.add('active');
+    }
+
     /* ============ INIT ============ */
     async function initAdmin() {
       try {
         const userData = await fetch(`${API_BASE}/user/profile`, fetchOptions('GET')).then(handleResponse);
         if (!userData.user?.isAdmin) {
-          showAuthBanner('Access Denied: You do not have admin privileges.', false);
+          showAuthOverlay('Access Denied', 'You do not have admin privileges.', 'Go to Account', 'account.html');
           return;
         }
         document.getElementById('admin-name').textContent = userData.user.name || 'Admin';
         if (userData.user.profilePicture) {
           document.getElementById('admin-avatar').src = userData.user.profilePicture;
         }
-        // Clear loop protection on success
         sessionStorage.removeItem('adminRedirectCount');
         loadDashboard();
         loadOrders();
@@ -432,22 +514,8 @@
         loadNewsletter();
       } catch (err) {
         console.error('Admin init error:', err);
-        showAuthBanner('Authentication failed. Your session may have expired.', true);
+        showAuthOverlay('Authentication Failed', 'Unable to verify your admin access. Your session may have expired.', 'Sign In Again', 'account.html?redirect=admin');
       }
-    }
-
-    function showAuthBanner(message, showLogin) {
-      const banner = document.getElementById('auth-banner');
-      const text = document.getElementById('auth-banner-text');
-      const link = document.getElementById('auth-banner-link');
-      text.textContent = message + ' ';
-      link.style.display = showLogin ? 'inline' : 'none';
-      if (!showLogin) {
-        link.href = 'account.html';
-        link.textContent = 'Go to Account';
-      }
-      banner.classList.add('show');
-      showToast(message, 'error');
     }
 
     /* ============ DASHBOARD ============ */
