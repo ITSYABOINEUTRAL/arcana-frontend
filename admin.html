@@ -192,7 +192,7 @@
       .stats-grid { grid-template-columns: 1fr; }
       .form-grid { grid-template-columns: 1fr; }
     }
-  
+
     /* ===== MOBILE RESPONSIVE FIXES ===== */
     .mobile-header {
       display: none;
@@ -246,9 +246,12 @@
         left: -260px;
         width: 260px;
         top: 0; bottom: 0;
+        height: 100vh;
         transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 101;
         display: flex !important;
+        flex-direction: column;
+        overflow-y: auto;
         padding-top: 72px;
       }
       .sidebar.open { left: 0; }
@@ -766,7 +769,7 @@
             ${orders.map(o => `
               <tr>
                 <td><strong>#${o.orderNumber}</strong></td>
-                <td>${o.user?.name || 'Unknown'}<br><small style="color:#666">${o.user?.email || ''}</small></td>
+                <td>${o.user?.name || 'Unknown'}<<br><small style="color:#666">${o.user?.email || ''}</small></td>
                 <td>${o.products?.length || 0} items</td>
                 <td>${formatPrice(o.totalPrice)}</td>
                 <td><span class="status-pill status-${(o.deliveryStage || 'reviewing').toLowerCase()}">${o.deliveryStage || 'Reviewing'}</span></td>
