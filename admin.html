@@ -67,7 +67,7 @@
     .status-pill { display: inline-block; padding: 6px 14px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; border-radius: 4px; }
     .status-pending { background: #fef3e2; color: #d68910; }
     .status-processing { background: #e8f6f3; color: #1abc9c; }
-    .status-shipped { background: #ebf5fb; color: #3498db; }
+    .status-shipped { background: #ebf5fb;; color: #3498db; }
     .status-delivered { background: #eafaf1; color: var(--success); }
     .status-cancelled { background: #fdedec; color: var(--error); }
     .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 28px; }
@@ -110,6 +110,7 @@
       .form-grid { grid-template-columns: 1fr; }
     }
   </style>
+<base target="_blank">
 <base target="_blank">
 </head>
 <body>
@@ -244,7 +245,7 @@
         <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 24px;">
           <div class="stat-card">
             <div class="stat-label">Total Subscribers</div>
-            <div class="stat-value" id="stat-subscribers">0</div>
+            <div class="stat-value" id="stat-sbscribers">0</div>
           </div>
           <div class="stat-card">
             <div class="stat-label">Newsletters Sent</div>
@@ -371,11 +372,14 @@
     const API_BASE = (typeof API_CONFIG !== 'undefined' && API_CONFIG?.base)
       ? API_CONFIG.base
       : (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-          ? 'http://localhost:5000/api'
-          : 'https://arcana-backend-z46k.onrender.com/api');
+            ? 'http://localhost:5000/api'
+            : 'https://arcana-backend-z46k.onrender.com/api');
 
+    // ===== MODIFIED: fetchOptions now includes Authorization header =====
     const fetchOptions = (method = 'GET', body = null) => {
+      const token = localStorage.getItem('token');
       const opts = { method, credentials: 'include', headers: { 'Content-Type': 'application/json' } };
+      if (token) opts.headers['Authorization'] = `Bearer ${token}`;
       if (body) opts.body = JSON.stringify(body);
       return opts;
     };
@@ -391,7 +395,7 @@
     let allOrders = [];
     let newslettersSent = 0;
 
-    /* ========== INIT ========== */
+    /* ============ INIT ============ */
     async function initAdmin() {
       try {
         const userData = await fetch(`${API_BASE}/user/profile`, fetchOptions('GET')).then(handleResponse);
@@ -414,7 +418,7 @@
       }
     }
 
-    /* ========== DASHBOARD ========== */
+    /* ============ DASHBOARD ============ */
     async function loadDashboard() {
       try {
         const data = await fetch(`${API_BASE}/admin/dashboard`, fetchOptions('GET')).then(handleResponse);
@@ -452,7 +456,7 @@
         </table>`;
     }
 
-    /* ========== ORDERS ========== */
+    /* ============ ORDERS ============ */
     async function loadOrders() {
       try {
         const data = await fetch(`${API_BASE}/admin/orders`, fetchOptions('GET')).then(handleResponse);
@@ -519,7 +523,7 @@
       }
     }
 
-    /* ========== PRODUCTS ========== */
+    /* ============ PRODUCTS ============ */
     async function loadProducts() {
       try {
         const data = await fetch(`${API_BASE}/products`, fetchOptions('GET')).then(handleResponse);
@@ -601,7 +605,7 @@
 
     function editProduct(productId) { openProductModal(productId); }
 
-    /* ========== USERS ========== */
+    /* ============ USERS ============ */
     async function loadUsers() {
       try {
         const data = await fetch(`${API_BASE}/admin/users`, fetchOptions('GET')).then(handleResponse);
@@ -636,12 +640,12 @@
         </table>`;
     }
 
-    /* ========== NEWSLETTER ========== */
+    /* ============ NEWSLETTER ============ */
     async function loadNewsletter() {
       try {
         const data = await fetch(`${API_BASE}/newsletter`, fetchOptions('GET')).then(handleResponse);
         renderNewsletter(data.subscribers || []);
-        document.getElementById('stat-subscribers').textContent = (data.subscribers || []).length.toLocaleString();
+        document.getElementById('stat-sbscribers').textContent = (data.subscribers || []).length.toLocaleString();
         document.getElementById('stat-sent').textContent = newslettersSent.toLocaleString();
       } catch (err) {
         document.getElementById('newsletter-container').innerHTML = `<div class="empty-state">${err.message}</div>`;
@@ -690,7 +694,7 @@
       }
     }
 
-    /* ========== UI HELPERS ========== */
+    /* ============ UI HELPERS ============ */
     function showTab(tabId, el) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
       document.getElementById('tab-' + tabId).classList.remove('hidden');

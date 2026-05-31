@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="icon" href="logo.png" type="image/x-icon">
-  <title>Account — Arcana</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <title>Account — Arcana</title>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<base target="_blank">
 <base target="_blank">
 </head>
 <body class="account-page">
@@ -305,8 +306,9 @@
         localStorage.setItem("userEmail", data.user.email);
         localStorage.setItem('token', data.token);
 
-        // Show modal instead of flash-toast-then-redirect
-        showBlockingMessage("Welcome back! Redirecting to your dashboard...", "account-dashboard.html");
+        // ===== MODIFIED: Redirect admin to admin panel, users to dashboard =====
+        const redirectUrl = data.user.isAdmin ? 'admin.html' : 'account-dashboard.html';
+        showBlockingMessage("Welcome back! Redirecting to your dashboard...", redirectUrl);
       } catch (err) {
         showToast(err.message, 'error');
         btn.disabled = false;
@@ -344,8 +346,9 @@
         localStorage.setItem("userEmail", data.user.email);
         localStorage.setItem('token', data.token);
 
-        // Show modal directly — no redundant invisible toast
-        showBlockingMessage("Registration successful! Welcome to Arcana.", "account-dashboard.html");
+        // ===== MODIFIED: Redirect admin to admin panel, users to dashboard =====
+        const redirectUrl = data.user.isAdmin ? 'admin.html' : 'account-dashboard.html';
+        showBlockingMessage("Registration successful! Welcome to Arcana.", redirectUrl);
       } catch (err) {
         showToast(err.message, 'error');
         btn.disabled = false;
@@ -362,7 +365,17 @@
             headers: { Authorization: `Bearer ${token}` }
           });
           if (res.ok) {
-            window.location.href = "account-dashboard.html";
+            const userData = await res.json();
+            // ===== MODIFIED: Respect redirect param and check admin status =====
+            const params = new URLSearchParams(window.location.search);
+            const redirect = params.get('redirect');
+            if (redirect === 'admin' && userData.isAdmin) {
+              window.location.href = 'admin.html';
+            } else if (userData.isAdmin) {
+              window.location.href = 'admin.html';
+            } else {
+              window.location.href = 'account-dashboard.html';
+            }
           } else {
             localStorage.removeItem("token");
           }
@@ -575,7 +588,6 @@
       box-shadow: 0 0 0 3px rgba(89, 73, 59, 0.08);
       background: #fff;
     }
-
     .input-wrap input::placeholder {
       color: #b8afa6;
     }
@@ -811,7 +823,7 @@
         margin-bottom: 24px;
       }
     }
-  
+
 /* ===== SHARP BUTTONS (excludes footer newsletter completely) ===== */
 
 /* Auth page buttons */
