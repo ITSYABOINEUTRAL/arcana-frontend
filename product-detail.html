@@ -328,7 +328,7 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     const API_BASE = 'https://arcana-backend-z46k.onrender.com/api';
-    const currencyRates = { USD: 1, EUR: 0.8666, GBP: 0.7375, NGN: 1.54730 };
+    const currencyRates = { USD: 1, EUR: 0.8666, GBP: 0.7375, NGN: 1547.30 };
     const currencySymbols = { USD: "$", EUR: "€", GBP: "£", NGN: "₦" };
     let currentCurrency = 'USD';
     let productData = null;
@@ -716,7 +716,7 @@
       const price = product.price || productData.price;
       const totalUSD = price * quantity;
       const finalTotal = totalUSD + shippingFee;
-      const amountInKobo = Math.round(finalTotal * 1.54730 * 100);
+      const amountInKobo = Math.round(finalTotal * 1547.30 * 100);
       const reference = `ARC${Date.now()}`;
       await fetch(`${API_BASE}/orders`, {
         method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
