@@ -327,6 +327,7 @@
     </style>
 <base target="_blank">
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
   <div class="mobile-header" id="mobile-header">
@@ -385,6 +386,10 @@
         <a class="nav-item" href="#" onclick="showTab('newsletter', this); return false;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           Newsletter
+        </a>
+        <a class="nav-item" href="#" onclick="showTab('email', this); return false;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Send Email
         </a>
       </div>
       <div class="nav-section" style="margin-top: auto;">
@@ -512,6 +517,29 @@
         <div class="section-card">
           <div class="section-header"><h2 class="section-title">Subscribers</h2></div>
           <div id="newsletter-container"><div class="loading"><div class="spinner"></div></div></div>
+        </div>
+      </div>
+
+      <div id="tab-email" class="tab-content hidden">
+        <div class="section-card" style="margin-bottom: 32px;">
+          <div class="section-header"><h2 class="section-title">Send Custom Email</h2></div>
+          <div class="form-grid" style="padding: 28px;">
+            <div class="form-group full">
+              <label>Recipient Email</label>
+              <input type="email" id="email-recipient" placeholder="customer@example.com" required>
+            </div>
+            <div class="form-group full">
+              <label>Subject</label>
+              <input type="text" id="email-subject" placeholder="e.g. Your order has shipped" required>
+            </div>
+            <div class="form-group full">
+              <label>Message Body (HTML supported)</label>
+              <textarea id="email-body" rows="10" placeholder="Write your email content here... HTML is supported." required></textarea>
+            </div>
+            <div class="form-group full" style="display: flex; justify-content: flex-end;">
+              <button class="btn" onclick="sendCustomEmail()">Send Email</button>
+            </div>
+          </div>
         </div>
       </div>
     </main>
@@ -669,6 +697,32 @@
       hamburger.classList.toggle('active');
     }
 
+    async function sendCustomEmail() {
+      const to = document.getElementById('email-recipient').value.trim();
+      const subject = document.getElementById('email-subject').value.trim();
+      const body = document.getElementById('email-body').value.trim();
+      if (!to || !subject || !body) {
+        showToast('Recipient, subject, and body are all required', 'error');
+        return;
+      }
+      const btn = document.querySelector('#tab-email .btn');
+      const originalText = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      try {
+        const data = await fetch(`${API_BASE}/admin/email/send`, fetchOptions('POST', { to, subject, body })).then(handleResponse);
+        showToast(data.message || 'Email sent successfully');
+        document.getElementById('email-recipient').value = '';
+        document.getElementById('email-subject').value = '';
+        document.getElementById('email-body').value = '';
+      } catch (err) {
+        showToast(err.message, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = originalText;
+      }
+    }
+
     function showAuthOverlay(title, message, linkText, linkHref) {
       document.getElementById('auth-title').textContent = title;
       document.getElementById('auth-message').textContent = message;
@@ -688,7 +742,7 @@
         document.getElementById('admin-name').textContent = userData.name || 'Admin';
         if (userData.profilePicture) {
           document.getElementById('admin-avatar').src = userData.profilePicture;
-        if (userData.profilePicture) document.getElementById('mobile-avatar').src = userData.profilePicture;
+          document.getElementById('mobile-avatar').src = userData.profilePicture;
         }
         sessionStorage.removeItem('adminRedirectCount');
         loadDashboard();
@@ -769,7 +823,7 @@
             ${orders.map(o => `
               <tr>
                 <td><strong>#${o.orderNumber}</strong></td>
-                <td>${o.user?.name || 'Unknown'}<<br><small style="color:#666">${o.user?.email || ''}</small></td>
+                <td>${o.user?.name || 'Unknown'}<br><small style="color:#666">${o.user?.email || ''}</small></td>
                 <td>${o.products?.length || 0} items</td>
                 <td>${formatPrice(o.totalPrice)}</td>
                 <td><span class="status-pill status-${(o.deliveryStage || 'reviewing').toLowerCase()}">${o.deliveryStage || 'Reviewing'}</span></td>
@@ -1026,7 +1080,7 @@
       document.getElementById('tab-' + tabId).classList.remove('hidden');
       document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
       if (el) el.classList.add('active');
-      const titles = { dashboard: 'Dashboard', orders: 'Orders', products: 'Products', users: 'Customers', newsletter: 'Newsletter' };
+      const titles = { dashboard: 'Dashboard', orders: 'Orders', products: 'Products', users: 'Customers', newsletter: 'Newsletter', email: 'Send Email' };
       document.getElementById('page-title').textContent = titles[tabId] || 'Dashboard';
     }
 

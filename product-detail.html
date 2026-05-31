@@ -13,6 +13,7 @@
 <base target="_blank">
 <base target="_blank">
 <base target="_blank">
+<base target="_blank">
 </head>
 <body class="product-details-page">
 
@@ -154,16 +155,16 @@
                         </div>
 
                         <!-- Trust Badges -->
-                        <div class="trust-badges" style="display:flex;flex-wrap:nowrap;gap:20px;justify-content:flex-start;align-items:center;">
-                            <div class="trust-item" style="display:flex;align-items:center;gap:8px;white-space:nowrap;">
+                        <div class="trust-badges">
+                            <div class="trust-item" style="display:flex;align-items:center;gap:8px;">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#59493b" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                                 <span>Secure Checkout</span>
                             </div>
-                            <div class="trust-item" style="display:flex;align-items:center;gap:8px;white-space:nowrap;">
+                            <div class="trust-item" style="display:flex;align-items:center;gap:8px;">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#59493b" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
                                 <span>Fast Shipping</span>
                             </div>
-                            <div class="trust-item" style="display:flex;align-items:center;gap:8px;white-space:nowrap;">
+                            <div class="trust-item" style="display:flex;align-items:center;gap:8px;">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#59493b" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                                 <span id="trust-material">Premium Cotton</span>
                             </div>
@@ -762,7 +763,8 @@
       try {
         const res = await fetch(`${API_BASE}/products`);
         if (!res.ok) throw new Error('Failed');
-        const products = await res.json();
+        const data = await res.json();
+        const products = data.products || data || [];
         const related = products.filter(p => p._id !== excludeId && p.category === category).slice(0, 4);
         const grid = document.getElementById('relatedGrid');
         if (related.length === 0) {
