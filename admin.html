@@ -375,10 +375,13 @@
             ? 'http://localhost:5000/api'
             : 'https://arcana-backend-z46k.onrender.com/api');
 
-    // ===== MODIFIED: fetchOptions now includes Authorization header =====
+    // ===== FIXED: Removed credentials: 'include' to avoid CORS preflight failure =====
+    // The backend does not send Access-Control-Allow-Credentials: true,
+    // so credentials mode causes the request to be blocked.
+    // Authentication is handled via the Bearer token in the Authorization header.
     const fetchOptions = (method = 'GET', body = null) => {
       const token = localStorage.getItem('token');
-      const opts = { method, credentials: 'include', headers: { 'Content-Type': 'application/json' } };
+      const opts = { method, headers: { 'Content-Type': 'application/json' } };
       if (token) opts.headers['Authorization'] = `Bearer ${token}`;
       if (body) opts.body = JSON.stringify(body);
       return opts;
