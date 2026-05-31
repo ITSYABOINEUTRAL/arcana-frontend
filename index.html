@@ -493,51 +493,26 @@
     </div>
 
     <script>
-// ===== NEWSLETTER HANDLER — FIXED TO ACTUALLY CALL THE API =====
-const API_BASE = 'https://arcana-backend-z46k.onrender.com/api';
+// ===== NEWSLETTER HANDLER =====
+        function handleSubscribe(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            const successMsg = document.getElementById('successMessage');
+            const form = document.getElementById('subscribeForm');
 
-async function handleSubscribe(e) {
-  e.preventDefault();
-  const email = document.getElementById('emailInput').value.trim();
-  const successMsg = document.getElementById('successMessage');
-  const form = document.getElementById('subscribeForm');
-  const btn = form.querySelector('button');
-  const originalText = btn.textContent;
+            // Here you would normally send to your backend/email service
+            // For now, just show success message
+            console.log('New subscriber:', email);
 
-  if (!email) return;
+            // Show success
+            successMsg.classList.add('show');
+            form.reset();
 
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-
-  try {
-    const response = await fetch(`${API_BASE}/newsletter/subscribe`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      successMsg.textContent = '✦ You\'re on the list. We\'ll hit you up when the drop goes live.';
-      successMsg.classList.add('show');
-      form.reset();
-      setTimeout(() => successMsg.classList.remove('show'), 5000);
-    } else if (response.status === 409 || data.message?.includes('duplicate')) {
-      successMsg.textContent = '✦ You\'re already subscribed!';
-      successMsg.classList.add('show');
-      setTimeout(() => successMsg.classList.remove('show'), 5000);
-    } else {
-      alert(data.message || 'Failed to subscribe. Please try again.');
-    }
-  } catch (error) {
-    console.error('Subscribe error:', error);
-    alert('Network error. Please check your connection and try again.');
-  } finally {
-    btn.textContent = originalText;
-    btn.disabled = false;
-  }
-}
-</script>
+            // Hide success after 5 seconds
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+            }, 5000);
+        }
+    </script>
 </body>
 </html>

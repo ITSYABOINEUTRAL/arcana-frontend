@@ -329,6 +329,7 @@
 <base target="_blank">
 <base target="_blank">
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
   <div class="mobile-header" id="mobile-header">
@@ -1045,7 +1046,7 @@
           <thead><tr><th>Email</th><th>Subscribed On</th></tr></thead>
           <tbody>
             ${subscribers.map(s => `
-              <tr><td>${s.email}</td><td>${new Date(s.createdAt).toLocaleDateString('en-NG')}</td></tr>
+              <tr><td>${s.email}</td><td>${s.subscribedAt ? new Date(s.subscribedAt).toLocaleDateString('en-NG') : 'N/A'}</td></tr>
             `).join('')}
           </tbody>
         </table></div>`;
