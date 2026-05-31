@@ -66,7 +66,8 @@ p {
     padding-left: 25px;
     padding-right: 25px;
 }
-/* ===== BASE CURRENCY SELECTOR ===== */
+
+/* ===== FIXED CURRENCY SELECTOR ===== */
 .currency-selector {
   appearance: none;
   -webkit-appearance: none;
@@ -78,7 +79,7 @@ p {
   text-transform: uppercase;
   color: #fff;
   background: #59493b;
-  border: 2px solid rgba(89, 73, 59, 0.15);
+  border: 2px solid rgba(89, 73, 59, 0.3);
   border-radius: 8px;
   padding: 10px 36px 10px 14px;
   cursor: pointer;
@@ -91,11 +92,6 @@ p {
   outline: none;
 }
 
-/* Hide default dropdown arrow in IE/Edge */
-.currency-selector::-ms-expand {
-  display: none;
-}
-
 .currency-selector:hover {
   border-color: #59493b;
   box-shadow: 0 4px 16px rgba(89, 73, 59, 0.12);
@@ -104,57 +100,41 @@ p {
 
 .currency-selector:focus {
   border-color: #59493b;
-  box-shadow: 0 0 0 4px rgba(89, 73, 59, 0.1);
+  box-shadow: 0 0 0 4px rgba(89, 73, 59, 0.2);
 }
 
-/* ===== LIGHT NAVBAR VARIANT (default for most pages) ===== */
-.navbar .currency-selector,
+/* Dark navbar variant (home page, gallery, etc.) */
+.header .navbar .currency-selector,
 body:not(.product-page):not(.product-details-page) .navbar .currency-selector {
-  background: #fff;
-  border-color: rgba(89, 73, 59, 0.2);
-  color: #59493b;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2359493b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 14px;
-}
-
-.navbar .currency-selector:hover,
-body:not(.product-page):not(.product-details-page) .navbar .currency-selector:hover {
-  background: #fff;
-  border-color: #59493b;
-  box-shadow: 0 4px 16px rgba(89, 73, 59, 0.12);
-}
-
-/* ===== DARK NAVBAR VARIANT (only when .header-dark is present) ===== */
-body.header-dark .navbar .currency-selector,
-.header-dark .navbar .currency-selector {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.35);
   color: #fff;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 14px;
 }
 
-/* ===== PRODUCT PAGE VARIANT ===== */
+.header .navbar .currency-selector:hover,
+body:not(.product-page):not(.product-details-page) .navbar .currency-selector:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Light navbar variant (Product pages) */
 body.product-page .navbar .currency-selector,
 body.product-details-page .navbar .currency-selector {
-  background: #fff;
-  border-color: rgba(89, 73, 59, 0.15);
+  background: #ffffff;
+  border-color: #59493b;
   color: #59493b;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2359493b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 14px;
 }
 
 body.product-page .navbar .currency-selector:hover,
 body.product-details-page .navbar .currency-selector:hover {
-  border-color: #59493b;
-  box-shadow: 0 4px 16px rgba(89, 73, 59, 0.12);
+  background: #f8f4f0;
+  border-color: #8B6A4E;
+  color: #59493b;
 }
+
 .row {
     display: flex;
     justify-content: center;
@@ -2722,4 +2702,243 @@ nav ul {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ============================================================
+   NAVBAR & CURRENCY FIXES — Mobile + iPad Air
+   ============================================================ */
+
+/* ===== 1. MOBILE (≤800px): Currency selector closer to logo ===== */
+@media only screen and (max-width: 800px) {
+    /* Reset logo offset so currency selector sits right next to it */
+    .navbar .logo {
+        left: 0 !important;
+        margin-right: 6px;
+    }
+    /* Tighten currency selector spacing */
+    .navbar .currency-selector {
+        margin-left: 0;
+        margin-right: 8px;
+        padding: 8px 28px 8px 10px;
+        min-width: 90px;
+        font-size: 0.75rem;
+    }
+}
+
+/* ===== 2. TABLET / iPad Air (801px–1024px): Keep nav links on one straight line ===== */
+@media only screen and (min-width: 801px) and (max-width: 1024px) {
+    /* Prevent nav links from wrapping to a second line */
+    nav ul {
+        white-space: nowrap !important;
+    }
+    nav ul li {
+        display: inline-block !important;
+        margin-right: 12px; /* Tightened from 20px */
+        float: none !important;
+    }
+    nav ul li a {
+        font-size: 0.85rem;
+    }
+    /* Shrink currency selector so it doesn't steal space from links */
+    .navbar .currency-selector {
+        padding: 8px 28px 8px 10px;
+        min-width: 95px;
+        font-size: 0.8rem;
+        margin-right: 10px;
+    }
+    /* Reset logo offset on tablet too */
+    .navbar .logo {
+        left: 0 !important;
+        margin-right: 8px;
+    }
+    /* Ensure navbar itself never wraps */
+    .navbar {
+        flex-wrap: nowrap !important;
+    }
+}
+
+/* ===== 3. GALLERY: iPad Air portrait fix (768px–900px) ===== */
+@media only screen and (min-width: 768px) and (max-width: 900px) {
+    /* Use 4:3 aspect instead of 16:9 so the hero doesn't look too squat */
+    .gallery-hero__image-wrap {
+        aspect-ratio: 4 / 3;
+    }
+    @supports not (aspect-ratio: 4 / 3) {
+        .gallery-hero__image-wrap {
+            height: 0;
+            padding-bottom: 75%;
+        }
+    }
+    /* Slightly smaller hero text for this viewport */
+    .gallery-hero__content p {
+        font-size: 1.5rem;
+    }
+    .gallery-hero__content {
+        bottom: 10%;
+    }
+}
+
+/* ===== 4. SMALL PHONES (≤600px): Extra tight layout ===== */
+@media only screen and (max-width: 600px) {
+    .navbar .currency-selector {
+        min-width: 80px;
+        padding: 6px 24px 6px 8px;
+        font-size: 0.7rem;
+    }
+    .navbar .logo {
+        width: 100px; /* Shrink logo if needed */
+        left: 0 !important;
+    }
+}
+
+
+/* ============================================================
+   CURRENCY SELECTOR — UNIFIED VISIBLE STYLE + POSITIONING FIXES
+   ============================================================ */
+
+/* --- BASE: Force light/visible theme on ALL pages --- */
+.header .navbar .currency-selector,
+body:not(.product-page):not(.product-details-page) .navbar .currency-selector,
+.navbar .currency-selector {
+  background: #ffffff !important;
+  border-color: #59493b !important;
+  color: #59493b !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2359493b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+}
+
+.header .navbar .currency-selector:hover,
+body:not(.product-page):not(.product-details-page) .navbar .currency-selector:hover,
+.navbar .currency-selector:hover {
+  background: #f8f4f0 !important;
+  border-color: #8B6A4E !important;
+  color: #59493b !important;
+  box-shadow: 0 4px 16px rgba(89, 73, 59, 0.12) !important;
+}
+
+.header .navbar .currency-selector:focus,
+body:not(.product-page):not(.product-details-page) .navbar .currency-selector:focus,
+.navbar .currency-selector:focus {
+  border-color: #59493b !important;
+  box-shadow: 0 0 0 4px rgba(89, 73, 59, 0.2) !important;
+}
+
+/* --- MOBILE (≤800px): Tight positioning + visibility --- */
+@media only screen and (max-width: 800px) {
+    .navbar .logo {
+        left: 0 !important;
+        margin-right: 6px;
+    }
+    .navbar .currency-selector {
+        margin-left: 0;
+        margin-right: 8px;
+        padding: 8px 28px 8px 10px;
+        min-width: 90px;
+        font-size: 0.75rem;
+        /* Visibility already enforced by base rules above */
+    }
+}
+
+/* --- TABLET / iPad Air (801px–1024px): Straight nav line + visibility --- */
+@media only screen and (min-width: 801px) and (max-width: 1024px) {
+    nav ul {
+        white-space: nowrap !important;
+    }
+    nav ul li {
+        display: inline-block !important;
+        margin-right: 12px;
+        float: none !important;
+    }
+    nav ul li a {
+        font-size: 0.85rem;
+    }
+    .navbar .currency-selector {
+        padding: 8px 28px 8px 10px;
+        min-width: 95px;
+        font-size: 0.8rem;
+        margin-right: 10px;
+    }
+    .navbar .logo {
+        left: 0 !important;
+        margin-right: 8px;
+    }
+    .navbar {
+        flex-wrap: nowrap !important;
+    }
+}
+
+/* --- GALLERY: iPad Air portrait fix (768px–900px) --- */
+@media only screen and (min-width: 768px) and (max-width: 900px) {
+    .gallery-hero__image-wrap {
+        aspect-ratio: 4 / 3;
+    }
+    @supports not (aspect-ratio: 4 / 3) {
+        .gallery-hero__image-wrap {
+            height: 0;
+            padding-bottom: 75%;
+        }
+    }
+    .gallery-hero__content p {
+        font-size: 1.5rem;
+    }
+    .gallery-hero__content {
+        bottom: 10%;
+    }
+}
+
+/* --- SMALL PHONES (≤600px): Extra compact --- */
+@media only screen and (max-width: 600px) {
+    .navbar .currency-selector {
+        position: relative;
+        min-width: 80px;
+        padding: 6px 24px 6px 8px;
+        font-size: 0.7rem;
+        left: -55px !important;
+    }
+    .navbar .logo {
+        width: 100px;
+        left: -55px !important;
+    }
+}
+
+/* ============================================================
+   CURRENCY SELECTOR — SINGLE ARROW ONLY
+   ============================================================ */
+
+/* 1. Kill the native browser arrow on ALL browsers */
+.currency-selector::-ms-expand {
+  display: none;
+}
+
+/* 2. Force appearance: none everywhere */
+.currency-selector,
+.header .navbar .currency-selector,
+body:not(.product-page):not(.product-details-page) .navbar .currency-selector,
+body.product-page .navbar .currency-selector,
+body.product-details-page .navbar .currency-selector,
+.navbar .currency-selector {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* 3. One single custom arrow only — override any stray background-image layers */
+.currency-selector,
+.navbar .currency-selector,
+.header .navbar .currency-selector,
+body:not(.product-page):not(.product-details-page) .navbar .currency-selector,
+body.product-page .navbar .currency-selector,
+body.product-details-page .navbar .currency-selector {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2359493b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  background-size: 14px !important;
+  /* Ensure no second arrow can appear via padding trick */
+  padding-right: 36px !important;
+}
+
+/* 4. Dark pages (if any) still keep the single arrow but in white */
+/*    (Only applies if your non-product pages ever get a dark header again) */
+.header .navbar .currency-selector,
+body:not(.product-page):not(.product-details-page) .navbar .currency-selector {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2359493b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
 }
