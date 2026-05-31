@@ -688,7 +688,7 @@
     let currentOrderNumber = null;
     let currentProductId = null;
     let allOrders = [];
-    let newslettersSent = 0;
+    // Newsletter count is fetched from API, not stored locally
 
     function toggleSidebar() {
       const sidebar = document.querySelector('.sidebar');
@@ -1025,10 +1025,14 @@
 
     async function loadNewsletter() {
       try {
+        // Fetch subscribers
         const data = await fetch(`${API_BASE}/newsletter`, fetchOptions('GET')).then(handleResponse);
         renderNewsletter(data.subscribers || []);
         document.getElementById('stat-sbscribers').textContent = (data.subscribers || []).length.toLocaleString();
-        document.getElementById('stat-sent').textContent = newslettersSent.toLocaleString();
+
+        // Fetch real newsletter count from dashboard
+        const dash = await fetch(`${API_BASE}/admin/dashboard`, fetchOptions('GET')).then(handleResponse);
+        document.getElementById('stat-sent').textContent = (dash.newslettersSent || 0).toLocaleString();
       } catch (err) {
         document.getElementById('newsletter-container').innerHTML = `<div class="empty-state">${err.message}</div>`;
       }
@@ -1046,7 +1050,7 @@
           <thead><tr><th>Email</th><th>Subscribed On</th></tr></thead>
           <tbody>
             ${subscribers.map(s => `
-              <tr><td>${s.email}</td><td>${s.subscribedAt ? new Date(s.subscribedAt).toLocaleDateString('en-NG') : 'N/A'}</td></tr>
+              <tr><td>${s.email}</td><td>${new Date(s.createdAt).toLocaleDateString('en-NG')}</td></tr>
             `).join('')}
           </tbody>
         </table></div>`;
@@ -1064,8 +1068,9 @@
       btn.textContent = 'Sending...';
       try {
         const data = await fetch(`${API_BASE}/newsletter/send`, fetchOptions('POST', { subject, content })).then(handleResponse);
-        newslettersSent++;
-        document.getElementById('stat-sent').textContent = newslettersSent.toLocaleString();
+        // Refresh count from API instead of local variable
+        const dash = await fetch(`${API_BASE}/admin/dashboard`, fetchOptions('GET')).then(handleResponse);
+        document.getElementById('stat-sent').textContent = (dash.newslettersSent || 0).toLocaleString();
         showToast(data.message || 'Newsletter sent!');
         document.getElementById('newsletter-subject').value = '';
         document.getElementById('newsletter-content').value = '';
