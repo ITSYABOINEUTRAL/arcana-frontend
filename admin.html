@@ -65,11 +65,13 @@
     .data-table td { padding: 18px 28px; font-size: 14px; border-bottom: 1px solid var(--border); color: var(--text); }
     .data-table tr:hover td { background: rgba(89,73,59,0.02); }
     .status-pill { display: inline-block; padding: 6px 14px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; border-radius: 4px; }
-    .status-pending { background: #fef3e2; color: #d68910; }
-    .status-processing { background: #e8f6f3; color: #1abc9c; }
-    .status-shipped { background: #ebf5fb;; color: #3498db; }
+    .status-reviewing { background: #fef3e2; color: #d68910; }
+    .status-shipped { background: #ebf5fb; color: #3498db; }
     .status-delivered { background: #eafaf1; color: var(--success); }
-    .status-cancelled { background: #fdedec; color: var(--error); }
+    .status-returned { background: #fdedec; color: var(--error); }
+    .status-exchanged { background: #f5eef8; color: #8e44ad; }
+    .status-pending { background: #fef3e2; color: #d68910; }
+    .status-confirmed { background: #eafaf1; color: var(--success); }
     .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 28px; }
     .form-group { display: flex; flex-direction: column; }
     .form-group.full { grid-column: 1 / -1; }
@@ -99,10 +101,8 @@
     .empty-state { text-align: center; padding: 60px; color: var(--text-muted); font-size: 14px; }
     .hidden { display: none !important; }
 
-    /* ===== AUTH ERROR OVERLAY ===== */
     .auth-overlay {
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background: rgba(44, 36, 30, 0.88);
       backdrop-filter: blur(8px);
       z-index: 99999;
@@ -181,10 +181,8 @@
     }
   </style>
 <base target="_blank">
-<base target="_blank">
 </head>
 <body>
-  <!-- AUTH ERROR OVERLAY -->
   <div class="auth-overlay" id="auth-overlay">
     <div class="auth-panel">
       <div class="auth-icon">
@@ -201,7 +199,6 @@
   </div>
 
   <div class="admin-layout">
-    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar-logo">
         <a href="admin.html" style="color: inherit; text-decoration: none;">
@@ -247,7 +244,6 @@
       </div>
     </aside>
 
-    <!-- MAIN CONTENT -->
     <main class="main">
       <div class="top-bar">
         <h1 class="page-title" id="page-title">Dashboard</h1>
@@ -257,7 +253,6 @@
         </div>
       </div>
 
-      <!-- DASHBOARD TAB -->
       <div id="tab-dashboard" class="tab-content">
         <div class="stats-grid" id="stats-grid">
           <div class="stat-card">
@@ -292,14 +287,14 @@
         </div>
       </div>
 
-      <!-- ORDERS TAB -->
       <div id="tab-orders" class="tab-content hidden">
         <div class="tabs">
           <button class="tab active" onclick="filterOrders('all', this)">All Orders</button>
-          <button class="tab" onclick="filterOrders('pending', this)">Pending</button>
-          <button class="tab" onclick="filterOrders('processing', this)">Processing</button>
-          <button class="tab" onclick="filterOrders('shipped', this)">Shipped</button>
-          <button class="tab" onclick="filterOrders('delivered', this)">Delivered</button>
+          <button class="tab" onclick="filterOrders('Reviewing', this)">Reviewing</button>
+          <button class="tab" onclick="filterOrders('Shipped', this)">Shipped</button>
+          <button class="tab" onclick="filterOrders('Delivered', this)">Delivered</button>
+          <button class="tab" onclick="filterOrders('Returned', this)">Returned</button>
+          <button class="tab" onclick="filterOrders('Exchanged', this)">Exchanged</button>
         </div>
         <div class="section-card">
           <div class="section-header"><h2 class="section-title">Orders</h2></div>
@@ -307,7 +302,6 @@
         </div>
       </div>
 
-      <!-- PRODUCTS TAB -->
       <div id="tab-products" class="tab-content hidden">
         <div class="section-card">
           <div class="section-header">
@@ -318,7 +312,6 @@
         </div>
       </div>
 
-      <!-- USERS TAB -->
       <div id="tab-users" class="tab-content hidden">
         <div class="section-card">
           <div class="section-header"><h2 class="section-title">Customers</h2></div>
@@ -326,7 +319,6 @@
         </div>
       </div>
 
-      <!-- NEWSLETTER TAB -->
       <div id="tab-newsletter" class="tab-content hidden">
         <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 24px;">
           <div class="stat-card">
@@ -362,7 +354,6 @@
     </main>
   </div>
 
-  <!-- ORDER STATUS MODAL -->
   <div class="modal-overlay" id="order-modal">
     <div class="modal">
       <div class="modal-header">
@@ -376,17 +367,17 @@
             <input type="text" id="modal-order-number" readonly>
           </div>
           <div class="form-group full">
-            <label>Status</label>
+            <label>Delivery Stage</label>
             <select id="modal-order-status">
-              <option value="pending">Pending</option>
-              <option value="processing">Processing</option>
-              <option value="shipped">Shipped</option>
-              <option value="delivered">Delivered</option>
-              <option value="cancelled">Cancelled</option>
+              <option value="Reviewing">Reviewing</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Returned">Returned</option>
+              <option value="Exchanged">Exchanged</option>
             </select>
           </div>
           <div class="form-group full">
-            <label>Tracking Number (for shipped)</label>
+            <label>Tracking Number</label>
             <input type="text" id="modal-tracking-number" placeholder="e.g. ARC-TRK-123456">
           </div>
         </div>
@@ -398,7 +389,6 @@
     </div>
   </div>
 
-  <!-- PRODUCT MODAL -->
   <div class="modal-overlay" id="product-modal">
     <div class="modal">
       <div class="modal-header">
@@ -409,7 +399,7 @@
         <form id="product-form" class="form-grid">
           <div class="form-group">
             <label>Product Name</label>
-            <input type="text" name="name" required placeholder="e.g. Arcana Crest Tee">
+            <input type="text" name="name" required placeholder="e.g. Arcana's Tee">
           </div>
           <div class="form-group">
             <label>Price ($)</label>
@@ -451,7 +441,6 @@
     </div>
   </div>
 
-  <!-- TOAST -->
   <div class="toast" id="toast"></div>
 
   <script>
@@ -461,7 +450,6 @@
             ? 'http://localhost:5000/api'
             : 'https://arcana-backend-z46k.onrender.com/api');
 
-    // ===== RESTORED: credentials: 'include' — backend now supports it =====
     const fetchOptions = (method = 'GET', body = null) => {
       const token = localStorage.getItem('token');
       const opts = { method, credentials: 'include', headers: { 'Content-Type': 'application/json' } };
@@ -477,11 +465,11 @@
     };
 
     let currentOrderId = null;
+    let currentOrderNumber = null;
     let currentProductId = null;
     let allOrders = [];
     let newslettersSent = 0;
 
-    /* ============ AUTH OVERLAY ============ */
     function showAuthOverlay(title, message, linkText, linkHref) {
       document.getElementById('auth-title').textContent = title;
       document.getElementById('auth-message').textContent = message;
@@ -491,17 +479,16 @@
       document.getElementById('auth-overlay').classList.add('active');
     }
 
-    /* ============ INIT ============ */
     async function initAdmin() {
       try {
         const userData = await fetch(`${API_BASE}/user/profile`, fetchOptions('GET')).then(handleResponse);
-        if (!userData.user?.isAdmin) {
+        if (!userData.isAdmin) {
           showAuthOverlay('Access Denied', 'You do not have admin privileges.', 'Go to Account', 'account.html');
           return;
         }
-        document.getElementById('admin-name').textContent = userData.user.name || 'Admin';
-        if (userData.user.profilePicture) {
-          document.getElementById('admin-avatar').src = userData.user.profilePicture;
+        document.getElementById('admin-name').textContent = userData.name || 'Admin';
+        if (userData.profilePicture) {
+          document.getElementById('admin-avatar').src = userData.profilePicture;
         }
         sessionStorage.removeItem('adminRedirectCount');
         loadDashboard();
@@ -515,7 +502,6 @@
       }
     }
 
-    /* ============ DASHBOARD ============ */
     async function loadDashboard() {
       try {
         const data = await fetch(`${API_BASE}/admin/dashboard`, fetchOptions('GET')).then(handleResponse);
@@ -538,7 +524,7 @@
       if (!orders.length) { container.innerHTML = '<div class="empty-state">No orders yet</div>'; return; }
       container.innerHTML = `
         <table class="data-table">
-          <thead><tr><th>Order</th><th>Customer</th><th>Date</th><th>Total</th><th>Status</th></tr></thead>
+          <thead><tr><th>Order</th><th>Customer</th><th>Date</th><th>Total</th><th>Stage</th></tr></thead>
           <tbody>
             ${orders.map(o => `
               <tr>
@@ -546,14 +532,13 @@
                 <td>${o.user?.name || 'Guest'}</td>
                 <td>${new Date(o.createdAt).toLocaleDateString('en-NG')}</td>
                 <td>₦${o.totalPrice?.toLocaleString()}</td>
-                <td><span class="status-pill status-${o.status}">${o.status}</span></td>
+                <td><span class="status-pill status-${(o.deliveryStage || 'reviewing').toLowerCase()}">${o.deliveryStage || 'Reviewing'}</span></td>
               </tr>
             `).join('')}
           </tbody>
         </table>`;
     }
 
-    /* ============ ORDERS ============ */
     async function loadOrders() {
       try {
         const data = await fetch(`${API_BASE}/admin/orders`, fetchOptions('GET')).then(handleResponse);
@@ -570,19 +555,19 @@
       container.innerHTML = `
         <table class="data-table">
           <thead>
-            <tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th><th>Actions</th></tr>
+            <tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Stage</th><th>Date</th><th>Actions</th></tr>
           </thead>
           <tbody>
             ${orders.map(o => `
               <tr>
                 <td><strong>#${o.orderNumber}</strong></td>
                 <td>${o.user?.name || 'Unknown'}<br><small style="color:#666">${o.user?.email || ''}</small></td>
-                <td>${o.items?.length || 0} items</td>
+                <td>${o.products?.length || 0} items</td>
                 <td>₦${o.totalPrice?.toLocaleString()}</td>
-                <td><span class="status-pill status-${o.status}">${o.status}</span></td>
+                <td><span class="status-pill status-${(o.deliveryStage || 'reviewing').toLowerCase()}">${o.deliveryStage || 'Reviewing'}</span></td>
                 <td>${new Date(o.createdAt).toLocaleDateString('en-NG')}</td>
                 <td>
-                  <button class="btn btn-small" onclick="openOrderModal('${o._id}', '${o.orderNumber}', '${o.status}')">Update</button>
+                  <button class="btn btn-small" onclick="openOrderModal('${o._id}', '${o.orderNumber}', '${o.deliveryStage || 'Reviewing'}')">Update</button>
                 </td>
               </tr>
             `).join('')}
@@ -593,23 +578,23 @@
     function filterOrders(status, btn) {
       document.querySelectorAll('#tab-orders .tab').forEach(t => t.classList.remove('active'));
       btn.classList.add('active');
-      renderOrders(status === 'all' ? allOrders : allOrders.filter(o => o.status === status));
+      renderOrders(status === 'all' ? allOrders : allOrders.filter(o => o.deliveryStage === status));
     }
 
-    function openOrderModal(orderId, orderNumber, status) {
+    function openOrderModal(orderId, orderNumber, deliveryStage) {
       currentOrderId = orderId;
+      currentOrderNumber = orderNumber;
       document.getElementById('modal-order-number').value = orderNumber;
-      document.getElementById('modal-order-status').value = status;
+      document.getElementById('modal-order-status').value = deliveryStage;
       document.getElementById('modal-tracking-number').value = '';
       document.getElementById('order-modal').classList.add('active');
     }
 
     async function saveOrderStatus() {
-      const status = document.getElementById('modal-order-status').value;
-      const tracking = document.getElementById('modal-tracking-number').value;
+      const deliveryStage = document.getElementById('modal-order-status').value;
       try {
-        await fetch(`${API_BASE}/orders/${currentOrderId}/status`, fetchOptions('PUT', {
-          status, trackingNumber: tracking || undefined
+        await fetch(`${API_BASE}/orders/by-number/${currentOrderNumber}/stage`, fetchOptions('PUT', {
+          deliveryStage
         })).then(handleResponse);
         closeModal('order-modal');
         showToast('Order status updated');
@@ -620,7 +605,6 @@
       }
     }
 
-    /* ============ PRODUCTS ============ */
     async function loadProducts() {
       try {
         const data = await fetch(`${API_BASE}/products`, fetchOptions('GET')).then(handleResponse);
@@ -702,7 +686,6 @@
 
     function editProduct(productId) { openProductModal(productId); }
 
-    /* ============ USERS ============ */
     async function loadUsers() {
       try {
         const data = await fetch(`${API_BASE}/admin/users`, fetchOptions('GET')).then(handleResponse);
@@ -723,7 +706,7 @@
               <tr>
                 <td>
                   <div style="display:flex;align-items:center;gap:12px;">
-                    <img src="${u.profilePicture || 'images/default-avatar.png'}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
+                    <img src="${u.profilePicture || 'default-avatar.png'}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
                     <strong>${u.name}</strong>
                   </div>
                 </td>
@@ -737,7 +720,6 @@
         </table>`;
     }
 
-    /* ============ NEWSLETTER ============ */
     async function loadNewsletter() {
       try {
         const data = await fetch(`${API_BASE}/newsletter`, fetchOptions('GET')).then(handleResponse);
@@ -760,7 +742,7 @@
           <thead><tr><th>Email</th><th>Subscribed On</th></tr></thead>
           <tbody>
             ${subscribers.map(s => `
-              <tr><td>${s.email}</td><td>${new Date(s.subscribedAt).toLocaleDateString('en-NG')}</td></tr>
+              <tr><td>${s.email}</td><td>${new Date(s.createdAt).toLocaleDateString('en-NG')}</td></tr>
             `).join('')}
           </tbody>
         </table>`;
@@ -791,7 +773,6 @@
       }
     }
 
-    /* ============ UI HELPERS ============ */
     function showTab(tabId, el) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
       document.getElementById('tab-' + tabId).classList.remove('hidden');
