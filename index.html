@@ -492,27 +492,6 @@
         <p>Taking you to the shop...</p>
     </div>
 
-    <script>
-// ===== NEWSLETTER HANDLER =====
-        function handleSubscribe(e) {
-            e.preventDefault();
-            const email = document.getElementById('emailInput').value;
-            const successMsg = document.getElementById('successMessage');
-            const form = document.getElementById('subscribeForm');
-
-            // Here you would normally send to your backend/email service
-            // For now, just show success message
-            console.log('New subscriber:', email);
-
-            // Show success
-            successMsg.classList.add('show');
-            form.reset();
-
-            // Hide success after 5 seconds
-            setTimeout(() => {
-                successMsg.classList.remove('show');
-            }, 5000);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
