@@ -357,6 +357,9 @@
     });
 
     // ===== TOKEN VALIDATION ON LOAD =====
+    // Only auto-redirect non-admins to their dashboard.
+    // Admins stay on account.html unless they just logged in (handled above)
+    // or explicitly came from admin.html with ?redirect=admin (loop-protected).
     document.addEventListener("DOMContentLoaded", async () => {
       const token = localStorage.getItem("token");
       if (token) {
@@ -366,16 +369,27 @@
           });
           if (res.ok) {
             const userData = await res.json();
-            // ===== MODIFIED: Respect redirect param and check admin status =====
             const params = new URLSearchParams(window.location.search);
             const redirect = params.get('redirect');
+
+            // If explicitly redirecting to admin (e.g. from admin.html auth error),
+            // protect against infinite loops by counting redirects.
             if (redirect === 'admin' && userData.isAdmin) {
-              window.location.href = 'admin.html';
-            } else if (userData.isAdmin) {
-              window.location.href = 'admin.html';
-            } else {
+              const count = parseInt(sessionStorage.getItem('adminRedirectCount') || '0');
+              if (count < 2) {
+                sessionStorage.setItem('adminRedirectCount', String(count + 1));
+                window.location.href = 'admin.html';
+              } else {
+                // Loop detected — stop and clear counter
+                sessionStorage.removeItem('adminRedirectCount');
+                showToast('Unable to access admin panel. Please check your connection or sign in again.', 'error');
+                // Stay on account.html
+              }
+            } else if (!userData.isAdmin) {
+              // Normal users go to dashboard
               window.location.href = 'account-dashboard.html';
             }
+            // Admins without redirect param stay on account.html
           } else {
             localStorage.removeItem("token");
           }

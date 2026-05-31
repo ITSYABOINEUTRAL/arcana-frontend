@@ -403,13 +403,15 @@
       try {
         const userData = await fetch(`${API_BASE}/user/profile`, fetchOptions('GET')).then(handleResponse);
         if (!userData.user?.isAdmin) {
-          window.location.href = 'account.html?redirect=admin';
+          showAuthError('Access Denied', 'You do not have admin privileges.', false);
           return;
         }
         document.getElementById('admin-name').textContent = userData.user.name || 'Admin';
         if (userData.user.profilePicture) {
           document.getElementById('admin-avatar').src = userData.user.profilePicture;
         }
+        // Clear any loop-protection counter on successful load
+        sessionStorage.removeItem('adminRedirectCount');
         loadDashboard();
         loadOrders();
         loadProducts();
@@ -417,8 +419,25 @@
         loadNewsletter();
       } catch (err) {
         console.error('Admin init error:', err);
-        window.location.href = 'account.html?redirect=admin';
+        showAuthError('Authentication Failed', 'Unable to verify your admin access. Your session may have expired.', true);
       }
+    }
+
+    function showAuthError(title, message, showLogin) {
+      const overlay = document.createElement('div');
+      overlay.id = 'auth-error-overlay';
+      overlay.style.cssText = 'position:fixed;inset:0;background:rgba(44,36,30,0.85);backdrop-filter:blur(6px);z-index:99999;display:flex;align-items:center;justify-content:center;';
+      overlay.innerHTML = `
+        <div style="background:#fff;padding:40px;border-radius:12px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+          <div style="width:64px;height:64px;background:#c0392b;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <h2 style="font-family:"Playfair Display",serif;font-size:24px;color:#3d3025;margin-bottom:12px;">${title}</h2>
+          <p style="color:#666;font-size:14px;line-height:1.6;margin-bottom:24px;">${message}</p>
+          ${showLogin ? `<a href="account.html?redirect=admin" style="display:inline-block;padding:12px 28px;background:#59493b;color:#fff;text-decoration:none;font-weight:600;font-size:13px;letter-spacing:1px;text-transform:uppercase;">Sign In Again</a>` : `<a href="account.html" style="display:inline-block;padding:12px 28px;background:#59493b;color:#fff;text-decoration:none;font-weight:600;font-size:13px;letter-spacing:1px;text-transform:uppercase;">Go to Account</a>`}
+        </div>
+      `;
+      document.body.appendChild(overlay);
     }
 
     /* ============ DASHBOARD ============ */
