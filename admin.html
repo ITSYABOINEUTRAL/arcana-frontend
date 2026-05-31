@@ -409,11 +409,11 @@
         <form id="product-form" class="form-grid">
           <div class="form-group">
             <label>Product Name</label>
-            <input type="text" name="name" required placeholder="e.g. Arcana Tee">
+            <input type="text" name="name" required placeholder="e.g. Arcana Crest Tee">
           </div>
           <div class="form-group">
-            <label>Price (₦)</label>
-            <input type="number" name="price" required min="0" placeholder="25000">
+            <label>Price ($)</label>
+            <input type="number" name="price" required min="0" step="0.01" placeholder="25.00">
           </div>
           <div class="form-group">
             <label>Category</label>
@@ -461,13 +461,10 @@
             ? 'http://localhost:5000/api'
             : 'https://arcana-backend-z46k.onrender.com/api');
 
-    // ===== TEMPORARY FIX: No credentials: 'include' until backend CORS is updated =====
-    // The backend does not send Access-Control-Allow-Credentials: true,
-    // so credentials mode causes CORS preflight failures.
-    // Authentication works via the Bearer token in the Authorization header.
+    // ===== RESTORED: credentials: 'include' — backend now supports it =====
     const fetchOptions = (method = 'GET', body = null) => {
       const token = localStorage.getItem('token');
-      const opts = { method, headers: { 'Content-Type': 'application/json' } };
+      const opts = { method, credentials: 'include', headers: { 'Content-Type': 'application/json' } };
       if (token) opts.headers['Authorization'] = `Bearer ${token}`;
       if (body) opts.body = JSON.stringify(body);
       return opts;
@@ -646,7 +643,7 @@
                 <td><strong>${p.name}</strong>${p.featured ? ' <span style="color:#8B6A4E;font-size:11px;">★ Featured</span>' : ''}</td>
                 <td>${p.category}</td>
                 <td>₦${p.price?.toLocaleString()}</td>
-                <td>${p.stock}</td>
+                <td>${p.stock !== undefined ? p.stock : '—'}</td>
                 <td>
                   <button class="btn btn-small btn-secondary" onclick="editProduct('${p._id}')">Edit</button>
                   <button class="btn btn-small btn-danger" onclick="deleteProduct('${p._id}')">Delete</button>
@@ -667,8 +664,8 @@
           .then(data => {
             const p = data.product; const f = document.getElementById('product-form');
             f.name.value = p.name; f.price.value = p.price; f.category.value = p.category;
-            f.stock.value = p.stock; f.description.value = p.description;
-            f.sizes.value = p.sizes?.join(', '); f.image.value = p.image;
+            f.stock.value = p.stock || 0; f.description.value = p.description;
+            f.sizes.value = p.sizes?.join(', ') || ''; f.image.value = p.image;
             f.featured.value = p.featured ? 'true' : 'false';
           });
       }
