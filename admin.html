@@ -192,10 +192,149 @@
       .stats-grid { grid-template-columns: 1fr; }
       .form-grid { grid-template-columns: 1fr; }
     }
-  </style>
+  
+    /* ===== MOBILE RESPONSIVE FIXES ===== */
+    .mobile-header {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 56px;
+      background: var(--primary-dark);
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      z-index: 200;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+    .mobile-header .hamburger {
+      width: 28px; height: 20px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      cursor: pointer; background: none; border: none; padding: 0;
+    }
+    .mobile-header .hamburger span {
+      display: block; height: 2px; background: #fff; border-radius: 1px;
+      transition: all 0.3s;
+    }
+    .mobile-header .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .mobile-header .hamburger.active span:nth-child(2) { opacity: 0; }
+    .mobile-header .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+    .mobile-header .mobile-logo {
+      color: #fff; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; letter-spacing: 1px;
+    }
+    .mobile-header .mobile-user {
+      width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.3);
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 99;
+    }
+    .sidebar-overlay.active { display: block; }
+
+    @media (max-width: 1024px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .sidebar { width: 220px; }
+      .main { margin-left: 220px; padding: 28px; }
+    }
+
+    @media (max-width: 768px) {
+      .mobile-header { display: flex; }
+      .sidebar {
+        position: fixed;
+        left: -260px;
+        width: 260px;
+        top: 0; bottom: 0;
+        transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 101;
+        display: flex !important;
+        padding-top: 72px;
+      }
+      .sidebar.open { left: 0; }
+      .main { margin-left: 0; padding: 76px 16px 20px; }
+      .stats-grid { grid-template-columns: 1fr; gap: 16px; }
+      .form-grid { grid-template-columns: 1fr; gap: 16px; }
+
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding-bottom: 16px;
+      }
+      .page-title { font-size: 24px; }
+
+      .tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        flex-wrap: nowrap;
+        gap: 0;
+        border-bottom: 2px solid var(--border);
+        scrollbar-width: none;
+      }
+      .tabs::-webkit-scrollbar { display: none; }
+      .tab {
+        white-space: nowrap;
+        padding: 12px 20px;
+        font-size: 12px;
+      }
+
+      .modal { width: 95%; max-height: 85vh; }
+      .modal-header { padding: 16px 20px; }
+      .modal-body { padding: 20px; }
+      .modal-footer { padding: 16px 20px; }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .section-title { font-size: 18px; }
+
+      .user-pill { padding: 6px 12px; font-size: 12px; }
+      .user-pill img { width: 28px; height: 28px; }
+      .currency-select { padding: 6px 10px; font-size: 12px; }
+
+      .stat-card { padding: 20px; }
+      .stat-value { font-size: 28px; }
+
+      .data-table th, .data-table td { padding: 12px 16px; font-size: 13px; }
+      .table-wrap { border-radius: 0; border: 1px solid var(--border); }
+
+      .action-btns { gap: 6px; }
+      .btn-small { padding: 6px 12px; font-size: 10px; }
+
+      .auth-panel { padding: 32px 24px; max-width: 90%; }
+      .auth-panel h2 { font-size: 22px; }
+
+      .toast { bottom: 16px; right: 16px; left: 16px; max-width: none; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .page-title { font-size: 20px; }
+      .stats-grid { gap: 12px; }
+      .stat-value { font-size: 24px; }
+      .stat-label { font-size: 10px; }
+      .tab { padding: 10px 14px; font-size: 11px; }
+      .btn { padding: 10px 20px; font-size: 11px; }
+      .form-group input, .form-group textarea, .form-group select { padding: 12px 14px; font-size: 16px; }
+      .modal-title { font-size: 18px; }
+      .data-table th, .data-table td { padding: 10px 12px; font-size: 12px; }
+    }
+    </style>
+<base target="_blank">
 <base target="_blank">
 </head>
 <body>
+  <div class="mobile-header" id="mobile-header">
+    <button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="mobile-logo">Arcana</div>
+    <img src="default-avatar.png" alt="Admin" class="mobile-user" id="mobile-avatar">
+  </div>
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
   <div class="auth-overlay" id="auth-overlay">
     <div class="auth-panel">
       <div class="auth-icon">
@@ -518,6 +657,15 @@
     let allOrders = [];
     let newslettersSent = 0;
 
+    function toggleSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      const hamburger = document.getElementById('hamburger');
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    }
+
     function showAuthOverlay(title, message, linkText, linkHref) {
       document.getElementById('auth-title').textContent = title;
       document.getElementById('auth-message').textContent = message;
@@ -537,6 +685,7 @@
         document.getElementById('admin-name').textContent = userData.name || 'Admin';
         if (userData.profilePicture) {
           document.getElementById('admin-avatar').src = userData.profilePicture;
+        if (userData.profilePicture) document.getElementById('mobile-avatar').src = userData.profilePicture;
         }
         sessionStorage.removeItem('adminRedirectCount');
         loadDashboard();

@@ -66,7 +66,7 @@ p {
     padding-left: 25px;
     padding-right: 25px;
 }
-/* ===== MODERN CURRENCY SELECTOR ===== */
+/* ===== BASE CURRENCY SELECTOR ===== */
 .currency-selector {
   appearance: none;
   -webkit-appearance: none;
@@ -76,19 +76,24 @@ p {
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #59493b;
-  background: #fff;
+  color: #fff;
+  background: #59493b;
   border: 2px solid rgba(89, 73, 59, 0.15);
   border-radius: 8px;
   padding: 10px 36px 10px 14px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2359493b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 14px;
   min-width: 110px;
   outline: none;
+}
+
+/* Hide default dropdown arrow in IE/Edge */
+.currency-selector::-ms-expand {
+  display: none;
 }
 
 .currency-selector:hover {
@@ -102,33 +107,47 @@ p {
   box-shadow: 0 0 0 4px rgba(89, 73, 59, 0.1);
 }
 
-/* Dark navbar variant (home page) */
-.header .navbar .currency-selector,
+/* ===== LIGHT NAVBAR VARIANT (default for most pages) ===== */
+.navbar .currency-selector,
 body:not(.product-page):not(.product-details-page) .navbar .currency-selector {
+  background: #fff;
+  border-color: rgba(89, 73, 59, 0.2);
+  color: #59493b;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2359493b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+}
+
+.navbar .currency-selector:hover,
+body:not(.product-page):not(.product-details-page) .navbar .currency-selector:hover {
+  background: #fff;
+  border-color: #59493b;
+  box-shadow: 0 4px 16px rgba(89, 73, 59, 0.12);
+}
+
+/* ===== DARK NAVBAR VARIANT (only when .header-dark is present) ===== */
+body.header-dark .navbar .currency-selector,
+.header-dark .navbar .currency-selector {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.2);
   color: #fff;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
 }
 
-.header .navbar .currency-selector:hover,
-body:not(.product-page):not(.product-details-page) .navbar .currency-selector:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-}
-
-.header .navbar .currency-selector:focus,
-body:not(.product-page):not(.product-details-page) .navbar .currency-selector:focus {
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.15);
-}
-
-/* Product page variant (light navbar) */
+/* ===== PRODUCT PAGE VARIANT ===== */
 body.product-page .navbar .currency-selector,
 body.product-details-page .navbar .currency-selector {
   background: #fff;
   border-color: rgba(89, 73, 59, 0.15);
   color: #59493b;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2359493b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
 }
 
 body.product-page .navbar .currency-selector:hover,
