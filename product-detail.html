@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <base target="_blank">
+<base target="_blank">
+<base target="_blank">
 </head>
 <body class="product-details-page">
 
@@ -132,7 +134,7 @@
                             </div>
                             <span class="stock-badge" id="stock-badge">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#27ae60" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                                In Stock
+                                <span id="stock-text">In Stock</span>
                             </span>
                         </div>
 
@@ -162,7 +164,7 @@
                             </div>
                             <div class="trust-item">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#59493b" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                                <span>Premium Cotton</span>
+                                <span id="trust-material">Premium Cotton</span>
                             </div>
                         </div>
 
@@ -456,23 +458,22 @@
 
       // Specs grid
       const specsGrid = document.getElementById('specs-grid');
-      const isSkullCap = p.category?.toLowerCase().includes('skull') || p.name?.toLowerCase().includes('skull');
       specsGrid.innerHTML = `
         <div class="spec-item">
           <span class="spec-label">Material</span>
-          <span class="spec-value">100% Premium Cotton</span>
+          <span class="spec-value">${p.material || '100% Premium Cotton'}</span>
         </div>
         <div class="spec-item">
-          <span class="spec-label">${isSkullCap ? 'Style' : 'Weight'}</span>
-          <span class="spec-value">${isSkullCap ? 'Classic Fit' : '6.0 oz/sq yd'}</span>
+          <span class="spec-label">Weight</span>
+          <span class="spec-value">${p.weight || '6.0 oz/sq yd'}</span>
         </div>
         <div class="spec-item">
           <span class="spec-label">Fit</span>
-          <span class="spec-value">${isSkullCap ? 'One Size Adjustable' : 'Classic Unisex Fit'}</span>
+          <span class="spec-value">${p.fit || 'Classic Unisex Fit'}</span>
         </div>
         <div class="spec-item">
           <span class="spec-label">Care</span>
-          <span class="spec-value">Machine wash cold, hang dry</span>
+          <span class="spec-value">${p.care || 'Machine wash cold, hang dry'}</span>
         </div>
       `;
 
@@ -481,9 +482,10 @@
       const sizeSection = document.getElementById('size-section');
       const sizeGuideBtn = document.getElementById('sizeGuideBtn');
       const sizes = p.sizes && p.sizes.length ? p.sizes : ['S','M','L','XL'];
+      const isSkullCap = p.category?.toLowerCase().includes('skull') || p.name?.toLowerCase().includes('skull');
 
-      // Hide size guide for skull caps
-      if (isSkullCap) {
+      // Hide size guide for skull caps / one-size items
+      if (isSkullCap || sizes.length === 1 && sizes[0].toLowerCase() === 'one size') {
         sizeGuideBtn.style.display = 'none';
       }
 
@@ -507,9 +509,59 @@
         document.querySelector('.size-option input').closest('.size-option').querySelector('.size-pill').classList.add('selected');
       }
 
+      // Stock badge + sold out handling
+      const stockQty = p.stock !== undefined ? p.stock : 0;
+      const stockText = document.getElementById('stock-text');
+      const addToCartBtn = document.getElementById('addToCartBtn');
+      const preOrderBtn = document.getElementById('preOrderBtn');
+      const stickyAddToCart = document.getElementById('stickyAddToCart');
+
+      if (stockText) {
+        if (stockQty > 0) {
+          stockText.textContent = `${stockQty} in stock`;
+        } else {
+          stockText.textContent = 'Sold Out';
+          document.getElementById('stock-badge').style.color = '#c0392b';
+          document.querySelector('#stock-badge svg').style.stroke = '#c0392b';
+        }
+      }
+
+      // Disable buttons when sold out
+      if (stockQty <= 0) {
+        addToCartBtn.disabled = true;
+        addToCartBtn.style.opacity = '0.5';
+        addToCartBtn.querySelector('.btn-text').textContent = 'Sold Out';
+        preOrderBtn.disabled = true;
+        preOrderBtn.style.opacity = '0.5';
+        preOrderBtn.querySelector('span').textContent = 'Sold Out';
+        if (stickyAddToCart) {
+          stickyAddToCart.disabled = true;
+          stickyAddToCart.style.opacity = '0.5';
+          stickyAddToCart.textContent = 'Sold Out';
+        }
+      } else {
+        addToCartBtn.disabled = false;
+        addToCartBtn.style.opacity = '1';
+        addToCartBtn.querySelector('.btn-text').textContent = 'Add to Cart';
+        preOrderBtn.disabled = false;
+        preOrderBtn.style.opacity = '1';
+        preOrderBtn.querySelector('span').textContent = 'Order Now';
+        if (stickyAddToCart) {
+          stickyAddToCart.disabled = false;
+          stickyAddToCart.style.opacity = '1';
+          stickyAddToCart.innerHTML = `Add to Cart <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`;
+        }
+      }
+
+      // Dynamic trust material
+      const trustMaterial = document.getElementById('trust-material');
+      if (trustMaterial) {
+        trustMaterial.textContent = p.material || 'Premium Cotton';
+      }
+
       // Store buttons data-id
-      document.getElementById('addToCartBtn').dataset.id = p._id;
-      document.getElementById('preOrderBtn').dataset.id = p._id;
+      addToCartBtn.dataset.id = p._id;
+      preOrderBtn.dataset.id = p._id;
     }
 
     function getSelectedSize() {

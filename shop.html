@@ -1001,6 +1001,7 @@
 <base target="_blank">
 <base target="_blank">
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
 
@@ -1103,40 +1104,66 @@
         <div class="container">
             <div class="featured-header">
                 <div>
-                    <h2>No. 1 Star Collection — The Foundation</h2>
-                    <p>Our debut collection, built from the ground up</p>
+                    <h2>Featured Collection</h2>
+                    <p>Handpicked pieces from our latest drops</p>
                 </div>
                 <a href="product.html" class="btn-outline">View All Products →</a>
             </div>
-            <div class="featured-grid">
-                <div class="featured-card">
-                    <img src="redsleeves.png" alt="Red Sleeves of Arcana's Star Collection">
-                    <div class="card-overlay">
-                        <h3>Red Sleeves</h3>
-                        <p>$16.50</p>
-                        <a href="rs-star-collection.html" class="card-btn">View Details →</a>
-                    </div>
-                </div>
-                <div class="featured-card">
-                    <img src="blacksleeves.png" alt="Black Sleeves of Arcana's Star Collection">
-                    <div class="card-overlay">
-                        <h3>Black Sleeves</h3>
-                        <p>$16.50</p>
-                        <a href="bs-star-collection.html" class="card-btn">View Details →</a>
-                    </div>
-                </div>
-                <div class="featured-card">
-                    <span class="card-badge">Best Seller</span>
-                    <img src="fullblack.png" alt="Full Black of Arcana's Star Collection">
-                    <div class="card-overlay">
-                        <h3>Full Black</h3>
-                        <p>$16.50</p>
-                        <a href="fb-star-collection.html" class="card-btn">View Details →</a>
-                    </div>
-                </div>
+            <div class="featured-grid" id="featured-grid">
+                <div class="loading" style="grid-column:1/-1;text-align:center;padding:40px;"><div class="spinner"></div></div>
             </div>
         </div>
     </section>
+
+    <script>
+    (async function() {
+        const API_BASE = 'https://arcana-backend-z46k.onrender.com/api';
+        const currencyRates = { USD: 1, EUR: 0.8666, GBP: 0.7375, NGN: 1547.30 };
+        const currencySymbols = { USD: "$", EUR: "€", GBP: "£", NGN: "₦" };
+        let currentCurrency = localStorage.getItem('arcanaCurrency') || 'USD';
+
+        function formatPrice(amount) {
+            const converted = (amount * currencyRates[currentCurrency]).toFixed(2);
+            return currencySymbols[currentCurrency] + converted;
+        }
+
+        async function loadFeatured() {
+            try {
+                const res = await fetch(`${API_BASE}/products`);
+                if (!res.ok) throw new Error('Failed');
+                const data = await res.json();
+                const featured = (data.products || []).filter(p => p.featured).slice(0, 4);
+                const grid = document.getElementById('featured-grid');
+
+                if (!featured.length) {
+                    grid.innerHTML = '<p style="text-align:center;color:#666;padding:20px;grid-column:1/-1;">No featured products yet.</p>';
+                    return;
+                }
+
+                grid.innerHTML = featured.map(p => `
+                    <div class="featured-card">
+                        <img src="${p.image || 'logo.png'}" alt="${p.name}" onerror="this.src='logo.png'">
+                        <div class="card-overlay">
+                            <h3>${p.name}</h3>
+                            <p>${formatPrice(p.price)}</p>
+                            <a href="product-detail.html?id=${p._id}" class="card-btn">View Details →</a>
+                        </div>
+                        ${p.stock <= 0 ? '<span class="card-badge" style="background:#c0392b;">Sold Out</span>' : ''}
+                    </div>
+                `).join('');
+            } catch (err) {
+                document.getElementById('featured-grid').innerHTML = '<p style="text-align:center;color:#666;padding:20px;grid-column:1/-1;">Failed to load featured products.</p>';
+            }
+        }
+
+        document.getElementById('currency').addEventListener('change', () => {
+            loadFeatured();
+        });
+
+        loadFeatured();
+    })();
+    </script>
+
 
     <!-- ===== EDITORIAL / LOOKBOOK ===== -->
     <section class="editorial-section">
@@ -1259,10 +1286,11 @@
         <div class="container">
             <h2>Join the Inner Circle</h2>
             <p>Get early access to drops, exclusive discounts, and behind-the-scenes content.</p>
-            <form class="newsletter-form-large" onsubmit="event.preventDefault(); showToast('Welcome to the inner circle!');">
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit">Join Now</button>
+            <form class="newsletter-form-large" id="shop-newsletter-form">
+                <input type="email" id="shop-newsletter-email" placeholder="Enter your email" required>
+                <button type="submit" id="shop-newsletter-btn">Join Now</button>
             </form>
+            <p id="shop-newsletter-status" style="font-size:13px;margin-top:12px;opacity:0.8;min-height:20px;"></p>
         </div>
     </section>
 
@@ -1336,58 +1364,85 @@
     <!-- ===== ORIGINAL PRODUCT SECTIONS (PRESERVED) ===== -->
     <div class="container">
         <h2 class="title">Order Now</h2>
-        <div class="product-grid">
-        <div class="row">
-            <div class="col-4">
-                <img src="redsleeves.png" alt="Red Sleeves of Arcana's Star Collection">
-                <h3>Red Sleeves of Arcana's Star Collection</h3>
-                <div class="product-price" data-usd="16.50">
-                    <p>$16.50</p>
-                </div>
-                <div class="rating">
-                    <span>★★★★★</span>
-                </div>
-                <a href="rs-star-collection.html" class="btn">View Details</a>
-            </div>
-            <div class="col-4">
-                <img src="fullblack.png" alt="Full Black of Arcana's Star Collection">
-                <h3>Full Black of Arcana's Star Collection</h3>
-                <div class="product-price" data-usd="16.50">
-                    <p>$16.50</p>
-                </div>
-                <div class="rating">
-                    <span>★★★★★</span>
-                </div>
-                <a href="fb-star-collection.html" class="btn">View Details</a>
-            </div>
-            <div class="col-4">
-                <img src="crest.png" alt="Arcana's Crest Skull Cap">
-                <h3>Arcana's Crest Skull Cap</h3>
-                <div class="product-price" data-usd="3.50">
-                    <p>$3.50</p>
-                </div>
-                <div class="rating">
-                    <span>★★★★★</span>
-                </div>
-                <a href="crest.html" class="btn">View Details</a>
-            </div>
-            <div class="col-4">
-                <img src="blacksweats.png" alt="Arcana's Black Sweatpants">
-                <h3>Arcana's Black Sweatpants</h3>
-                <div class="product-price" data-usd="16.50">
-                    <p>$16.50</p>
-                </div>
-                <div class="rating">
-                    <span>★★★★★</span>
-                </div>
-                <a href="blacksweats.html" class="btn">View Details</a>
-            </div>
+        <div id="product-grid" class="product-grid">
+            <div class="loading" id="shop-loading"><div class="spinner"></div></div>
         </div>
-        </div>
-
     </div>
 
-    <!-- ===== FOOTER ===== -->
+    <style>
+        .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        @media (max-width: 900px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .product-grid { grid-template-columns: 1fr; } }
+        .product-card { background: #fff; border: 1px solid var(--border); transition: transform 0.3s, box-shadow 0.3s; }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(89,73,59,0.08); }
+        .product-card img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+        .product-card .card-body { padding: 20px; }
+        .product-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+        .product-card .card-price { font-size: 14px; color: var(--primary); font-weight: 600; margin-bottom: 12px; }
+        .product-card .card-actions { display: flex; gap: 8px; }
+        .product-card .card-actions .btn { padding: 10px 18px; font-size: 11px; }
+        .product-card .card-actions .btn-secondary { padding: 10px 18px; font-size: 11px; }
+        .product-card .out-of-stock { color: var(--error); font-size: 12px; font-weight: 600; }
+    </style>
+
+    <script>
+    (async function() {
+        const API_BASE = 'https://arcana-backend-z46k.onrender.com/api';
+        const currencyRates = { USD: 1, EUR: 0.8666, GBP: 0.7375, NGN: 1547.30 };
+        const currencySymbols = { USD: "$", EUR: "€", GBP: "£", NGN: "₦" };
+        let currentCurrency = localStorage.getItem('arcanaCurrency') || 'USD';
+        document.getElementById('currency').value = currentCurrency;
+
+        function formatPrice(amount) {
+            const converted = (amount * currencyRates[currentCurrency]).toFixed(2);
+            return currencySymbols[currentCurrency] + converted;
+        }
+
+        function renderProducts(products) {
+            const grid = document.getElementById('product-grid');
+            if (!products.length) {
+                grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;text-align:center;padding:60px;"><p>No products available yet.</p></div>';
+                return;
+            }
+            grid.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <a href="product-detail.html?id=${p._id}"><img src="${p.image || 'logo.png'}" alt="${p.name}" onerror="this.src='logo.png'"></a>
+                    <div class="card-body">
+                        <h3>${p.name}</h3>
+                        <div class="card-price">${formatPrice(p.price)}</div>
+                        ${p.stock > 0
+                            ? `<div class="card-actions">
+                                <a href="product-detail.html?id=${p._id}" class="btn">View Details</a>
+                               </div>`
+                            : '<span class="out-of-stock">Out of Stock</span>'
+                        }
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function loadProducts() {
+            try {
+                const res = await fetch(`${API_BASE}/products`);
+                if (!res.ok) throw new Error('Failed to load products');
+                const data = await res.json();
+                renderProducts(data.products || []);
+            } catch (err) {
+                document.getElementById('product-grid').innerHTML = `<div class="empty-state" style="grid-column:1/-1;text-align:center;padding:60px;"><p>${err.message}</p><button class="btn" onclick="location.reload()">Retry</button></div>`;
+            }
+        }
+
+        document.getElementById('currency').addEventListener('change', (e) => {
+            currentCurrency = e.target.value;
+            localStorage.setItem('arcanaCurrency', currentCurrency);
+            loadProducts();
+        });
+
+        loadProducts();
+    })();
+    </script>
+
+<!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-top">
@@ -1509,5 +1564,51 @@
             <p id="arcana-modal-text"></p>
         </div>
     </div>
+
+    <script>
+    (function() {
+        const API_BASE = 'https://arcana-backend-z46k.onrender.com/api';
+        const form = document.getElementById('shop-newsletter-form');
+        const emailInput = document.getElementById('shop-newsletter-email');
+        const btn = document.getElementById('shop-newsletter-btn');
+        const status = document.getElementById('shop-newsletter-status');
+
+        if (!form) return;
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = emailInput.value.trim();
+            if (!email) return;
+
+            btn.disabled = true;
+            btn.textContent = 'Joining...';
+            status.textContent = '';
+
+            try {
+                const res = await fetch(`${API_BASE}/newsletter/subscribe`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    status.textContent = '✓ Welcome to the inner circle!';
+                    status.style.color = '#27ae60';
+                    emailInput.value = '';
+                } else {
+                    status.textContent = data.message || 'Subscription failed. Please try again.';
+                    status.style.color = '#c0392b';
+                }
+            } catch (err) {
+                status.textContent = 'Network error. Please try again.';
+                status.style.color = '#c0392b';
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Join Now';
+            }
+        });
+    })();
+    </script>
 </body>
 </html>

@@ -235,6 +235,7 @@
         }
     </style>
 <base target="_blank">
+<base target="_blank">
 </head>
 <body class="product-page">
     <div class="container">
@@ -438,9 +439,11 @@
 
                 const card = document.createElement("div");
                 card.className = "product-card";
+                const isSoldOut = !isComingSoon && (product.stock === undefined || product.stock <= 0);
                 card.innerHTML = `
                     <div class="card-image-wrap">
                         ${isComingSoon ? '<span class="card-badge">Coming Soon</span>' : ''}
+                        ${isSoldOut ? '<span class="card-badge" style="background:linear-gradient(135deg,#c0392b 0%,#a33226 100%);">Sold Out</span>' : ''}
                         <img src="${product.image}" alt="${product.name}" loading="lazy"
                             onerror="this.src='logo.png'; this.style.objectFit='contain'; this.style.padding='20px';">
                     </div>
@@ -454,8 +457,8 @@
                                 <span class="rating">★★★★★</span>
                             </div>
                             <a href="product-detail.html?id=${product._id}"
-                                class="btn-card ${isComingSoon ? 'coming-soon' : ''}">
-                                ${isComingSoon ? 'Notify Me' : 'View Details'}
+                                class="btn-card ${isComingSoon || isSoldOut ? 'coming-soon' : ''}">
+                                ${isComingSoon ? 'Notify Me' : isSoldOut ? 'Sold Out' : 'View Details'}
                             </a>
                         </div>
                     </div>
