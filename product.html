@@ -482,9 +482,9 @@
             try {
                 const res = await fetch(API_URL);
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                const products = await res.json();
-                allProducts = products;
-                renderProducts(products, sortSelect.value);
+                const data = await res.json();
+                allProducts = data.products || [];
+                renderProducts(allProducts, sortSelect.value);
             } catch (err) {
                 console.error("Failed to fetch products:", err);
                 showErrorState();
