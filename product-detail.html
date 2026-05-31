@@ -716,7 +716,7 @@
       const price = product.price || productData.price;
       const totalUSD = price * quantity;
       const finalTotal = totalUSD + shippingFee;
-      const amountInKobo = Math.round(finalTotal * 1547.30 * 100);
+      const amountInKobo = Math.round(finalTotal * 1.54730 * 100);
       const reference = `ARC${Date.now()}`;
       await fetch(`${API_BASE}/orders`, {
         method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
