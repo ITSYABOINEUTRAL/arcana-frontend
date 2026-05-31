@@ -12,6 +12,7 @@
 <base target="_blank">
 <base target="_blank">
 <base target="_blank">
+<base target="_blank">
 </head>
 <body class="product-details-page">
 
@@ -470,7 +471,7 @@
       specsGrid.innerHTML = `
         <div class="spec-item">
           <span class="spec-label">Material</span>
-          <span class="spec-value">${p.material || '100% Premium Cotton'}</span>
+          <span class="spec-value">${p.material || 'Premium Cotton'}</span>
         </div>
         <div class="spec-item">
           <span class="spec-label">Weight</span>
@@ -760,7 +761,8 @@
       try {
         const res = await fetch(`${API_BASE}/products`);
         if (!res.ok) throw new Error('Failed');
-        const products = await res.json();
+        const data = await res.json();
+        const products = data.products || [];
         const related = products.filter(p => p._id !== excludeId && p.category === category).slice(0, 4);
         const grid = document.getElementById('relatedGrid');
         if (related.length === 0) {
