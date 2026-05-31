@@ -27,13 +27,14 @@
       width: 260px; background: var(--primary-dark); color: #fff;
       padding: 32px 24px; position: fixed; height: 100vh; overflow-y: auto;
     }
-    .sidebar-logo img { width: 125px; display: block; }
-    .sidebar-tagline { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 48px; }
+    .sidebar-logo { text-align: center; margin-bottom: 8px; }
+    .sidebar-logo img { width: 125px; display: block; margin: 0 auto; }
+    .sidebar-tagline { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 48px; text-align: center; }
     .nav-section { margin-bottom: 32px; }
     .nav-section-title { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 12px; font-weight: 600; }
     .nav-item {
       display: flex; align-items: center; gap: 12px; padding: 12px 16px;
-      border-radius: 6px; cursor: pointer; transition: all 0.3s;
+      border-radius: 0; cursor: pointer; transition: all 0.3s;
       font-size: 14px; color: rgba(255,255,255,0.7); text-decoration: none; margin-bottom: 4px;
     }
     .nav-item:hover, .nav-item.active { background: rgba(255,255,255,0.08); color: #fff; }
@@ -53,18 +54,23 @@
     .section-card { background: #fff; border: 1px solid var(--border); margin-bottom: 32px; }
     .section-header { padding: 24px 28px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
     .section-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--primary-dark); }
-    .btn { padding: 12px 28px; background: var(--primary); color: #fff; border: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: all 0.3s; font-family: 'Poppins', sans-serif; border-radius: 4px; }
-    .btn:hover { background: var(--primary-dark); }
+    .btn {
+      padding: 12px 28px; background: var(--primary); color: #fff;
+      border: 2px solid var(--primary); font-size: 12px; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 600; cursor: pointer;
+      transition: all 0.3s; font-family: 'Poppins', sans-serif; border-radius: 0;
+    }
+    .btn:hover { background: transparent; color: var(--primary); }
     .btn-secondary { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
     .btn-secondary:hover { background: var(--primary); color: #fff; }
-    .btn-danger { background: var(--error); }
-    .btn-danger:hover { background: #a33226; }
+    .btn-danger { background: var(--error); border-color: var(--error); }
+    .btn-danger:hover { background: transparent; color: var(--error); }
     .btn-small { padding: 8px 16px; font-size: 11px; }
     .data-table { width: 100%; border-collapse: collapse; }
     .data-table th { text-align: left; padding: 16px 28px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--primary); font-weight: 600; border-bottom: 2px solid var(--primary); }
     .data-table td { padding: 18px 28px; font-size: 14px; border-bottom: 1px solid var(--border); color: var(--text); }
     .data-table tr:hover td { background: rgba(89,73,59,0.02); }
-    .status-pill { display: inline-block; padding: 6px 14px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; border-radius: 4px; }
+    .status-pill { display: inline-block; padding: 6px 14px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; border-radius: 0; }
     .status-reviewing { background: #fef3e2; color: #d68910; }
     .status-shipped { background: #ebf5fb; color: #3498db; }
     .status-delivered { background: #eafaf1; color: var(--success); }
@@ -76,12 +82,12 @@
     .form-group { display: flex; flex-direction: column; }
     .form-group.full { grid-column: 1 / -1; }
     .form-group label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; font-weight: 600; }
-    .form-group input, .form-group textarea, .form-group select { padding: 14px 18px; border: 1px solid var(--border); font-family: 'Poppins', sans-serif; font-size: 14px; color: var(--text); background: #fff; transition: border-color 0.3s; border-radius: 4px; }
+    .form-group input, .form-group textarea, .form-group select { padding: 14px 18px; border: 1px solid var(--border); font-family: 'Poppins', sans-serif; font-size: 14px; color: var(--text); background: #fff; transition: border-color 0.3s; border-radius: 0; }
     .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--primary); }
     .form-group textarea { min-height: 120px; resize: vertical; }
     .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(26, 20, 16, 0.6); z-index: 1000; align-items: center; justify-content: center; }
     .modal-overlay.active { display: flex; }
-    .modal { background: #fff; width: 90%; max-width: 600px; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 80px rgba(0,0,0,0.3); border-radius: 8px; }
+    .modal { background: #fff; width: 90%; max-width: 700px; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 80px rgba(0,0,0,0.3); border-radius: 0; }
     .modal-header { padding: 24px 28px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
     .modal-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; }
     .modal-close { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-muted); }
@@ -91,7 +97,7 @@
     .tab { padding: 16px 32px; background: none; border: none; font-family: 'Poppins', sans-serif; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all 0.3s; border-bottom: 2px solid transparent; margin-bottom: -2px; }
     .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
     .tab:hover { color: var(--primary); }
-    .toast { position: fixed; bottom: 32px; right: 32px; padding: 16px 28px; background: var(--primary-dark); color: #fff; font-size: 14px; z-index: 2000; transform: translateY(100px); opacity: 0; transition: all 0.4s; border-radius: 6px; }
+    .toast { position: fixed; bottom: 32px; right: 32px; padding: 16px 28px; background: var(--primary-dark); color: #fff; font-size: 14px; z-index: 2000; transform: translateY(100px); opacity: 0; transition: all 0.4s; border-radius: 0; }
     .toast.show { transform: translateY(0); opacity: 1; }
     .toast-error { background: var(--error); }
     .toast-success { background: var(--success); }
@@ -100,6 +106,7 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .empty-state { text-align: center; padding: 60px; color: var(--text-muted); font-size: 14px; }
     .hidden { display: none !important; }
+    .currency-select { padding: 8px 14px; border: 1px solid var(--border); font-family: 'Poppins', sans-serif; font-size: 13px; background: #fff; cursor: pointer; border-radius: 0; color: var(--primary); }
 
     .auth-overlay {
       position: fixed; inset: 0;
@@ -114,7 +121,7 @@
     .auth-overlay.active { display: flex; }
     .auth-panel {
       background: #fff;
-      border-radius: 16px;
+      border-radius: 0;
       padding: 48px 40px;
       max-width: 440px;
       width: 100%;
@@ -159,14 +166,16 @@
       font-size: 13px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      border-radius: 8px;
+      border-radius: 0;
       transition: all 0.3s;
+      border: 2px solid var(--primary);
     }
     .auth-btn:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(89,73,59,0.25);
+      background: transparent;
+      color: var(--primary);
     }
+
+    .table-wrap { overflow-x: auto; }
 
     @media (max-width: 1024px) {
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -247,9 +256,17 @@
     <main class="main">
       <div class="top-bar">
         <h1 class="page-title" id="page-title">Dashboard</h1>
-        <div class="user-pill" id="admin-user-pill">
-          <img src="default-avatar.png" alt="Admin" id="admin-avatar">
-          <span id="admin-name">Loading...</span>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <select id="currency" class="currency-select">
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="NGN">NGN (₦)</option>
+          </select>
+          <div class="user-pill" id="admin-user-pill">
+            <img src="default-avatar.png" alt="Admin" id="admin-avatar">
+            <span id="admin-name">Loading...</span>
+          </div>
         </div>
       </div>
 
@@ -257,7 +274,7 @@
         <div class="stats-grid" id="stats-grid">
           <div class="stat-card">
             <div class="stat-label">Total Revenue</div>
-            <div class="stat-value" id="stat-revenue">₦0</div>
+            <div class="stat-value" id="stat-revenue">$0</div>
             <div class="stat-change">All time</div>
           </div>
           <div class="stat-card">
@@ -413,6 +430,22 @@
             <label>Stock</label>
             <input type="number" name="stock" required min="0" placeholder="50">
           </div>
+          <div class="form-group">
+            <label>Material</label>
+            <input type="text" name="material" placeholder="e.g. 100% Cotton">
+          </div>
+          <div class="form-group">
+            <label>Weight</label>
+            <input type="text" name="weight" placeholder="e.g. 250g / 8.8oz">
+          </div>
+          <div class="form-group">
+            <label>Fit</label>
+            <input type="text" name="fit" placeholder="e.g. Regular / Oversized / Slim">
+          </div>
+          <div class="form-group">
+            <label>Care</label>
+            <input type="text" name="care" placeholder="e.g. Machine wash cold, hang dry">
+          </div>
           <div class="form-group full">
             <label>Description</label>
             <textarea name="description" required placeholder="Product description..."></textarea>
@@ -450,6 +483,10 @@
             ? 'http://localhost:5000/api'
             : 'https://arcana-backend-z46k.onrender.com/api');
 
+    const currencyRates = { USD: 1, EUR: 0.8666, GBP: 0.7375, NGN: 1547.30 };
+    const currencySymbols = { USD: "$", EUR: "€", GBP: "£", NGN: "₦" };
+    let currentCurrency = 'USD';
+
     const fetchOptions = (method = 'GET', body = null) => {
       const token = localStorage.getItem('token');
       const opts = { method, credentials: 'include', headers: { 'Content-Type': 'application/json' } };
@@ -463,6 +500,13 @@
       if (!res.ok) throw new Error(data.message || `HTTP ${res.status}`);
       return data;
     };
+
+    function formatPrice(amount) {
+      if (amount === undefined || amount === null) return currencySymbols[currentCurrency] + '0.00';
+      const rate = currencyRates[currentCurrency];
+      const converted = (amount * rate).toFixed(2);
+      return currencySymbols[currentCurrency] + converted;
+    }
 
     let currentOrderId = null;
     let currentOrderNumber = null;
@@ -506,7 +550,7 @@
       try {
         const data = await fetch(`${API_BASE}/admin/dashboard`, fetchOptions('GET')).then(handleResponse);
         const s = data;
-        document.getElementById('stat-revenue').textContent = '₦' + (s.revenue || 0).toLocaleString();
+        document.getElementById('stat-revenue').textContent = formatPrice(s.revenue || 0);
         document.getElementById('stat-orders').textContent = (s.orders || 0).toLocaleString();
         document.getElementById('stat-users').textContent = (s.users || 0).toLocaleString();
         document.getElementById('stat-products').textContent = (s.products || 0).toLocaleString();
@@ -523,6 +567,7 @@
       const container = document.getElementById('recent-orders-container');
       if (!orders.length) { container.innerHTML = '<div class="empty-state">No orders yet</div>'; return; }
       container.innerHTML = `
+        <div class="table-wrap">
         <table class="data-table">
           <thead><tr><th>Order</th><th>Customer</th><th>Date</th><th>Total</th><th>Stage</th></tr></thead>
           <tbody>
@@ -531,12 +576,12 @@
                 <td><strong>#${o.orderNumber}</strong></td>
                 <td>${o.user?.name || 'Guest'}</td>
                 <td>${new Date(o.createdAt).toLocaleDateString('en-NG')}</td>
-                <td>₦${o.totalPrice?.toLocaleString()}</td>
+                <td>${formatPrice(o.totalPrice)}</td>
                 <td><span class="status-pill status-${(o.deliveryStage || 'reviewing').toLowerCase()}">${o.deliveryStage || 'Reviewing'}</span></td>
               </tr>
             `).join('')}
           </tbody>
-        </table>`;
+        </table></div>`;
     }
 
     async function loadOrders() {
@@ -549,13 +594,20 @@
       }
     }
 
+    function formatAddress(addr) {
+      if (!addr) return '—';
+      const parts = [addr.street, addr.city, addr.state, addr.zip, addr.country].filter(Boolean);
+      return parts.join(', ') || '—';
+    }
+
     function renderOrders(orders) {
       const container = document.getElementById('orders-container');
       if (!orders.length) { container.innerHTML = '<div class="empty-state">No orders found</div>'; return; }
       container.innerHTML = `
+        <div class="table-wrap">
         <table class="data-table">
           <thead>
-            <tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Stage</th><th>Date</th><th>Actions</th></tr>
+            <tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Stage</th><th>Shipping Address</th><th>Phone</th><th>Date</th><th>Actions</th></tr>
           </thead>
           <tbody>
             ${orders.map(o => `
@@ -563,8 +615,10 @@
                 <td><strong>#${o.orderNumber}</strong></td>
                 <td>${o.user?.name || 'Unknown'}<br><small style="color:#666">${o.user?.email || ''}</small></td>
                 <td>${o.products?.length || 0} items</td>
-                <td>₦${o.totalPrice?.toLocaleString()}</td>
+                <td>${formatPrice(o.totalPrice)}</td>
                 <td><span class="status-pill status-${(o.deliveryStage || 'reviewing').toLowerCase()}">${o.deliveryStage || 'Reviewing'}</span></td>
+                <td style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="${formatAddress(o.shippingAddress)}">${formatAddress(o.shippingAddress)}</td>
+                <td>${o.phoneNumber || '—'}</td>
                 <td>${new Date(o.createdAt).toLocaleDateString('en-NG')}</td>
                 <td>
                   <button class="btn btn-small" onclick="openOrderModal('${o._id}', '${o.orderNumber}', '${o.deliveryStage || 'Reviewing'}')">Update</button>
@@ -572,7 +626,7 @@
               </tr>
             `).join('')}
           </tbody>
-        </table>`;
+        </table></div>`;
     }
 
     function filterOrders(status, btn) {
@@ -618,15 +672,16 @@
       const container = document.getElementById('products-container');
       if (!products.length) { container.innerHTML = '<div class="empty-state">No products yet</div>'; return; }
       container.innerHTML = `
+        <div class="table-wrap">
         <table class="data-table">
           <thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead>
           <tbody>
             ${products.map(p => `
               <tr>
-                <td><img src="${p.image}" alt="${p.name}" style="width:50px;height:50px;object-fit:cover;border-radius:4px;"></td>
+                <td><img src="${p.image}" alt="${p.name}" style="width:50px;height:50px;object-fit:cover;border-radius:0;"></td>
                 <td><strong>${p.name}</strong>${p.featured ? ' <span style="color:#8B6A4E;font-size:11px;">★ Featured</span>' : ''}</td>
                 <td>${p.category}</td>
-                <td>₦${p.price?.toLocaleString()}</td>
+                <td>${formatPrice(p.price)}</td>
                 <td>${p.stock !== undefined ? p.stock : '—'}</td>
                 <td>
                   <button class="btn btn-small btn-secondary" onclick="editProduct('${p._id}')">Edit</button>
@@ -635,7 +690,7 @@
               </tr>
             `).join('')}
           </tbody>
-        </table>`;
+        </table></div>`;
     }
 
     function openProductModal(productId = null) {
@@ -647,10 +702,18 @@
           .then(handleResponse)
           .then(data => {
             const p = data.product; const f = document.getElementById('product-form');
-            f.name.value = p.name; f.price.value = p.price; f.category.value = p.category;
-            f.stock.value = p.stock || 0; f.description.value = p.description;
-            f.sizes.value = p.sizes?.join(', ') || ''; f.image.value = p.image;
+            f.name.value = p.name || '';
+            f.price.value = p.price || '';
+            f.category.value = p.category || '';
+            f.stock.value = p.stock || 0;
+            f.description.value = p.description || '';
+            f.sizes.value = p.sizes?.join(', ') || '';
+            f.image.value = p.image || '';
             f.featured.value = p.featured ? 'true' : 'false';
+            f.material.value = p.material || '';
+            f.weight.value = p.weight || '';
+            f.fit.value = p.fit || '';
+            f.care.value = p.care || '';
           });
       }
       document.getElementById('product-modal').classList.add('active');
@@ -659,10 +722,18 @@
     async function saveProduct() {
       const f = document.getElementById('product-form');
       const body = {
-        name: f.name.value, price: Number(f.price.value), category: f.category.value,
-        stock: Number(f.stock.value), description: f.description.value,
+        name: f.name.value,
+        price: Number(f.price.value),
+        category: f.category.value,
+        stock: Number(f.stock.value),
+        description: f.description.value,
         sizes: f.sizes.value.split(',').map(s => s.trim()).filter(Boolean),
-        image: f.image.value, featured: f.featured.value === 'true'
+        image: f.image.value,
+        featured: f.featured.value === 'true',
+        material: f.material.value,
+        weight: f.weight.value,
+        fit: f.fit.value,
+        care: f.care.value
       };
       try {
         if (currentProductId) {
@@ -699,8 +770,9 @@
       const container = document.getElementById('users-container');
       if (!users.length) { container.innerHTML = '<div class="empty-state">No customers yet</div>'; return; }
       container.innerHTML = `
+        <div class="table-wrap">
         <table class="data-table">
-          <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Joined</th></tr></thead>
+          <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Joined</th><th>Actions</th></tr></thead>
           <tbody>
             ${users.map(u => `
               <tr>
@@ -714,10 +786,27 @@
                 <td>${u.phone || '—'}</td>
                 <td><span class="status-pill ${u.isAdmin ? 'status-processing' : 'status-pending'}">${u.isAdmin ? 'admin' : 'customer'}</span></td>
                 <td>${new Date(u.createdAt).toLocaleDateString('en-NG')}</td>
+                <td>
+                  <button class="btn btn-small ${u.isAdmin ? 'btn-danger' : 'btn-secondary'}" onclick="toggleAdminRole('${u._id}', ${u.isAdmin})">
+                    ${u.isAdmin ? 'Demote' : 'Promote'}
+                  </button>
+                </td>
               </tr>
             `).join('')}
           </tbody>
-        </table>`;
+        </table></div>`;
+    }
+
+    async function toggleAdminRole(userId, currentStatus) {
+      const action = currentStatus ? 'demote' : 'promote';
+      if (!confirm(`Are you sure you want to ${action} this user?`)) return;
+      try {
+        await fetch(`${API_BASE}/admin/users/${userId}/role`, fetchOptions('PUT')).then(handleResponse);
+        showToast(`User ${action}d successfully`);
+        loadUsers();
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
     }
 
     async function loadNewsletter() {
@@ -738,6 +827,7 @@
         <div style="padding: 20px 28px; font-size: 14px; color: #666; margin-bottom: 16px;">
           <strong>${subscribers.length}</strong> total subscribers
         </div>
+        <div class="table-wrap">
         <table class="data-table">
           <thead><tr><th>Email</th><th>Subscribed On</th></tr></thead>
           <tbody>
@@ -745,7 +835,7 @@
               <tr><td>${s.email}</td><td>${new Date(s.createdAt).toLocaleDateString('en-NG')}</td></tr>
             `).join('')}
           </tbody>
-        </table>`;
+        </table></div>`;
     }
 
     async function sendNewsletter() {
@@ -797,6 +887,13 @@
       localStorage.removeItem('userEmail');
       window.location.href = 'index.html';
     }
+
+    document.getElementById('currency').addEventListener('change', (e) => {
+      currentCurrency = e.target.value;
+      loadDashboard();
+      loadOrders();
+      loadProducts();
+    });
 
     document.querySelectorAll('.modal-overlay').forEach(overlay => {
       overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('active'); });
