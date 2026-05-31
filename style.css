@@ -2889,7 +2889,7 @@ body:not(.product-page):not(.product-details-page) .navbar .currency-selector:fo
 @media only screen and (max-width: 600px) {
     .navbar .currency-selector {
         position: relative;
-        min-width: 80px;
+        min-width: 100px;
         padding: 6px 24px 6px 8px;
         font-size: 0.7rem;
         left: -55px !important;
