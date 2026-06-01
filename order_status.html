@@ -13,6 +13,7 @@
     <base target="_blank">
 <base target="_blank">
 <base target="_blank">
+<base target="_blank">
 </head>
 <body class="order-status-page">
 
@@ -226,10 +227,10 @@
 
                 let productsHTML = order.products.map(p => `
                     <div class="product-item">
-                        <img src="${p.image}" alt="${p.title}" loading="lazy">
+                        <img src="${p.image || 'logo.png'}" alt="${p.name || p.title || 'Product'}" loading="lazy" onerror="this.src='logo.png'">
                         <div class="product-info">
-                            <p class="product-title">${p.title}</p>
-                            <p class="product-meta">${p.size} &bull; Qty: ${p.quantity} &bull; $${p.price}</p>
+                            <p class="product-title">${p.name || p.title || 'Arcana Product'}</p>
+                            <p class="product-meta">${p.size || 'N/A'} &bull; Qty: ${p.quantity || 1} &bull; $${p.price || 0}</p>
                         </div>
                     </div>
                 `).join("");
