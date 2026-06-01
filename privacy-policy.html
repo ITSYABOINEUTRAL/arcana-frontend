@@ -544,6 +544,7 @@
 </style>
 <base target="_blank">
 <base target="_blank">
+<base target="_blank">
 </head>
 <body class="privacy-policy-page">
 
@@ -562,8 +563,16 @@
                     <li><a href="gallery.html">Gallery</a></li>
                 </ul>
             </nav>
-            <a href="cart.html"><img src="cart.png" width="30px" height="30px" alt="Cart" class="cart-icon"></a>
-            <img src="menu.png" width="30px" height="30px" alt="Menu" class="menu-icon" onclick="menuToggle()">
+            <a href="cart.html" class="cart-link">
+  <img src="cart.png" width="30px" height="30px" alt="Cart Icon" class="cart-icon">
+  <span class="cart-badge" id="cartBadge" style="display:none;">0</span>
+</a>
+            <div class="menu-toggle" id="menuToggle" onclick="menuToggle()" role="button" tabindex="0" aria-label="Toggle menu">
+  <span class="sq"></span>
+  <span class="sq"></span>
+  <span class="sq"></span>
+  <span class="sq"></span>
+</div>
         </div>
     </div>
 
