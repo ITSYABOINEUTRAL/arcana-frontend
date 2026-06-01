@@ -277,7 +277,7 @@ document.getElementById('checkout-btn')?.addEventListener('click', async () => {
     }
 
     // 3. Initialize Paystack
-    const amountInKobo = Math.round(totalUSD * 1547.30 * 100);
+    const amountInKobo = Math.round(totalUSD * 1.54730 * 100);
     const payRes = await fetch(`${API_BASE}/paystack/initialize`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
