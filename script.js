@@ -250,4 +250,15 @@
     }
   })();
 
+  
 })();
+
+function requireAuthForCart(callback) {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    showBlockingMessage('Please sign in to add items to your cart.', 'account.html');
+    return false;
+  }
+  if (callback) callback();
+  return true;
+}

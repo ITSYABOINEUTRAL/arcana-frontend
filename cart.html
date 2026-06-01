@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <base target="_blank">
-<base target="_blank">
 </head>
 <body class="cart-page">
 
@@ -50,16 +49,27 @@
         <div class="cart-layout">
             <!-- Left: Cart Items -->
             <section class="cart-items-section">
-                <div id="cart-container">
-                    <!-- Cart items injected by cart.js -->
-                    <div class="cart-empty-state" id="empty-state">
-                        <div class="empty-icon">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                        <h3>Your cart is empty</h3>
-                        <p>Looks like you haven't added anything yet.</p>
-                        <a href="product.html" class="btn-continue">Continue Shopping</a>
+                <!-- Cart items injected here by cart.js -->
+                <div id="cart-container"></div>
+
+                <!-- Shown when logged in but cart is empty -->
+                <div class="cart-empty-state" id="empty-state" style="display:none">
+                    <div class="empty-icon">
+                        <i class="fa-solid fa-bag-shopping"></i>
                     </div>
+                    <h3>Your cart is empty</h3>
+                    <p>Looks like you haven't added anything yet.</p>
+                    <a href="product.html" class="btn-continue">Continue Shopping</a>
+                </div>
+
+                <!-- Shown when not logged in -->
+                <div class="cart-empty-state" id="not-logged-in" style="display:none">
+                    <div class="empty-icon">
+                        <i class="fa-solid fa-user-lock"></i>
+                    </div>
+                    <h3>Please sign in</h3>
+                    <p>You need to be logged in to view and manage your cart.</p>
+                    <a href="account.html" class="btn-continue">Sign In</a>
                 </div>
             </section>
 
@@ -232,9 +242,9 @@
             const validCoupons = ['DISCOUNT10', 'SAVE20'];
             const input = document.getElementById('coupon-input').value.trim();
             if (!validCoupons.includes(input)) {
-                showToast('Invalid coupon code', 'error');
+                showNotification('Invalid coupon code', 'error');
             } else {
-                showToast('Coupon applied successfully!', 'success');
+                showNotification('Coupon applied successfully!', 'success');
             }
         });
         document.getElementById('year').textContent = new Date().getFullYear();
