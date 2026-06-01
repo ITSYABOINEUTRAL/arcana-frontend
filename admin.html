@@ -821,21 +821,34 @@
         <div class="table-wrap">
         <table class="data-table">
           <thead>
-            <tr><th>Order</th><th>Customer</th><th>Products</th><th>Total</th><th>Stage</th><th>Shipping Address</th><th>Phone</th><th>Date</th><th>Actions</th></tr>
+            <tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Stage</th><th>Shipping Address</th><th>Phone</th><th>Date</th><th>Actions</th></tr>
           </thead>
           <tbody>
             ${orders.map(o => `
               <tr>
                 <td><strong>#${o.orderNumber}</strong></td>
                 <td>${o.user?.name || 'Unknown'}<br><small style="color:#666">${o.user?.email || ''}</small></td>
-                <td>${o.products?.length || 0} items</td>
+                <td style="min-width:220px;">
+                  ${(o.products || []).map(p => `
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                      <img src="${p.image || 'logo.png'}" alt="${p.name || p.title || 'Product'}" style="width:40px;height:40px;object-fit:cover;border-radius:0;border:1px solid rgba(89,73,59,0.1);" onerror="this.src='logo.png'">
+                      <div style="line-height:1.4;">
+                        <div style="font-weight:600;font-size:13px;color:var(--text);">${p.name || p.title || 'Arcana Product'}</div>
+                        <div style="font-size:11px;color:#8B6A4E;">Size: ${p.size || 'N/A'} • Qty: ${p.quantity || 1} • $${(p.price || 0).toFixed(2)}</div>
+                      </div>
+                    </div>
+                  `).join('') || '<span style="color:#999;font-size:13px;">No products</span>'}
+                </td>
                 <td>${formatPrice(o.totalPrice)}</td>
                 <td><span class="status-pill status-${(o.deliveryStage || 'reviewing').toLowerCase()}">${o.deliveryStage || 'Reviewing'}</span></td>
                 <td class="address-cell">${formatAddress(o.shippingAddress)}</td>
                 <td>${o.phoneNumber || '—'}</td>
                 <td>${new Date(o.createdAt).toLocaleDateString('en-NG')}</td>
                 <td>
-                  <button class="btn btn-small" onclick="openOrderModal('${o._id}', '${o.orderNumber}', '${o.deliveryStage || 'Reviewing'}')">Update</button>
+                  <div class="action-btns">
+                    <button class="btn btn-small btn-secondary" onclick="openOrderDetailModal('${o._id}')">View</button>
+                    <button class="btn btn-small" onclick="openOrderModal('${o._id}', '${o.orderNumber}', '${o.deliveryStage || 'Reviewing'}')">Update</button>
+                  </div>
                 </td>
               </tr>
             `).join('')}
@@ -1187,22 +1200,5 @@
 
     document.addEventListener('DOMContentLoaded', initAdmin);
   </script>
-
-  <!-- Order Detail Modal -->
-  <div class="modal-overlay" id="order-detail-modal">
-    <div class="modal" style="max-width:700px;">
-      <div class="modal-header">
-        <h3 class="modal-title">Order Details</h3>
-        <button class="modal-close" onclick="closeModal('order-detail-modal')">&times;</button>
-      </div>
-      <div class="modal-body" id="order-detail-body">
-        <!-- injected dynamically -->
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeModal('order-detail-modal')">Close</button>
-      </div>
-    </div>
-  </div>
-
 </body>
 </html>
