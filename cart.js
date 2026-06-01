@@ -1,8 +1,8 @@
 // ===== cart.js (FIXED) =====
 // Restored direct Paystack checkout from oldcart.js
 // Fixed quantity buttons (now sends {productId, quantity} like before)
-// Fixed empty cart state (moved outside container in HTML below)
-// Added auth guard so logged-out users see blocking modal redirect
+// Fixed empty cart state (CSS flex-direction: column keeps it centered)
+// Auth guard uses blocking modal (redirects to account.html on close)
 
 const API_BASE = 'https://arcana-backend-z46k.onrender.com/api';
 const currencyRates = { USD: 1, EUR: 0.8666, GBP: 0.7375, NGN: 1547.30 };
@@ -59,7 +59,7 @@ async function fetchAddress() {
     const isNigeria = addresses.some(addr =>
       addr.country?.toLowerCase().includes('nigeria')
     );
-    shippingCost = isNigeria ? 3.5 : 20;
+    shippingCost = isNigeria ? 5 : 20;
   } catch (err) {
     console.error('Failed to fetch address:', err);
     shippingCost = 20;
@@ -89,7 +89,6 @@ function renderCart() {
     return;
   }
 
-  if (emptyState) emptyState.style.display = 'none';
   if (container) container.style.display = 'block';
 
   fetch(`${API_BASE}/cart`, {
@@ -110,7 +109,7 @@ function renderCart() {
           container.innerHTML = '';
           container.style.display = 'none';
         }
-        if (emptyState) emptyState.style.display = 'flex';
+        if (emptyState) emptyState.style.display = '';   // let CSS flex-direction: column apply
         if (summary) summary.style.display = 'none';
         subtotalUSD = 0;
         updateSummary();

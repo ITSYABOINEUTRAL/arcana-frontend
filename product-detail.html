@@ -645,7 +645,7 @@
       const price = productData.price || 0;
       const totalUSD = price * quantity;
       const finalTotal = totalUSD + shippingFee;
-      const amountInKobo = Math.round(finalTotal * 1.54730 * 100);
+      const amountInKobo = Math.round(finalTotal * 1547.30 * 100);
       const reference = `ARC${Date.now()}`;
 
       /* FIX: send 'products' array (not 'items') with full product details */

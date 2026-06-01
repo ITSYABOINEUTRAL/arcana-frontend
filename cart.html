@@ -61,16 +61,6 @@
                     <p>Looks like you haven't added anything yet.</p>
                     <a href="product.html" class="btn-continue">Continue Shopping</a>
                 </div>
-
-                <!-- Shown when not logged in -->
-                <div class="cart-empty-state" id="not-logged-in" style="display:none">
-                    <div class="empty-icon">
-                        <i class="fa-solid fa-user-lock"></i>
-                    </div>
-                    <h3>Please sign in</h3>
-                    <p>You need to be logged in to view and manage your cart.</p>
-                    <a href="account.html" class="btn-continue">Sign In</a>
-                </div>
             </section>
 
             <!-- Right: Order Summary -->
@@ -464,14 +454,19 @@
             color: var(--arcana-text);
         }
 
-        /* ===== EMPTY STATE ===== */
+        /* ===== EMPTY STATE — FIXED COLUMN FLEX ===== */
         .cart-empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             padding: 80px 20px;
             background: #fff;
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--arcana-border);
+            gap: 12px;
         }
 
         .empty-icon {
@@ -482,7 +477,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 24px;
+            margin-bottom: 12px;
         }
 
         .empty-icon i {
@@ -493,12 +488,14 @@
         .cart-empty-state h3 {
             font-size: 1.3rem;
             color: var(--arcana-text);
-            margin-bottom: 8px;
+            margin-bottom: 4px;
+            font-weight: 600;
         }
 
         .cart-empty-state p {
             color: var(--arcana-text-light);
-            margin-bottom: 24px;
+            margin-bottom: 12px;
+            max-width: 320px;
         }
 
         .btn-continue {
