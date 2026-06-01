@@ -328,6 +328,7 @@
     </style>
 <base target="_blank">
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
   <div class="mobile-header" id="mobile-header">
@@ -820,7 +821,7 @@
         <div class="table-wrap">
         <table class="data-table">
           <thead>
-            <tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Stage</th><th>Shipping Address</th><th>Phone</th><th>Date</th><th>Actions</th></tr>
+            <tr><th>Order</th><th>Customer</th><th>Products</th><th>Total</th><th>Stage</th><th>Shipping Address</th><th>Phone</th><th>Date</th><th>Actions</th></tr>
           </thead>
           <tbody>
             ${orders.map(o => `
@@ -1117,7 +1118,91 @@
       overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('active'); });
     });
 
+    async function openOrderDetailModal(orderId) {
+      const order = allOrders.find(o => o._id === orderId);
+      if (!order) return;
+
+      const productsHtml = (order.products || []).map(p => `
+        <div style="display:flex;gap:16px;align-items:center;padding:16px;background:var(--surface);border:1px solid var(--border);margin-bottom:12px;">
+          <img src="${p.image || 'logo.png'}" alt="${p.name || p.title || 'Product'}" style="width:72px;height:72px;object-fit:cover;border-radius:0;border:1px solid rgba(89,73,59,0.1);flex-shrink:0;" onerror="this.src='logo.png'">
+          <div style="flex:1;">
+            <div style="font-weight:600;font-size:15px;color:var(--text);margin-bottom:4px;">${p.name || p.title || 'Arcana Product'}</div>
+            <div style="font-size:13px;color:#8B6A4E;line-height:1.6;">
+              Size: <strong>${p.size || 'N/A'}</strong> &nbsp;|&nbsp;
+              Quantity: <strong>${p.quantity || 1}</strong> &nbsp;|&nbsp;
+              Unit Price: <strong>$${(p.price || 0).toFixed(2)}</strong> &nbsp;|&nbsp;
+              Subtotal: <strong>$${((p.price || 0) * (p.quantity || 1)).toFixed(2)}</strong>
+            </div>
+          </div>
+        </div>
+      `).join('') || '<p style="color:#999;">No product data available for this order.</p>';
+
+      const subtotal = (order.products || []).reduce((sum, p) => sum + ((p.price || 0) * (p.quantity || 1)), 0);
+
+      document.getElementById('order-detail-body').innerHTML = `
+        <div style="margin-bottom:24px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+            <div>
+              <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--primary-dark);">#${order.orderNumber}</div>
+              <div style="font-size:13px;color:#8B6A4E;margin-top:4px;">${new Date(order.createdAt).toLocaleDateString('en-NG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
+            </div>
+            <span class="status-pill status-${(order.deliveryStage || 'reviewing').toLowerCase()}">${order.deliveryStage || 'Reviewing'}</span>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+            <div style="background:var(--surface);padding:16px;border:1px solid var(--border);">
+              <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#8B6A4E;font-weight:600;margin-bottom:8px;">Customer</div>
+              <div style="font-weight:600;color:var(--text);">${order.user?.name || 'Unknown'}</div>
+              <div style="font-size:13px;color:#666;margin-top:4px;">${order.user?.email || '—'}</div>
+              <div style="font-size:13px;color:#666;">${order.phoneNumber || '—'}</div>
+            </div>
+            <div style="background:var(--surface);padding:16px;border:1px solid var(--border);">
+              <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#8B6A4E;font-weight:600;margin-bottom:8px;">Shipping Address</div>
+              <div style="font-size:13px;color:var(--text);line-height:1.6;">${formatAddress(order.shippingAddress).replace(/, /g, '<br>')}</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#8B6A4E;font-weight:600;margin-bottom:12px;">Products Ordered</div>
+        ${productsHtml}
+
+        <div style="background:var(--surface);padding:20px;border:1px solid var(--border);margin-top:20px;">
+          <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;color:#666;">
+            <span>Subtotal</span>
+            <span style="font-weight:500;color:var(--text);">$${subtotal.toFixed(2)}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;color:#666;border-bottom:1px solid var(--border);">
+            <span>Shipping</span>
+            <span style="font-weight:500;color:var(--text);">$${(order.shippingFee || 0).toFixed(2)}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:12px 0 0;font-size:18px;font-weight:700;color:var(--primary-dark);font-family:'Playfair Display',serif;">
+            <span>Total</span>
+            <span>$${(order.totalPrice || 0).toFixed(2)}</span>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('order-detail-modal').classList.add('active');
+    }
+
     document.addEventListener('DOMContentLoaded', initAdmin);
   </script>
+
+  <!-- Order Detail Modal -->
+  <div class="modal-overlay" id="order-detail-modal">
+    <div class="modal" style="max-width:700px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Order Details</h3>
+        <button class="modal-close" onclick="closeModal('order-detail-modal')">&times;</button>
+      </div>
+      <div class="modal-body" id="order-detail-body">
+        <!-- injected dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('order-detail-modal')">Close</button>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
