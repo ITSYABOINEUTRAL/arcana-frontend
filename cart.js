@@ -254,7 +254,9 @@ document.getElementById('checkout-btn')?.addEventListener('click', async () => {
       },
       body: JSON.stringify({
         products: cartData.map(i => ({
+          product: i.product?._id || i.product,
           productId: i.product?._id || i.product,
+          name: i.product?.name || 'Unknown',
           title: i.product?.name || 'Unknown',
           image: i.product?.image || 'logo.png',
           size: i.size || 'One Size',
@@ -275,7 +277,7 @@ document.getElementById('checkout-btn')?.addEventListener('click', async () => {
     }
 
     // 3. Initialize Paystack
-    const amountInKobo = Math.round(totalUSD * 1.54730 * 100);
+    const amountInKobo = Math.round(totalUSD * 1547.30 * 100);
     const payRes = await fetch(`${API_BASE}/paystack/initialize`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
