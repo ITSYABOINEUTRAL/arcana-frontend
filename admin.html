@@ -329,6 +329,7 @@
 <base target="_blank">
 <base target="_blank">
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
   <div class="mobile-header" id="mobile-header">
@@ -581,6 +582,21 @@
     </div>
   </div>
 
+
+  <div class="modal-overlay" id="order-detail-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Order Details</h3>
+        <button class="modal-close" onclick="closeModal('order-detail-modal')">&times;</button>
+      </div>
+      <div class="modal-body" id="order-detail-body">
+        <!-- Populated by openOrderDetailModal() -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('order-detail-modal')">Close</button>
+      </div>
+    </div>
+  </div>
   <div class="modal-overlay" id="product-modal">
     <div class="modal">
       <div class="modal-header">
