@@ -22,23 +22,38 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
-            background: #0a0a0a;
             color: #fff;
-            min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* ===== BACKGROUND EFFECTS ===== */
+        /* ===== BACKGROUND IMAGE ===== */
         .landing-bg {
             position: fixed;
             inset: 0;
             z-index: 0;
-            background: 
-                radial-gradient(ellipse at 20% 50%, rgba(89, 73, 59, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(139, 106, 78, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, rgba(89, 73, 59, 0.08) 0%, transparent 50%);
+            background: url('gallery%202.jpeg') no-repeat center center/cover;
+            background-attachment: fixed;
+        }
+
+        .landing-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .landing-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.0) 50%, rgba(0,0,0,0.35) 100%);
         }
 
         .noise-overlay {
@@ -55,21 +70,22 @@
             position: relative;
             z-index: 2;
             min-height: 100vh;
+            min-height: -webkit-fill-available;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-            max-width: 900px;
+            justify-content: flex-start;
+            padding: 50px 20px 20px;
+            max-width: 520px;
             margin: 0 auto;
             text-align: center;
         }
 
         /* ===== LOGO ===== */
         .landing-logo {
-            width: 160px;
+            width: 200px;
             height: auto;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
             filter: brightness(0) invert(1);
             animation: fadeInDown 1s ease-out;
         }
@@ -79,104 +95,63 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(89, 73, 59, 0.2);
-            border: 1px solid rgba(139, 106, 78, 0.3);
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            font-weight: 600;
+            background: #59493b;
+            padding: 10px 28px;
+            border-radius: 0;
+            font-size: 0.8rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: #8B6A4E;
+            color: #fff;
             margin-bottom: 32px;
             animation: fadeInUp 1s ease-out 0.2s both;
-        }
-
-        .drop-badge .pulse {
-            width: 8px;
-            height: 8px;
-            background: #8B6A4E;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-        }
-
-        /* ===== HEADLINE ===== */
-        .landing-headline {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-            margin-bottom: 16px;
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-
-        .landing-headline span {
-            background: linear-gradient(135deg, #8B6A4E 0%, #c4a882 50%, #8B6A4E 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .landing-subtitle {
-            font-size: clamp(1rem, 2.5vw, 1.25rem);
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.6;
-            max-width: 500px;
-            margin: 0 auto 48px;
-            animation: fadeInUp 1s ease-out 0.6s both;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
         }
 
         /* ===== COUNTDOWN ===== */
         .countdown-container {
             display: flex;
-            gap: 16px;
+            gap: 8px;
             justify-content: center;
-            margin-bottom: 48px;
-            animation: fadeInUp 1s ease-out 0.8s both;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.4s both;
             flex-wrap: wrap;
         }
 
         .countdown-box {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 24px 20px;
-            min-width: 80px;
-            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 70px;
         }
 
         .countdown-number {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
+            font-size: clamp(2.5rem, 7vw, 4rem);
+            font-weight: 800;
             line-height: 1;
-            display: block;
-            background: linear-gradient(135deg, #fff 0%, #8B6A4E 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #fff;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.7);
         }
 
         .countdown-label {
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: rgba(255, 255, 255, 0.4);
-            margin-top: 8px;
-            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 6px;
+            font-weight: 600;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.6);
         }
 
         .countdown-separator {
-            font-size: 2rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 300;
-            color: rgba(255, 255, 255, 0.2);
-            align-self: center;
+            color: rgba(255, 255, 255, 0.5);
+            align-self: flex-start;
+            padding-top: 4px;
             display: none;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
         }
 
         @media (min-width: 480px) {
@@ -186,65 +161,67 @@
         /* ===== NEWSLETTER FORM ===== */
         .newsletter-section {
             width: 100%;
-            max-width: 480px;
-            animation: fadeInUp 1s ease-out 1s both;
+            max-width: 420px;
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
 
         .newsletter-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.85);
             margin-bottom: 16px;
             font-weight: 500;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.6);
         }
 
         .newsletter-form {
             display: flex;
-            gap: 0;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 0;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.03);
-            transition: border-color 0.3s;
-        }
-
-        .newsletter-form:focus-within {
-            border-color: #8B6A4E;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
         }
 
         .newsletter-form input {
-            flex: 1;
-            padding: 16px 20px;
-            background: transparent;
-            border: none;
+            width: 100%;
+            padding: 18px 20px;
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             color: #fff;
             font-family: 'Poppins', sans-serif;
             font-size: 0.95rem;
             outline: none;
+            text-align: center;
+            transition: border-color 0.3s;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
 
         .newsletter-form input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .newsletter-form input:focus {
+            border-color: #59493b;
         }
 
         .newsletter-form button {
-            padding: 16px 28px;
+            width: 100%;
+            padding: 18px 28px;
             background: #59493b;
             color: #fff;
-            border: none;
+            border: 2px solid #59493b;
             font-family: 'Poppins', sans-serif;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
             cursor: pointer;
             transition: all 0.3s ease;
-            white-space: nowrap;
         }
 
         .newsletter-form button:hover {
-            background: #8B6A4E;
+            background: transparent;
+            color: #59493b;
         }
 
         .newsletter-form button:active {
@@ -253,18 +230,18 @@
 
         .newsletter-note {
             font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.35);
+            color: rgba(255, 255, 255, 0.65);
             margin-top: 12px;
             font-weight: 300;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
 
         /* Success message */
         .subscribe-success {
             display: none;
             padding: 16px 20px;
-            background: rgba(89, 73, 59, 0.2);
-            border: 1px solid rgba(139, 106, 78, 0.3);
-            border-radius: 8px;
+            background: rgba(89, 73, 59, 0.4);
+            border: 1px solid rgba(89, 73, 59, 0.7);
             margin-top: 16px;
             font-size: 0.9rem;
             color: #c4a882;
@@ -277,17 +254,18 @@
 
         /* ===== SOCIAL LINKS ===== */
         .social-section {
-            margin-top: 48px;
-            animation: fadeInUp 1s ease-out 1.2s both;
+            margin-top: 40px;
+            animation: fadeInUp 1s ease-out 0.8s both;
         }
 
         .social-label {
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.75);
             margin-bottom: 20px;
             font-weight: 500;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.6);
         }
 
         .social-links {
@@ -300,20 +278,21 @@
             width: 48px;
             height: 48px;
             border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(0, 0, 0, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
             transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
         }
 
         .social-link:hover {
-            background: rgba(89, 73, 59, 0.3);
-            border-color: #8B6A4E;
-            color: #fff;
+            background: rgba(89, 73, 59, 0.35);
+            border-color: #59493b;
+            color: #c4a882;
             transform: translateY(-3px);
         }
 
@@ -325,14 +304,16 @@
         /* ===== FOOTER ===== */
         .landing-footer {
             margin-top: auto;
-            padding-top: 60px;
-            animation: fadeInUp 1s ease-out 1.4s both;
+            padding-top: 40px;
+            padding-bottom: 10px;
+            animation: fadeInUp 1s ease-out 1s both;
         }
 
         .landing-footer p {
             font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.25);
+            color: rgba(255, 255, 255, 0.55);
             letter-spacing: 0.05em;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
 
         /* ===== ANIMATIONS ===== */
@@ -387,8 +368,8 @@
         .spinner {
             width: 40px;
             height: 40px;
-            border: 3px solid rgba(139, 106, 78, 0.2);
-            border-top-color: #8B6A4E;
+            border: 3px solid rgba(89, 73, 59, 0.2);
+            border-top-color: #59493b;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -397,31 +378,38 @@
             to { transform: rotate(360deg); }
         }
 
-        /* ===== RESPONSIVE ===== */
+        /* ===== MOBILE: DRASTICALLY LIGHTEN OVERLAY ===== */
+        @media (max-width: 768px) {
+            .landing-bg {
+                background-attachment: scroll;
+                background-position: center center;
+            }
+            .landing-bg::before {
+                background: rgba(0, 0, 0, 0.05);
+            }
+            .landing-bg::after {
+                background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.0) 50%, rgba(0,0,0,0.1) 100%);
+            }
+        }
+
         @media (max-width: 480px) {
             .landing-container {
-                padding: 30px 16px;
+                padding: 40px 16px 16px;
+            }
+
+            .landing-logo {
+                width: 180px;
             }
 
             .countdown-box {
-                padding: 16px 12px;
-                min-width: 60px;
+                min-width: 55px;
             }
 
             .countdown-number {
-                font-size: 1.75rem;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
-
-            .newsletter-form button {
-                width: 100%;
+                font-size: 2.25rem;
             }
         }
     </style>
-<base target="_blank">
 <base target="_blank">
 </head>
 <body>
@@ -432,9 +420,32 @@
         <!-- Logo -->
         <img src="logo.png" alt="Arcana" class="landing-logo">
 
-        <!-- Product Image -->
-        <div class="product-image-wrapper" style="width:100%;max-width:420px;margin-bottom:40px;animation: fadeInUp 1s ease-out 0.2s both;">
-            <img src="gallery7.jpeg" alt="Arcana Summer Collection" style="width:100%;height:auto;border-radius:16px;border:1px solid rgba(139, 106, 78, 0.2);box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
+        <!-- Badge -->
+        <div class="drop-badge">
+            Coming Soon
+        </div>
+
+        <!-- Countdown -->
+        <div class="countdown-container" id="countdown">
+            <div class="countdown-box">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">Days</span>
+            </div>
+            <span class="countdown-separator">:</span>
+            <div class="countdown-box">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Hrs</span>
+            </div>
+            <span class="countdown-separator">:</span>
+            <div class="countdown-box">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">Min</span>
+            </div>
+            <span class="countdown-separator">:</span>
+            <div class="countdown-box">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Sec</span>
+            </div>
         </div>
 
         <!-- Newsletter Form -->
@@ -496,5 +507,47 @@
     <div id="notification-container" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; flex-direction: column; align-items: center; gap: 10px;"></div>
 
     <script src="script.js"></script>
+
+    <!-- Countdown Logic -->
+    <script>
+        (function() {
+            const targetDate = new Date('2026-06-20T00:00:00').getTime();
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            const redirectOverlay = document.getElementById('redirectOverlay');
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const diff = targetDate - now;
+
+                if (diff <= 0) {
+                    if (daysEl) daysEl.textContent = '00';
+                    if (hoursEl) hoursEl.textContent = '00';
+                    if (minutesEl) minutesEl.textContent = '00';
+                    if (secondsEl) secondsEl.textContent = '00';
+                    if (redirectOverlay) redirectOverlay.classList.add('show');
+                    setTimeout(() => {
+                        window.location.href = 'shop.html';
+                    }, 3000);
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+                if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+                if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+                if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        })();
+    </script>
 </body>
 </html>
