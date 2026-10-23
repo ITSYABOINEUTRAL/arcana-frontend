@@ -17,7 +17,6 @@ The site is API-driven — all product data, cart state, orders, and user accoun
 ## Features
 
 - **Pre-launch landing page** — countdown timer, early-access newsletter signup, and social links; auto-redirects to the shop once the drop goes live
-- **Pre-launch landing page** — countdown timer, early-access newsletter signup, and social links; auto-redirects to the shop once the drop goes live
 - **Product catalogue** — grid view of all products fetched from the API, with real-time "Sold Out" badges when stock reaches zero
 - **Product detail page** — image gallery with zoom, size selector, size guide modal, quantity stepper, sticky add-to-cart bar, breadcrumb navigation, social share buttons, and a "You May Also Like" related-products section
 - **Shopping cart** — server-side cart (per-user, persisted via API); quantity controls, item removal, and an order summary with shipping estimate
@@ -26,7 +25,7 @@ The site is API-driven — all product data, cart state, orders, and user accoun
 - **Order tracking** — enter an order ID on `order_status.html` to fetch and display the current status from the API
 - **Order history** — dashboard view of past orders with status badges (pending → processing → shipped → delivered)
 - **Multi-currency display** — prices shown in USD, EUR, GBP, or NGN; selector persists in `localStorage`
-- **Coupon codes** — applied at cart (note: currently validated client-side only — see known limitations)
+- **Coupon code box** — a frontend-only placeholder UI at checkout; no backend coupon support is implemented yet
 - **Responsive layout** — mobile-first design with a full-screen overlay menu on small screens
 - **Toast notifications** — colour-coded feedback (success, error, warning, info) throughout the site
 - **Gallery / lookbook** — editorial image grid
@@ -187,16 +186,13 @@ Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before
 
 The following are real gaps in the current codebase that are good candidates for contribution:
 
-- **Coupon codes are validated client-side only** — the `validCoupons` array in `cart.html` can be read by anyone in browser devtools; validation should move to the backend.
+- **Incorrect shipping rate in cart** — `cart.js:62` charges $5.00 for Nigeria shipping; the correct rate is $3.50 (matching `product-detail.html:712`).
+- **Multiple `<base target="_blank">` tags** — all 18 HTML files contain at least one `<base target="_blank">` tag, with a total of 60 across the repo. Only the first `<base>` element is used by browsers; having one at all causes links without an explicit `target` attribute to open in new tabs unintentionally.
+- **No order confirmation on return from Paystack** — Paystack redirects back to `index.html` with `reference` and `trxref` query parameters, but `index.html` ignores them; returning customers see the landing page with no acknowledgement.
 - **Currency conversion rates are hardcoded** — they drift from market rates and must be updated manually in `script.js`.
 - **No automated tests** — there are no unit or integration tests for any of the JavaScript modules.
 - **Accessibility gaps** — cart quantity `+`/`−` buttons have no `aria-label`; the quantity span has no `aria-live`; `other-script.js` toast is missing `aria-live`.
-- **Multiple `<base target="_blank">` tags** — `product-detail.html`, `edit-settings.html`, `order_status.html`, `forgot_password.html`, `reset_password.html`, and `gallery.html` each contain duplicate `<base target="_blank">` declarations (up to six per page). Only the first `<base>` tag is used by browsers; the duplicates are harmless but suggest copy-paste errors and cause links without an explicit `target` attribute to open in new tabs unintentionally.
-- **Inconsistent shipping rate** — the "Order Now" button on `product-detail.html` uses $3.50 for Nigeria shipping (`product-detail.html:712`) while the cart checkout uses $5.00 (`cart.js:62`).
-- **Coupon codes are validated client-side only** — the `validCoupons` array in `cart.html` can be read by anyone in browser devtools; validation should move to the backend.
-- **Currency conversion rates are hardcoded** — they drift from market rates and must be updated manually in `script.js`.
-- **No automated tests** — there are no unit or integration tests for any of the JavaScript modules.
-- **No input sanitisation visible on the frontend** — the contact form and settings form do not validate or sanitise fields before submitting.
+- **No input sanitisation on the frontend** — the contact form and settings form do not validate or sanitise fields before submitting.
 - **Inline styles in HTML files** — `account-dashboard.html`, `shop.html`, `edit-settings.html`, and others contain large `<style>` blocks; these should be moved to the shared stylesheet.
 - **`API_BASE` is duplicated** across multiple files — a single shared config module would reduce drift.
 - **No 404 page** — navigating to a nonexistent URL shows a blank Vercel error page.
