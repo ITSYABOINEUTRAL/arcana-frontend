@@ -1,7 +1,7 @@
 // === account-dashboard-script.js (MODERNIZED) ===
 // All original logic preserved. Enhanced with toast notifications & loading states.
 
-const API_BASE = 'https://arcana-backend-z46k.onrender.com/api';
+const API_BASE = 'https://arcana-backend-master.onrender.com/api';
 const token = localStorage.getItem('token');
 
 // ===== AUTH GUARD (PRESERVED) =====

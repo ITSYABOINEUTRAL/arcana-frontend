@@ -277,7 +277,7 @@
             messageBox.style.color = "var(--arcana-text-light)";
 
             try {
-                const res = await fetch("https://arcana-backend-z46k.onrender.com/api/returns/return-request", {
+                const res = await fetch("https://arcana-backend-master.onrender.com/api/returns/return-request", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ orderId, reason, type })

@@ -4,7 +4,7 @@
 // Fixed empty cart state (CSS flex-direction: column keeps it centered)
 // Auth guard uses blocking modal (redirects to account.html on close)
 
-const API_BASE = 'https://arcana-backend-z46k.onrender.com/api';
+const API_BASE = 'https://arcana-backend-master.onrender.com/api';
 const currencyRates = { USD: 1, EUR: 0.8666, GBP: 0.7375, NGN: 1547.30 };
 const currencySymbols = { USD: "$", EUR: "€", GBP: "£", NGN: "₦" };
 let currentCurrency = 'USD';
