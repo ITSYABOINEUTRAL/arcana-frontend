@@ -165,8 +165,14 @@ To deploy your own fork:
 
 ## Screenshots
 
-<!-- Add screenshots here once available -->
-> _Screenshots coming soon. See the [live demo](https://arcana-frontend-two.vercel.app/) in the meantime._
+| | |
+|---|---|
+| ![Shop page hero and featured collection](docs/screenshots/shop.jpeg) | ![Product catalogue — all products grid](docs/screenshots/product-catalogue.jpeg) |
+| *Shop — hero and featured collection* | *Product catalogue — all 6 products* |
+| ![Product detail page](docs/screenshots/product-detail.jpeg) | ![Gallery lookbook](docs/screenshots/gallery.jpeg) |
+| *Product detail — size selector, zoom, and sticky cart bar* | *Gallery — "Visual Language of Arcana" lookbook* |
+| ![Account login page](docs/screenshots/login.jpeg) | ![Shop on a 390 px mobile viewport](docs/screenshots/shop-mobile.jpeg) |
+| *Account — sign in / register* | *Shop on a 390 px mobile viewport* |
 
 ---
 
