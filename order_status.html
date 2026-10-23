@@ -213,7 +213,10 @@
             `;
 
             try {
-                const res = await fetch(`https://arcana-backend-master.onrender.com/api/orders/${orderId}`);
+                const token = localStorage.getItem('token');
+                const res = await fetch(`https://arcana-backend-master.onrender.com/api/orders/${orderId}`, {
+                    headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+                });
 
                 if (res.status === 404) {
                     throw new Error("not-found");
@@ -226,11 +229,11 @@
                 }
 
                 // Determine delivery ETA based on country
-                const country = order.shippingAddress.country?.toLowerCase() || "";
+                const country = order.shippingAddress?.country?.toLowerCase() || "";
                 const isNigerian = country.includes("nigeria");
-                const eta = isNigerian
-                    ? "📦 Estimated delivery: 10–15 business days"
-                    : "📦 Estimated delivery: 2–3 weeks";
+                const eta = country
+                    ? (isNigerian ? "📦 Estimated delivery: 10–15 business days" : "📦 Estimated delivery: 2–3 weeks")
+                    : "📦 Estimated delivery: 10–15 business days";
 
                 const statusClass = order.deliveryStage?.toLowerCase().replace(/\s+/g, '-') || 'reviewing';
 
@@ -276,6 +279,7 @@
                             </div>
                         </div>
 
+                        ${order.shippingAddress ? `
                         <div class="order-details-grid">
                             <div class="detail-block">
                                 <h4><i class="fa-solid fa-location-dot"></i> Shipping Address</h4>
@@ -283,11 +287,12 @@
                                 <p>${order.shippingAddress.city}, ${order.shippingAddress.state} ${order.shippingAddress.zip}</p>
                                 <p>${order.shippingAddress.country}</p>
                             </div>
+                            ${order.phoneNumber ? `
                             <div class="detail-block">
                                 <h4><i class="fa-solid fa-phone"></i> Contact</h4>
                                 <p>${order.phoneNumber}</p>
-                            </div>
-                        </div>
+                            </div>` : ''}
+                        </div>` : ''}
 
                         <div class="order-products">
                             <h4><i class="fa-solid fa-bag-shopping"></i> Products</h4>
