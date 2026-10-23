@@ -1,6 +1,6 @@
 # Arcana
 
-A static e-commerce storefront for a limited-drop streetwear brand — built with plain HTML, CSS, and JavaScript, no framework required.
+A static e-commerce storefront for a limited-drop fashion brand — built with plain HTML, CSS, and JavaScript, no framework required.
 
 **Live demo:** [arcana-frontend-two.vercel.app](https://arcana-frontend-two.vercel.app/)
 
@@ -17,18 +17,21 @@ The site is API-driven — all product data, cart state, orders, and user accoun
 ## Features
 
 - **Pre-launch landing page** — countdown timer, early-access newsletter signup, and social links; auto-redirects to the shop once the drop goes live
+- **Pre-launch landing page** — countdown timer, early-access newsletter signup, and social links; auto-redirects to the shop once the drop goes live
 - **Product catalogue** — grid view of all products fetched from the API, with real-time "Sold Out" badges when stock reaches zero
+- **Product detail page** — image gallery with zoom, size selector, size guide modal, quantity stepper, sticky add-to-cart bar, breadcrumb navigation, social share buttons, and a "You May Also Like" related-products section
 - **Shopping cart** — server-side cart (per-user, persisted via API); quantity controls, item removal, and an order summary with shipping estimate
 - **Checkout via Paystack** — validates address and phone before creating an order, then redirects to the Paystack payment page
-- **User accounts** — register, log in, view profile, upload a profile picture, manage saved addresses
+- **User accounts** — register, log in, view profile, upload a profile picture, manage saved addresses, change password
+- **Order tracking** — enter an order ID on `order_status.html` to fetch and display the current status from the API
 - **Order history** — dashboard view of past orders with status badges (pending → processing → shipped → delivered)
 - **Multi-currency display** — prices shown in USD, EUR, GBP, or NGN; selector persists in `localStorage`
-- **Coupon codes** — client-side discount codes applied at cart (note: currently validated client-side only)
+- **Coupon codes** — applied at cart (note: currently validated client-side only — see known limitations)
 - **Responsive layout** — mobile-first design with a full-screen overlay menu on small screens
 - **Toast notifications** — colour-coded feedback (success, error, warning, info) throughout the site
 - **Gallery / lookbook** — editorial image grid
 - **FAQ, Returns, Privacy Policy, Terms & Conditions** — static informational pages
-- **Admin panel** — separate protected page for store administration
+- **Admin panel** — separate protected page for store administration (dashboard, orders, email broadcast)
 - **Contact page** — enquiry form, email, WhatsApp, and business-hours info
 
 ---
@@ -143,7 +146,8 @@ The currency conversion rates (USD → EUR, GBP, NGN) are also hardcoded in `scr
 1. **Register / Log in** — `account.html` posts credentials to `/auth/register` or `/auth/login`. On success the JWT and email are stored in `localStorage` and the user is redirected to the dashboard (or the admin panel for admin accounts).
 2. **Dashboard** — `account-dashboard.html` reads the token, fetches the user's profile, orders, and addresses from the API, and renders them.
 3. **Session** — The token is stored in `localStorage`. There is no automatic refresh; when the token expires the user is redirected to log in again.
-4. **Password reset** — `forgot_password.html` submits the user's email; `reset_password.html` accepts the new password with a token from the reset email.
+4. **Password reset** — `forgot_password.html` posts the user's email to `POST /auth/forgot-password`; `reset_password.html` reads a token from the URL and posts the new password to `POST /auth/reset-password/{token}`.
+5. **Settings** — `edit-settings.html` lets a logged-in user update their profile (`PUT /auth/profile`) and change their password (`PUT /auth/change-password`).
 
 ---
 
@@ -186,9 +190,13 @@ The following are real gaps in the current codebase that are good candidates for
 - **Coupon codes are validated client-side only** — the `validCoupons` array in `cart.html` can be read by anyone in browser devtools; validation should move to the backend.
 - **Currency conversion rates are hardcoded** — they drift from market rates and must be updated manually in `script.js`.
 - **No automated tests** — there are no unit or integration tests for any of the JavaScript modules.
-- **Accessibility gaps** — several interactive elements (quantity spinners, toast dismissal buttons, mobile menu) lack proper ARIA roles and keyboard-navigation support.
+- **Accessibility gaps** — cart quantity `+`/`−` buttons have no `aria-label`; the quantity span has no `aria-live`; `other-script.js` toast is missing `aria-live`.
+- **Multiple `<base target="_blank">` tags** — `product-detail.html`, `edit-settings.html`, `order_status.html`, `forgot_password.html`, `reset_password.html`, and `gallery.html` each contain duplicate `<base target="_blank">` declarations (up to six per page). Only the first `<base>` tag is used by browsers; the duplicates are harmless but suggest copy-paste errors and cause links without an explicit `target` attribute to open in new tabs unintentionally.
+- **Inconsistent shipping rate** — the "Order Now" button on `product-detail.html` uses $3.50 for Nigeria shipping (`product-detail.html:712`) while the cart checkout uses $5.00 (`cart.js:62`).
+- **Coupon codes are validated client-side only** — the `validCoupons` array in `cart.html` can be read by anyone in browser devtools; validation should move to the backend.
+- **Currency conversion rates are hardcoded** — they drift from market rates and must be updated manually in `script.js`.
+- **No automated tests** — there are no unit or integration tests for any of the JavaScript modules.
 - **No input sanitisation visible on the frontend** — the contact form and settings form do not validate or sanitise fields before submitting.
-- **Inline styles in HTML files** — `account-dashboard.html` and `shop.html` contain large `<style>` blocks; these should be moved to the shared stylesheet.
+- **Inline styles in HTML files** — `account-dashboard.html`, `shop.html`, `edit-settings.html`, and others contain large `<style>` blocks; these should be moved to the shared stylesheet.
 - **`API_BASE` is duplicated** across multiple files — a single shared config module would reduce drift.
 - **No 404 page** — navigating to a nonexistent URL shows a blank Vercel error page.
-- **Password-reset pages** (`forgot_password.html`, `reset_password.html`) — the UI exists but the endpoint wiring has not been verified against the current backend.

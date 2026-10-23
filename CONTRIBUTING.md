@@ -173,6 +173,6 @@ Your PR description should answer these questions:
 
 This project follows a simple rule: **be kind**. We welcome contributors of all experience levels. Constructive criticism is fine; personal attacks, harassment, or dismissive language are not.
 
-If you experience or witness behaviour that violates this, please contact the maintainer directly via the email listed in the repository. Reports will be handled confidentially.
+If you experience or witness behaviour that violates this, please open a [GitHub issue](../../issues/new) marked as a conduct report, or send a direct message to the maintainer via GitHub. Reports will be handled confidentially.
 
 By participating in this project you agree to maintain a welcoming and respectful environment for everyone.
